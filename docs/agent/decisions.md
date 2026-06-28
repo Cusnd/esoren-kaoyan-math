@@ -7,3 +7,4 @@
 - 章节文件先放置轻量占位说明，后续新增题目或知识点时直接追加到对应章节。
 - 将可复用的 Codex 总提示词保存到 `prompts/codex_math1_prompt.md`，便于每次开启学习会话时复制使用。
 - 教材目录成为当前归章主线：高数、线代、概率均按教材“第几讲”拆分；`docs/textbook_catalog.md` 供人工查看，`data/textbook_catalog.yml` 供后续检索或自动化使用。
+- 详细输出规则固化到 `AGENTS.md` 与 `prompts/codex_math1_prompt.md`，以后默认按任务判断、严谨讲解、合法性检查、考场写法、迁移模板、易错点和文件更新闭环输出。
