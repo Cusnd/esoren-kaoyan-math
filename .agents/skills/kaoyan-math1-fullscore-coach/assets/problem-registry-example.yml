@@ -1,0 +1,13 @@
+- id: MATH1-CALC-0001
+  title: "题目简述"
+  subject: "高等数学"
+  chapter: "第 1 讲 函数极限与连续"
+  file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+  source: "用户粘贴 / 未注明来源"
+  difficulty: "中等"
+  tags:
+    - 极限
+    - 等价无穷小
+  mistakes:
+    - "忽略使用条件"
+  status: "已整理"

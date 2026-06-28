@@ -1,0 +1,6 @@
+interface:
+  display_name: "Kaoyan Math I Coach"
+  short_description: "Full-score math coaching with TeX archive"
+  default_prompt: "Use $kaoyan-math1-fullscore-coach to explain this 考研数学一 problem and archive it into TeX."
+policy:
+  allow_implicit_invocation: true
