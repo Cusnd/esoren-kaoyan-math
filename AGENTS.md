@@ -19,6 +19,11 @@
 
 ## 1. 仓库结构
 
+本仓库以当前教材目录为主线维护，目录映射见：
+
+- `docs/textbook_catalog.md`
+- `data/textbook_catalog.yml`
+
 如果仓库中还没有这些文件，请主动初始化：
 
 ```text
@@ -26,33 +31,34 @@
 ├── AGENTS.md
 ├── main.tex
 ├── README.md
+├── docs
+│   └── textbook_catalog.md
 ├── tex
 │   ├── preamble.tex
 │   ├── chapters
 │   │   ├── calculus
 │   │   │   ├── 01_function_limit_continuity.tex
-│   │   │   ├── 02_derivative_differential.tex
-│   │   │   ├── 03_mean_value_theorem_and_applications.tex
-│   │   │   ├── 04_indefinite_integral.tex
-│   │   │   ├── 05_definite_integral_and_applications.tex
-│   │   │   ├── 06_differential_equations.tex
-│   │   │   ├── 07_multivariable_differential_calculus.tex
-│   │   │   ├── 08_multiple_integrals.tex
-│   │   │   ├── 09_line_surface_integrals.tex
-│   │   │   └── 10_infinite_series.tex
+│   │   │   ├── 02_sequence_limit.tex
+│   │   │   ├── 03_one_variable_differential_concepts.tex
+│   │   │   ├── 04_one_variable_differential_calculation.tex
+│   │   │   ├── 05_differential_applications_geometry.tex
+│   │   │   ├── ...
+│   │   │   ├── 18_multivariable_integral_calculus_math1.tex
+│   │   │   └── appendix_*.tex
 │   │   ├── linear_algebra
+│   │   │   ├── 00_linear_algebra_intro.tex
 │   │   │   ├── 01_determinants.tex
 │   │   │   ├── 02_matrices.tex
-│   │   │   ├── 03_vectors.tex
+│   │   │   ├── 03_vector_groups.tex
 │   │   │   ├── 04_linear_equations.tex
 │   │   │   ├── 05_eigenvalues_eigenvectors.tex
 │   │   │   └── 06_quadratic_forms.tex
 │   │   └── probability
 │   │       ├── 01_random_events_probability.tex
-│   │       ├── 02_random_variables_distributions.tex
-│   │       ├── 03_multidimensional_random_variables.tex
+│   │       ├── 02_one_dimensional_random_variables_distributions.tex
+│   │       ├── 03_multidimensional_random_variables_distributions.tex
 │   │       ├── 04_numerical_characteristics.tex
-│   │       ├── 05_limit_theorems.tex
+│   │       ├── 05_law_large_numbers_clt.tex
 │   │       └── 06_mathematical_statistics.tex
 │   ├── indexes
 │   │   ├── problem_index.tex
@@ -62,10 +68,11 @@
 │   └── templates
 │       └── problem_template.tex
 └── data
-    └── problem_registry.yml
+    ├── problem_registry.yml
+    └── textbook_catalog.yml
 ```
 
-章节文件可以根据实际大纲、教材或我的要求调整，但必须保持“每一章单独一个 `.tex` 文件”的原则。
+章节文件可以根据实际大纲、教材或我的要求调整，但必须保持“每一讲/每一章单独一个 `.tex` 文件”的原则。当前优先按教材“第几讲”归档；当教材讲次与考研大纲章节不完全一致时，先放入最贴近的教材讲次，再在索引中补充交叉引用。
 
 ## 2. LaTeX 基本要求
 
