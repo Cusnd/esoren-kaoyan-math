@@ -1,0 +1,46 @@
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\geometry{a4paper, margin=2.2cm}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}
+\setlist{nosep}
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}{引理}[section]
+\newtheorem{definition}{定义}[section]
+\newtheorem{corollary}{推论}[section]
+
+\newtcolorbox{problemBox}{
+  colback=gray!5,
+  colframe=black!60,
+  title=题目,
+  breakable
+}
+
+\newtcolorbox{solutionBox}{
+  colback=blue!3,
+  colframe=blue!40!black,
+  title=题解,
+  breakable
+}
+
+\newtcolorbox{knowledgeBox}{
+  colback=green!3,
+  colframe=green!40!black,
+  title=知识点,
+  breakable
+}
+
+\newtcolorbox{mistakeBox}{
+  colback=red!3,
+  colframe=red!50!black,
+  title=易错点,
+  breakable
+}

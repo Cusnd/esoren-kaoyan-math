@@ -1,0 +1,3 @@
+# 题目登记表。新增题目时，将下面的空列表替换为条目列表。
+# 示例见 AGENTS.md 的 problem_registry.yml 章节。
+[]
