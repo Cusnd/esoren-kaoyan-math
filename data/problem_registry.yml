@@ -14,3 +14,20 @@
     - "混淆题设参数与最终自变量"
     - "忽略题面符号与参考答案的一致性"
   status: "已整理"
+- id: MATH1-CALC-0002
+  title: "由 f(x) 与 f(1/x) 的关系式求 f(x)"
+  subject: "高等数学"
+  chapter: "第 1 讲 函数极限与连续"
+  file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+  source: "用户图片 / 教材例 1.2"
+  difficulty: "基础"
+  tags:
+    - 函数关系式
+    - 倒数代换
+    - 方程组消元
+    - 定义域
+  mistakes:
+    - "忽略 x>0 对倒数代换和根式化简的作用"
+    - "根式化简时漏掉绝对值判断"
+    - "消元倍数选择错误"
+  status: "已整理"

@@ -9,4 +9,24 @@
   \item \textbf{核心步骤：} 先将原参数重命名，再把右端化成只含 \(\varphi(u)\) 的表达式，最后令 \(t=\varphi(u)\)。
   \item \textbf{关联题目：} MATH1-CALC-0001。
 \end{itemize}
+
+\textbf{反解参数后消元}
+
+\begin{itemize}
+  \item \textbf{适用题型：} 已知 \(f(\varphi(u))\)，且 \(\varphi(u)=t\) 可以转化为低次代数方程。
+  \item \textbf{触发特征：} 内层变量如 \(t=u+\frac{1}{u}\) 可化为 \(u^2-tu+1=0\)，从而用 \(1+u^2=tu\) 等关系消去 \(u\)。
+  \item \textbf{核心步骤：} 先设 \(t=\varphi(u)\)，建立 \(u\) 与 \(t\) 的方程关系，再把右端分子分母分别化成含 \(t\) 的倍数，最后约去参数。
+  \item \textbf{使用提醒：} 本法常比整体换元繁琐；也可显式解出 \(u\) 的分支后代回，但若不同分支会导致右端不同值，必须额外检查分支是否影响函数定义。
+  \item \textbf{关联题目：} MATH1-CALC-0001。
+\end{itemize}
+
+\textbf{对偶代换建立方程组}
+
+\begin{itemize}
+  \item \textbf{适用题型：} 关系式中同时出现 \(f(x)\) 与 \(f\left(\frac{1}{x}\right)\)、\(f(-x)\)、\(f(a-x)\) 等成对函数值。
+  \item \textbf{触发特征：} 目标是求 \(f(x)\)，但题设中还混有另一个函数值，需要通过自变量替换得到第二个方程。
+  \item \textbf{核心步骤：} 先把混合出现的函数值看作未知量，再做对应代换，如 \(x\mapsto \frac{1}{x}\)，联立方程并消去非目标项。
+  \item \textbf{使用提醒：} 代换前必须检查定义域封闭性；例如本题定义域为 \((0,+\infty)\)，所以 \(x>0\) 时 \(\frac{1}{x}>0\)。
+  \item \textbf{关联题目：} MATH1-CALC-0002。
+\end{itemize}
 \end{knowledgeBox}

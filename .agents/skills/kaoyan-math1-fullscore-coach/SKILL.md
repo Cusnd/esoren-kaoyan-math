@@ -56,6 +56,16 @@ For wrong solutions or "我不会", diagnose first: 卡住位置, 错误步骤, 
 - Never invent source, exam year, or official-problem attribution.
 - If OCR or image text is ambiguous, state the ambiguity, solve the most likely version, and mention alternatives when they change the answer.
 
+## Chat Formula Rendering Rules
+
+The Codex desktop chat renderer is reliable for block math but can expose inline math delimiters as literal text. For all chat replies:
+
+- Do not use inline `$...$` math delimiters.
+- Do not use `\(...\)` or `\[...\]` as chat math delimiters.
+- Write short inline expressions as plain text or Unicode, such as `x≥2`, `f(x)`, `u + 1/u`.
+- Put fractions, radicals, limits, matrices, and multi-step equations in standalone `$$...$$` blocks with blank lines before and after.
+- Before sending the final answer, check that the chat prose contains no leftover `$x$`, `\[`, or `\]` style delimiters.
+
 ## Repository Routing
 
 First read `data/textbook_catalog.yml` or `docs/textbook_catalog.md` if present. Prefer the repository's textbook lecture structure over generic chapter names.

@@ -73,6 +73,63 @@ f(t)=\frac{t}{t^2-2}.
 f(x)=\frac{x}{x^2-2}\qquad (x\ge 2).
 \]
 
+\textbf{补充解法：反解参数后消元}
+
+也可以先把最终自变量记为 \(t\)，令
+\[
+t=u+\frac{1}{u}\qquad (t\ge 2).
+\]
+这等价于
+\[
+u^2-tu+1=0.
+\]
+由此可得
+\[
+1+u^2=tu.
+\]
+于是
+\[
+u+u^3=u(1+u^2)=tu^2.
+\]
+另一方面，由
+\[
+u^2+\frac{1}{u^2}=\left(u+\frac{1}{u}\right)^2-2=t^2-2
+\]
+可得
+\[
+1+u^4=u^2(t^2-2).
+\]
+所以
+\[
+f(t)=\frac{u+u^3}{1+u^4}
+=\frac{tu^2}{u^2(t^2-2)}
+=\frac{t}{t^2-2}.
+\]
+因此
+\[
+f(x)=\frac{x}{x^2-2}\qquad (x\ge 2).
+\]
+
+\textbf{关于显式解出 \(u\) 再代回：}
+
+也可以直接解二次方程
+\[
+u^2-tu+1=0,
+\]
+得到
+\[
+u=\frac{t\pm\sqrt{t^2-4}}{2}.
+\]
+但这里不能随意写成单值的 \(u=\theta(t)\)，因为当 \(t>2\) 时有两个分支，它们互为倒数。若将 \(u\) 换成 \(\frac{1}{u}\)，则
+\[
+\frac{\frac{1}{u}+\frac{1}{u^3}}{1+\frac{1}{u^4}}
+=\frac{u^3+u}{u^4+1}
+=\frac{u+u^3}{1+u^4},
+\]
+所以本题两个分支代回右端得到同一个值，显式解根代回是可行的。只是直接代入根式会使运算变繁，考场上不如先用方程关系消元。
+
+\textbf{方法比较：} 本法本质上是先由 \(t=u+\frac{1}{u}\) 建立 \(u\) 与 \(t\) 的方程关系，再用方程消去 \(u\)。它能做，但比整体换元多了一层消元；考场上优先使用前一种整体改写法。若要显式写 \(u=\theta(t)\)，必须先说明分支对右端函数值没有影响。
+
 \textbf{答案：}
 
 \[
@@ -106,4 +163,123 @@ u^2+\frac{1}{u^2}=\left(u+\frac{1}{u}\right)^2-2
 \textbf{复盘提醒：}
 
 看到 \(f\left(u+\frac{1}{u}\right)\) 这类题，先重命名参数，再问自己：右端能不能通过除以某个 \(u^k\) 造出 \(u+\frac{1}{u}\)？
+\end{mistakeBox}
+
+\subsection{互换 \(x\) 与 \(\frac{1}{x}\) 建立方程组求函数}
+
+\begin{problemBox}
+\textbf{题目编号：} MATH1-CALC-0002
+
+\textbf{来源：} 用户图片 / 教材例 1.2
+
+\textbf{题型：} 函数关系式中含 \(f(x)\) 与 \(f\left(\frac{1}{x}\right)\)，通过互换自变量建立方程组
+
+\textbf{知识点：} 定义域，倒数代换，二元一次方程组，根式化简
+
+\textbf{难度：} 基础
+
+\textbf{题目：}
+
+设函数 \(f(x)\) 的定义域为 \((0,+\infty)\)，且满足
+\[
+2f(x)+x^2f\left(\frac{1}{x}\right)=\frac{x^2+2x}{\sqrt{1+x^2}},
+\]
+则求 \(f(x)\)。
+\end{problemBox}
+
+\begin{solutionBox}
+\textbf{思路入口：}
+
+题设中同时出现 \(f(x)\) 与 \(f\left(\frac{1}{x}\right)\)。要求的是 \(f(x)\)，但题设只给出一个关系式，未知量却可看作两个：
+\[
+f(x),\qquad f\left(\frac{1}{x}\right).
+\]
+因此自然的入口是把题设中的 \(x\) 换成 \(\frac{1}{x}\)，再得到第二个方程，联立消去 \(f\left(\frac{1}{x}\right)\)。
+
+\textbf{详细解答：}
+
+由题设，对任意 \(x>0\)，有
+\[
+2f(x)+x^2f\left(\frac{1}{x}\right)=\frac{x^2+2x}{\sqrt{1+x^2}}.
+\qquad\text{(1)}
+\]
+因为定义域为 \((0,+\infty)\)，当 \(x>0\) 时也有 \(\frac{1}{x}>0\)，所以可以在题设中把 \(x\) 换为 \(\frac{1}{x}\)，得到
+\[
+2f\left(\frac{1}{x}\right)+\frac{1}{x^2}f(x)
+=\frac{\frac{1}{x^2}+\frac{2}{x}}{\sqrt{1+\frac{1}{x^2}}}.
+\]
+右端需要化简。由于 \(x>0\)，
+\[
+\sqrt{1+\frac{1}{x^2}}
+=\sqrt{\frac{x^2+1}{x^2}}
+=\frac{\sqrt{1+x^2}}{x}.
+\]
+因此
+\[
+\frac{\frac{1}{x^2}+\frac{2}{x}}{\sqrt{1+\frac{1}{x^2}}}
+=\frac{\frac{1+2x}{x^2}}{\frac{\sqrt{1+x^2}}{x}}
+=\frac{1+2x}{x\sqrt{1+x^2}}.
+\]
+于是得到第二个方程
+\[
+2f\left(\frac{1}{x}\right)+\frac{1}{x^2}f(x)
+=\frac{1+2x}{x\sqrt{1+x^2}}.
+\qquad\text{(2)}
+\]
+为了消去 \(f\left(\frac{1}{x}\right)\)，将 \((2)\) 乘以 \(x^2\)，得
+\[
+2x^2f\left(\frac{1}{x}\right)+f(x)
+=\frac{x(1+2x)}{\sqrt{1+x^2}}.
+\qquad\text{(3)}
+\]
+再将 \((1)\) 乘以 \(2\)，得
+\[
+4f(x)+2x^2f\left(\frac{1}{x}\right)
+=\frac{2x^2+4x}{\sqrt{1+x^2}}.
+\qquad\text{(4)}
+\]
+用 \((4)-(3)\)，左端中 \(f\left(\frac{1}{x}\right)\) 被消去：
+\[
+3f(x)
+=\frac{2x^2+4x-x-2x^2}{\sqrt{1+x^2}}
+=\frac{3x}{\sqrt{1+x^2}}.
+\]
+所以
+\[
+f(x)=\frac{x}{\sqrt{1+x^2}}\qquad (x>0).
+\]
+
+\textbf{答案：}
+
+\[
+\boxed{f(x)=\frac{x}{\sqrt{1+x^2}}\quad (x>0)}.
+\]
+\end{solutionBox}
+
+\begin{knowledgeBox}
+\textbf{核心知识点：}
+
+当函数关系式中同时出现 \(f(x)\) 和 \(f\left(\frac{1}{x}\right)\) 时，常用办法是把 \(x\) 换成 \(\frac{1}{x}\)，得到关于两个未知量的方程组：
+\[
+f(x),\qquad f\left(\frac{1}{x}\right).
+\]
+然后通过加减消元求出目标函数。
+
+\textbf{可迁移方法：}
+
+类似地，若关系式中出现 \(f(x)\) 与 \(f(-x)\)，常用 \(x\mapsto -x\)；若出现 \(f(x)\) 与 \(f(a-x)\)，常用 \(x\mapsto a-x\)。核心不是代换本身，而是构造“同一组未知函数值”的方程组。
+\end{knowledgeBox}
+
+\begin{mistakeBox}
+\textbf{易错点：}
+
+\begin{itemize}
+  \item 忽略定义域：本题能把 \(x\) 换成 \(\frac{1}{x}\)，依赖于 \(x>0\) 时 \(\frac{1}{x}>0\)。
+  \item 根式化简漏掉正负：\(\sqrt{x^2}=|x|\)，但本题 \(x>0\)，所以 \(\sqrt{x^2}=x\)。
+  \item 消元倍数选错：应让 \(f\left(\frac{1}{x}\right)\) 前的系数相同，再相减。
+\end{itemize}
+
+\textbf{复盘提醒：}
+
+看到 \(f(x)\) 与 \(f\left(\frac{1}{x}\right)\) 同时出现，先写两个未知量，再做 \(x\mapsto \frac{1}{x}\) 的对偶代换，最后联立消元。
 \end{mistakeBox}
