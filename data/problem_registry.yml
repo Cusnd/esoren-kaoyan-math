@@ -1,3 +1,16 @@
-# 题目登记表。新增题目时，将下面的空列表替换为条目列表。
-# 示例见 AGENTS.md 的 problem_registry.yml 章节。
-[]
+# 题目登记表。示例见 AGENTS.md 的 problem_registry.yml 章节。
+- id: MATH1-CALC-0001
+  title: "由 f(u+1/u) 反求 f(x)"
+  subject: "高等数学"
+  chapter: "第 1 讲 函数极限与连续"
+  file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+  source: "用户图片 / 教材例 1.1"
+  difficulty: "基础"
+  tags:
+    - 函数表示
+    - 整体换元
+    - 值域
+  mistakes:
+    - "混淆题设参数与最终自变量"
+    - "忽略题面符号与参考答案的一致性"
+  status: "已整理"

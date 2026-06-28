@@ -5,3 +5,105 @@
 
 本讲用于整理函数、函数极限、无穷小比较、连续性与间断点等内容。新增题目时重点沉淀极限入口、等价替换条件、单侧极限和连续性判定。
 \end{knowledgeBox}
+
+\subsection{由复合形式反求函数表达式}
+
+\begin{problemBox}
+\textbf{题目编号：} MATH1-CALC-0001
+
+\textbf{来源：} 用户图片 / 教材例 1.1
+
+\textbf{题型：} 已知 \(f(\varphi(u))\) 反求 \(f(x)\)
+
+\textbf{知识点：} 整体换元，函数表示，\(u+\frac{1}{u}\) 的值域
+
+\textbf{难度：} 基础
+
+\textbf{题目：}
+
+设
+\[
+f\left(u+\frac{1}{u}\right)=\frac{u+u^3}{1+u^4},
+\]
+则当 \(x\ge 2\) 时，求 \(f(x)\)。
+
+\textbf{题面校注：} 用户图片中分子首项疑似为 \(-u\)，但图片所给参考答案 \(\frac{x}{x^2-2}\) 对应的是分子为 \(u+u^3\) 的版本。若分子确认为 \(-u+u^3\)，则还需要指定 \(u\) 的取值分支，否则 \(f\left(u+\frac{1}{u}\right)\) 不能唯一确定。
+\end{problemBox}
+
+\begin{solutionBox}
+\textbf{思路入口：}
+
+目标是求 \(f(x)\)，已知的是 \(f\left(u+\frac{1}{u}\right)\)。所以不要把左右两边的 \(x\) 混用，应先把原式中的自变量记作 \(u\)，再把
+\[
+t=u+\frac{1}{u}
+\]
+看成一个整体。
+
+\textbf{详细解答：}
+
+由题设
+\[
+f\left(u+\frac{1}{u}\right)=\frac{u+u^3}{1+u^4}.
+\]
+为了把右边也化成 \(u+\frac{1}{u}\) 的形式，对分子、分母同时除以 \(u^2\)。这里要求 \(u\ne 0\)，而 \(u+\frac{1}{u}\) 本身也只在 \(u\ne 0\) 时有意义：
+\[
+\frac{u+u^3}{1+u^4}
+=\frac{\frac{1}{u}+u}{\frac{1}{u^2}+u^2}.
+\]
+又因为
+\[
+u^2+\frac{1}{u^2}
+=\left(u+\frac{1}{u}\right)^2-2,
+\]
+所以
+\[
+f\left(u+\frac{1}{u}\right)
+=\frac{u+\frac{1}{u}}{\left(u+\frac{1}{u}\right)^2-2}.
+\]
+令
+\[
+t=u+\frac{1}{u},
+\]
+则
+\[
+f(t)=\frac{t}{t^2-2}.
+\]
+题目要求 \(x\ge 2\) 时的 \(f(x)\)，于是把 \(t\) 换回 \(x\)，得到
+\[
+f(x)=\frac{x}{x^2-2}\qquad (x\ge 2).
+\]
+
+\textbf{答案：}
+
+\[
+\boxed{f(x)=\frac{x}{x^2-2}\quad (x\ge 2)}.
+\]
+\end{solutionBox}
+
+\begin{knowledgeBox}
+\textbf{核心知识点：}
+
+已知 \(f(\varphi(u))\) 时，关键不是先解出 \(u\)，而是把右端改写成只含 \(\varphi(u)\) 的形式。本题中
+\[
+u^2+\frac{1}{u^2}=\left(u+\frac{1}{u}\right)^2-2
+\]
+是主要变形入口。
+
+\textbf{可迁移方法：}
+
+遇到 \(u+\frac{1}{u}\)、\(u-\frac{1}{u}\)、\(u^2+\frac{1}{u^2}\) 同时出现的题，优先考虑整体换元。若题目限定 \(x\ge 2\)，通常是在提示 \(x\) 可以作为 \(u+\frac{1}{u}\) 的函数值。
+\end{knowledgeBox}
+
+\begin{mistakeBox}
+\textbf{易错点：}
+
+\begin{itemize}
+  \item 把题设中的参数 \(u\) 和最终要求的自变量 \(x\) 混成同一个变量。
+  \item 只想到解方程 \(x=u+\frac{1}{u}\)，却忽略右端可以直接化成整体变量。
+  \item 忘记检查题面符号：若分子是 \(-u+u^3\)，则右端为 \(\frac{u-\frac{1}{u}}{u^2+\frac{1}{u^2}}\)，不能直接得到参考答案。
+\end{itemize}
+
+\textbf{复盘提醒：}
+
+看到 \(f\left(u+\frac{1}{u}\right)\) 这类题，先重命名参数，再问自己：右端能不能通过除以某个 \(u^k\) 造出 \(u+\frac{1}{u}\)？
+\end{mistakeBox}
