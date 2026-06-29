@@ -18,7 +18,7 @@
   bottom=2.7cm,
   inner=2.55cm,
   outer=2.25cm,
-  headheight=22pt,
+  headheight=24pt,
   headsep=0.8cm,
   footskip=1.0cm
 }
@@ -52,16 +52,18 @@
 \definecolor{aomBurgundy}{HTML}{7A2E35}
 
 \color{aomInk}
-\linespread{1.08}
+\linespread{1.18}
 \setlength{\parindent}{2em}
-\setlength{\parskip}{0.18em}
-\setlength{\abovedisplayskip}{0.7em}
-\setlength{\belowdisplayskip}{0.7em}
+\setlength{\parskip}{0.35em}
+\setlength{\abovedisplayskip}{0.95em}
+\setlength{\belowdisplayskip}{0.95em}
+\setlength{\abovedisplayshortskip}{0.7em}
+\setlength{\belowdisplayshortskip}{0.7em}
 \numberwithin{equation}{section}
 \setcounter{tocdepth}{2}
-\setlist{leftmargin=2.2em, itemsep=0.18em, topsep=0.35em, parsep=0pt}
-\setlist[enumerate]{label=\arabic*., itemsep=0.18em}
-\renewcommand{\arraystretch}{1.15}
+\setlist{leftmargin=2.2em, itemsep=0.3em, topsep=0.55em, parsep=0.08em}
+\setlist[enumerate]{label=\arabic*., itemsep=0.3em}
+\renewcommand{\arraystretch}{1.18}
 \emergencystretch=2em
 
 \hypersetup{
@@ -84,8 +86,8 @@
   {\thesubsection}
   {0.75em}
   {}
-\titlespacing*{\section}{0pt}{2.4ex plus 0.8ex minus 0.2ex}{1.6ex}
-\titlespacing*{\subsection}{0pt}{2.0ex plus 0.6ex minus 0.2ex}{0.9ex}
+\titlespacing*{\section}{0pt}{2.6ex plus 0.8ex minus 0.2ex}{1.8ex}
+\titlespacing*{\subsection}{0pt}{2.25ex plus 0.6ex minus 0.2ex}{1.1ex}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -130,32 +132,32 @@
 \newtheorem{definition}{定义}[section]
 
 \newcommand{\aomBlockTitle}[2]{%
-  \par\addvspace{0.95\baselineskip}%
+  \par\addvspace{1.15\baselineskip}%
   \noindent{\sffamily\bfseries\small\color{#1}#2}\par\nobreak
-  \vspace{0.28em}\nobreak
+  \vspace{0.4em}\nobreak
 }
 
 \newcommand{\aomBlockEnd}{%
-  \par\addvspace{0.75\baselineskip}%
+  \par\addvspace{0.95\baselineskip}%
 }
 
 \newsavebox{\aomMetaBox}
 \NewDocumentEnvironment{problemMeta}{}{%
-  \par\addvspace{0.2\baselineskip}%
+  \par\addvspace{0.3\baselineskip}%
   \begingroup
   \footnotesize\color{aomMuted}%
-  \setlength{\fboxsep}{0.55em}%
+  \setlength{\fboxsep}{0.65em}%
   \setlength{\fboxrule}{0.25pt}%
   \begin{lrbox}{\aomMetaBox}%
   \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}%
   \setlength{\parindent}{0pt}%
-  \setlength{\parskip}{0.12em}%
+  \setlength{\parskip}{0.18em}%
   \raggedright
 }{%
   \end{minipage}%
   \end{lrbox}%
   \noindent\fcolorbox{aomRule}{white}{\usebox{\aomMetaBox}}%
-  \par\endgroup\addvspace{0.45\baselineskip}%
+  \par\endgroup\addvspace{0.6\baselineskip}%
   \ignorespacesafterend
 }
 
