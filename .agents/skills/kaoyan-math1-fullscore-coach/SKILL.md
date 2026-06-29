@@ -58,13 +58,13 @@ For wrong solutions or "我不会", diagnose first: 卡住位置, 错误步骤, 
 
 ## Chat Formula Rendering Rules
 
-The Codex desktop chat renderer is reliable for block math but can expose inline math delimiters as literal text. For all chat replies:
+The Codex desktop chat renderer has been tested successfully with standard LaTeX. For all chat replies, prioritize mathematical clarity and readable layout:
 
-- Do not use inline `$...$` math delimiters.
-- Do not use `\(...\)` or `\[...\]` as chat math delimiters.
-- Write short inline expressions as plain text or Unicode, such as `x≥2`, `f(x)`, `u + 1/u`.
-- Put fractions, radicals, limits, matrices, and multi-step equations in standalone `$$...$$` blocks with blank lines before and after.
-- Before sending the final answer, check that the chat prose contains no leftover `$x$`, `\[`, or `\]` style delimiters.
+- Inline formulas with `$...$` or `\(...\)` are allowed for short expressions.
+- Block formulas with `$$...$$` or `\[...\]` are allowed and preferred for fractions, radicals, limits, matrices, piecewise functions, aligned derivations, probability/statistics formulas, vector calculus formulas, and other complex expressions.
+- Put block formulas on their own lines with blank lines before and after.
+- Keep each block formula focused on one core derivation or one structurally coherent formula group.
+- Before sending the final answer, check that formula delimiters are paired and the math is readable in chat.
 
 ## Repository Routing
 
