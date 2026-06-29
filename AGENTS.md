@@ -183,15 +183,15 @@ $kaoyan-math1-fullscore-coach
 \subsection{题型名称或知识点名称}
 
 \begin{problemBox}
-\textbf{题目编号：} MATH1-章节-序号
-
+\begin{problemMeta}
+\textbf{题目编号：} MATH1-章节-序号 \quad
 \textbf{来源：} 用户粘贴 / 未注明来源
 
-\textbf{题型：} ...
+\textbf{题型：} ... \quad
+\textbf{难度：} 基础 / 中等 / 较难 / 压轴
 
 \textbf{知识点：} ...
-
-\textbf{难度：} 基础 / 中等 / 较难 / 压轴
+\end{problemMeta}
 
 \textbf{题目：}
 
@@ -232,6 +232,8 @@ $kaoyan-math1-fullscore-coach
 ...
 \end{mistakeBox}
 ```
+
+题目编号、来源、题型、知识点、难度属于管理元信息，必须放入 `problemMeta`，降低视觉存在感。题面校注、OCR 不确定说明、定义域限制等会影响解题条件的信息不要放入 `problemMeta`，应放在题面正文附近。
 
 如果一道题涉及多个章节，把它放入最主要的章节，并在相关章节或索引中加入交叉引用。
 

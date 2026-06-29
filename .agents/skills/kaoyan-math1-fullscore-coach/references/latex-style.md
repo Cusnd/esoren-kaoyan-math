@@ -18,6 +18,8 @@
 3. 当前视觉模板集中在 `tex/styles/academic_old_money.tex`；该文件负责字体、配色、标题页、页眉页脚、章节标题、定理环境和四类语义段落环境。
 4. 修改视觉风格时优先改 `tex/styles/academic_old_money.tex`，不要把样式定义散落进章节文件。
 5. 题目环境接口保持稳定：正文继续使用 `problemBox`、`solutionBox`、`knowledgeBox`、`mistakeBox`。
+6. 题目编号、来源、题型、知识点、难度等管理字段放入 `problemMeta`，让真正题面成为视觉主体。
+7. 题面校注、OCR 不确定说明、定义域限制等会影响解题条件的信息不要放入 `problemMeta`。
 
 ## 聊天回复与 TeX 文件的区别
 
@@ -33,6 +35,7 @@ TeX 文件和聊天回复都按标准 LaTeX 写作；聊天回复额外关注屏
 
 使用：
 
+- `problemMeta`
 - `problemBox`
 - `solutionBox`
 - `knowledgeBox`

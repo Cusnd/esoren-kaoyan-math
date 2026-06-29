@@ -139,6 +139,26 @@
   \par\addvspace{0.75\baselineskip}%
 }
 
+\newsavebox{\aomMetaBox}
+\NewDocumentEnvironment{problemMeta}{}{%
+  \par\addvspace{0.2\baselineskip}%
+  \begingroup
+  \footnotesize\color{aomMuted}%
+  \setlength{\fboxsep}{0.55em}%
+  \setlength{\fboxrule}{0.25pt}%
+  \begin{lrbox}{\aomMetaBox}%
+  \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}%
+  \setlength{\parindent}{0pt}%
+  \setlength{\parskip}{0.12em}%
+  \raggedright
+}{%
+  \end{minipage}%
+  \end{lrbox}%
+  \noindent\fcolorbox{aomRule}{white}{\usebox{\aomMetaBox}}%
+  \par\endgroup\addvspace{0.45\baselineskip}%
+  \ignorespacesafterend
+}
+
 \NewDocumentEnvironment{problemBox}{}{%
   \aomBlockTitle{aomGold}{题目}%
   \ignorespaces
