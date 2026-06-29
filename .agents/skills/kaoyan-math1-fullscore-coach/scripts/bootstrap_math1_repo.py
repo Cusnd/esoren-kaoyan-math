@@ -84,6 +84,7 @@ def main() -> int:
         "tex/chapters/linear_algebra",
         "tex/chapters/probability",
         "tex/indexes",
+        "tex/styles",
         "tex/templates",
         "data",
     ]
@@ -94,6 +95,7 @@ def main() -> int:
     actions = []
     actions.append(("main.tex", write_if_missing(ROOT / "main.tex", asset_text("main-template.tex"))))
     actions.append(("tex/preamble.tex", write_if_missing(ROOT / "tex/preamble.tex", asset_text("preamble-template.tex"))))
+    actions.append(("tex/styles/academic_old_money.tex", write_if_missing(ROOT / "tex/styles/academic_old_money.tex", asset_text("academic-old-money-style.tex"))))
     actions.append(("tex/templates/problem_template.tex", write_if_missing(ROOT / "tex/templates/problem_template.tex", asset_text("problem-template.tex"))))
     actions.append(("data/problem_registry.yml", write_if_missing(ROOT / "data/problem_registry.yml", "[]\n")))
 

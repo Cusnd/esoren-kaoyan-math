@@ -24,6 +24,7 @@ xelatex -interaction=nonstopmode -file-line-error main.tex
 ```text
 main.tex
 tex/preamble.tex
+tex/styles/academic_old_money.tex
 tex/chapters/calculus/
 tex/chapters/linear_algebra/
 tex/chapters/probability/

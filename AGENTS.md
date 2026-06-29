@@ -52,6 +52,8 @@ $kaoyan-math1-fullscore-coach
 │   └── textbook_catalog.md
 ├── tex
 │   ├── preamble.tex
+│   ├── styles
+│   │   └── academic_old_money.tex
 │   ├── chapters
 │   │   ├── calculus
 │   │   │   ├── 01_function_limit_continuity.tex
@@ -103,7 +105,13 @@ $kaoyan-math1-fullscore-coach
 
 并按章节 `\input{...}` 各章文件。
 
-`tex/preamble.tex` 至少应包含中文、数学、版式、列表、链接、颜色、题框、表格等常用配置。如果某些 LaTeX 包在本地环境不可用，可以调整，但必须保持文档可编译。
+`tex/preamble.tex` 应当作为轻量入口加载中文、数学等基础依赖，并输入独立样式文件，例如：
+
+```tex
+\input{tex/styles/academic_old_money.tex}
+```
+
+视觉样式集中放在 `tex/styles/` 下，章节、索引和题目模板 `.tex` 只保留数学内容与语义结构，不写字体、颜色、版式或环境呈现。若某些 LaTeX 包在本地环境不可用，可以调整样式文件，但必须保持文档可编译。
 
 ## 3. 每次收到输入时，必须先判断输入类型
 

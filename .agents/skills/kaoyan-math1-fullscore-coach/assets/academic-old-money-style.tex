@@ -1,0 +1,168 @@
+% Academic, restrained visual template for the Math I notes.
+% Content files should keep mathematical structure only; visual styling lives here.
+
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\geometry{
+  a4paper,
+  top=2.5cm,
+  bottom=2.7cm,
+  inner=2.55cm,
+  outer=2.25cm,
+  headheight=22pt,
+  headsep=0.8cm,
+  footskip=1.0cm
+}
+
+\defaultfontfeatures{Ligatures=TeX}
+\IfFontExistsTF{TeX Gyre Termes}
+  {\setmainfont{TeX Gyre Termes}}
+  {\setmainfont{Times New Roman}}
+\IfFontExistsTF{TeX Gyre Heros}
+  {\setsansfont{TeX Gyre Heros}[Scale=MatchLowercase]}
+  {\setsansfont{Arial}[Scale=MatchLowercase]}
+\IfFontExistsTF{TeX Gyre Cursor}
+  {\setmonofont{TeX Gyre Cursor}[Scale=MatchLowercase]}
+  {\setmonofont{Consolas}[Scale=MatchLowercase]}
+\IfFontExistsTF{TeX Gyre Termes Math}
+  {\setmathfont{TeX Gyre Termes Math}}
+  {\setmathfont{Latin Modern Math}}
+
+\IfFontExistsTF{SimSun}
+  {\setCJKmainfont{SimSun}[AutoFakeBold=2.5, AutoFakeSlant=0.18]}
+  {\setCJKmainfont{Songti SC}[AutoFakeBold=2.5, AutoFakeSlant=0.18]}
+\IfFontExistsTF{Microsoft YaHei}
+  {\setCJKsansfont{Microsoft YaHei}[AutoFakeBold=2.0]}
+  {\setCJKsansfont{SimHei}[AutoFakeBold=2.0]}
+
+\definecolor{aomInk}{HTML}{252522}
+\definecolor{aomMuted}{HTML}{6F6A60}
+\definecolor{aomRule}{HTML}{D8D1C3}
+\definecolor{aomForest}{HTML}{1F3B2D}
+\definecolor{aomGold}{HTML}{A9874A}
+\definecolor{aomBurgundy}{HTML}{7A2E35}
+
+\color{aomInk}
+\linespread{1.08}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.18em}
+\setlength{\abovedisplayskip}{0.7em}
+\setlength{\belowdisplayskip}{0.7em}
+\numberwithin{equation}{section}
+\setcounter{tocdepth}{2}
+\setlist{leftmargin=2.2em, itemsep=0.18em, topsep=0.35em, parsep=0pt}
+\setlist[enumerate]{label=\arabic*., itemsep=0.18em}
+\renewcommand{\arraystretch}{1.15}
+\emergencystretch=2em
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=aomForest,
+  urlcolor=aomForest,
+  citecolor=aomGold,
+  filecolor=aomForest,
+  pdfborder={0 0 0}
+}
+
+\titleformat{\section}
+  {\sffamily\Large\bfseries\color{aomForest}}
+  {\thesection}
+  {0.8em}
+  {}
+  [\vspace{0.25ex}{\color{aomGold}\titlerule[0.45pt]}]
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{aomInk}}
+  {\thesubsection}
+  {0.75em}
+  {}
+\titlespacing*{\section}{0pt}{2.4ex plus 0.8ex minus 0.2ex}{1.6ex}
+\titlespacing*{\subsection}{0pt}{2.0ex plus 0.6ex minus 0.2ex}{0.9ex}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\footnotesize\color{aomMuted}考研数学一}
+\fancyhead[R]{\sffamily\footnotesize\color{aomMuted}\nouppercase{\leftmark}}
+\fancyfoot[C]{\sffamily\footnotesize\color{aomMuted}\thepage}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection\quad #1}{}}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{aomRule}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+
+\makeatletter
+\renewcommand{\maketitle}{%
+  \begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+    \vspace*{0.18\textheight}
+    {\sffamily\small\textls[80]{\textcolor{aomGold}{MATH I FULL-SCORE NOTES}}\par}
+    \vspace{1.8em}
+    {\Huge\bfseries\color{aomInk}\@title\par}
+    \vspace{1.4em}
+    {\color{aomGold}\rule{0.42\textwidth}{0.6pt}\par}
+    \vspace{1.8em}
+    {\Large\color{aomMuted}\@author\par}
+    \vspace{0.8em}
+    {\large\color{aomMuted}\@date\par}
+    \vfill
+    {\sffamily\small\color{aomMuted}高等数学 \quad 线性代数 \quad 概率论与数理统计\par}
+  \end{titlepage}
+}
+\makeatother
+
+\newtheoremstyle{aomplain}
+  {0.8em}{0.8em}{\itshape}{}{\sffamily\bfseries\color{aomForest}}{.}{0.6em}{}
+\newtheoremstyle{aomdefinition}
+  {0.8em}{0.8em}{\normalfont}{}{\sffamily\bfseries\color{aomForest}}{.}{0.6em}{}
+\theoremstyle{aomplain}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}{引理}[section]
+\newtheorem{corollary}{推论}[section]
+\theoremstyle{aomdefinition}
+\newtheorem{definition}{定义}[section]
+
+\newcommand{\aomBlockTitle}[2]{%
+  \par\addvspace{0.95\baselineskip}%
+  \noindent{\sffamily\bfseries\small\color{#1}#2}\par\nobreak
+  \vspace{0.28em}\nobreak
+}
+
+\newcommand{\aomBlockEnd}{%
+  \par\addvspace{0.75\baselineskip}%
+}
+
+\NewDocumentEnvironment{problemBox}{}{%
+  \aomBlockTitle{aomGold}{题目}%
+  \ignorespaces
+}{%
+  \aomBlockEnd\ignorespacesafterend
+}
+
+\NewDocumentEnvironment{solutionBox}{}{%
+  \aomBlockTitle{aomForest}{题解}%
+  \ignorespaces
+}{%
+  \aomBlockEnd\ignorespacesafterend
+}
+
+\NewDocumentEnvironment{knowledgeBox}{}{%
+  \aomBlockTitle{aomForest}{知识点}%
+  \ignorespaces
+}{%
+  \aomBlockEnd\ignorespacesafterend
+}
+
+\NewDocumentEnvironment{mistakeBox}{}{%
+  \aomBlockTitle{aomBurgundy}{易错点}%
+  \ignorespaces
+}{%
+  \aomBlockEnd\ignorespacesafterend
+}
