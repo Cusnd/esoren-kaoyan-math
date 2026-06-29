@@ -149,3 +149,20 @@
     - "诱导公式符号错误"
     - "误以为要证明最小正周期"
   status: "已整理"
+- id: MATH1-CALC-0010
+  title: "有界性放缩练习组"
+  subject: "高等数学"
+  chapter: "第 1 讲 函数极限与连续"
+  file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+  source: "用户要求生成 / 放缩练习"
+  difficulty: "基础到中等"
+  tags:
+    - 有界性
+    - 放缩
+    - 基本不等式
+    - 有理化
+  mistakes:
+    - "分式放缩时忘记确认正负号"
+    - "含 |x| 的约分漏掉 x=0"
+    - "根式差未优先有理化"
+  status: "已整理"

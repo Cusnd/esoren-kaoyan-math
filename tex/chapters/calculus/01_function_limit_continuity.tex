@@ -1054,6 +1054,126 @@ f(x)=\frac{x}{1+x^2}
 \]
 \end{mistakeBox}
 
+\subsection{有界性放缩练习组}
+
+\begin{problemBox}
+\begin{problemMeta}
+\textbf{题目编号：} MATH1-CALC-0010 \quad
+\textbf{来源：} 用户要求生成 / 放缩练习
+
+\textbf{题型：} 放缩证明有界与估值 \quad
+\textbf{难度：} 基础到中等
+
+\textbf{知识点：} 有界性，基本不等式，分母放缩，有理化
+\end{problemMeta}
+
+\textbf{练习要求：}
+
+以下题目尽量不要先求导。先把目标翻译成“找一个统一上界”，再尝试用放缩完成。
+
+\begin{enumerate}
+  \item 证明函数
+  \[
+  f(x)=\frac{x^2}{1+x^4}
+  \]
+  在 \((-\infty,+\infty)\) 内有界。
+
+  \item 证明函数
+  \[
+  f(x)=\frac{|x|}{1+x^2+x^4}
+  \]
+  在 \((-\infty,+\infty)\) 内有界。
+
+  \item 证明对任意 \(x\in\mathbb{R}\)，有
+  \[
+  0<\sqrt{x^2+1}-|x|\le 1.
+  \]
+
+  \item 证明函数
+  \[
+  f(x)=\frac{x}{\sqrt{x^2+1}+1}
+  \]
+  在 \((-\infty,+\infty)\) 内有界。
+
+  \item 设 \(x>0\)，证明
+  \[
+  \frac{x}{(1+x)^2}\le \frac14.
+  \]
+\end{enumerate}
+\end{problemBox}
+
+\begin{solutionBox}
+\textbf{提示与答案：}
+
+\begin{enumerate}
+  \item 用
+  \[
+  1+x^4\ge 2x^2
+  \]
+  得
+  \[
+  0\le \frac{x^2}{1+x^4}\le \frac12.
+  \]
+
+  \item 分母越大，正分式越小。可先丢掉 \(x^4\)，用
+  \[
+  1+x^2+x^4\ge 1+x^2\ge 2|x|
+  \]
+  得
+  \[
+  0\le \frac{|x|}{1+x^2+x^4}\le \frac12.
+  \]
+  注意 \(x=0\) 时原式为 \(0\)，不需要除以 \(|x|\)。
+
+  \item 用有理化：
+  \[
+  \sqrt{x^2+1}-|x|
+  =\frac{1}{\sqrt{x^2+1}+|x|}.
+  \]
+  分母大于等于 \(1\)，所以
+  \[
+  0<\sqrt{x^2+1}-|x|\le 1.
+  \]
+
+  \item 取绝对值：
+  \[
+  |f(x)|=\frac{|x|}{\sqrt{x^2+1}+1}.
+  \]
+  因为 \(\sqrt{x^2+1}>|x|\)，所以
+  \[
+  |f(x)|<1.
+  \]
+  因此 \(f(x)\) 有界。
+
+  \item 用
+  \[
+  (1+x)^2\ge 4x,\qquad x>0,
+  \]
+  得
+  \[
+  \frac{x}{(1+x)^2}\le \frac14.
+  \]
+\end{enumerate}
+
+\textbf{复盘重点：}
+
+第 1、2、5 题练“分母放大，正分式变小”；第 3 题练“根式差有理化”；第 4 题练“根式分母天然大于 \(|x|\)”。这些都是有界性题中替代求导极值法的常用入口。
+\end{solutionBox}
+
+\begin{mistakeBox}
+\textbf{易错点：}
+
+\begin{itemize}
+  \item 正分式中，分母放大后分式变小；如果分母或分子可能为负，必须先处理符号。
+  \item 含 \(|x|\) 的放缩常要单独检查 \(x=0\)，避免非法约分。
+  \item 根式差 \(\sqrt{x^2+1}-|x|\) 不要硬估，优先有理化。
+\end{itemize}
+
+\textbf{复盘提醒：}
+
+做完后不要只看答案对不对，要给每题标出“触发信号”：分母有 \(1+x^4\)、分母有 \(1+x^2\)、根式差、根式分母、\((1+x)^2\)。以后看到这些结构，直接调用对应放缩模板。
+\end{mistakeBox}
+
 \subsection{函数的单调性}
 
 \begin{knowledgeBox}
