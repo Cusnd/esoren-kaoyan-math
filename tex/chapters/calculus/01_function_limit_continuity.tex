@@ -345,6 +345,408 @@ x=\frac12(e^y-e^{-y}).
 看到 \(\ln(x+\sqrt{x^2+1})\)，要立即联想到“倒数有理化”和“双曲正弦”。考场上不要先平方硬解，先写出 \(e^y\) 与 \(e^{-y}\) 这对式子。
 \end{mistakeBox}
 
+\subsection{复合函数的定义、定义域与拆解方法}
+
+\begin{knowledgeBox}
+\textbf{概念定位：}
+
+复合函数属于函数基础中的“输入输出链条”问题。它真正考的不是把 \(f(g(x))\) 这个符号背下来，而是看清楚：内层函数先把 \(x\) 变成中间变量 \(u\)，外层函数再把 \(u\) 变成最终函数值 \(y\)。
+
+\textbf{定义：}
+
+设函数 \(y=f(u)\) 的定义域为 \(D_1\)，函数 \(u=g(x)\) 在集合 \(D\) 上有定义，并且
+\[
+g(D)\subset D_1.
+\]
+则由
+\[
+y=f[g(x)],\qquad x\in D
+\]
+确定的函数称为由内层函数 \(u=g(x)\) 和外层函数 \(y=f(u)\) 构成的复合函数，其中 \(u\) 称为中间变量。
+
+更一般地，如果没有预先给定集合 \(D\)，则复合函数 \(f\circ g\) 的自然定义域应写成
+\[
+D_{f\circ g}=\{x\in D_g\mid g(x)\in D_f\}.
+\]
+这句话非常重要：复合函数的定义域不是简单照抄内层函数定义域，而是“内层能算，且内层输出能送进外层”。
+
+\textbf{直觉解释：}
+
+复合函数就是一条流水线：
+\[
+x \xrightarrow{g} u=g(x) \xrightarrow{f} y=f(u).
+\]
+所以做复合函数题时，第一眼不是展开计算，而是先问两个问题：
+\[
+\text{第一，内层输出是什么？}
+\qquad
+\text{第二，这个输出落入外层函数的哪一段或哪个定义域？}
+\]
+
+\textbf{使用条件：}
+
+\begin{itemize}
+  \item 内层函数 \(g(x)\) 必须在当前 \(x\) 上有定义。
+  \item 内层函数值 \(g(x)\) 必须属于外层函数 \(f\) 的定义域。
+  \item 若外层函数是分段函数，判断分段条件时看的是内层输出 \(g(x)\)，不是原来的 \(x\)。
+  \item 若由 \(f[\varphi(x)]\) 反求 \(\varphi(x)\)，要把 \(\varphi(x)\) 当成整体变量，并用附加条件确定分支。
+\end{itemize}
+
+\textbf{常见题型：}
+
+\begin{itemize}
+  \item 已知 \(f(x)\) 和 \(g(x)\)，求 \(f[g(x)]\)、\(g[f(x)]\)。
+  \item 已知 \(f[\varphi(x)]\)，反求中间函数 \(\varphi(x)\)。
+  \item 外层或内层为分段函数时，求复合函数表达式。
+  \item 求复合函数的定义域和值域。
+\end{itemize}
+
+\textbf{常见误区：}
+
+\begin{itemize}
+  \item 只看原来的 \(x\) 属于哪一段，而忘记外层函数看的是内层输出。
+  \item 已知 \(f[\varphi(x)]\) 时，把 \(x\) 直接代入 \(f(x)\)，没有把 \(\varphi(x)\) 当作整体。
+  \item 求定义域时只管根号、分母和对数，却漏掉外层函数对内层输出的限制。
+  \item 从平方关系反求中间函数时忘记正负分支。
+\end{itemize}
+\end{knowledgeBox}
+
+\begin{problemBox}
+\begin{problemMeta}
+\textbf{题目编号：} MATH1-CALC-0004 \quad
+\textbf{来源：} 用户图片 / 教材例 1.4
+
+\textbf{题型：} 已知 \(f[\varphi(x)]\) 反求中间函数 \quad
+\textbf{难度：} 基础
+
+\textbf{知识点：} 复合函数，整体视角，定义域，值域，平方根分支
+\end{problemMeta}
+
+\textbf{题目：}
+
+设
+\[
+f(x)=x^2,\qquad f[\varphi(x)]=-x^2+2x+3,
+\]
+且 \(\varphi(x)\ge 0\)，求 \(\varphi(x)\) 及其定义域和值域。
+\end{problemBox}
+
+\begin{solutionBox}
+\textbf{思路入口：}
+
+本题的关键是把 \(\varphi(x)\) 看成一个整体。因为外层函数是
+\[
+f(t)=t^2,
+\]
+所以
+\[
+f[\varphi(x)]=[\varphi(x)]^2.
+\]
+题目已经给出 \(f[\varphi(x)]\)，于是先得到关于整体 \(\varphi(x)\) 的平方方程，再由 \(\varphi(x)\ge 0\) 选择非负根。
+
+\textbf{详细解答：}
+
+由 \(f(x)=x^2\)，可知对任意中间变量 \(t\)，
+\[
+f(t)=t^2.
+\]
+令 \(t=\varphi(x)\)，则
+\[
+f[\varphi(x)]=[\varphi(x)]^2.
+\]
+由题设
+\[
+[\varphi(x)]^2=-x^2+2x+3.
+\]
+又因为题目给出 \(\varphi(x)\ge 0\)，所以只能取非负平方根：
+\[
+\varphi(x)=\sqrt{-x^2+2x+3}.
+\]
+
+\textbf{定义域：}
+
+为了使 \(\varphi(x)\) 为实值函数，根号内必须非负：
+\[
+-x^2+2x+3\ge 0.
+\]
+等价于
+\[
+x^2-2x-3\le 0,
+\]
+即
+\[
+(x-3)(x+1)\le 0.
+\]
+所以
+\[
+-1\le x\le 3.
+\]
+故 \(\varphi(x)\) 的定义域为
+\[
+[-1,3].
+\]
+
+\textbf{值域：}
+
+将根号内配方：
+\[
+-x^2+2x+3=-(x-1)^2+4.
+\]
+当 \(x\in[-1,3]\) 时，二次函数
+\[
+-(x-1)^2+4
+\]
+在 \(x=1\) 处取得最大值 \(4\)，在端点 \(x=-1,3\) 处取得最小值 \(0\)。因此
+\[
+-x^2+2x+3\in[0,4].
+\]
+开平方后
+\[
+\varphi(x)=\sqrt{-x^2+2x+3}\in[0,2].
+\]
+故 \(\varphi(x)\) 的值域为
+\[
+[0,2].
+\]
+
+\textbf{合法性检查：}
+
+第一，\(\varphi(x)\ge 0\) 是选取正平方根的依据；如果没有这个条件，仅由 \([\varphi(x)]^2=-x^2+2x+3\) 不能唯一确定 \(\varphi(x)\)。第二，定义域必须来自根号内非负，而不是原外层函数 \(f(x)=x^2\) 的定义域，因为真正要求的是 \(\varphi(x)\) 这个函数的表达式。
+
+\textbf{考场满分写法：}
+
+必须写：
+\[
+f[\varphi(x)]=[\varphi(x)]^2=-x^2+2x+3.
+\]
+由 \(\varphi(x)\ge 0\)，得
+\[
+\varphi(x)=\sqrt{-x^2+2x+3}.
+\]
+再由
+\[
+-x^2+2x+3\ge 0
+\]
+得定义域
+\[
+[-1,3].
+\]
+最后配方
+\[
+-x^2+2x+3=-(x-1)^2+4
+\]
+得值域
+\[
+[0,2].
+\]
+
+\textbf{答案：}
+
+\[
+\boxed{\varphi(x)=\sqrt{-x^2+2x+3},\qquad D_\varphi=[-1,3],\qquad R_\varphi=[0,2].}
+\]
+\end{solutionBox}
+
+\begin{knowledgeBox}
+\textbf{核心知识点：}
+
+已知 \(f[\varphi(x)]\) 且外层函数 \(f\) 明确时，要把 \(\varphi(x)\) 当成整体。若
+\[
+f(t)=t^2,
+\]
+则
+\[
+f[\varphi(x)]=[\varphi(x)]^2.
+\]
+
+\textbf{可迁移方法：}
+
+遇到 \(f[\varphi(x)]\) 反求 \(\varphi(x)\)，按三步走：
+\[
+\text{识别外层函数}\ \longrightarrow\ \text{把内层整体代入}\ \longrightarrow\ \text{按附加条件选分支}.
+\]
+如果外层函数不是一一对应函数，例如平方函数，就必须格外关注分支条件。
+\end{knowledgeBox}
+
+\begin{mistakeBox}
+\textbf{易错点：}
+
+\begin{itemize}
+  \item \textbf{漏掉正负分支：} 从 \([\varphi(x)]^2=G(x)\) 不能直接推出 \(\varphi(x)=\sqrt{G(x)}\)，本题能这样写是因为 \(\varphi(x)\ge 0\)。
+  \item \textbf{定义域判断不完整：} \(\varphi(x)\) 的表达式含根号，必须要求 \(-x^2+2x+3\ge 0\)。
+  \item \textbf{值域只看端点：} 根号内是开口向下的二次函数，最大值在 \(x=1\)，不能只代端点。
+\end{itemize}
+
+\textbf{复盘提醒：}
+
+这题的母题是“已知外层函数和复合结果，反求内层函数”。核心动作不是展开，而是把内层函数当成一个整体未知量。
+\end{mistakeBox}
+
+\begin{problemBox}
+\begin{problemMeta}
+\textbf{题目编号：} MATH1-CALC-0005 \quad
+\textbf{来源：} 用户图片 / 教材例 1.5
+
+\textbf{题型：} 分段函数复合 \quad
+\textbf{难度：} 基础
+
+\textbf{知识点：} 复合函数，分段函数，内层函数取值范围，数形结合
+\end{problemMeta}
+
+\textbf{题目：}
+
+设
+\[
+g(x)=
+\begin{cases}
+2-x, & x\le 0,\\
+2+x, & x>0,
+\end{cases}
+\qquad
+f(x)=
+\begin{cases}
+x^2, & x<0,\\
+-x-1, & x\ge 0,
+\end{cases}
+\]
+则求 \(g[f(x)]\)。
+\end{problemBox}
+
+\begin{solutionBox}
+\textbf{思路入口：}
+
+这是分段函数复合题。关键不是看原来的 \(x\) 是否大于 \(0\) 后直接套 \(g\)，而是先算内层函数
+\[
+u=f(x),
+\]
+再判断 \(u\) 落在 \(g\) 的哪一段。也就是说，外层 \(g\) 的分段条件看的是 \(f(x)\le 0\) 还是 \(f(x)>0\)，不是看原来的 \(x\le 0\) 还是 \(x>0\)。
+
+\textbf{详细解答：}
+
+外层函数 \(g\) 的分段规则是
+\[
+g(u)=
+\begin{cases}
+2-u, & u\le 0,\\
+2+u, & u>0.
+\end{cases}
+\]
+因此
+\[
+g[f(x)]=
+\begin{cases}
+2-f(x), & f(x)\le 0,\\
+2+f(x), & f(x)>0.
+\end{cases}
+\]
+现在判断 \(f(x)\) 的符号。
+
+当 \(x\ge 0\) 时，
+\[
+f(x)=-x-1\le -1<0.
+\]
+所以此时 \(f(x)\le 0\)，应代入 \(g\) 的第一段：
+\[
+g[f(x)]=2-f(x)=2-(-x-1)=x+3.
+\]
+
+当 \(x<0\) 时，
+\[
+f(x)=x^2>0.
+\]
+所以此时 \(f(x)>0\)，应代入 \(g\) 的第二段：
+\[
+g[f(x)]=2+f(x)=2+x^2.
+\]
+综上，
+\[
+g[f(x)]=
+\begin{cases}
+2+x^2, & x<0,\\
+3+x, & x\ge 0.
+\end{cases}
+\]
+
+\textbf{合法性检查：}
+
+内层函数 \(f(x)\) 在全体实数上有定义，外层函数 \(g(x)\) 也在全体实数上有定义，所以复合函数 \(g[f(x)]\) 的定义域为
+\[
+\mathbb{R}.
+\]
+边界点 \(x=0\) 必须归入 \(f\) 的第二段，因为题设为 \(x\ge 0\)。此时
+\[
+f(0)=-1\le 0,
+\]
+所以外层 \(g\) 取第一段，得到
+\[
+g[f(0)]=3.
+\]
+这与公式 \(3+x\) 在 \(x=0\) 的取值一致。
+
+\textbf{考场满分写法：}
+
+必须先写：
+\[
+g[f(x)]=
+\begin{cases}
+2-f(x), & f(x)\le 0,\\
+2+f(x), & f(x)>0.
+\end{cases}
+\]
+再判断：
+\[
+f(x)\le 0\Longleftrightarrow x\ge 0,\qquad
+f(x)>0\Longleftrightarrow x<0.
+\]
+最后代回得
+\[
+g[f(x)]=
+\begin{cases}
+2+x^2, & x<0,\\
+3+x, & x\ge 0.
+\end{cases}
+\]
+
+\textbf{答案：}
+
+\[
+\boxed{
+g[f(x)]=
+\begin{cases}
+2+x^2, & x<0,\\
+3+x, & x\ge 0.
+\end{cases}}
+\]
+\end{solutionBox}
+
+\begin{knowledgeBox}
+\textbf{核心知识点：}
+
+分段复合函数的核心是“内层决定外层落段”。若要求 \(g[f(x)]\)，则 \(g\) 的分段条件要用 \(f(x)\) 去判断。
+
+\textbf{可迁移方法：}
+
+遇到分段函数复合，按四步走：
+\[
+\text{写外层分段规则}\ \longrightarrow\ \text{把外层输入换成内层函数}\ \longrightarrow\ \text{判断内层函数落段}\ \longrightarrow\ \text{代回化简}.
+\]
+如果内层函数本身也是分段函数，建议先画图或列符号表。图像能快速告诉我们内层输出落在正半轴、负半轴还是跨越分段点。
+\end{knowledgeBox}
+
+\begin{mistakeBox}
+\textbf{易错点：}
+
+\begin{itemize}
+  \item \textbf{看错分段变量：} 求 \(g[f(x)]\) 时，\(g\) 的分段依据是 \(f(x)\)，不是原来的 \(x\)。
+  \item \textbf{边界点归属错误：} \(x=0\) 应先归入 \(f(x)=-x-1\)，再判断 \(f(0)=-1\le 0\)。
+  \item \textbf{分段顺序混乱：} 先判断内层 \(f(x)\) 的符号，再代入外层 \(g\)，不要把两层函数的分段条件揉在一起。
+\end{itemize}
+
+\textbf{复盘提醒：}
+
+这题要练成条件反射：复合函数先看内层输出。外层函数问“我的输入落在哪一段”，这个输入不是 \(x\)，而是 \(f(x)\)。
+\end{mistakeBox}
+
 \subsection{由复合形式反求函数表达式}
 
 \begin{problemBox}

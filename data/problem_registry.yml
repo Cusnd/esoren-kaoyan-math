@@ -49,3 +49,38 @@
     - "忘记写反函数定义域"
     - "忽略对数真数恒正性"
   status: "已整理"
+- id: MATH1-CALC-0004
+  title: "由 f(phi(x)) 反求 phi(x) 及定义域和值域"
+  subject: "高等数学"
+  chapter: "第 1 讲 函数极限与连续"
+  file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+  source: "用户图片 / 教材例 1.4"
+  difficulty: "基础"
+  tags:
+    - 复合函数
+    - 整体视角
+    - 定义域
+    - 值域
+    - 平方根分支
+  mistakes:
+    - "从平方关系反求中间函数时漏掉正负分支"
+    - "只求表达式不求定义域和值域"
+    - "值域判断时只看端点"
+  status: "已整理"
+- id: MATH1-CALC-0005
+  title: "分段函数复合求 g(f(x))"
+  subject: "高等数学"
+  chapter: "第 1 讲 函数极限与连续"
+  file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+  source: "用户图片 / 教材例 1.5"
+  difficulty: "基础"
+  tags:
+    - 复合函数
+    - 分段函数
+    - 内层函数取值
+    - 数形结合
+  mistakes:
+    - "把外层函数的分段条件误判为原自变量的条件"
+    - "边界点归属错误"
+    - "混淆内层分段与外层分段"
+  status: "已整理"

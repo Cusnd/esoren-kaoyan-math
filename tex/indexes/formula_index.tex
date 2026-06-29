@@ -68,4 +68,40 @@ x=\frac12\left(e^y-e^{-y}\right).
   \item \textbf{易错点：} 直接平方硬解容易变繁；倒数有理化可直接得到 \(e^{-y}=\sqrt{x^2+1}-x\)。
   \item \textbf{关联题目：} MATH1-CALC-0003。
 \end{itemize}
+
+\textbf{复合函数定义域条件}
+
+若 \(f\) 的定义域为 \(D_f\)，\(g\) 的定义域为 \(D_g\)，则
+\[
+D_{f\circ g}=\{x\in D_g\mid g(x)\in D_f\}.
+\]
+
+\begin{itemize}
+  \item \textbf{使用条件：} 先保证内层 \(g(x)\) 有意义，再保证内层输出能作为外层 \(f\) 的输入。
+  \item \textbf{典型题型：} 复合函数定义域、分段函数复合、已知复合结果反求中间函数。
+  \item \textbf{易错点：} 把复合函数定义域误认为内层函数定义域，漏掉外层函数对内层输出的限制。
+  \item \textbf{关联题目：} MATH1-CALC-0004，MATH1-CALC-0005。
+\end{itemize}
+
+\textbf{平方复合反求中间函数}
+
+若 \(f(t)=t^2\)，且
+\[
+f[\varphi(x)]=G(x),
+\]
+则
+\[
+[\varphi(x)]^2=G(x).
+\]
+若进一步已知 \(\varphi(x)\ge 0\)，则
+\[
+\varphi(x)=\sqrt{G(x)}.
+\]
+
+\begin{itemize}
+  \item \textbf{使用条件：} \(G(x)\ge 0\)，并且必须有分支条件才能唯一确定 \(\varphi(x)\)。
+  \item \textbf{典型题型：} 已知平方型外层函数和复合结果，反求内层函数。
+  \item \textbf{易错点：} 没有 \(\varphi(x)\ge 0\) 等条件时，不能只取正根。
+  \item \textbf{关联题目：} MATH1-CALC-0004。
+\end{itemize}
 \end{knowledgeBox}
