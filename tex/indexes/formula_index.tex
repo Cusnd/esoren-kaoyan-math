@@ -104,4 +104,87 @@ f[\varphi(x)]=G(x),
   \item \textbf{易错点：} 没有 \(\varphi(x)\ge 0\) 等条件时，不能只取正根。
   \item \textbf{关联题目：} MATH1-CALC-0004。
 \end{itemize}
+
+\textbf{函数有界性的定义}
+
+函数 \(f(x)\) 在区间 \(I\) 上有界，等价于存在正数 \(M\)，使得
+\[
+|f(x)|\le M,\qquad x\in I.
+\]
+
+\begin{itemize}
+  \item \textbf{使用条件：} 必须先明确讨论区间 \(I\)。
+  \item \textbf{典型题型：} 证明函数有界，或判断在不同区间上的有界性。
+  \item \textbf{易错点：} 只证明上有界而忘记下有界；未取绝对值。
+  \item \textbf{关联题目：} MATH1-CALC-0006。
+\end{itemize}
+
+\textbf{基本不等式型放缩}
+
+\[
+1+x^2\ge 2|x|,\qquad x\in\mathbb{R}.
+\]
+
+\begin{itemize}
+  \item \textbf{使用条件：} 由 \(\frac{1+x^2}{2}\ge |x|\) 得到。
+  \item \textbf{典型题型：} 处理 \(\frac{|x|}{1+x^2}\) 一类有界性证明。
+  \item \textbf{易错点：} 当需要除以 \(|x|\) 时必须单独讨论 \(x=0\)。
+  \item \textbf{关联题目：} MATH1-CALC-0006。
+\end{itemize}
+
+\textbf{单调性的乘积判别式}
+
+对任意 \(x_1,x_2\in I\)，\(x_1\ne x_2\)，有
+\[
+f\text{ 严格递增}
+\quad\Longleftrightarrow\quad
+(x_1-x_2)[f(x_1)-f(x_2)]>0,
+\]
+\[
+f\text{ 严格递减}
+\quad\Longleftrightarrow\quad
+(x_1-x_2)[f(x_1)-f(x_2)]<0.
+\]
+
+\begin{itemize}
+  \item \textbf{使用条件：} 在同一区间 \(I\) 内任取两点。
+  \item \textbf{典型题型：} 无导数条件下判断或证明单调性。
+  \item \textbf{易错点：} 忘记 \(x_1<x_2\) 时 \(x_1-x_2<0\)，导致符号判断反了。
+  \item \textbf{关联题目：} MATH1-CALC-0007。
+\end{itemize}
+
+\textbf{奇偶函数判定与分解}
+
+\[
+f(-x)=f(x)\Longleftrightarrow f\text{ 为偶函数},
+\qquad
+f(-x)=-f(x)\Longleftrightarrow f\text{ 为奇函数}.
+\]
+
+在定义域关于原点对称时，
+\[
+\frac12[f(x)+f(-x)]\text{ 为偶函数},\qquad
+\frac12[f(x)-f(-x)]\text{ 为奇函数}.
+\]
+
+\begin{itemize}
+  \item \textbf{使用条件：} 定义域必须关于原点对称。
+  \item \textbf{典型题型：} 奇偶性证明、图像对称、函数方程赋值。
+  \item \textbf{易错点：} 没有先检查定义域；混淆奇函数和偶函数条件。
+  \item \textbf{关联题目：} MATH1-CALC-0008。
+\end{itemize}
+
+\textbf{周期函数的基本判定}
+
+\[
+f(x+T)=f(x)\quad (T\ne0)
+\]
+表示 \(T\) 是 \(f(x)\) 的一个周期。
+
+\begin{itemize}
+  \item \textbf{使用条件：} 对定义域内所有相关 \(x\) 成立，且 \(x+T\) 仍在定义域内。
+  \item \textbf{典型题型：} 由递推关系、三角诱导公式或复合结构证明周期性。
+  \item \textbf{易错点：} 证明一个周期不等于证明最小正周期。
+  \item \textbf{关联题目：} MATH1-CALC-0009。
+\end{itemize}
 \end{knowledgeBox}

@@ -84,3 +84,68 @@
     - "边界点归属错误"
     - "混淆内层分段与外层分段"
   status: "已整理"
+- id: MATH1-CALC-0006
+  title: "证明 x/(1+x^2) 在全体实数上有界"
+  subject: "高等数学"
+  chapter: "第 1 讲 函数极限与连续"
+  file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+  source: "用户图片 / 教材例 1.6"
+  difficulty: "基础"
+  tags:
+    - 有界性
+    - 绝对值
+    - 基本不等式
+    - 放缩
+  mistakes:
+    - "证明有界时忘记取绝对值"
+    - "除以 |x| 时漏掉 x=0"
+    - "误以为必须求最小上界"
+  status: "已整理"
+- id: MATH1-CALC-0007
+  title: "由严格递增条件判断图像变换后的单调性"
+  subject: "高等数学"
+  chapter: "第 1 讲 函数极限与连续"
+  file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+  source: "用户图片 / 教材例 1.7"
+  difficulty: "中等"
+  tags:
+    - 单调性
+    - 图像变换
+    - 定义法
+  mistakes:
+    - "把 |f(x)| 误认为保持单调"
+    - "混淆 f(-x) 与 -f(-x) 的单调性"
+    - "只看图像不写定义法证明"
+  status: "已整理"
+- id: MATH1-CALC-0008
+  title: "由 f(x+y)=f(x)+f(y) 证明奇函数"
+  subject: "高等数学"
+  chapter: "第 1 讲 函数极限与连续"
+  file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+  source: "用户图片 / 教材例 1.8"
+  difficulty: "基础"
+  tags:
+    - 奇偶性
+    - 函数方程
+    - 赋值法
+  mistakes:
+    - "忘记先求 f(0)"
+    - "把奇函数条件误写成偶函数条件"
+    - "忽略任意 x,y 条件允许特殊赋值"
+  status: "已整理"
+- id: MATH1-CALC-0009
+  title: "由 f(x)=f(x-pi)+sin x 证明 2pi 为周期"
+  subject: "高等数学"
+  chapter: "第 1 讲 函数极限与连续"
+  file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+  source: "用户图片 / 教材例 1.9"
+  difficulty: "基础"
+  tags:
+    - 周期性
+    - 递推式
+    - 诱导公式
+  mistakes:
+    - "只套一次等式未回到 f(x)"
+    - "诱导公式符号错误"
+    - "误以为要证明最小正周期"
+  status: "已整理"
