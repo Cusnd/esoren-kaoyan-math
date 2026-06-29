@@ -136,6 +136,213 @@ f(f^{-1}(y))=y,\qquad y\in R.
 \end{itemize}
 \end{mistakeBox}
 
+\subsection{反双曲正弦型函数的反函数}
+
+\begin{problemBox}
+\begin{problemMeta}
+\textbf{题目编号：} MATH1-CALC-0003 \quad
+\textbf{来源：} 用户图片 / 教材例 1.3
+
+\textbf{题型：} 求反函数表达式与定义域 \quad
+\textbf{难度：} 基础
+
+\textbf{知识点：} 反函数，对数性质，有理化，双曲函数
+\end{problemMeta}
+
+\textbf{题目：}
+
+求函数
+\[
+y=f(x)=\ln\left(x+\sqrt{x^2+1}\right)
+\]
+的反函数 \(f^{-1}(x)\) 的表达式及其定义域。
+\end{problemBox}
+
+\begin{solutionBox}
+\textbf{思路入口：}
+
+本题表面上是“从
+\[
+y=\ln\left(x+\sqrt{x^2+1}\right)
+\]
+中解出 \(x\)”，但若直接去解含根式方程，容易把式子平方得很繁。更好的入口是注意到
+\[
+\left(x+\sqrt{x^2+1}\right)\left(\sqrt{x^2+1}-x\right)=1.
+\]
+也就是说，\(x+\sqrt{x^2+1}\) 的倒数正好是 \(\sqrt{x^2+1}-x\)。这会把对数式变成一对互补关系：
+\[
+e^y=x+\sqrt{x^2+1},\qquad e^{-y}=\sqrt{x^2+1}-x.
+\]
+两式相减，根式自动消掉。
+
+\textbf{详细解答：}
+
+由题设
+\[
+y=\ln\left(x+\sqrt{x^2+1}\right).
+\]
+因为 \(\sqrt{x^2+1}>|x|\)，所以
+\[
+x+\sqrt{x^2+1}>0,
+\]
+对数对任意实数 \(x\) 都有意义。两边取指数，得
+\[
+e^y=x+\sqrt{x^2+1}. \tag{1}
+\]
+再看 \(-y\)。由对数性质
+\[
+-y=-\ln\left(x+\sqrt{x^2+1}\right)
+=\ln\frac{1}{x+\sqrt{x^2+1}}.
+\]
+对分母有理化：
+\[
+\frac{1}{x+\sqrt{x^2+1}}
+=\frac{\sqrt{x^2+1}-x}{\left(\sqrt{x^2+1}+x\right)\left(\sqrt{x^2+1}-x\right)}
+=\sqrt{x^2+1}-x.
+\]
+所以
+\[
+-y=\ln\left(\sqrt{x^2+1}-x\right),
+\]
+进而
+\[
+e^{-y}=\sqrt{x^2+1}-x. \tag{2}
+\]
+用 \((1)-(2)\)，根式项抵消：
+\[
+e^y-e^{-y}=2x.
+\]
+因此
+\[
+x=\frac{1}{2}\left(e^y-e^{-y}\right).
+\]
+这已经把原来的自变量 \(x\) 表示成了函数值 \(y\) 的函数，即
+\[
+x=f^{-1}(y)=\frac{1}{2}\left(e^y-e^{-y}\right).
+\]
+按通常书写习惯，将自变量记回 \(x\)，得到
+\[
+f^{-1}(x)=\frac{1}{2}\left(e^x-e^{-x}\right).
+\]
+
+\textbf{定义域与值域：}
+
+原函数的定义域为
+\[
+(-\infty,+\infty).
+\]
+由
+\[
+\eta=\frac{1}{2}\left(e^y-e^{-y}\right)
+\]
+可知，对任意 \(y\in\mathbb{R}\)，都能找到唯一实数 \(\eta\) 使 \(f(\eta)=y\)。所以原函数值域为 \(\mathbb{R}\)，反函数的定义域为
+\[
+(-\infty,+\infty).
+\]
+对应地，反函数的值域等于原函数定义域，也是
+\[
+(-\infty,+\infty).
+\]
+于是最终答案为
+\[
+\boxed{f^{-1}(x)=\frac{1}{2}\left(e^x-e^{-x}\right),\qquad x\in(-\infty,+\infty)}.
+\]
+
+\textbf{为什么它一定有反函数：}
+
+本题不只要会算，还要知道为什么可以谈反函数。函数
+\[
+f(x)=\ln\left(x+\sqrt{x^2+1}\right)
+\]
+是严格递增函数。可以从反函数表达式看出，\(x=\frac12(e^y-e^{-y})\) 对每个 \(y\in\mathbb{R}\) 都给出唯一的 \(x\)；也可以在后续学到导数后验证
+\[
+f'(x)=\frac{1}{\sqrt{x^2+1}}>0.
+\]
+因此原函数一一对应，有反函数。
+
+\textbf{考场满分写法：}
+
+必须写：
+\[
+e^y=x+\sqrt{x^2+1},\qquad
+e^{-y}=\sqrt{x^2+1}-x.
+\]
+其中第二式要通过倒数有理化说明：
+\[
+\frac{1}{x+\sqrt{x^2+1}}=\sqrt{x^2+1}-x.
+\]
+然后相减得
+\[
+x=\frac12(e^y-e^{-y}).
+\]
+最后交换 \(x,y\)，并写出
+\[
+f^{-1}(x)=\frac12(e^x-e^{-x}),\qquad x\in\mathbb{R}.
+\]
+可以略写的是原函数单调性的详细证明，但不能漏掉反函数定义域。
+
+\textbf{答案：}
+
+\[
+\boxed{f^{-1}(x)=\frac{1}{2}\left(e^x-e^{-x}\right),\quad x\in\mathbb{R}}.
+\]
+\end{solutionBox}
+
+\begin{knowledgeBox}
+\textbf{核心知识点：}
+
+函数
+\[
+\ln\left(x+\sqrt{x^2+1}\right)
+\]
+常记为反双曲正弦函数 \(\operatorname{arsinh}x\)，它的反函数是双曲正弦函数
+\[
+\sinh x=\frac{e^x-e^{-x}}{2}.
+\]
+本题不是要求记忆函数名，而是要掌握有理化消根号的结构：
+\[
+\left(x+\sqrt{x^2+1}\right)\left(\sqrt{x^2+1}-x\right)=1.
+\]
+
+\textbf{可迁移方法：}
+
+遇到
+\[
+\ln\left(x+\sqrt{x^2+a^2}\right)
+\]
+这类结构时，优先尝试对倒数有理化，构造 \(e^y\) 与 \(e^{-y}\)。若根式前后正负号互补，通常相加或相减可以消去根式或消去 \(x\)。
+
+\textbf{母题模板：}
+
+\[
+y=\ln\left(x+\sqrt{x^2+1}\right)
+\quad\Longrightarrow\quad
+\begin{cases}
+e^y=x+\sqrt{x^2+1},\\
+e^{-y}=\sqrt{x^2+1}-x,
+\end{cases}
+\]
+所以
+\[
+x=\frac12(e^y-e^{-y}).
+\]
+\end{knowledgeBox}
+
+\begin{mistakeBox}
+\textbf{易错点：}
+
+\begin{itemize}
+  \item \textbf{把反函数误认为倒数：} \(f^{-1}(x)\) 是反函数，不是 \(\frac{1}{f(x)}\)。
+  \item \textbf{硬平方导致计算膨胀：} 直接由 \(e^y=x+\sqrt{x^2+1}\) 移项平方也能做，但更容易漏项；本题最快入口是倒数有理化。
+  \item \textbf{忘写定义域：} 反函数的定义域等于原函数的值域，本题为 \(\mathbb{R}\)。
+  \item \textbf{对数合法性漏检：} 需要知道 \(x+\sqrt{x^2+1}>0\)，原函数才在全体实数上有定义。
+\end{itemize}
+
+\textbf{复盘提醒：}
+
+看到 \(\ln(x+\sqrt{x^2+1})\)，要立即联想到“倒数有理化”和“双曲正弦”。考场上不要先平方硬解，先写出 \(e^y\) 与 \(e^{-y}\) 这对式子。
+\end{mistakeBox}
+
 \subsection{由复合形式反求函数表达式}
 
 \begin{problemBox}

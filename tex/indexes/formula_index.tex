@@ -46,4 +46,26 @@ f(f^{-1}(y))=y,\qquad y\in R.
   \item \textbf{易错点：} 忘记绝对值导致符号错误。
   \item \textbf{关联题目：} MATH1-CALC-0002。
 \end{itemize}
+
+\textbf{反双曲正弦与双曲正弦互为反函数}
+
+\[
+\ln\left(x+\sqrt{x^2+1}\right)=y
+\quad\Longleftrightarrow\quad
+x=\frac12\left(e^y-e^{-y}\right).
+\]
+
+等价地，
+\[
+\operatorname{arsinh}x=\ln\left(x+\sqrt{x^2+1}\right),
+\qquad
+\sinh x=\frac{e^x-e^{-x}}{2}.
+\]
+
+\begin{itemize}
+  \item \textbf{使用条件：} \(x+\sqrt{x^2+1}>0\)，原函数在 \(\mathbb{R}\) 上有定义并一一对应。
+  \item \textbf{典型题型：} 求 \(\ln\left(x+\sqrt{x^2+1}\right)\) 的反函数，或识别反双曲正弦、双曲正弦结构。
+  \item \textbf{易错点：} 直接平方硬解容易变繁；倒数有理化可直接得到 \(e^{-y}=\sqrt{x^2+1}-x\)。
+  \item \textbf{关联题目：} MATH1-CALC-0003。
+\end{itemize}
 \end{knowledgeBox}
