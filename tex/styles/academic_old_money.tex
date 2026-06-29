@@ -75,6 +75,23 @@
   pdfborder={0 0 0}
 }
 
+\NewDocumentCommand{\problemAnchor}{m}{\hypertarget{problem:#1}{}}
+\NewDocumentCommand{\problemRef}{m}{\hyperlink{problem:#1}{#1}}
+\NewDocumentCommand{\problemIndexAnchor}{m}{\hypertarget{problem-index:#1}{}}
+\NewDocumentCommand{\problemIndexRef}{m}{\hyperlink{problem-index:#1}{索引}}
+\NewDocumentCommand{\knowledgeAnchor}{O{} m}{%
+  \IfBlankTF{#1}{\hypertarget{knowledge:#2}{}}{\hypertarget{knowledge:#1}{}}%
+}
+\NewDocumentCommand{\knowledgeRef}{O{} m}{%
+  \IfBlankTF{#1}{\hyperlink{knowledge:#2}{#2}}{\hyperlink{knowledge:#1}{#2}}%
+}
+\NewDocumentCommand{\knowledgeIndexAnchor}{O{} m}{%
+  \IfBlankTF{#1}{\hypertarget{knowledge-index:#2}{}}{\hypertarget{knowledge-index:#1}{}}%
+}
+\NewDocumentCommand{\knowledgeIndexRef}{O{} m}{%
+  \IfBlankTF{#1}{\hyperlink{knowledge-index:#2}{#2}}{\hyperlink{knowledge-index:#1}{#2}}%
+}
+
 \titleformat{\section}
   {\sffamily\Large\bfseries\color{aomForest}}
   {\thesection}

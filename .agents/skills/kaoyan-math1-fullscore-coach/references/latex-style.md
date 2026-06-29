@@ -67,6 +67,24 @@ TeX 文件和聊天回复都按标准 LaTeX 写作；聊天回复额外关注屏
 
 标签统一小写。
 
+## 双向跳转规则
+
+新增题目时，在题目前放置正文锚点，并在题目元信息中使用可点击题号与索引回跳：
+
+```tex
+\problemAnchor{MATH1-CALC-0001}
+\textbf{题目编号：} \problemRef{MATH1-CALC-0001} \quad
+\textbf{索引：} \problemIndexRef{MATH1-CALC-0001}
+```
+
+题目索引项使用：
+
+```tex
+\item \problemIndexAnchor{MATH1-CALC-0001}\textbf{\problemRef{MATH1-CALC-0001}}：...
+```
+
+知识点正文使用 `\knowledgeAnchor[knowledge-key]{知识点名称}`，正文到索引用 `\knowledgeIndexRef[knowledge-key]{知识点名称}`；索引或题目元信息跳回正文知识点用 `\knowledgeRef[knowledge-key]{知识点名称}`。中文知识点建议总是提供 ASCII key，避免 PDF 内部目标名不稳定。如果某个标签只有方法索引卡片而没有正文知识点小节，可在方法索引项前使用 `\knowledgeIndexAnchor[method-key]{知识点名称}`，并在题目元信息中用 `\knowledgeIndexRef[method-key]{知识点名称}`。
+
 ## 不确定题面
 
 如果 OCR 不确定，写：

@@ -1,14 +1,16 @@
 \subsection{题型名称}
 
+\problemAnchor{{PROBLEM_ID}}
 \begin{problemBox}
 \begin{problemMeta}
-\textbf{题目编号：} {{PROBLEM_ID}} \quad
+\textbf{题目编号：} \problemRef{{PROBLEM_ID}} \quad
+\textbf{索引：} \problemIndexRef{{PROBLEM_ID}} \quad
 \textbf{来源：} {{SOURCE}}
 
 \textbf{题型：} {{PROBLEM_TYPE}} \quad
 \textbf{难度：} {{DIFFICULTY}}
 
-\textbf{知识点：} {{TAGS}}
+\textbf{知识点：} \knowledgeRef[knowledge-key]{核心知识点}，\knowledgeIndexRef[method-key]{方法索引关键词}
 \end{problemMeta}
 
 \textbf{题目：}
@@ -30,6 +32,7 @@
 {{ANSWER}}
 \end{solutionBox}
 
+\knowledgeAnchor[knowledge-key]{核心知识点}
 \begin{knowledgeBox}
 \textbf{满分复盘卡片：}
 
