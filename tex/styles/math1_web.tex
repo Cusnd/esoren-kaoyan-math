@@ -1,0 +1,124 @@
+% Web presentation for the Math I notes.
+% Chapter TeX files should keep using semantic environments only.
+
+\defaultfontfeatures{Ligatures=TeX}
+\IfFontExistsTF{TeX Gyre Termes}
+  {\setmainfont{TeX Gyre Termes}}
+  {\setmainfont{Times New Roman}}
+\IfFontExistsTF{TeX Gyre Heros}
+  {\setsansfont{TeX Gyre Heros}[Scale=MatchLowercase]}
+  {\setsansfont{Arial}[Scale=MatchLowercase]}
+\IfFontExistsTF{TeX Gyre Cursor}
+  {\setmonofont{TeX Gyre Cursor}[Scale=MatchLowercase]}
+  {\setmonofont{Consolas}[Scale=MatchLowercase]}
+
+\IfFontExistsTF{SimSun}
+  {\setCJKmainfont{SimSun}[AutoFakeBold=2.5, AutoFakeSlant=0.18]}
+  {\setCJKmainfont{Songti SC}[AutoFakeBold=2.5, AutoFakeSlant=0.18]}
+\IfFontExistsTF{Microsoft YaHei}
+  {\setCJKsansfont{Microsoft YaHei}[AutoFakeBold=2.0]}
+  {\setCJKsansfont{SimHei}[AutoFakeBold=2.0]}
+
+\definecolor{mathOneInk}{HTML}{252522}
+\definecolor{mathOneMuted}{HTML}{6F6A60}
+\definecolor{mathOneRule}{HTML}{D8D1C3}
+\definecolor{mathOneForest}{HTML}{1F3B2D}
+\definecolor{mathOneGold}{HTML}{A9874A}
+\definecolor{mathOneBurgundy}{HTML}{7A2E35}
+
+\color{mathOneInk}
+\linespread{1.12}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.35em}
+\numberwithin{equation}{section}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=mathOneForest,
+  urlcolor=mathOneForest,
+  citecolor=mathOneGold,
+  filecolor=mathOneForest,
+  pdfborder={0 0 0}
+}
+
+\NewDocumentCommand{\problemAnchor}{m}{\hypertarget{problem:#1}{}}
+\NewDocumentCommand{\problemRef}{m}{\hyperlink{problem:#1}{#1}}
+\NewDocumentCommand{\problemIndexAnchor}{m}{\hypertarget{problem-index:#1}{}}
+\NewDocumentCommand{\problemIndexRef}{m}{\hyperlink{problem-index:#1}{索引}}
+\NewDocumentCommand{\knowledgeAnchor}{O{} m}{%
+  \IfBlankTF{#1}{\hypertarget{knowledge:#2}{}}{\hypertarget{knowledge:#1}{}}%
+}
+\NewDocumentCommand{\knowledgeRef}{O{} m}{%
+  \IfBlankTF{#1}{\hyperlink{knowledge:#2}{#2}}{\hyperlink{knowledge:#1}{#2}}%
+}
+\NewDocumentCommand{\knowledgeIndexAnchor}{O{} m}{%
+  \IfBlankTF{#1}{\hypertarget{knowledge-index:#2}{}}{\hypertarget{knowledge-index:#1}{}}%
+}
+\NewDocumentCommand{\knowledgeIndexRef}{O{} m}{%
+  \IfBlankTF{#1}{\hyperlink{knowledge-index:#2}{#2}}{\hyperlink{knowledge-index:#1}{#2}}%
+}
+
+\newtheoremstyle{mathoneplain}
+  {0.8em}{0.8em}{\itshape}{}{\sffamily\bfseries\color{mathOneForest}}{.}{0.6em}{}
+\newtheoremstyle{mathonedefinition}
+  {0.8em}{0.8em}{\normalfont}{}{\sffamily\bfseries\color{mathOneForest}}{.}{0.6em}{}
+\theoremstyle{mathoneplain}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}{引理}[section]
+\newtheorem{corollary}{推论}[section]
+\theoremstyle{mathonedefinition}
+\newtheorem{definition}{定义}[section]
+
+\NewDocumentCommand{\mathOneWebBlockTitle}{m m}{%
+  \BlockClassSingle{math1-block-title #1}{\textbf{#2}}%
+  \par\nobreak
+}
+
+\NewDocumentEnvironment{problemMeta}{}{%
+  \begin{BlockClass}{problem-meta}%
+  \begingroup
+  \footnotesize\color{mathOneMuted}%
+  \setlength{\parindent}{0pt}%
+  \setlength{\parskip}{0.18em}%
+  \raggedright
+}{%
+  \par\endgroup
+  \end{BlockClass}%
+  \ignorespacesafterend
+}
+
+\NewDocumentEnvironment{problemBox}{}{%
+  \begin{BlockClass}{problem-box}%
+  \mathOneWebBlockTitle{problem-title}{题目}%
+  \ignorespaces
+}{%
+  \end{BlockClass}%
+  \ignorespacesafterend
+}
+
+\NewDocumentEnvironment{solutionBox}{}{%
+  \begin{BlockClass}{solution-box}%
+  \mathOneWebBlockTitle{solution-title}{题解}%
+  \ignorespaces
+}{%
+  \end{BlockClass}%
+  \ignorespacesafterend
+}
+
+\NewDocumentEnvironment{knowledgeBox}{}{%
+  \begin{BlockClass}{knowledge-box}%
+  \mathOneWebBlockTitle{knowledge-title}{知识点}%
+  \ignorespaces
+}{%
+  \end{BlockClass}%
+  \ignorespacesafterend
+}
+
+\NewDocumentEnvironment{mistakeBox}{}{%
+  \begin{BlockClass}{mistake-box}%
+  \mathOneWebBlockTitle{mistake-title}{易错点}%
+  \ignorespaces
+}{%
+  \end{BlockClass}%
+  \ignorespacesafterend
+}

@@ -1,0 +1,10 @@
+{
+  "name": "kaoyan-math1-notes",
+  "private": true,
+  "scripts": {
+    "build:web": "pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File scripts/build_web.ps1",
+    "preview:web": "npm run build:web && wrangler dev --local",
+    "deploy:web:dry-run": "npm run build:web && wrangler deploy --dry-run",
+    "deploy:web": "npm run build:web && wrangler deploy"
+  }
+}

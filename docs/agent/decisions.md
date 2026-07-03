@@ -16,3 +16,8 @@
 - 采用克制学术风格作为默认 PDF 视觉方向：深墨绿、暖灰、古金棕和低饱和酒红只用于标题与强调，正文不再被彩色框包裹。
 - 题目、题解、知识点和易错点环境名称保持不变，但呈现为普通可分页段落块；章节 TeX 只写数学内容与语义结构。
 - PDF 内部跳转采用 `hyperref` 的轻量命令封装：题目编号使用原始题号作为 ASCII 目标名；中文知识点显示中文，但内部目标名使用显式 ASCII key，避免中文 destination 在 PDF 中不稳定。
+
+## 2026-07-03
+
+- 新增网页输出作为 PDF 之外的第二发布目标：`main-web.tex` 使用 `lwarp`、MathJax CDN 和网页专用样式，不复用 PDF 版式文件。
+- 网页构建输出统一进入 `build/site/`，Cloudflare Workers Static Assets 通过 `wrangler.jsonc` 发布该目录；当前站点先保持纯静态，不写 Worker 脚本。

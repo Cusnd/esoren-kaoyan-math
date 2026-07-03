@@ -1,0 +1,232 @@
+
+/* Math I web reading layer. This file is appended after lwarp.css. */
+
+:root {
+  --math1-bg: #fbfaf6;
+  --math1-ink: #252522;
+  --math1-muted: #6f6a60;
+  --math1-rule: #d8d1c3;
+  --math1-forest: #1f3b2d;
+  --math1-gold: #a9874a;
+  --math1-burgundy: #7a2e35;
+  --math1-panel: #fffdf8;
+  --math1-code: #f3efe6;
+}
+
+html {
+  background: var(--math1-bg);
+}
+
+body {
+  background: var(--math1-bg);
+  color: var(--math1-ink);
+  font-family: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, serif;
+  font-size: 18px;
+  line-height: 1.78;
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 28px 22px 56px;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--math1-forest);
+  text-decoration-color: rgba(31, 59, 45, 0.35);
+  text-underline-offset: 0.16em;
+}
+
+a:hover {
+  color: var(--math1-burgundy);
+  text-decoration-color: rgba(122, 46, 53, 0.45);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--math1-forest);
+  font-family: "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+
+h1 {
+  border-bottom: 1px solid var(--math1-rule);
+  font-size: 2rem;
+  margin: 0 0 1.1rem;
+  padding-bottom: 0.55rem;
+}
+
+h2 {
+  border-bottom: 1px solid rgba(169, 135, 74, 0.45);
+  font-size: 1.55rem;
+  margin-top: 2.2rem;
+  padding-bottom: 0.35rem;
+}
+
+h3 {
+  color: var(--math1-ink);
+  font-size: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+p {
+  margin: 0.55em 0;
+}
+
+ul,
+ol {
+  padding-left: 1.6em;
+}
+
+li + li {
+  margin-top: 0.25em;
+}
+
+table {
+  border-collapse: collapse;
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--math1-rule);
+  padding: 0.35rem 0.55rem;
+  vertical-align: top;
+}
+
+code,
+pre {
+  background: var(--math1-code);
+  border-radius: 6px;
+  font-family: "Cascadia Mono", "JetBrains Mono", Consolas, monospace;
+}
+
+code {
+  padding: 0.08em 0.25em;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 0.85rem;
+}
+
+.bodycontainer,
+.main,
+main {
+  max-width: 900px;
+}
+
+.sidetoccontainer {
+  color: var(--math1-muted);
+  font-size: 0.92rem;
+}
+
+.math1-block-title {
+  font-family: "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei", Arial, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 0.55rem;
+}
+
+.problem-title {
+  color: var(--math1-gold);
+}
+
+.solution-title,
+.knowledge-title {
+  color: var(--math1-forest);
+}
+
+.mistake-title {
+  color: var(--math1-burgundy);
+}
+
+.problem-box,
+.solution-box,
+.knowledge-box,
+.mistake-box {
+  border-left: 3px solid var(--math1-rule);
+  margin: 1.35rem 0;
+  padding: 0.15rem 0 0.15rem 1rem;
+}
+
+.problem-box {
+  border-left-color: var(--math1-gold);
+}
+
+.solution-box,
+.knowledge-box {
+  border-left-color: var(--math1-forest);
+}
+
+.mistake-box {
+  border-left-color: var(--math1-burgundy);
+}
+
+.problem-meta {
+  background: var(--math1-panel);
+  border: 1px solid var(--math1-rule);
+  border-radius: 6px;
+  color: var(--math1-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0.45rem 0 0.9rem;
+  padding: 0.65rem 0.8rem;
+}
+
+.MathJax,
+mjx-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+mjx-container[display="true"] {
+  margin: 1rem 0 !important;
+  padding-bottom: 0.15rem;
+}
+
+.navbutton,
+.topnavigation,
+.botnavigation {
+  font-family: "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei", Arial, sans-serif;
+}
+
+@media (max-width: 700px) {
+  body {
+    font-size: 16.5px;
+    line-height: 1.72;
+    padding: 18px 14px 42px;
+  }
+
+  h1 {
+    font-size: 1.55rem;
+  }
+
+  h2 {
+    font-size: 1.28rem;
+  }
+
+  h3 {
+    font-size: 1.12rem;
+  }
+
+  .problem-box,
+  .solution-box,
+  .knowledge-box,
+  .mistake-box {
+    margin: 1.1rem 0;
+    padding-left: 0.75rem;
+  }
+
+  .problem-meta {
+    font-size: 0.84rem;
+    padding: 0.58rem 0.65rem;
+  }
+}
