@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
-"""Coarse duplicate search for Math I problems."""
+"""Find likely duplicate Math I problems using one candidate per problem ID."""
 
 from __future__ import annotations
 
 import argparse
 import difflib
+import json
 import re
 import sys
 from pathlib import Path
 
-
-ROOT = Path.cwd()
+from repo_model import (
+    RepositoryDataError,
+    RepositoryDependencyError,
+    load_registry,
+    problem_blocks,
+    registry_search_text,
+)
 
 
 def normalize(text: str) -> str:
@@ -28,75 +34,102 @@ def char_ngrams(text: str, n: int = 2) -> set[str]:
     text = compact(text)
     if len(text) < n:
         return {text} if text else set()
-    return {text[i : i + n] for i in range(len(text) - n + 1)}
+    return {text[index : index + n] for index in range(len(text) - n + 1)}
 
 
-def jaccard(a: set[str], b: set[str]) -> float:
-    if not a or not b:
+def jaccard(left: set[str], right: set[str]) -> float:
+    if not left or not right:
         return 0.0
-    return len(a & b) / len(a | b)
+    return len(left & right) / len(left | right)
 
 
-def score(a: str, b: str) -> float:
-    na, nb = normalize(a), normalize(b)
-    if not na or not nb:
+def score(left: str, right: str) -> float:
+    normalized_left, normalized_right = normalize(left), normalize(right)
+    if not normalized_left or not normalized_right:
         return 0.0
-    seq = difflib.SequenceMatcher(None, na, nb).ratio()
-    chars = jaccard(char_ngrams(a), char_ngrams(b))
-    tokens = jaccard(set(na.split()), set(nb.split()))
-    return max(seq, chars, tokens)
+    sequence = difflib.SequenceMatcher(
+        None, normalized_left, normalized_right
+    ).ratio()
+    characters = jaccard(char_ngrams(left), char_ngrams(right))
+    tokens = jaccard(set(normalized_left.split()), set(normalized_right.split()))
+    return max(sequence, characters, tokens)
 
 
-def tex_chunks(text: str) -> list[str]:
-    chunks = re.split(r"(?=\\subsection\{)", text)
-    chunks = [chunk.strip() for chunk in chunks if chunk.strip()]
-    if chunks:
-        return chunks
-    return [text]
+def probability(value: str) -> float:
+    number = float(value)
+    if not 0.0 <= number <= 1.0:
+        raise argparse.ArgumentTypeError("must be between 0 and 1")
+    return number
 
 
-def registry_entries() -> list[tuple[str, str]]:
-    path = ROOT / "data/problem_registry.yml"
-    if not path.exists():
-        return []
-    text = path.read_text(encoding="utf-8", errors="replace")
-    entries = []
-    for block in re.split(r"\n(?=- id: )", text):
-        pid = re.search(r"id:\s*([A-Z0-9-]+)", block)
-        title = re.search(r'title:\s*"?([^"\n]+)"?', block)
-        tags = re.findall(r"^\s*-\s*([^\n]+)", block, flags=re.MULTILINE)
-        label = pid.group(1) if pid else "registry"
-        content = " ".join([title.group(1) if title else "", *tags])
-        if content.strip():
-            entries.append((label, content))
-    return entries
+def likely_duplicates(
+    root: Path, query: str, threshold: float, limit: int
+) -> list[dict[str, object]]:
+    registry = {
+        entry.get("id"): entry
+        for entry in load_registry(root)
+        if isinstance(entry.get("id"), str)
+    }
+    matches: list[dict[str, object]] = []
+    for block in problem_blocks(root):
+        extra = registry_search_text(registry.get(block.problem_id, {}))
+        value = score(query, f"{block.text} {extra}")
+        if value >= threshold:
+            matches.append(
+                {
+                    "score": round(value, 6),
+                    "problem_id": block.problem_id,
+                    "file": block.file,
+                }
+            )
+    matches.sort(key=lambda item: (-float(item["score"]), str(item["problem_id"])))
+    return matches[:limit]
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("text", nargs="*", help="Problem text. Reads stdin when omitted.")
-    parser.add_argument("--threshold", type=float, default=0.22)
+    parser.add_argument("--root", type=Path, default=Path.cwd())
+    parser.add_argument("--threshold", type=probability, default=0.22)
+    parser.add_argument("--limit", type=int, default=10)
+    parser.add_argument("--format", choices=("text", "json"), default="text")
     args = parser.parse_args()
+
+    if args.limit < 1:
+        parser.error("--limit must be at least 1")
     query = " ".join(args.text).strip() or sys.stdin.read().strip()
     if not query:
         print("No problem text provided.", file=sys.stderr)
         return 2
 
-    candidates: list[tuple[float, str, str]] = []
-    for path in (ROOT / "tex/chapters").rglob("*.tex"):
-        text = path.read_text(encoding="utf-8", errors="replace")
-        for index, chunk in enumerate(tex_chunks(text), start=1):
-            label = f"{path.relative_to(ROOT)}#chunk-{index}"
-            candidates.append((score(query, chunk), label, "chapter tex"))
-    for label, content in registry_entries():
-        candidates.append((score(query, content), label, "registry"))
+    root = args.root.resolve()
+    try:
+        matches = likely_duplicates(root, query, args.threshold, args.limit)
+    except (RepositoryDependencyError, RepositoryDataError) as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
 
-    matches = sorted((item for item in candidates if item[0] >= args.threshold), reverse=True)[:10]
+    if args.format == "json":
+        print(
+            json.dumps(
+                {
+                    "query": query,
+                    "threshold": args.threshold,
+                    "matches": matches,
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+        return 0
+
     if not matches:
         print("No likely duplicates found.")
         return 0
-    for value, where, kind in matches:
-        print(f"{value:.3f}\t{kind}\t{where}")
+    for match in matches:
+        print(
+            f"{float(match['score']):.3f}\t{match['problem_id']}\t{match['file']}"
+        )
     return 0
 
 

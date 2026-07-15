@@ -4,10 +4,22 @@
 
 ## 使用方式
 
-1. 开始学习或整理前，先阅读 `AGENTS.md`。
-2. 每次粘贴题目、知识点、错解或疑问时，按“讲解 + 写入 TeX + 更新索引”的流程维护。
-3. 可复用的 Codex 总提示词保存在 `prompts/codex_math1_prompt.md`。
-4. 教材目录映射保存在 `docs/textbook_catalog.md` 和 `data/textbook_catalog.yml`，新增内容优先按教材“第几讲”归档。
+1. Codex 进入仓库后读取根 `AGENTS.md`；数学题、知识点、错解、OCR 与章节整理任务由仓库级 `kaoyan-math1-fullscore-coach` Skill 处理。
+2. 默认同时完成中文满分讲解与题库持久化；“简洁回答”只压缩聊天回复，只有明确说“只聊天不写文件”才跳过文件修改。
+3. `data/textbook_catalog.yml` 是章节顺序与路径的唯一事实源，`docs/textbook_catalog.md` 是对应的人类可读视图。
+4. 题目、知识点与错题模板以 `tex/templates/` 下的实时文件为准，不在 Skill 内维护副本。
+
+## 仓库契约验证
+
+验证脚本使用现有 `codex-tools` 环境，不新增项目生产依赖：
+
+```powershell
+$mamba = 'C:\Users\liuso\miniforge3\Library\bin\mamba.exe'
+& $mamba run -n codex-tools python .agents/skills/kaoyan-math1-fullscore-coach/scripts/validate_math1_repo.py --no-compile
+& $mamba run -n codex-tools python -m unittest discover -s tests/skill -p 'test_*.py' -v
+```
+
+移除 `--no-compile` 后，validator 会优先使用 `latexmk`，否则执行两次 `xelatex`；没有编译器时明确报告 `SKIP`。validator 支持 `--root`、`--format text|json`，退出码固定为 0（成功）、1（校验失败）、2（用法或依赖错误）。
 
 ## 编译 PDF
 
@@ -78,6 +90,8 @@ tex/chapters/linear_algebra/
 tex/chapters/probability/
 tex/indexes/
 tex/templates/problem_template.tex
+tex/templates/knowledge_template.tex
+tex/templates/mistake_template.tex
 web/math1-web.css
 web/reader/
 web/pwa/
@@ -88,5 +102,6 @@ data/textbook_catalog.yml
 data/web_pages.yml
 tests/static/
 tests/browser/
+tests/skill/
 docs/textbook_catalog.md
 ```

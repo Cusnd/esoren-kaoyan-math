@@ -1,0 +1,89 @@
+- id: simple_problem
+  prompt: "求极限：lim_{x→0} (sin x)/x。"
+  task_kind: "problem"
+  response_depth: "adaptive"
+  persistence: "write"
+  required_outcomes:
+    - "定位题型、入口与必要条件"
+    - "给出足以拿满分的推导"
+    - "同步章节正文、题目索引和 registry"
+  forbidden_outcomes:
+    - "因为题目简单而只给答案"
+
+- id: complex_problem
+  prompt: "求一个含参数的二重积分，并讨论参数改变时积分区域的变化。"
+  task_kind: "problem"
+  response_depth: "adaptive"
+  persistence: "write"
+  required_outcomes:
+    - "拆分区域并检查换序或换元的合法性"
+    - "给出可迁移的方法与考场写法"
+    - "按主考点归章并补充必要交叉引用"
+  forbidden_outcomes:
+    - "套用固定十二段标题而割裂推导"
+
+- id: wrong_solution
+  prompt: "这是我的错解：由函数在点处连续，所以它在该点可导。请帮我找错。"
+  task_kind: "wrong_solution"
+  response_depth: "adaptive"
+  persistence: "write"
+  required_outcomes:
+    - "精确指出错误步骤和知识漏洞"
+    - "给出反例、正确关系与避免复发的方法"
+    - "更新章节易错点和 mistake_index"
+  forbidden_outcomes:
+    - "只重做题目而不诊断错因"
+
+- id: ocr_ambiguity
+  prompt: "OCR 题面：设 f(x)=1/x(?)，求 x→0 时……，括号和趋向方向无法辨认。"
+  task_kind: "ocr"
+  response_depth: "adaptive"
+  persistence: "write_when_resolved"
+  required_outcomes:
+    - "区分可确认文本与会改变答案的不确定条件"
+    - "不能安全恢复时停止入库并请求最小必要信息"
+  forbidden_outcomes:
+    - "猜测单侧极限或定义域后直接入库"
+
+- id: duplicate_problem
+  prompt: "把这道与库内已有题目相同、但多了一种泰勒解法的题整理进去。"
+  task_kind: "problem"
+  response_depth: "adaptive"
+  persistence: "write"
+  required_outcomes:
+    - "先按题面和逐题锚点查重"
+    - "向原题补充解法并按需更新方法索引"
+  forbidden_outcomes:
+    - "分配新题号或创建重复 registry 条目"
+
+- id: concise_with_persistence
+  prompt: "简洁回答这道极限题，但照常整理进题库。"
+  task_kind: "problem"
+  response_depth: "concise"
+  persistence: "write"
+  required_outcomes:
+    - "聊天回复压缩为结论、关键理由和风险点"
+    - "文件侧仍完成完整题库维护"
+  forbidden_outcomes:
+    - "把简洁回答解释成禁止写文件"
+
+- id: chat_only
+  prompt: "只聊天不写文件：解释为什么连续不一定可导。"
+  task_kind: "knowledge"
+  response_depth: "adaptive"
+  persistence: "skip"
+  required_outcomes:
+    - "给出严谨解释并明确本次没有文件修改"
+  forbidden_outcomes:
+    - "修改章节、索引或 registry"
+
+- id: non_math_meta
+  prompt: "重构这个数学 Skill 的 validator，并运行单元测试。"
+  task_kind: "meta"
+  response_depth: "adaptive"
+  persistence: "project_change"
+  required_outcomes:
+    - "按工程任务完成实现、验证和变更说明"
+  forbidden_outcomes:
+    - "套用数学学习沉淀收尾"
+    - "创建题号或修改数学正文"

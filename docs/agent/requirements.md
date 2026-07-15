@@ -23,3 +23,14 @@
 - 生成共享 `schemaVersion` / `buildId` 的内容清单、搜索索引与页面上下文；全量原子预缓存必须低于 10 MiB，PDF 不进入强制预缓存。
 - 补齐键盘、焦点管理、触控尺寸、200% 缩放、reduced-motion、安全区、打印和 WCAG AA 验收。
 - 固定 Node.js 24 与构建依赖版本；Windows PowerShell 是正式构建入口。未经另行授权不得部署或推送。
+
+## 2026-07-15 Agent 与 Skill 现代化
+
+- 根 `AGENTS.md` 只保留稳定项目契约；数学任务的细节工作流集中到 `kaoyan-math1-fullscore-coach`。
+- 回答结构按任务复杂度自适应，但严谨性、条件检查、可迁移方法和考场得分点仍是硬性成功标准。
+- 回答深度与文件持久化是两个独立开关：“简洁回答”仍维护文件，只有“只聊天不写文件”才禁止写入。
+- `data/textbook_catalog.yml` 和 `tex/templates/` 分别作为章节路由与实时模板的唯一事实源；不再维护 Skill 内重复资产或便携初始化脚本。
+- 新题必须同步章节正文、题目索引与 `problem_registry.yml`；知识点不得创建虚假题号，重复题必须补充原题而非分配新 ID。
+- validator 必须确定性检查 37 个章节、PDF/Web 入口、目录文档、registry、逐题锚点、题目索引与悬空引用，并提供文本/JSON 输出和稳定退出码。
+- 使用标准库 `unittest` 固化仓库契约，提交简单题、综合题、错解、OCR、重复题、简洁模式、只聊天模式与非数学元任务的代表性行为案例。
+- 删除独立总提示词 `prompts/codex_math1_prompt.md`；不修改全局 Codex 指令，不新增生产依赖。

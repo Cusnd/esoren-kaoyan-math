@@ -1,75 +1,31 @@
-# LaTeX 书写风格
+# LaTeX 内容与索引规范
 
-默认使用 XeLaTeX，支持中文。
+## 权威位置
 
-## 基本要求
+- 题目、知识点和错题模板：`tex/templates/`。
+- PDF 样式：`tex/styles/academic_old_money.tex`。
+- Web 样式：`tex/styles/math1_web.tex`。
+- 章节、索引和模板只写数学内容与语义结构，不散落字体、颜色或版式定义。
 
-1. 数学公式使用标准 LaTeX。
-2. 中文说明清楚，不堆公式。
-3. 每道题独立成块。
-4. 不编造来源。
-5. 不破坏已有结构。
-6. 尽量保证 `main.tex` 可编译。
+## 稳定语义接口
 
-## 内容与样式分离
+保持以下环境和命令不变：
 
-1. 章节、索引和题目模板 `.tex` 只写数学内容与语义结构，不写字体、颜色、版式或环境呈现。
-2. `tex/preamble.tex` 是轻量编译入口，负责加载基础数学/中文依赖，并输入当前样式模板。
-3. 当前视觉模板集中在 `tex/styles/academic_old_money.tex`；该文件负责字体、配色、标题页、页眉页脚、章节标题、定理环境和四类语义段落环境。
-4. 修改视觉风格时优先改 `tex/styles/academic_old_money.tex`，不要把样式定义散落进章节文件。
-5. 题目环境接口保持稳定：正文继续使用 `problemBox`、`solutionBox`、`knowledgeBox`、`mistakeBox`。
-6. 题目编号、来源、题型、知识点、难度等管理字段放入 `problemMeta`，让真正题面成为视觉主体。
-7. 题面校注、OCR 不确定说明、定义域限制等会影响解题条件的信息不要放入 `problemMeta`。
+- `problemMeta`、`problemBox`、`solutionBox`、`knowledgeBox`、`mistakeBox`。
+- `\problemAnchor`、`\problemRef`、`\problemIndexAnchor`、`\problemIndexRef`。
+- `\knowledgeAnchor`、`\knowledgeRef`、`\knowledgeIndexAnchor`、`\knowledgeIndexRef`。
 
-## 聊天回复与 TeX 文件的区别
+管理字段放入 `problemMeta`：题号、索引、来源、题型、难度和知识点。会影响求解条件的 OCR 校注、定义域和参数限制放在题面正文附近。
 
-TeX 文件和聊天回复都按标准 LaTeX 写作；聊天回复额外关注屏幕阅读体验。Codex 桌面端 LaTeX 渲染测试已确认正常，行内公式、块级公式、矩阵、分段函数、多行对齐、概率统计公式、向量微积分公式等都可以正常显示。
+## 编号与跳转
 
-1. 聊天中允许使用行内 `$...$` 或 `\(...\)` 表达短公式。
-2. 聊天中允许使用块级 `$$...$$` 或 `\[...\]` 表达复杂公式。
-3. 分式、根号、极限、矩阵、行列式、分段函数、多行对齐、长等式链和复杂推导优先使用块级公式，前后留空行。
-4. 一个块级公式尽量只放一个核心推导或一个结构完整的公式组。
-5. 最终回复前检查公式定界符是否成对、数学语义是否清楚、排版是否便于复盘。
+- 高数：`MATH1-CALC-0001`。
+- 线代：`MATH1-LA-0001`。
+- 概率：`MATH1-PROB-0001`。
+- 每道新题恰有一个 `\problemAnchor{ID}`，题目索引恰有一个 `\problemIndexAnchor{ID}`。
+- 中文知识点使用可读标题，内部跳转 key 使用稳定的 ASCII kebab-case。
 
-## 题目环境
-
-使用：
-
-- `problemMeta`
-- `problemBox`
-- `solutionBox`
-- `knowledgeBox`
-- `mistakeBox`
-
-## 编号规则
-
-- 高数：`MATH1-CALC-0001`
-- 线代：`MATH1-LA-0001`
-- 概率：`MATH1-PROB-0001`
-
-## 标题规则
-
-小节标题尽量写成题型名称，例如：
-
-```tex
-\subsection{由复合函数表达式反求原函数}
-```
-
-不要写成“第 1 题”“例题 1”这种不可检索标题。
-
-## 标签规则
-
-若 TeX 中需要交叉引用，使用：
-
-```tex
-\label{prob:math1-calc-0001}
-```
-
-标签统一小写。
-
-## 双向跳转规则
-
-新增题目时，在题目前放置正文锚点，并在题目元信息中使用可点击题号与索引回跳：
+示例：
 
 ```tex
 \problemAnchor{MATH1-CALC-0001}
@@ -77,18 +33,20 @@ TeX 文件和聊天回复都按标准 LaTeX 写作；聊天回复额外关注屏
 \textbf{索引：} \problemIndexRef{MATH1-CALC-0001}
 ```
 
-题目索引项使用：
+## 内容规则
+
+- 小节标题使用可检索的题型或知识点名称，不写“第 1 题”“例题 1”。
+- 每道题独立成块；关键推导用标准 LaTeX，不堆砌公式。
+- 现有章节写法优先于模板中的占位示例；模板字段没有实际内容时可以删去，不要填充空话。
+- 新题、知识点和错题分别以对应实时模板为起点。
+- 聊天与 TeX 都使用标准 LaTeX；聊天只额外保证定界符成对和屏幕可读性。
+
+## OCR 不确定题面
+
+在题面附近记录会影响解题的校注：
 
 ```tex
-\item \problemIndexAnchor{MATH1-CALC-0001}\textbf{\problemRef{MATH1-CALC-0001}}：...
+\textbf{题面说明：} 本题由 OCR 整理，符号存在不确定处，以下按……版本处理。
 ```
 
-知识点正文使用 `\knowledgeAnchor[knowledge-key]{知识点名称}`，正文到索引用 `\knowledgeIndexRef[knowledge-key]{知识点名称}`；索引或题目元信息跳回正文知识点用 `\knowledgeRef[knowledge-key]{知识点名称}`。中文知识点建议总是提供 ASCII key，避免 PDF 内部目标名不稳定。如果某个标签只有方法索引卡片而没有正文知识点小节，可在方法索引项前使用 `\knowledgeIndexAnchor[method-key]{知识点名称}`，并在题目元信息中用 `\knowledgeIndexRef[method-key]{知识点名称}`。
-
-## 不确定题面
-
-如果 OCR 不确定，写：
-
-```tex
-\textbf{题面说明：} 本题由 OCR 整理，符号存在不确定处，以下按 ... 版本处理。
-```
+不得把题面不确定性藏入低视觉权重的管理元信息。

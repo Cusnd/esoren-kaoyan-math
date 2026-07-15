@@ -22,6 +22,10 @@ node_modules/
 /work/
 /tmp/
 
+# Python validation/test artifacts
+__pycache__/
+*.py[cod]
+
 # Lwarp artifacts when compiled from the repository root by accident
 *.lwarpmkconf
 lwarpmk.conf
