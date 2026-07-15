@@ -1,4 +1,4 @@
-\subsection{第 1 讲 函数极限与连续}
+\studySubsection{calc-01-function-limit-continuity}{第 1 讲 函数极限与连续}
 
 \begin{knowledgeBox}
 教材页码：第 1 页起。
@@ -6,7 +6,7 @@
 本讲用于整理函数、函数极限、无穷小比较、连续性与间断点等内容。新增题目时重点沉淀极限入口、等价替换条件、单侧极限和连续性判定。
 \end{knowledgeBox}
 
-\subsection{反函数的定义、存在条件与图像关系}
+\studySubsection{calc-01-inverse-function}{反函数的定义、存在条件与图像关系}
 \knowledgeAnchor[inverse-function]{反函数}
 \noindent{\footnotesize\textbf{索引：} \knowledgeIndexRef[inverse-function]{反函数}}\par
 
@@ -138,7 +138,7 @@ f(f^{-1}(y))=y,\qquad y\in R.
 \end{itemize}
 \end{mistakeBox}
 
-\subsection{反双曲正弦型函数的反函数}
+\studySubsection{calc-01-inverse-hyperbolic-sine}{反双曲正弦型函数的反函数}
 
 \problemAnchor{MATH1-CALC-0003}
 \begin{problemBox}
@@ -349,7 +349,7 @@ x=\frac12(e^y-e^{-y}).
 看到 \(\ln(x+\sqrt{x^2+1})\)，要立即联想到“倒数有理化”和“双曲正弦”。考场上不要先平方硬解，先写出 \(e^y\) 与 \(e^{-y}\) 这对式子。
 \end{mistakeBox}
 
-\subsection{复合函数的定义、定义域与拆解方法}
+\studySubsection{calc-01-composite-function}{复合函数的定义、定义域与拆解方法}
 \knowledgeAnchor[composite-function]{复合函数}
 \noindent{\footnotesize\textbf{索引：} \knowledgeIndexRef[composite-function]{复合函数}}\par
 
@@ -757,7 +757,7 @@ g[f(x)]=
 这题要练成条件反射：复合函数先看内层输出。外层函数问“我的输入落在哪一段”，这个输入不是 \(x\)，而是 \(f(x)\)。
 \end{mistakeBox}
 
-\subsection{隐函数的概念与观察法}
+\studySubsection{calc-01-implicit-function}{隐函数的概念与观察法}
 \knowledgeAnchor[implicit-function]{隐函数}
 \noindent{\footnotesize\textbf{索引：} \knowledgeIndexRef[implicit-function]{隐函数}}\par
 
@@ -860,7 +860,7 @@ y(2)=1.
 \end{itemize}
 \end{knowledgeBox}
 
-\subsection{函数的有界性}
+\studySubsection{calc-01-boundedness}{函数的有界性}
 \knowledgeAnchor[boundedness]{有界性}
 \noindent{\footnotesize\textbf{索引：} \knowledgeIndexRef[boundedness]{有界性}}\par
 
@@ -1070,7 +1070,7 @@ f(x)=\frac{x}{1+x^2}
 \]
 \end{mistakeBox}
 
-\subsection{有界性放缩练习组}
+\studySubsection{calc-01-boundedness-practice}{有界性放缩练习组}
 
 \problemAnchor{MATH1-CALC-0010}
 \begin{problemBox}
@@ -1215,7 +1215,7 @@ f(x)=\frac{x}{1+x^2}
 做完后不要只看答案对不对，要给每题标出“触发信号”：分母有 \(1+x^4\)、分母有 \(1+x^2\)、根式差、根式分母、\((1+x)^2\)。以后看到这些结构，直接调用对应放缩模板。
 \end{mistakeBox}
 
-\subsection{函数的单调性}
+\studySubsection{calc-01-monotonicity}{函数的单调性}
 \knowledgeAnchor[monotonicity]{单调性}
 \noindent{\footnotesize\textbf{索引：} \knowledgeIndexRef[monotonicity]{单调性}}\par
 
@@ -1412,7 +1412,7 @@ f(-x)
 单调性题不要只看形状，要能用定义法写出不等号链条。尤其是 \(f(-x)\)、\(-f(x)\)、\(-f(-x)\) 三类变换，要分别记清。
 \end{mistakeBox}
 
-\subsection{函数的奇偶性}
+\studySubsection{calc-01-parity}{函数的奇偶性}
 \knowledgeAnchor[odd-function]{奇函数}
 \noindent{\footnotesize\textbf{索引：} \knowledgeIndexRef[odd-function]{奇函数}}\par
 
@@ -1619,7 +1619,7 @@ f(x+y)=f(x)+f(y)
 函数方程题的第一反应是“赋值”。常用三件套：令变量为 \(0\)，令两个变量互为相反数，令两个变量相等。
 \end{mistakeBox}
 
-\subsection{函数的周期性}
+\studySubsection{calc-01-periodicity}{函数的周期性}
 \knowledgeAnchor[periodic-function]{周期函数}
 \noindent{\footnotesize\textbf{索引：} \knowledgeIndexRef[periodic-function]{周期函数}}\par
 
@@ -1794,7 +1794,7 @@ f(x+2a),\quad f(x+a),\quad f(x),
 周期证明题先写目标 \(f(x+T)=f(x)\)。题设若是递推式，就连续套用，直到所有新增项抵消。
 \end{mistakeBox}
 
-\subsection{由复合形式反求函数表达式}
+\studySubsection{calc-01-recover-function-from-composition}{由复合形式反求函数表达式}
 
 \problemAnchor{MATH1-CALC-0001}
 \begin{problemBox}
@@ -1955,7 +1955,7 @@ u^2+\frac{1}{u^2}=\left(u+\frac{1}{u}\right)^2-2
 看到 \(f\left(u+\frac{1}{u}\right)\) 这类题，先重命名参数，再问自己：右端能不能通过除以某个 \(u^k\) 造出 \(u+\frac{1}{u}\)？
 \end{mistakeBox}
 
-\subsection{互换 \(x\) 与 \(\frac{1}{x}\) 建立方程组求函数}
+\studySubsection{calc-01-reciprocal-equation-method}{互换 \(x\) 与 \(\frac{1}{x}\) 建立方程组求函数}
 
 \problemAnchor{MATH1-CALC-0002}
 \begin{problemBox}

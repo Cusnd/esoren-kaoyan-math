@@ -1,10 +1,29 @@
 {
   "name": "kaoyan-math1-notes",
+  "version": "1.0.0",
   "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25",
+    "npm": ">=11 <12"
+  },
+  "packageManager": "npm@11.6.2",
   "scripts": {
     "build:web": "pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File scripts/build_web.ps1",
+    "postprocess:web": "node scripts/postprocess_web.mjs",
+    "test:static": "node --test tests/static/*.test.mjs",
+    "test:browser": "playwright test",
+    "test:web": "npm run test:static",
     "preview:web": "npm run build:web && wrangler dev --local",
     "deploy:web:dry-run": "npm run build:web && wrangler deploy --dry-run",
     "deploy:web": "npm run build:web && wrangler deploy"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
+    "@playwright/test": "1.61.1",
+    "cheerio": "1.2.0",
+    "mathjax": "3.2.2",
+    "wrangler": "4.111.0",
+    "yaml": "2.9.0"
   }
 }

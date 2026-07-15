@@ -17,6 +17,10 @@
 /build/
 node_modules/
 .wrangler/
+/test-results/
+/playwright-report/
+/work/
+/tmp/
 
 # Lwarp artifacts when compiled from the repository root by accident
 *.lwarpmkconf

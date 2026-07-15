@@ -2,3 +2,8 @@
 \usepackage{amsmath, amssymb, amsthm, mathtools}
 
 \input{tex/styles/academic_old_money.tex}
+
+% Keep human-readable Chinese headings in the PDF while allowing the web
+% build to assign stable ASCII filenames from the same content sources.
+\NewDocumentCommand{\studySection}{m m}{\section{#2}}
+\NewDocumentCommand{\studySubsection}{m m}{\subsection{#2}}

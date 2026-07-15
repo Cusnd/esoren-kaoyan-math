@@ -2,12 +2,11 @@
 \usepackage{fontspec}
 \usepackage[
   HomeHTMLFilename=index,
-  HTMLFilename={note-},
   latexmk,
   OSWindows,
   mathjax
 ]{lwarp}
-\boolfalse{FileSectionNames}
+\booltrue{FileSectionNames}
 
 \usepackage{amsmath, amssymb, amsthm, mathtools}
 \usepackage{booktabs}
@@ -25,5 +24,14 @@
 \HTMLLanguage{zh-CN}
 \HTMLDescription{考研数学一满分学习笔记与题解库。}
 \CSSFilename{math1-web.css}
+
+% lwarp uses the PDF-string branch while deriving section filenames.  The
+% visible heading remains Chinese, and every page receives a stable slug.
+\NewDocumentCommand{\studySection}{m m}{%
+  \section{\texorpdfstring{#2}{#1}}%
+}
+\NewDocumentCommand{\studySubsection}{m m}{%
+  \subsection{\texorpdfstring{#2}{#1}}%
+}
 
 \input{tex/styles/math1_web.tex}

@@ -1,0 +1,315 @@
+schemaVersion: 1
+pages:
+  - slug: calc-01-function-limit-continuity
+    title: 第 1 讲 函数极限与连续
+    subject: 高等数学
+    lecture: 第 1 讲
+    legacy_note: 1
+    source: tex/chapters/calculus/01_function_limit_continuity.tex
+  - slug: calc-01-inverse-function
+    title: 反函数的定义、存在条件与图像关系
+    subject: 高等数学
+    lecture: 第 1 讲
+    legacy_note: 2
+    source: tex/chapters/calculus/01_function_limit_continuity.tex
+  - slug: calc-01-inverse-hyperbolic-sine
+    title: 反双曲正弦型函数的反函数
+    subject: 高等数学
+    lecture: 第 1 讲
+    legacy_note: 3
+    source: tex/chapters/calculus/01_function_limit_continuity.tex
+  - slug: calc-01-composite-function
+    title: 复合函数的定义、定义域与拆解方法
+    subject: 高等数学
+    lecture: 第 1 讲
+    legacy_note: 4
+    source: tex/chapters/calculus/01_function_limit_continuity.tex
+  - slug: calc-01-implicit-function
+    title: 隐函数的概念与观察法
+    subject: 高等数学
+    lecture: 第 1 讲
+    legacy_note: 5
+    source: tex/chapters/calculus/01_function_limit_continuity.tex
+  - slug: calc-01-boundedness
+    title: 函数的有界性
+    subject: 高等数学
+    lecture: 第 1 讲
+    legacy_note: 6
+    source: tex/chapters/calculus/01_function_limit_continuity.tex
+  - slug: calc-01-boundedness-practice
+    title: 有界性放缩练习组
+    subject: 高等数学
+    lecture: 第 1 讲
+    legacy_note: 7
+    source: tex/chapters/calculus/01_function_limit_continuity.tex
+  - slug: calc-01-monotonicity
+    title: 函数的单调性
+    subject: 高等数学
+    lecture: 第 1 讲
+    legacy_note: 8
+    source: tex/chapters/calculus/01_function_limit_continuity.tex
+  - slug: calc-01-parity
+    title: 函数的奇偶性
+    subject: 高等数学
+    lecture: 第 1 讲
+    legacy_note: 9
+    source: tex/chapters/calculus/01_function_limit_continuity.tex
+  - slug: calc-01-periodicity
+    title: 函数的周期性
+    subject: 高等数学
+    lecture: 第 1 讲
+    legacy_note: 10
+    source: tex/chapters/calculus/01_function_limit_continuity.tex
+  - slug: calc-01-recover-function-from-composition
+    title: 由复合形式反求函数表达式
+    subject: 高等数学
+    lecture: 第 1 讲
+    legacy_note: 11
+    source: tex/chapters/calculus/01_function_limit_continuity.tex
+  - slug: calc-01-reciprocal-equation-method
+    title: 互换 x 与 1/x 建立方程组求函数
+    subject: 高等数学
+    lecture: 第 1 讲
+    legacy_note: 12
+    source: tex/chapters/calculus/01_function_limit_continuity.tex
+  - slug: calc-02-sequence-limit
+    title: 第 2 讲 数列极限
+    subject: 高等数学
+    lecture: 第 2 讲
+    legacy_note: 13
+    source: tex/chapters/calculus/02_sequence_limit.tex
+  - slug: calc-03-one-variable-differential-concepts
+    title: 第 3 讲 一元函数微分学的概念
+    subject: 高等数学
+    lecture: 第 3 讲
+    legacy_note: 14
+    source: tex/chapters/calculus/03_one_variable_differential_concepts.tex
+  - slug: calc-04-one-variable-differential-calculation
+    title: 第 4 讲 一元函数微分学的计算
+    subject: 高等数学
+    lecture: 第 4 讲
+    legacy_note: 15
+    source: tex/chapters/calculus/04_one_variable_differential_calculation.tex
+  - slug: calc-05-differential-applications-geometry
+    title: 第 5 讲 一元函数微分学的应用（一）——几何应用
+    subject: 高等数学
+    lecture: 第 5 讲
+    legacy_note: 16
+    source: tex/chapters/calculus/05_differential_applications_geometry.tex
+  - slug: calc-06-differential-applications-mvt-equations-inequalities
+    title: 第 6 讲 一元函数微分学的应用（二）——中值定理、微分等式与微分不等式
+    subject: 高等数学
+    lecture: 第 6 讲
+    legacy_note: 17
+    source: tex/chapters/calculus/06_differential_applications_mvt_equations_inequalities.tex
+  - slug: calc-07-differential-applications-physics-economics
+    title: 第 7 讲 一元函数微分学的应用（三）——物理应用与经济应用
+    subject: 高等数学
+    lecture: 第 7 讲
+    legacy_note: 18
+    source: tex/chapters/calculus/07_differential_applications_physics_economics.tex
+  - slug: calc-08-one-variable-integral-concepts-properties
+    title: 第 8 讲 一元函数积分学的概念与性质
+    subject: 高等数学
+    lecture: 第 8 讲
+    legacy_note: 19
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-09-one-variable-integral-calculation
+    title: 第 9 讲 一元函数积分学的计算
+    subject: 高等数学
+    lecture: 第 9 讲
+    legacy_note: 20
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-10-integral-applications-geometry
+    title: 第 10 讲 一元函数积分学的应用（一）——几何应用
+    subject: 高等数学
+    lecture: 第 10 讲
+    legacy_note: 21
+    source: tex/chapters/calculus/10_integral_applications_geometry.tex
+  - slug: calc-11-integral-applications-equations-inequalities
+    title: 第 11 讲 一元函数积分学的应用（二）——积分等式与积分不等式
+    subject: 高等数学
+    lecture: 第 11 讲
+    legacy_note: 22
+    source: tex/chapters/calculus/11_integral_applications_equations_inequalities.tex
+  - slug: calc-12-integral-applications-physics-economics
+    title: 第 12 讲 一元函数积分学的应用（三）——物理应用与经济应用
+    subject: 高等数学
+    lecture: 第 12 讲
+    legacy_note: 23
+    source: tex/chapters/calculus/12_integral_applications_physics_economics.tex
+  - slug: calc-13-multivariable-differential-calculus
+    title: 第 13 讲 多元函数微分学
+    subject: 高等数学
+    lecture: 第 13 讲
+    legacy_note: 24
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-14-double-integrals
+    title: 第 14 讲 二重积分
+    subject: 高等数学
+    lecture: 第 14 讲
+    legacy_note: 25
+    source: tex/chapters/calculus/14_double_integrals.tex
+  - slug: calc-15-differential-equations
+    title: 第 15 讲 微分方程
+    subject: 高等数学
+    lecture: 第 15 讲
+    legacy_note: 26
+    source: tex/chapters/calculus/15_differential_equations.tex
+  - slug: calc-16-infinite-series
+    title: 第 16 讲 无穷级数（仅数学一、数学三）
+    subject: 高等数学
+    lecture: 第 16 讲
+    legacy_note: 27
+    source: tex/chapters/calculus/16_infinite_series.tex
+  - slug: calc-17-multivariable-integral-preliminaries-math1
+    title: 第 17 讲 多元函数积分学的预备知识（仅数学一）
+    subject: 高等数学
+    lecture: 第 17 讲
+    legacy_note: 28
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-18-multivariable-integral-calculus-math1
+    title: 第 18 讲 多元函数积分学（仅数学一）
+    subject: 高等数学
+    lecture: 第 18 讲
+    legacy_note: 29
+    source: tex/chapters/calculus/18_multivariable_integral_calculus_math1.tex
+  - slug: calc-appendix-01-graph-transformations
+    title: 附录 1 图像变换
+    subject: 高等数学
+    lecture: 附录 1
+    legacy_note: 30
+    source: tex/chapters/calculus/appendix_01_graph_transformations.tex
+  - slug: calc-appendix-02-common-plane-figures
+    title: 附录 2 常用平面图形
+    subject: 高等数学
+    lecture: 附录 2
+    legacy_note: 31
+    source: tex/chapters/calculus/appendix_02_common_plane_figures.tex
+  - slug: calc-appendix-03-common-space-figures
+    title: 附录 3 常用空间图形
+    subject: 高等数学
+    lecture: 附录 3
+    legacy_note: 32
+    source: tex/chapters/calculus/appendix_03_common_space_figures.tex
+  - slug: calc-appendix-04-important-formulas
+    title: 附录 4 重要公式
+    subject: 高等数学
+    lecture: 附录 4
+    legacy_note: 33
+    source: tex/chapters/calculus/appendix_04_important_formulas.tex
+  - slug: calc-appendix-05-exponential-to-hyperbolic
+    lwarp_slug: calc-appendix-05-exponential-hyperbolic
+    title: 附录 5 从指数函数到双曲函数
+    subject: 高等数学
+    lecture: 附录 5
+    legacy_note: 34
+    source: tex/chapters/calculus/appendix_05_exponential_to_hyperbolic.tex
+  - slug: calc-appendix-06-transformation-techniques
+    title: 附录 6 变形技巧
+    subject: 高等数学
+    lecture: 附录 6
+    legacy_note: 35
+    source: tex/chapters/calculus/appendix_06_transformation_techniques.tex
+  - slug: linear-00-linear-algebra-intro
+    title: 第 0 讲 零基础课——线性代数入门
+    subject: 线性代数
+    lecture: 第 0 讲
+    legacy_note: 36
+    source: tex/chapters/linear_algebra/00_linear_algebra_intro.tex
+  - slug: linear-01-determinants
+    title: 第 1 讲 行列式
+    subject: 线性代数
+    lecture: 第 1 讲
+    legacy_note: 37
+    source: tex/chapters/linear_algebra/01_determinants.tex
+  - slug: linear-02-matrices
+    title: 第 2 讲 矩阵
+    subject: 线性代数
+    lecture: 第 2 讲
+    legacy_note: 38
+    source: tex/chapters/linear_algebra/02_matrices.tex
+  - slug: linear-03-vector-groups
+    title: 第 3 讲 向量组
+    subject: 线性代数
+    lecture: 第 3 讲
+    legacy_note: 39
+    source: tex/chapters/linear_algebra/03_vector_groups.tex
+  - slug: linear-04-linear-equations
+    title: 第 4 讲 线性方程组
+    subject: 线性代数
+    lecture: 第 4 讲
+    legacy_note: 40
+    source: tex/chapters/linear_algebra/04_linear_equations.tex
+  - slug: linear-05-eigenvalues-eigenvectors
+    title: 第 5 讲 特征值与特征向量
+    subject: 线性代数
+    lecture: 第 5 讲
+    legacy_note: 41
+    source: tex/chapters/linear_algebra/05_eigenvalues_eigenvectors.tex
+  - slug: linear-06-quadratic-forms
+    title: 第 6 讲 二次型
+    subject: 线性代数
+    lecture: 第 6 讲
+    legacy_note: 42
+    source: tex/chapters/linear_algebra/06_quadratic_forms.tex
+  - slug: prob-01-random-events-probability
+    title: 第 1 讲 随机事件与概率
+    subject: 概率论与数理统计
+    lecture: 第 1 讲
+    legacy_note: 43
+    source: tex/chapters/probability/01_random_events_probability.tex
+  - slug: prob-02-one-dimensional-random-variables-distributions
+    title: 第 2 讲 一维随机变量及其分布
+    subject: 概率论与数理统计
+    lecture: 第 2 讲
+    legacy_note: 44
+    source: tex/chapters/probability/02_one_dimensional_random_variables_distributions.tex
+  - slug: prob-03-multidimensional-random-variables-distributions
+    title: 第 3 讲 多维随机变量及其分布
+    subject: 概率论与数理统计
+    lecture: 第 3 讲
+    legacy_note: 45
+    source: tex/chapters/probability/03_multidimensional_random_variables_distributions.tex
+  - slug: prob-04-numerical-characteristics
+    title: 第 4 讲 随机变量的数字特征
+    subject: 概率论与数理统计
+    lecture: 第 4 讲
+    legacy_note: 46
+    source: tex/chapters/probability/04_numerical_characteristics.tex
+  - slug: prob-05-law-large-numbers-clt
+    title: 第 5 讲 大数定律与中心极限定理
+    subject: 概率论与数理统计
+    lecture: 第 5 讲
+    legacy_note: 47
+    source: tex/chapters/probability/05_law_large_numbers_clt.tex
+  - slug: prob-06-mathematical-statistics
+    title: 第 6 讲 数理统计
+    subject: 概率论与数理统计
+    lecture: 第 6 讲
+    legacy_note: 48
+    source: tex/chapters/probability/06_mathematical_statistics.tex
+  - slug: index-problems
+    title: 题目索引
+    subject: 索引
+    lecture: 索引
+    legacy_note: 49
+    source: tex/indexes/problem_index.tex
+  - slug: index-methods
+    title: 方法索引
+    subject: 索引
+    lecture: 索引
+    legacy_note: 50
+    source: tex/indexes/method_index.tex
+  - slug: index-mistakes
+    title: 错题与错因索引
+    subject: 索引
+    lecture: 索引
+    legacy_note: 51
+    source: tex/indexes/mistake_index.tex
+  - slug: index-formulas
+    title: 公式索引
+    subject: 索引
+    lecture: 索引
+    legacy_note: 52
+    source: tex/indexes/formula_index.tex

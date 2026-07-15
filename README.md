@@ -21,13 +21,34 @@ xelatex -interaction=nonstopmode -file-line-error main.tex
 
 ## 网页笔记
 
-网页版使用 `lwarp` 生成静态 HTML，数学公式由 MathJax CDN 渲染：
+网页版保持 TeX 为唯一内容源：`lwarp` 生成静态 HTML，构建后处理器再注入响应式阅读器、搜索、PWA 与自托管 MathJax 3.2.2。生产构建同时编译 PDF；任一内容链路失败都会使构建失败。
+
+需要 Node.js 24。首次检出后先安装锁定依赖：
+
+```powershell
+npm ci
+```
+
+执行完整构建：
 
 ```powershell
 npm run build:web
 ```
 
-生成结果位于 `build/site/`，可以用 Cloudflare Workers Static Assets 预览或发布：
+生成结果位于 `build/site/`，包含 53 个 canonical HTML 页面、搜索索引、离线资源、自托管 MathJax 和 `downloads/kaoyan-math1-notes.pdf`。本地检查：
+
+```powershell
+npm run test:static
+npm run preview:web
+```
+
+浏览器验收使用 Playwright，覆盖 Edge、Chrome、Firefox 以及 360/390/768/1280/1440 响应式宽度：
+
+```powershell
+npm run test:browser
+```
+
+Cloudflare Workers Static Assets 发布命令仍保留，但发布前应先完成完整构建与测试：
 
 ```powershell
 npm run preview:web
@@ -58,8 +79,14 @@ tex/chapters/probability/
 tex/indexes/
 tex/templates/problem_template.tex
 web/math1-web.css
+web/reader/
+web/pwa/
 scripts/build_web.ps1
+scripts/postprocess_web.mjs
 data/problem_registry.yml
 data/textbook_catalog.yml
+data/web_pages.yml
+tests/static/
+tests/browser/
 docs/textbook_catalog.md
 ```

@@ -21,3 +21,13 @@
 
 - 新增网页输出作为 PDF 之外的第二发布目标：`main-web.tex` 使用 `lwarp`、MathJax CDN 和网页专用样式，不复用 PDF 版式文件。
 - 网页构建输出统一进入 `build/site/`，Cloudflare Workers Static Assets 通过 `wrangler.jsonc` 发布该目录；当前站点先保持纯静态，不写 Worker 脚本。
+
+## 2026-07-15
+
+- 2026-07-03 的 MathJax CDN 方案被本决策取代：网页公式固定使用自托管 MathJax 3.2.2，构建从 `lwarp_mathjax.txt` 提取 ASCII 配置，并校验扩展资源与实际渲染。
+- `data/web_pages.yml` 是 Web 页面顺序、slug、旧编号和源文件的唯一清单；TeX 使用 `\studySection` / `\studySubsection` 保持 PDF 中文标题与 Web ASCII 文件名并存。
+- 阅读器采用原生 ES Modules、CSS 和 Cheerio/YAML 构建后处理，不建立客户端路由或后端服务；canonical 路由使用无扩展名 URL。
+- 桌面阅读器使用贴边三栏壳层和约 720px 阅读列；中宽隐藏右栏，800px 以下使用顶部栏、显式进度与焦点管理目录抽屉。
+- Service Worker 只在新版本资源完整缓存后提供刷新确认；确认更新后，所有已受控标签页在新 Worker 接管时统一刷新，首次安装不强制刷新；缓存按 `buildId` 隔离并在激活时清理旧版本，未知 HTML 路由回退离线页。
+- `buildId` 只由稳定内容与阅读器资源决定，避免 PDF 时间戳制造虚假升级；PDF 使用独立 SHA-256 并设置重新验证缓存策略。
+- Playwright 默认最多 3 个 worker，避免 Windows 设备在 Edge、Chrome、Firefox 并发启动时耗尽软件渲染资源。
