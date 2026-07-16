@@ -1,3 +1,5 @@
+import { SITE_ROOT, sitePath } from "./site.js";
+
 function setStatus(message) {
   document.querySelectorAll("[data-reader-pwa-status]").forEach((element) => {
     element.textContent = message;
@@ -90,7 +92,7 @@ export function initPWA() {
 
   window.addEventListener("load", async () => {
     try {
-      const registration = await navigator.serviceWorker.register("/sw.js", { scope: "/" });
+      const registration = await navigator.serviceWorker.register(sitePath("sw.js"), { scope: SITE_ROOT });
       await navigator.serviceWorker.ready;
       setStatus(navigator.onLine ? "可离线使用" : "离线阅读");
       if (registration.waiting && navigator.serviceWorker.controller) showUpdate(registration.waiting);

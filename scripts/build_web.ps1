@@ -93,6 +93,7 @@ Invoke-Checked -FilePath 'node' -Arguments @(
 Invoke-Checked -FilePath 'npm' -Arguments @('run', 'test:static', '--silent') -LogPath (Join-Path $BuildRoot 'test-static.log')
 
 Write-Host 'LaTeX reader built successfully:'
-Write-Host "  Site: $SiteDir"
-Write-Host "  PDF:  $(Join-Path $SiteDir 'downloads\kaoyan-math1-notes.pdf')"
+Write-Host "  Publish root: $SiteDir"
+Write-Host "  Math site:    $(Join-Path $SiteDir 'math')"
+Write-Host "  PDF:          $(Join-Path $SiteDir 'math\downloads\kaoyan-math1-notes.pdf')"
 Write-Host '  Pages: 53 HTML documents'

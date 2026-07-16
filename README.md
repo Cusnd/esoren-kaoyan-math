@@ -47,12 +47,14 @@ npm ci
 npm run build:web
 ```
 
-生成结果位于 `build/site/`，包含 53 个 canonical HTML 页面、搜索索引、离线资源、自托管 MathJax 和 `downloads/kaoyan-math1-notes.pdf`。本地检查：
+发布根目录是 `build/site/`：Cloudflare 的 `_headers`、`_redirects` 位于该层，53 个 canonical HTML 页面、搜索索引、离线资源、自托管 MathJax 和 PDF 均位于 `build/site/math/`。本地检查：
 
 ```powershell
 npm run test:static
 npm run preview:web
 ```
+
+本地预览入口为 `http://127.0.0.1:8787/math/`。
 
 浏览器验收使用 Playwright，覆盖 Edge、Chrome、Firefox 以及 360/390/768/1280/1440 响应式宽度：
 
@@ -70,11 +72,13 @@ npm run deploy:web
 
 网页入口是 `main-web.tex`，PDF 入口仍是 `main.tex`。
 
-当前公开访问地址：
+生产站点由两个 Worker 组合提供：独立的 `pee-gateway` 通过 Custom Domain 接管主机首页，数学站由本仓库的 `kaoyan-math1-notes` Worker 通过更具体的 `/math/*` Route 提供。当前公开访问地址：
 
 ```text
-https://kaoyan-math1-notes.sorenliu.workers.dev
+https://pee.esoren.com/math/
 ```
+
+`kaoyan-math1-notes.sorenliu.workers.dev` 已关闭。数学站的 canonical、搜索、PDF、静态资源和 PWA 均以 `/math/` 为作用域；Cloudflare Web Analytics 不得改写 HTML，以保持网关无脚本和数学站资源完全自托管。
 
 ## 目录
 

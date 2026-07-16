@@ -1,4 +1,6 @@
-const INDEX_URL = "/data/search-index.json";
+import { sitePath } from "./site.js";
+
+const INDEX_URL = sitePath("data/search-index.json");
 let indexPromise;
 let returnFocus = null;
 
@@ -22,7 +24,7 @@ function documentsFrom(payload) {
   return documents.map((item) => ({
     ...item,
     slug: String(item.slug ?? ""),
-    url: String(item.url ?? (item.slug ? `/${item.slug}` : "/")),
+    url: String(item.url ?? sitePath(item.slug)),
     title: String(item.title ?? "未命名页面"),
     subject: String(item.subject ?? ""),
     lecture: String(item.lecture ?? ""),

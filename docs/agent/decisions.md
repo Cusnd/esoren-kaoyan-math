@@ -41,3 +41,12 @@
 - 当前仓库优先于通用便携性：章节路径只由 `data/textbook_catalog.yml` 决定，模板只由 `tex/templates/` 决定，Skill 删除 bootstrap 与重复的 main、preamble、样式和模板资产。
 - validator、查重和下一题号脚本共享 YAML/锚点解析模型；缺少 PyYAML 是依赖错误，缺少编译器是 `SKIP`，不得伪装为通过。
 - 非数学、Git、构建和 Skill 元任务不使用数学学习沉淀收尾，也不触碰题号、registry 或数学正文。
+
+## 2026-07-15 `pee.esoren.com/math` 发布架构
+
+- `pee.esoren.com` 由独立的 `pee-gateway` Worker 作为 Custom Domain origin；主机首页只提供数学与现有英语站入口，`/math` 永久跳转到 `/math/`。
+- `kaoyan-math1-notes` 继续作为独立静态资源 Worker，通过 `pee.esoren.com/math/*` Route 在网关之前执行；生产配置关闭 `workers.dev` 与其默认 Preview URL。
+- 数学站所有 canonical、导航、搜索、PDF、静态资源和页面上下文统一使用 `/math` 基路径；PWA 的 `id`、`start_url`、`scope`、Service Worker 与离线缓存严格限制在 `/math/`。
+- Cloudflare 发布根目录固定为 `build/site/`，仅放 `_headers`、`_redirects` 与 `math/`；实际站点文件位于 `build/site/math/`，满足 Static Assets 子目录路由要求。
+- 旧 `note-N[.html]` 只在 `/math/` 下保留 301 映射，不再为主机根目录或旧 workers.dev 地址保留兼容入口。
+- HTML 使用 `Cache-Control: no-transform`，阻止 Cloudflare 区域级 Web Analytics 自动注入外部 beacon，保证网关无脚本且数学站继续完全自托管。

@@ -1,4 +1,5 @@
 import { getPageContext } from "./context.js";
+import { sitePath } from "./site.js";
 import {
   PROGRESS_KEY,
   readJSON,
@@ -67,7 +68,7 @@ function setContinueLink(progress) {
     link.hidden = true;
     return;
   }
-  const base = entry.url || `/${progress.recentSlug}`;
+  const base = entry.url || sitePath(progress.recentSlug);
   link.href = entry.lastAnchor ? `${base}#${encodeURIComponent(entry.lastAnchor)}` : base;
   const label = link.querySelector("[data-reader-continue-title]");
   if (label) label.textContent = entry.title || progress.recentSlug;
@@ -114,7 +115,7 @@ export function initProgress() {
           lastAnchor,
           complete: maximum >= 0.92,
           title: String(context.title ?? document.title),
-          url: String(context.canonicalUrl ?? `/${slug}`),
+          url: String(context.canonicalUrl ?? sitePath(slug)),
           updatedAt: new Date().toISOString(),
         },
       },

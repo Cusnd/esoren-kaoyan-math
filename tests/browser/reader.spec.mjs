@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { SITE_ROOT, sitePath } from '../../web/reader/site.js';
 
 test('renders formulas with local MathJax and supports keyboard search', async ({ page }, testInfo) => {
   test.skip((testInfo.project.use.viewport?.width ?? 0) < 1280);
@@ -8,7 +9,7 @@ test('renders formulas with local MathJax and supports keyboard search', async (
   page.on('request', (request) => {
     if (new URL(request.url()).origin !== expectedOrigin) externalRequests.push(request.url());
   });
-  await page.goto('/calc-01-inverse-hyperbolic-sine');
+  await page.goto(sitePath('calc-01-inverse-hyperbolic-sine'));
   await expect(page.locator('h1')).toHaveCount(1);
   const renderedFormula = page.locator([
     '#reader-main .problem-box mjx-container:visible',
@@ -40,14 +41,14 @@ test('renders formulas with local MathJax and supports keyboard search', async (
   await expect(page.locator('#reader-search')).toBeVisible();
   await page.locator('[data-reader-search-input]').fill('MATH1-CALC-0003');
   await expect(page.locator('[data-reader-search-results] a').first()).toBeVisible();
-  await expect(page.locator('[data-reader-search-results] a').first()).toHaveAttribute('href', '/calc-01-inverse-hyperbolic-sine');
+  await expect(page.locator('[data-reader-search-results] a').first()).toHaveAttribute('href', sitePath('calc-01-inverse-hyperbolic-sine'));
   expect(externalRequests).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
 });
 
 test('mobile directory is a focus-managed drawer', async ({ page }, testInfo) => {
   test.skip((testInfo.project.use.viewport?.width ?? 9999) > 390);
-  await page.goto('/calc-01-inverse-function');
+  await page.goto(sitePath('calc-01-inverse-function'));
   const trigger = page.locator('[data-reader-action="open-nav"]');
   const triggerBox = await trigger.boundingBox();
   expect(triggerBox?.width).toBeGreaterThanOrEqual(44);
@@ -63,17 +64,17 @@ test('mobile directory is a focus-managed drawer', async ({ page }, testInfo) =>
 
 test('preferences persist locally and PDF opens through a static link', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'chrome-1280');
-  await page.goto('/calc-01-inverse-function');
+  await page.goto(sitePath('calc-01-inverse-function'));
   await page.locator('[data-reader-action="open-preferences"]').first().click();
   await page.locator('[data-reader-preference="theme"][value="dark"]').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-  await expect(page.locator('a[href="/downloads/kaoyan-math1-notes.pdf"][target="_blank"]')).toHaveAttribute('rel', /noopener/);
+  await expect(page.locator(`a[href="${sitePath('downloads/kaoyan-math1-notes.pdf')}"][target="_blank"]`)).toHaveAttribute('rel', /noopener/);
 });
 
 test('layout has no horizontal overflow across the viewport matrix', async ({ page }) => {
-  await page.goto('/calc-01-inverse-function');
+  await page.goto(sitePath('calc-01-inverse-function'));
   await expect(page.locator('h1')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
 });
@@ -82,7 +83,7 @@ test('200% zoom equivalent and reduced motion remain usable', async ({ page }, t
   test.skip(testInfo.project.name !== 'edge-1440');
   await page.setViewportSize({ width: 720, height: 480 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/calc-01-inverse-function');
+  await page.goto(sitePath('calc-01-inverse-function'));
   await expect(page.locator('[data-reader-action="open-nav"]')).toBeVisible();
   await expect(page.locator('#reader-main')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
@@ -91,7 +92,7 @@ test('200% zoom equivalent and reduced motion remain usable', async ({ page }, t
 
 test('print mode hides reader chrome', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'edge-1440');
-  await page.goto('/calc-01-inverse-function');
+  await page.goto(sitePath('calc-01-inverse-function'));
   await page.emulateMedia({ media: 'print' });
   await expect(page.locator('.reader-topbar')).toBeHidden();
   await expect(page.locator('#reader-toc')).toBeHidden();
@@ -101,7 +102,7 @@ test('print mode hides reader chrome', async ({ page }, testInfo) => {
 test('representative pages have no serious or critical axe violations', async ({ page }, testInfo) => {
   test.skip(!['edge-1440', 'edge-390'].includes(testInfo.project.name));
   test.setTimeout(90_000);
-  await page.goto('/calc-01-inverse-function');
+  await page.goto(sitePath('calc-01-inverse-function'));
   await expect(page.locator('#reader-main')).toBeVisible();
   await page.evaluate(() => window.MathJax?.startup?.promise);
   const results = await new AxeBuilder({ page })
@@ -114,27 +115,27 @@ test('representative pages have no serious or critical axe violations', async ({
 
 test('complete corpus and legacy routes remain available offline', async ({ page, context }, testInfo) => {
   test.skip(testInfo.project.name !== 'edge-1440');
-  await page.goto('/');
+  await page.goto(SITE_ROOT);
   await page.evaluate(async () => {
     await navigator.serviceWorker.ready;
     if (!navigator.serviceWorker.controller) {
       await new Promise((resolve) => navigator.serviceWorker.addEventListener('controllerchange', resolve, { once: true }));
     }
   });
-  const manifest = await page.evaluate(() => fetch('/data/content-manifest.json').then((response) => response.json()));
+  const manifest = await page.evaluate((url) => fetch(url).then((response) => response.json()), sitePath('data/content-manifest.json'));
   await context.setOffline(true);
   try {
-    const statuses = await page.evaluate(async (pages) => Promise.all(
-      ['/', ...pages.map((item) => item.url)].map(async (url) => (await fetch(url)).status),
-    ), manifest.pages);
+    const statuses = await page.evaluate(async ({ home, pages }) => Promise.all(
+      [home, ...pages.map((item) => item.url)].map(async (url) => (await fetch(url)).status),
+    ), manifest);
     expect(statuses).toEqual(Array(53).fill(200));
-    const legacy = await page.evaluate(() => fetch('/note-1.html').then((response) => response.text()));
+    const legacy = await page.evaluate((url) => fetch(url).then((response) => response.text()), sitePath('note-1.html'));
     expect(legacy).toContain('第 1 讲 函数极限与连续');
-    await page.goto('/note-1.html');
+    await page.goto(sitePath('note-1.html'));
     await expect(page.locator('h1')).toContainText('第 1 讲 函数极限与连续');
-    const unknown = await page.evaluate(() => fetch('/this-route-does-not-exist', {
+    const unknown = await page.evaluate((url) => fetch(url, {
       headers: { Accept: 'text/html' },
-    }).then(async (response) => ({ status: response.status, body: await response.text() })));
+    }).then(async (response) => ({ status: response.status, body: await response.text() })), sitePath('this-route-does-not-exist'));
     expect(unknown.status).toBe(200);
     expect(unknown.body).toContain('尚未保存在设备上');
   } finally {

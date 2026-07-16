@@ -1,8 +1,9 @@
 const BUILD_ID = __BUILD_ID__;
+const BASE_PATH = __BASE_PATH__;
 const CACHE_NAME = `math1-reader-${BUILD_ID}`;
 const PRECACHE = __PRECACHE__;
 const LEGACY_ROUTES = __LEGACY_ROUTES__;
-const OFFLINE_URL = '/offline.html';
+const OFFLINE_URL = `${BASE_PATH}/offline.html`;
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
@@ -47,6 +48,7 @@ self.addEventListener('fetch', (event) => {
   if (original.method !== 'GET') return;
   const url = new URL(original.url);
   if (url.origin !== self.location.origin) return;
+  if (url.pathname !== BASE_PATH && !url.pathname.startsWith(`${BASE_PATH}/`)) return;
   const mappedUrl = canonicalUrl(original);
   const cacheKey = mappedUrl ?? original;
   event.respondWith((async () => {

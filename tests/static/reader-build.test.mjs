@@ -8,9 +8,12 @@ import { fileURLToPath } from 'node:url';
 
 import { load } from 'cheerio';
 import { controllerChangeTransition } from '../../web/reader/pwa.js';
+import { SITE_BASE_PATH, SITE_ROOT, sitePath } from '../../web/reader/site.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
-const SITE = path.join(ROOT, 'build', 'site');
+const PUBLISH = path.join(ROOT, 'build', 'site');
+const SITE = path.join(PUBLISH, SITE_BASE_PATH.slice(1));
+const SITE_ORIGIN = 'https://pee.esoren.com';
 
 async function json(relativePath) {
   return JSON.parse(await readFile(path.join(SITE, relativePath), 'utf8'));
@@ -34,6 +37,7 @@ test('publishes exactly the canonical 53 HTML documents', async () => {
   const html = (await readdir(SITE)).filter((name) => name.endsWith('.html')).sort();
   assert.deepEqual(html, ['index.html', 'offline.html', ...manifest.pages.map((page) => `${page.slug}.html`)].sort());
   assert.equal(html.filter((name) => name !== 'offline.html').length, 53);
+  assert.deepEqual((await readdir(PUBLISH)).sort(), ['_headers', '_redirects', SITE_BASE_PATH.slice(1)].sort());
 });
 
 test('page contexts, titles, navigation and local anchors are coherent', async () => {
@@ -46,14 +50,16 @@ test('page contexts, titles, navigation and local anchors are coherent', async (
     assert.equal($('#reader-main').length, 1, page.slug);
     assert.equal($('h1').length, 1, `${page.slug}: must have one h1`);
     assert.equal($('script[src*="cdn"],link[href*="cdn"]').length, 0, `${page.slug}: CDN resource`);
-    assert.equal($('link[rel="canonical"]').attr('href'), `https://kaoyan-math1-notes.sorenliu.workers.dev/${page.slug}`);
-    assert.equal($('link[rel="stylesheet"]').attr('href'), `/assets/${manifest.buildId}/reader/reader.css`);
-    assert.equal($('script[type="module"]').attr('src'), `/assets/${manifest.buildId}/reader/app.js`);
-    assert.equal($('#MathJax-script').attr('src'), `/assets/${manifest.buildId}/vendor/mathjax-3.2.2/es5/tex-svg.js`);
+    assert.equal($('link[rel="canonical"]').attr('href'), `${SITE_ORIGIN}${sitePath(page.slug)}`);
+    assert.equal($('link[rel="stylesheet"]').attr('href'), sitePath(`assets/${manifest.buildId}/reader/reader.css`));
+    assert.equal($('script[type="module"]').attr('src'), sitePath(`assets/${manifest.buildId}/reader/app.js`));
+    assert.equal($('#MathJax-script').attr('src'), sitePath(`assets/${manifest.buildId}/vendor/mathjax-3.2.2/es5/tex-svg.js`));
     const context = JSON.parse($('#reader-page-context').text());
     assert.equal(context.schemaVersion, manifest.schemaVersion);
     assert.equal(context.buildId, manifest.buildId);
+    assert.equal(context.basePath, SITE_BASE_PATH);
     assert.equal(context.slug, page.slug);
+    assert.equal(context.canonicalUrl, sitePath(page.slug));
     assert.equal(context.previous?.slug ?? null, manifest.pages[index - 1]?.slug ?? null);
     assert.equal(context.next?.slug ?? null, manifest.pages[index + 1]?.slug ?? null);
     assert.equal($('[rel="prev"]').attr('href') ?? null, context.previous?.url ?? null);
@@ -68,14 +74,17 @@ test('page contexts, titles, navigation and local anchors are coherent', async (
   const home = load(await readFile(path.join(SITE, 'index.html'), 'utf8'));
   const homeContext = JSON.parse(home('#reader-page-context').text());
   assert.equal(homeContext.buildId, manifest.buildId);
+  assert.equal(homeContext.basePath, SITE_BASE_PATH);
+  assert.equal(homeContext.canonicalUrl, SITE_ROOT);
   assert.equal(homeContext.isHome, true);
+  assert.equal(home('link[rel="canonical"]').attr('href'), `${SITE_ORIGIN}${SITE_ROOT}`);
   assert.equal(home('[data-reader-continue][hidden]').length, 1);
 });
 
 test('all same-origin links and fragments resolve to published resources', async () => {
   const manifest = await json('data/content-manifest.json');
   const htmlFiles = ['index.html', ...manifest.pages.map((page) => `${page.slug}.html`)];
-  const routeFile = new Map([['/', 'index.html'], ...manifest.pages.map((page) => [`/${page.slug}`, `${page.slug}.html`])]);
+  const routeFile = new Map([[SITE_ROOT, 'index.html'], ...manifest.pages.map((page) => [sitePath(page.slug), `${page.slug}.html`])]);
   const targetCache = new Map();
   for (const name of htmlFiles) targetCache.set(name, load(await readFile(path.join(SITE, name), 'utf8')));
   for (const name of htmlFiles) {
@@ -83,11 +92,12 @@ test('all same-origin links and fragments resolve to published resources', async
     for (const node of $('a[href]').toArray()) {
       const href = $(node).attr('href');
       if (!href || /^(?:https?:|mailto:|tel:)/.test(href)) continue;
-      const currentPath = name === 'index.html' ? '/' : `/${name.replace(/\.html$/, '')}`;
+      const currentPath = name === 'index.html' ? SITE_ROOT : sitePath(name.replace(/\.html$/, ''));
       const url = new URL(href, `https://reader.test${currentPath}`);
+      assert.ok(url.pathname === SITE_BASE_PATH || url.pathname.startsWith(SITE_ROOT), `${name}: escaped ${url.pathname}`);
       const targetName = routeFile.get(url.pathname);
       if (!targetName) {
-        const file = path.join(SITE, url.pathname.slice(1));
+        const file = path.join(SITE, url.pathname.slice(SITE_ROOT.length));
         assert.ok((await stat(file)).isFile(), `${name}: missing ${url.pathname}`);
         continue;
       }
@@ -114,16 +124,22 @@ test('search index and content manifest share schema and build identity', async 
 
 test('legacy redirects and service worker precache are complete and bounded', async () => {
   const manifest = await json('data/content-manifest.json');
-  const redirects = (await readFile(path.join(SITE, '_redirects'), 'utf8')).trim().split(/\r?\n/);
+  assert.equal(manifest.basePath, SITE_BASE_PATH);
+  assert.equal(manifest.home, SITE_ROOT);
+  assert.equal(manifest.pdf.url, sitePath('downloads/kaoyan-math1-notes.pdf'));
+  assert.ok(manifest.pages.every((page) => page.url === sitePath(page.slug)));
+  const redirects = (await readFile(path.join(PUBLISH, '_redirects'), 'utf8')).trim().split(/\r?\n/);
   assert.equal(redirects.length, 104);
   for (const page of manifest.pages) {
-    assert.ok(redirects.includes(`/note-${page.legacyNote} /${page.slug} 301`));
-    assert.ok(redirects.includes(`/note-${page.legacyNote}.html /${page.slug} 301`));
+    assert.ok(redirects.includes(`${sitePath(`note-${page.legacyNote}`)} ${sitePath(page.slug)} 301`));
+    assert.ok(redirects.includes(`${sitePath(`note-${page.legacyNote}.html`)} ${sitePath(page.slug)} 301`));
   }
   const sw = await readFile(path.join(SITE, 'sw.js'), 'utf8');
   assert.match(sw, new RegExp(`const BUILD_ID = ["']${manifest.buildId}["']`));
-  assert.ok(!sw.includes('/downloads/kaoyan-math1-notes.pdf'));
-  for (const page of manifest.pages) assert.ok(sw.includes(`"/${page.slug}"`));
+  assert.match(sw, new RegExp(`const BASE_PATH = ["']${SITE_BASE_PATH}["']`));
+  assert.ok(!sw.includes(sitePath('downloads/kaoyan-math1-notes.pdf')));
+  for (const page of manifest.pages) assert.ok(sw.includes(`"${sitePath(page.slug)}"`));
+  assert.match(sw, /url\.pathname !== BASE_PATH && !url\.pathname\.startsWith\(`\$\{BASE_PATH\}\/`\)/);
   assert.match(sw, /await cache\.addAll\(PRECACHE\)/);
   assert.match(sw, /catch \(error\)[\s\S]*await caches\.delete\(CACHE_NAME\)/);
   assert.match(sw, /event\.data\?\.type === 'SKIP_WAITING'/);
@@ -132,19 +148,26 @@ test('legacy redirects and service worker precache are complete and bounded', as
   const match = sw.match(/const PRECACHE = (\[[\s\S]*?\]);\nconst LEGACY_ROUTES/);
   assert.ok(match, 'precache declaration');
   const urls = JSON.parse(match[1]);
+  assert.ok(urls.every((url) => url === SITE_BASE_PATH || url.startsWith(SITE_ROOT)));
   const physical = urls.map((url) => {
-    if (url === '/') return path.join(SITE, 'index.html');
-    if (manifest.pages.some((page) => `/${page.slug}` === url)) return path.join(SITE, `${url.slice(1)}.html`);
-    return path.join(SITE, url.slice(1));
+    if (url === SITE_ROOT) return path.join(SITE, 'index.html');
+    if (manifest.pages.some((page) => page.url === url)) return path.join(SITE, `${url.slice(SITE_ROOT.length)}.html`);
+    return path.join(SITE, url.slice(SITE_ROOT.length));
   });
   const bytes = (await Promise.all(physical.map(async (file) => (await stat(file)).size))).reduce((sum, size) => sum + size, 0);
   assert.ok(bytes <= 10 * 1024 * 1024, `precache ${bytes} exceeds 10 MiB`);
-  const headers = await readFile(path.join(SITE, '_headers'), 'utf8');
-  assert.match(headers, /\/sw\.js[\s\S]*no-store/);
-  assert.match(headers, /\/downloads\/\*\.pdf[\s\S]*max-age=0, must-revalidate/);
-  assert.match(headers, new RegExp(`/assets/${manifest.buildId}/\\*[\\s\\S]*immutable`));
+  const headers = await readFile(path.join(PUBLISH, '_headers'), 'utf8');
+  assert.match(headers, /\/math\/\*[\s\S]*Content-Security-Policy/);
+  assert.match(headers, /\/math\/\n  Cache-Control: public, max-age=0, must-revalidate, no-transform/);
+  assert.match(headers, /\/math\/sw\.js[\s\S]*no-store/);
+  assert.match(headers, /\/math\/downloads\/\*\.pdf[\s\S]*max-age=0, must-revalidate/);
+  assert.match(headers, new RegExp(`/math/assets/${manifest.buildId}/\\*[\\s\\S]*immutable`));
   assert.match(headers, /Content-Security-Policy: default-src 'self'/);
   const webManifest = JSON.parse(await readFile(path.join(SITE, 'manifest.webmanifest'), 'utf8'));
+  assert.equal(webManifest.id, SITE_ROOT);
+  assert.equal(webManifest.start_url, SITE_ROOT);
+  assert.equal(webManifest.scope, SITE_ROOT);
+  assert.ok(webManifest.icons.every((icon) => icon.src.startsWith(sitePath('assets/icons/v1/'))));
   assert.equal(webManifest.background_color, '#ffffff');
   assert.equal(webManifest.theme_color, '#111111');
 });
@@ -190,5 +213,15 @@ test('JavaScript parses, stays ASCII-quoted and MathJax is fully self-hosted', a
   ]) assert.ok((await stat(path.join(SITE, relative))).isFile(), relative);
   const offline = await readFile(path.join(SITE, 'offline.html'), 'utf8');
   assert.doesNotMatch(offline, /__ASSET_ROOT__/);
-  assert.match(offline, new RegExp(`/assets/${manifest.buildId}/reader/reader\\.css`));
+  assert.doesNotMatch(offline, /__SITE_ROOT__/);
+  assert.match(offline, new RegExp(`/math/assets/${manifest.buildId}/reader/reader\\.css`));
+  assert.match(offline, /href="\/math\/"/);
+});
+
+test('Wrangler publishes only the /math route and disables workers.dev', async () => {
+  const config = JSON.parse(await readFile(path.join(ROOT, 'wrangler.jsonc'), 'utf8'));
+  assert.equal(config.name, 'kaoyan-math1-notes');
+  assert.equal(config.workers_dev, false);
+  assert.deepEqual(config.routes, [{ pattern: 'pee.esoren.com/math/*', zone_name: 'esoren.com' }]);
+  assert.equal(config.assets.directory, './build/site');
 });

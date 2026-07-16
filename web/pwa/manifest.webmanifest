@@ -1,18 +1,18 @@
 {
-  "id": "/",
+  "id": "__SITE_ROOT__",
   "name": "考研数学一满分学习笔记",
   "short_name": "数学一笔记",
   "description": "可离线阅读的考研数学一 LaTeX 学习笔记与题解库",
   "lang": "zh-CN",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "__SITE_ROOT__",
+  "scope": "__SITE_ROOT__",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#ffffff",
   "theme_color": "#111111",
   "icons": [
-    { "src": "/assets/icons/v1/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/assets/icons/v1/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/assets/icons/v1/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "__SITE_BASE_PATH__/assets/icons/v1/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "__SITE_BASE_PATH__/assets/icons/v1/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "__SITE_BASE_PATH__/assets/icons/v1/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }

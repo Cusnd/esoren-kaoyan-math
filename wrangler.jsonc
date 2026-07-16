@@ -1,7 +1,13 @@
 {
   "name": "kaoyan-math1-notes",
   "compatibility_date": "2026-07-03",
-  "workers_dev": true,
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "pee.esoren.com/math/*",
+      "zone_name": "esoren.com"
+    }
+  ],
   "assets": {
     "directory": "./build/site",
     "html_handling": "auto-trailing-slash"

@@ -2,6 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 const baseURL = process.env.BASE_URL ?? 'http://127.0.0.1:8787';
 const startServer = process.env.PLAYWRIGHT_START_SERVER === '1';
+const readinessURL = new URL('/math/', baseURL).toString();
 
 export default defineConfig({
   testDir: './tests/browser',
@@ -16,7 +17,7 @@ export default defineConfig({
   },
   webServer: startServer ? {
     command: 'npx wrangler dev --local --ip 127.0.0.1 --port 8787',
-    url: baseURL,
+    url: readinessURL,
     reuseExistingServer: true,
     timeout: 120_000,
   } : undefined,
