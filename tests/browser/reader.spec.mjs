@@ -39,9 +39,15 @@ test('renders formulas with local MathJax and supports keyboard search', async (
   expect(visibleText).not.toContain('\\sqrt');
   await page.keyboard.press('Control+K');
   await expect(page.locator('#reader-search')).toBeVisible();
+  await expect(page.locator('body')).toHaveClass(/reader-modal-open/);
+  expect(await page.evaluate(() => getComputedStyle(document.body).overflowY)).toBe('hidden');
   await page.locator('[data-reader-search-input]').fill('MATH1-CALC-0003');
   await expect(page.locator('[data-reader-search-results] a').first()).toBeVisible();
   await expect(page.locator('[data-reader-search-results] a').first()).toHaveAttribute('href', sitePath('calc-01-inverse-hyperbolic-sine'));
+  await page.locator('#reader-search [data-reader-action="close-search"]').click();
+  await expect(page.locator('#reader-search')).toBeHidden();
+  await expect(page.locator('body')).not.toHaveClass(/reader-modal-open/);
+  expect(await page.evaluate(() => getComputedStyle(document.body).overflowY)).toBe('auto');
   expect(externalRequests).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
 });
@@ -56,9 +62,13 @@ test('mobile directory is a focus-managed drawer', async ({ page }, testInfo) =>
   await trigger.click();
   await expect(page.locator('#reader-toc')).toHaveClass(/is-open/);
   await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('body')).toHaveClass(/reader-drawer-open/);
+  expect(await page.evaluate(() => getComputedStyle(document.body).overflowY)).toBe('hidden');
   await page.keyboard.press('Escape');
   await expect(page.locator('#reader-toc')).not.toHaveClass(/is-open/);
   await expect(trigger).toBeFocused();
+  await expect(page.locator('body')).not.toHaveClass(/reader-drawer-open/);
+  expect(await page.evaluate(() => getComputedStyle(document.body).overflowY)).toBe('auto');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
 });
 
@@ -77,6 +87,29 @@ test('layout has no horizontal overflow across the viewport matrix', async ({ pa
   await page.goto(sitePath('calc-01-inverse-function'));
   await expect(page.locator('h1')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+});
+
+test('long chapters scroll and update progress across the viewport matrix', async ({ page }) => {
+  await page.goto(sitePath('calc-01-inverse-function'));
+  await expect(page.locator('h1')).toBeVisible();
+  const initial = await page.evaluate(() => ({
+    height: document.documentElement.scrollHeight,
+    viewport: window.innerHeight,
+    y: window.scrollY,
+    overflowY: getComputedStyle(document.body).overflowY,
+  }));
+  expect(initial.height).toBeGreaterThan(initial.viewport);
+  expect(initial.y).toBe(0);
+  expect(initial.overflowY).toBe('auto');
+
+  const viewport = page.viewportSize();
+  await page.mouse.move((viewport?.width ?? 800) / 2, (viewport?.height ?? 600) / 2);
+  await page.mouse.wheel(0, 720);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+  await expect.poll(() => page.evaluate(() => Math.max(
+    ...[...document.querySelectorAll('[data-reader-progress]')]
+      .map((element) => Number(element.getAttribute('aria-valuenow')) || 0),
+  ))).toBeGreaterThan(0);
 });
 
 test('200% zoom equivalent and reduced motion remain usable', async ({ page }, testInfo) => {

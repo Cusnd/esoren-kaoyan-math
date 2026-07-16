@@ -40,6 +40,19 @@ test('publishes exactly the canonical 53 HTML documents', async () => {
   assert.deepEqual((await readdir(PUBLISH)).sort(), ['_headers', '_redirects', SITE_BASE_PATH.slice(1)].sort());
 });
 
+test('reader CSS restores document scrolling after the lwarp viewport lock', async () => {
+  const manifest = await json('data/content-manifest.json');
+  const css = await readFile(path.join(SITE, `assets/${manifest.buildId}/reader/reader.css`), 'utf8');
+  const lwarpLock = css.indexOf('overflow-y: hidden');
+  const readerDesign = css.indexOf('/* Reader design */');
+  assert.ok(lwarpLock >= 0, 'expected the bundled lwarp viewport lock');
+  assert.ok(readerDesign > lwarpLock, 'reader overrides must follow lwarp.css');
+  const bodyRule = css.slice(readerDesign).match(/body\s*\{([^}]*)\}/)?.[1] ?? '';
+  assert.match(bodyRule, /height:\s*auto/);
+  assert.match(bodyRule, /overflow-x:\s*hidden/);
+  assert.match(bodyRule, /overflow-y:\s*auto/);
+});
+
 test('page contexts, titles, navigation and local anchors are coherent', async () => {
   const manifest = await json('data/content-manifest.json');
   for (let index = 0; index < manifest.pages.length; index += 1) {

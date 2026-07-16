@@ -80,11 +80,13 @@ body {
   color: var(--reader-ink);
   font-family: var(--reader-body);
   font-size: var(--reader-font-size);
+  height: auto;
   line-height: 1.82;
   margin: 0;
   max-width: none;
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-y: auto;
   padding: 0;
   text-rendering: optimizeLegibility;
 }
