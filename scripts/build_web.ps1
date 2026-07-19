@@ -68,26 +68,39 @@ finally {
     Pop-Location
 }
 
-Copy-Item -LiteralPath (Join-Path $Root 'main.tex') -Destination $PdfDir
+foreach ($entrypoint in @('main.tex', 'practice.tex', 'practice-answers.tex')) {
+    Copy-Item -LiteralPath (Join-Path $Root $entrypoint) -Destination $PdfDir
+}
 Copy-Item -LiteralPath (Join-Path $Root 'tex') -Destination (Join-Path $PdfDir 'tex') -Recurse
 Push-Location $PdfDir
 try {
-    Invoke-Checked -FilePath 'latexmk' -Arguments @('-xelatex', '-interaction=nonstopmode', '-halt-on-error', 'main.tex') -LogPath (Join-Path $PdfDir 'build-pdf.log')
+    foreach ($entrypoint in @('main.tex', 'practice.tex', 'practice-answers.tex')) {
+        $stem = [System.IO.Path]::GetFileNameWithoutExtension($entrypoint)
+        Invoke-Checked -FilePath 'latexmk' -Arguments @('-xelatex', '-interaction=nonstopmode', '-halt-on-error', $entrypoint) -LogPath (Join-Path $PdfDir "build-$stem.log")
+    }
 }
 finally {
     Pop-Location
 }
 
-$pdfPath = Join-Path $PdfDir 'main.pdf'
-if (-not (Test-Path -LiteralPath $pdfPath)) {
-    throw "Expected PDF was not generated: $pdfPath"
+$pdfPaths = @{
+    Notes = Join-Path $PdfDir 'main.pdf'
+    Practice = Join-Path $PdfDir 'practice.pdf'
+    Answers = Join-Path $PdfDir 'practice-answers.pdf'
+}
+foreach ($pdfPath in $pdfPaths.Values) {
+    if (-not (Test-Path -LiteralPath $pdfPath)) {
+        throw "Expected PDF was not generated: $pdfPath"
+    }
 }
 
 Invoke-Checked -FilePath 'node' -Arguments @(
     (Join-Path $Root 'scripts\postprocess_web.mjs'),
     $LwarpDir,
     $SiteDir,
-    $pdfPath
+    $pdfPaths.Notes,
+    $pdfPaths.Practice,
+    $pdfPaths.Answers
 ) -LogPath (Join-Path $BuildRoot 'postprocess-web.log')
 
 Invoke-Checked -FilePath 'npm' -Arguments @('run', 'test:static', '--silent') -LogPath (Join-Path $BuildRoot 'test-static.log')
@@ -95,5 +108,6 @@ Invoke-Checked -FilePath 'npm' -Arguments @('run', 'test:static', '--silent') -L
 Write-Host 'LaTeX reader built successfully:'
 Write-Host "  Publish root: $SiteDir"
 Write-Host "  Math site:    $(Join-Path $SiteDir 'math')"
-Write-Host "  PDF:          $(Join-Path $SiteDir 'math\downloads\kaoyan-math1-notes.pdf')"
-Write-Host '  Pages: 53 HTML documents'
+Write-Host "  Notes PDF:    $(Join-Path $SiteDir 'math\downloads\kaoyan-math1-notes.pdf')"
+Write-Host "  Practice PDF: $(Join-Path $SiteDir 'math\downloads\kaoyan-math1-practice.pdf')"
+Write-Host "  Answers PDF:  $(Join-Path $SiteDir 'math\downloads\kaoyan-math1-practice-answers.pdf')"

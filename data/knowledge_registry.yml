@@ -1,0 +1,456 @@
+schema_version: 1
+
+# 稳定知识节点是跨题目、网页复习状态和提示词的共同引用单位。
+# aliases 只用于检索；关系只来自下方显式 edges，不从标签文本推断。
+nodes:
+  - id: MATH1-KN-CALC-0001
+    title: "函数表示"
+    kind: concept
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0002
+    title: "整体换元"
+    kind: method
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["整体视角"]
+    tex_anchor:
+      file: "tex/indexes/method_index.tex"
+      id: MATH1-KN-CALC-0002
+
+  - id: MATH1-KN-CALC-0003
+    title: "值域"
+    kind: concept
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0004
+    title: "函数关系式"
+    kind: problem_family
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["函数方程"]
+
+  - id: MATH1-KN-CALC-0005
+    title: "倒数代换"
+    kind: method
+    subject: "高等数学"
+    chapter_key: calc-01
+    tex_anchor:
+      file: "tex/indexes/method_index.tex"
+      id: MATH1-KN-CALC-0005
+
+  - id: MATH1-KN-CALC-0006
+    title: "方程组消元"
+    kind: method
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0007
+    title: "定义域"
+    kind: concept
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0008
+    title: "反函数"
+    kind: concept
+    subject: "高等数学"
+    chapter_key: calc-01
+    tex_anchor:
+      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      id: MATH1-KN-CALC-0008
+
+  - id: MATH1-KN-CALC-0009
+    title: "对数性质"
+    kind: formula
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0010
+    title: "有理化"
+    kind: method
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0011
+    title: "双曲函数"
+    kind: concept
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0012
+    title: "复合函数"
+    kind: concept
+    subject: "高等数学"
+    chapter_key: calc-01
+    tex_anchor:
+      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      id: MATH1-KN-CALC-0012
+
+  - id: MATH1-KN-CALC-0013
+    title: "分支分析"
+    kind: method
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["平方根分支"]
+
+  - id: MATH1-KN-CALC-0014
+    title: "分段函数"
+    kind: concept
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0015
+    title: "内层函数取值分析"
+    kind: method
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["内层函数取值"]
+
+  - id: MATH1-KN-CALC-0016
+    title: "数形结合"
+    kind: method
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0017
+    title: "有界性"
+    kind: concept
+    subject: "高等数学"
+    chapter_key: calc-01
+    tex_anchor:
+      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      id: MATH1-KN-CALC-0017
+
+  - id: MATH1-KN-CALC-0018
+    title: "绝对值"
+    kind: concept
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0019
+    title: "基本不等式"
+    kind: formula
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0020
+    title: "放缩"
+    kind: method
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0021
+    title: "单调性"
+    kind: concept
+    subject: "高等数学"
+    chapter_key: calc-01
+    tex_anchor:
+      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      id: MATH1-KN-CALC-0021
+
+  - id: MATH1-KN-CALC-0022
+    title: "图像变换"
+    kind: method
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0023
+    title: "定义法证明"
+    kind: method
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["定义法"]
+
+  - id: MATH1-KN-CALC-0024
+    title: "奇偶性"
+    kind: concept
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["奇函数"]
+    tex_anchor:
+      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      id: MATH1-KN-CALC-0024
+
+  - id: MATH1-KN-CALC-0025
+    title: "特殊值赋值法"
+    kind: method
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["赋值法"]
+
+  - id: MATH1-KN-CALC-0026
+    title: "周期性"
+    kind: concept
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["周期函数"]
+    tex_anchor:
+      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      id: MATH1-KN-CALC-0026
+
+  - id: MATH1-KN-CALC-0027
+    title: "递推式迭代"
+    kind: method
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["递推式"]
+
+  - id: MATH1-KN-CALC-0028
+    title: "三角函数诱导公式"
+    kind: formula
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["诱导公式"]
+
+  - id: MATH1-KN-CALC-0029
+    title: "隐函数"
+    kind: concept
+    subject: "高等数学"
+    chapter_key: calc-01
+    tex_anchor:
+      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      id: MATH1-KN-CALC-0029
+
+  - id: MATH1-KN-CALC-0030
+    title: "变量角色混淆"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["混淆题设参数与最终自变量"]
+
+  - id: MATH1-KN-CALC-0031
+    title: "题面与参考符号不一致"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["忽略题面符号与参考答案的一致性"]
+
+  - id: MATH1-KN-CALC-0032
+    title: "忽略定义域条件"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["忽略 x>0 对倒数代换和根式化简的作用"]
+
+  - id: MATH1-KN-CALC-0033
+    title: "绝对值条件遗漏"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["根式化简时漏掉绝对值判断", "证明有界时忘记取绝对值"]
+
+  - id: MATH1-KN-CALC-0034
+    title: "消元倍数错误"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["消元倍数选择错误"]
+
+  - id: MATH1-KN-CALC-0035
+    title: "把反函数当作倒数"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["把反函数误认为倒数"]
+
+  - id: MATH1-KN-CALC-0036
+    title: "盲目平方导致计算膨胀"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["直接平方硬解导致计算膨胀"]
+
+  - id: MATH1-KN-CALC-0037
+    title: "遗漏反函数定义域"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["忘记写反函数定义域"]
+
+  - id: MATH1-KN-CALC-0038
+    title: "遗漏对数真数为正"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["忽略对数真数恒正性"]
+
+  - id: MATH1-KN-CALC-0039
+    title: "反求时遗漏分支"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["从平方关系反求中间函数时漏掉正负分支"]
+
+  - id: MATH1-KN-CALC-0040
+    title: "只求表达式不检查范围"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["只求表达式不求定义域和值域"]
+
+  - id: MATH1-KN-CALC-0041
+    title: "值域只检查端点"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["值域判断时只看端点"]
+
+  - id: MATH1-KN-CALC-0042
+    title: "混淆外层条件与原自变量"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["把外层函数的分段条件误判为原自变量的条件"]
+
+  - id: MATH1-KN-CALC-0043
+    title: "分段边界归属错误"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["边界点归属错误"]
+
+  - id: MATH1-KN-CALC-0044
+    title: "混淆内外层分段"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["混淆内层分段与外层分段"]
+
+  - id: MATH1-KN-CALC-0046
+    title: "约分或除法遗漏零点"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["除以 |x| 时漏掉 x=0", "含 |x| 的约分漏掉 x=0"]
+
+  - id: MATH1-KN-CALC-0047
+    title: "把证明有界误作求最小上界"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["误以为必须求最小上界"]
+
+  - id: MATH1-KN-CALC-0048
+    title: "误判绝对值复合的单调性"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["把 |f(x)| 误认为保持单调"]
+
+  - id: MATH1-KN-CALC-0049
+    title: "混淆自变量反向与函数值变号"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["混淆 f(-x) 与 -f(-x) 的单调性"]
+
+  - id: MATH1-KN-CALC-0050
+    title: "只看图像不写定义证明"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["只看图像不写定义法证明"]
+
+  - id: MATH1-KN-CALC-0051
+    title: "函数方程漏求零点值"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["忘记先求 f(0)"]
+
+  - id: MATH1-KN-CALC-0052
+    title: "混淆奇偶函数条件"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["把奇函数条件误写成偶函数条件"]
+
+  - id: MATH1-KN-CALC-0053
+    title: "未利用任意变量作特殊赋值"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["忽略任意 x,y 条件允许特殊赋值"]
+
+  - id: MATH1-KN-CALC-0054
+    title: "递推次数不足"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["只套一次等式未回到 f(x)"]
+
+  - id: MATH1-KN-CALC-0055
+    title: "诱导公式符号错误"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+
+  - id: MATH1-KN-CALC-0056
+    title: "混淆周期与最小正周期"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["误以为要证明最小正周期"]
+
+  - id: MATH1-KN-CALC-0057
+    title: "放缩前未检查符号"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["分式放缩时忘记确认正负号"]
+
+  - id: MATH1-KN-CALC-0058
+    title: "根式差未优先有理化"
+    kind: pitfall
+    subject: "高等数学"
+    chapter_key: calc-01
+
+edges:
+  - source: MATH1-KN-CALC-0003
+    target: MATH1-KN-CALC-0008
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0007
+    target: MATH1-KN-CALC-0008
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0007
+    target: MATH1-KN-CALC-0012
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0012
+    target: MATH1-KN-CALC-0015
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0014
+    target: MATH1-KN-CALC-0015
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0018
+    target: MATH1-KN-CALC-0017
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0019
+    target: MATH1-KN-CALC-0020
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0021
+    target: MATH1-KN-CALC-0022
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0004
+    target: MATH1-KN-CALC-0025
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0026
+    target: MATH1-KN-CALC-0027
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0005
+    target: MATH1-KN-CALC-0002
+    type: generalizes_to
+  - source: MATH1-KN-CALC-0004
+    target: MATH1-KN-CALC-0027
+    type: same_structure_as
+  - source: MATH1-KN-CALC-0013
+    target: MATH1-KN-CALC-0015
+    type: same_structure_as
+  - source: MATH1-KN-CALC-0003
+    target: MATH1-KN-CALC-0007
+    type: contrasts_with
+  - source: MATH1-KN-CALC-0024
+    target: MATH1-KN-CALC-0026
+    type: same_structure_as

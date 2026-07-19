@@ -8,9 +8,11 @@ let persistent = true;
 function notify(key, value) {
   const callbacks = listeners.get(key);
   callbacks?.forEach((callback) => callback(value));
-  window.dispatchEvent(
-    new CustomEvent("math1:storage", { detail: { key, value, persistent } }),
-  );
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(
+      new CustomEvent("math1:storage", { detail: { key, value, persistent } }),
+    );
+  }
 }
 
 function parse(raw, fallback) {
@@ -50,6 +52,42 @@ export function writeJSON(key, value) {
   return persistent;
 }
 
+export function transactionalJSONWrite(storage, serializedEntries) {
+  const entries = [...serializedEntries];
+  const previous = new Map();
+  try {
+    for (const [key] of entries) previous.set(key, storage.getItem(key));
+    for (const [key, value] of entries) storage.setItem(key, value);
+    return true;
+  } catch {
+    for (const [key] of entries) {
+      try {
+        const value = previous.get(key);
+        if (value == null) storage.removeItem(key);
+        else storage.setItem(key, value);
+      } catch {
+        // Best effort: the browser may have disabled storage during rollback.
+      }
+    }
+    return false;
+  }
+}
+
+export function writeJSONBatch(entries) {
+  if (!persistent || typeof window === "undefined") return false;
+  const serialized = entries.map(([key, value]) => [key, JSON.stringify(value)]);
+  let committed = false;
+  try {
+    committed = transactionalJSONWrite(window.localStorage, serialized);
+  } catch {
+    committed = false;
+  }
+  if (!committed) return false;
+  for (const [key, value] of entries) memory.set(key, value);
+  for (const [key, value] of entries) notify(key, value);
+  return true;
+}
+
 export function subscribeJSON(key, callback) {
   const callbacks = listeners.get(key) ?? new Set();
   callbacks.add(callback);
@@ -64,10 +102,12 @@ export function hasPersistentStorage() {
   return persistent;
 }
 
-window.addEventListener("storage", (event) => {
-  if (!event.key || !listeners.has(event.key)) return;
-  const previous = memory.get(event.key) ?? null;
-  const value = parse(event.newValue, previous);
-  memory.set(event.key, value);
-  notify(event.key, value);
-});
+if (typeof window !== "undefined") {
+  window.addEventListener("storage", (event) => {
+    if (!event.key || !listeners.has(event.key)) return;
+    const previous = memory.get(event.key) ?? null;
+    const value = parse(event.newValue, previous);
+    memory.set(event.key, value);
+    notify(event.key, value);
+  });
+}

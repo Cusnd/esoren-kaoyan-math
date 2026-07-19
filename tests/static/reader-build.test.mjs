@@ -29,14 +29,14 @@ async function listFiles(directory) {
   return files;
 }
 
-test('publishes exactly the canonical 53 HTML documents', async () => {
+test('publishes the manifest-driven canonical HTML documents', async () => {
   const manifest = await json('data/content-manifest.json');
-  assert.equal(manifest.schemaVersion, 1);
-  assert.equal(manifest.pages.length, 52);
-  assert.equal(new Set(manifest.pages.map((page) => page.slug)).size, 52);
+  assert.equal(manifest.schemaVersion, 2);
+  assert.ok(manifest.pages.length >= 53);
+  assert.equal(new Set(manifest.pages.map((page) => page.slug)).size, manifest.pages.length);
   const html = (await readdir(SITE)).filter((name) => name.endsWith('.html')).sort();
   assert.deepEqual(html, ['index.html', 'offline.html', ...manifest.pages.map((page) => `${page.slug}.html`)].sort());
-  assert.equal(html.filter((name) => name !== 'offline.html').length, 53);
+  assert.equal(html.filter((name) => name !== 'offline.html').length, manifest.pages.length + 1);
   assert.deepEqual((await readdir(PUBLISH)).sort(), ['_headers', '_redirects', SITE_BASE_PATH.slice(1)].sort());
 });
 
@@ -92,6 +92,10 @@ test('page contexts, titles, navigation and local anchors are coherent', async (
   assert.equal(homeContext.isHome, true);
   assert.equal(home('link[rel="canonical"]').attr('href'), `${SITE_ORIGIN}${SITE_ROOT}`);
   assert.equal(home('[data-reader-continue][hidden]').length, 1);
+  assert.equal(home('#core-library').length, 1);
+  assert.equal(home('#practice-library').length, 1);
+  assert.equal(home('#today-review[data-reader-review-home]').length, 1);
+  assert.equal(home('[data-reader-action="open-search"]').length > 0, true);
 });
 
 test('all same-origin links and fragments resolve to published resources', async () => {
@@ -129,10 +133,71 @@ test('search index and content manifest share schema and build identity', async 
   const search = await json('data/search-index.json');
   assert.equal(search.schemaVersion, manifest.schemaVersion);
   assert.equal(search.buildId, manifest.buildId);
-  assert.equal(search.documents.length, 52);
+  assert.equal(search.documents.length, manifest.pages.length);
   assert.deepEqual(search.documents.map((document) => document.slug), manifest.pages.map((page) => page.slug));
   assert.ok(search.documents.some((document) => document.problemIds.length > 0));
   assert.ok(search.documents.some((document) => document.tex.length > 0));
+  assert.ok(search.items.length > search.documents.length);
+  assert.ok(search.items.some((item) => item.itemType === 'problem'));
+  assert.ok(search.items.some((item) => item.itemType === 'knowledge'));
+  const relations = await json('data/relation-index.json');
+  assert.equal(relations.schemaVersion, manifest.schemaVersion);
+  assert.equal(relations.buildId, manifest.buildId);
+  assert.ok(relations.nodes.length > 0);
+  assert.ok(relations.edges.length > 0);
+  assert.equal(typeof relations.adjacency, 'object');
+  assert.ok(relations.problemLinks.length > 0);
+  assert.ok(relations.problemLinks.every((link) => link.problemId && link.title && link.collection && link.url));
+  assert.ok(relations.problemLinks.some((link) => link.collection === 'core'));
+  assert.ok(relations.nodes.every((node) => /^MATH1-KN-(?:CALC|LA|PROB)-\d{4}$/.test(node.id)));
+  const nodeIds = new Set(relations.nodes.map((node) => node.id));
+  assert.deepEqual(new Set(Object.keys(relations.adjacency)), nodeIds);
+  for (const edge of relations.edges) {
+    const symmetric = ['contrasts_with', 'same_structure_as'].includes(edge.type);
+    const forward = relations.adjacency[edge.source].find((link) => (
+      link.nodeId === edge.target && link.type === edge.type
+    ));
+    const reverse = relations.adjacency[edge.target].find((link) => (
+      link.nodeId === edge.source && link.type === edge.type
+    ));
+    assert.equal(forward?.direction, symmetric ? 'symmetric' : 'outgoing');
+    assert.equal(reverse?.direction, symmetric ? 'symmetric' : 'incoming');
+  }
+  const indexedMethod = relations.nodes.find((node) => node.id === 'MATH1-KN-CALC-0002');
+  assert.equal(indexedMethod.url, sitePath('index-methods#LWR-ht-knowledge-index:MATH1-KN-CALC-0002'));
+  const [methodPath, methodHash] = indexedMethod.url.split('#');
+  const methodPage = load(await readFile(path.join(SITE, `${methodPath.slice(SITE_ROOT.length)}.html`), 'utf8'));
+  assert.equal(methodPage(`[id="${methodHash}"]`).length, 1, 'tex_anchor URL must resolve to its canonical fragment');
+});
+
+test('legacy knowledge fragments remain valid alongside stable registry IDs', async () => {
+  for (const [legacyId, slug] of Object.entries({
+    'inverse-function': 'calc-01-inverse-function',
+    'composite-function': 'calc-01-composite-function',
+    'implicit-function': 'calc-01-implicit-function',
+    boundedness: 'calc-01-boundedness',
+    monotonicity: 'calc-01-monotonicity',
+    'odd-function': 'calc-01-parity',
+    'periodic-function': 'calc-01-periodicity',
+  })) {
+    const page = load(await readFile(path.join(SITE, `${slug}.html`), 'utf8'));
+    assert.equal(page(`[id="LWR-ht-knowledge:${legacyId}"]`).length, 1, legacyId);
+  }
+
+  const methods = load(await readFile(path.join(SITE, 'index-methods.html'), 'utf8'));
+  for (const legacyId of [
+    'substitution-as-whole',
+    'inverse-function',
+    'composite-function',
+    'implicit-function',
+    'boundedness',
+    'monotonicity',
+    'odd-function',
+    'periodic-function',
+    'reciprocal-substitution',
+  ]) {
+    assert.equal(methods(`[id="LWR-ht-knowledge-index:${legacyId}"]`).length, 1, legacyId);
+  }
 });
 
 test('legacy redirects and service worker precache are complete and bounded', async () => {
@@ -140,10 +205,14 @@ test('legacy redirects and service worker precache are complete and bounded', as
   assert.equal(manifest.basePath, SITE_BASE_PATH);
   assert.equal(manifest.home, SITE_ROOT);
   assert.equal(manifest.pdf.url, sitePath('downloads/kaoyan-math1-notes.pdf'));
+  assert.equal(manifest.pdf.url, manifest.pdfs.notes.url);
+  assert.equal(manifest.pdfs.practice.url, sitePath('downloads/kaoyan-math1-practice.pdf'));
+  assert.equal(manifest.pdfs.answers.url, sitePath('downloads/kaoyan-math1-practice-answers.pdf'));
   assert.ok(manifest.pages.every((page) => page.url === sitePath(page.slug)));
   const redirects = (await readFile(path.join(PUBLISH, '_redirects'), 'utf8')).trim().split(/\r?\n/);
-  assert.equal(redirects.length, 104);
-  for (const page of manifest.pages) {
+  const legacyPages = manifest.pages.filter((page) => page.legacyNote != null);
+  assert.equal(redirects.length, legacyPages.length * 2);
+  for (const page of legacyPages) {
     assert.ok(redirects.includes(`${sitePath(`note-${page.legacyNote}`)} ${sitePath(page.slug)} 301`));
     assert.ok(redirects.includes(`${sitePath(`note-${page.legacyNote}.html`)} ${sitePath(page.slug)} 301`));
   }
@@ -151,6 +220,7 @@ test('legacy redirects and service worker precache are complete and bounded', as
   assert.match(sw, new RegExp(`const BUILD_ID = ["']${manifest.buildId}["']`));
   assert.match(sw, new RegExp(`const BASE_PATH = ["']${SITE_BASE_PATH}["']`));
   assert.ok(!sw.includes(sitePath('downloads/kaoyan-math1-notes.pdf')));
+  assert.ok(sw.includes(sitePath('data/relation-index.json')));
   for (const page of manifest.pages) assert.ok(sw.includes(`"${sitePath(page.slug)}"`));
   assert.match(sw, /url\.pathname !== BASE_PATH && !url\.pathname\.startsWith\(`\$\{BASE_PATH\}\/`\)/);
   assert.match(sw, /await cache\.addAll\(PRECACHE\)/);
@@ -196,12 +266,33 @@ test('service worker updates reload every already-controlled tab', () => {
   assert.equal(controllerChangeTransition(false, true).shouldReload, true);
 });
 
-test('PDF is valid and hash is recorded', async () => {
+test('all three PDFs are valid and hashes are recorded', async () => {
   const manifest = await json('data/content-manifest.json');
-  const pdf = await readFile(path.join(SITE, 'downloads', 'kaoyan-math1-notes.pdf'));
-  assert.equal(pdf.subarray(0, 5).toString('ascii'), '%PDF-');
-  assert.equal(createHash('sha256').update(pdf).digest('hex'), manifest.pdf.sha256);
-  assert.equal(pdf.length, manifest.pdf.bytes);
+  for (const [key, filename] of [
+    ['notes', 'kaoyan-math1-notes.pdf'],
+    ['practice', 'kaoyan-math1-practice.pdf'],
+    ['answers', 'kaoyan-math1-practice-answers.pdf'],
+  ]) {
+    const pdf = await readFile(path.join(SITE, 'downloads', filename));
+    assert.equal(pdf.subarray(0, 5).toString('ascii'), '%PDF-');
+    assert.equal(createHash('sha256').update(pdf).digest('hex'), manifest.pdfs[key].sha256);
+    assert.equal(pdf.length, manifest.pdfs[key].bytes);
+  }
+});
+
+test('reader remains local-only without AI, scoring, authentication or backend forms', async () => {
+  const manifest = await json('data/content-manifest.json');
+  const sources = await Promise.all((await listFiles(path.join(SITE, `assets/${manifest.buildId}/reader`)))
+    .filter((file) => file.endsWith('.js'))
+    .map((file) => readFile(file, 'utf8')));
+  const combined = sources.join('\n');
+  assert.doesNotMatch(combined, /api\.openai\.com|Authorization\s*:|Bearer\s+/i);
+  assert.doesNotMatch(combined, /scoreAnswer|submitAnswer|masteryScore/i);
+  const practicePage = manifest.pages.find((page) => page.collection === 'practice');
+  assert.ok(practicePage);
+  const practice = load(await readFile(path.join(SITE, `${practicePage.slug}.html`), 'utf8'));
+  assert.equal(practice('html').attr('data-collection'), 'practice');
+  assert.equal(practice('form[action]').length, 0);
 });
 
 test('JavaScript parses, stays ASCII-quoted and MathJax is fully self-hosted', async () => {

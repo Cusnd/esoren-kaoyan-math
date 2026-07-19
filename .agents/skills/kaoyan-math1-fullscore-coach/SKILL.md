@@ -1,87 +1,45 @@
 ---
 name: kaoyan-math1-fullscore-coach
-description: Explain and archive Chinese postgraduate entrance exam Mathematics I tasks in this repository, including 考研数学一 problems, knowledge points, wrong solutions, OCR repair, chapter organization, full-score review, TeX notes, indexes, and problem_registry maintenance. Use for math study content or math-note maintenance. Do not use for general coding, Git, build/deploy, web styling, environment configuration, or AGENTS/Skill meta-maintenance unless explicitly invoked.
+description: Teach, diagnose, connect, review, generate practice for, and archive Chinese postgraduate entrance exam Mathematics I content in this repository. Use for 考研数学一 problems, knowledge points, wrong solutions, OCR repair, chapter organization, TeX notes, knowledge-network links, core/practice routing, indexes, or registry maintenance. Do not use for general coding, Git, deploys, web styling, environment configuration, or Skill meta-maintenance unless explicitly invoked.
 ---
 
 # 考研数学一满分教练
 
-把每次考研数学一输入转化为两项结果：用户能理解、能在考场复现的中文讲解，以及与仓库一致的长期复习资产。
-
-## 完成标准
-
-- 数学结论正确，关键推导和本题实际使用的条件完整。
-- 说明识别信号、自然入口、考场拿分写法和最有价值的迁移或易错点。
-- 只更新与本次内容相关的章节、索引和 registry，避免重复记录。
-- 运行适当验证，并把失败、跳过项和剩余不确定性说清楚。
-
-## 两个独立控制项
-
-- **回答深度：** 默认满分训练深度；用户说“简洁回答”时压缩解释，但保留答案、关键依据、必要条件和文件结果。
-- **文件持久化：** 默认维护仓库；只有用户明确说“只聊天不写文件”“不要修改仓库”或同义表达时才禁用写入。
-
-不要因为用户要求简洁而跳过归档，也不要因为禁止写文件而省略数学讲解。
-
-## 任务路由
-
-- **题目：** 定位章节与题型，查重，严谨解答；非重复题新增题号、章节正文、题目索引和 registry。
-- **知识点：** 区分定义、结论、条件、典型用法与误区；写入章节并按需更新方法或公式索引，不创建题号。
-- **错解 / “我不会”：** 先定位错误步骤、错因和知识漏洞，再给正确解法；有复盘价值时更新错题索引。
-- **OCR / 图片题面：** 标出会影响答案的不确定符号，采用最有依据的版本求解；不同解释会改变答案时并列说明。
-- **章节整理：** 保留原题和题解，合并重复知识点，按定义、定理、方法、题型、错题重组，并检查索引与入口文件。
-- **满分检查：** 审查速度、条件、卷面得分点、跳步、替代解法、母题价值和是否应进入错题本。
+让用户真正理解并能在考场复现，同时只把有复习价值的内容沉淀到正确位置。
 
 ## 工作流
 
-1. 读取 `data/textbook_catalog.yml`，再检查目标章节、相关索引和 registry；只有归章仍不清楚时读取章节路由引用。
-2. 对新题运行查重；命中疑似重复时先人工核对，确认是同题则补充原记录而不是新建。
-3. 完成数学推导。先给自然入口，再展开决定正确性的步骤；只检查本题实际涉及的合法性条件。
-4. 按任务类型维护正文和相关索引。使用 `tex/templates/` 中的实时模板，现有章节风格优先。
-5. 运行仓库 validator；结构、模板或 catalog 变化时再运行 Web 构建与静态测试。
-6. 用自适应结构回复，先给结论与核心证据，再给必要细节、文件变化和复盘动作。
+1. **判断意图与授权。** 区分直接解答、引导学习、复习、错解诊断、知识串联、训练生成与内容整理；单独判断聊天深度和文件持久化。无法可靠推断且不同选择会改变结果时，才询问最小必要信息。
+2. **读取最少证据。** 只聊天的直接解答读完根契约与本 Skill 即可作答；需要写入时才查实时 catalog、目标章节、相关 registry 与模板，写题前查重。不要凭记忆猜章节、接口、题号或来源。
+3. **完成数学任务。** 选择自然入口，展开决定结论的步骤，只检查本题实际使用的条件。教学行为按 `references/learning-protocol.md`。
+4. **判断长期价值。** 在补充已有条目、进入主库、进入练习库或不写入之间选择最小充分动作；规则见 `references/archive-policy.md`。
+5. **编辑并验证。** 只改必要正文、索引、关系与 registry，保持引用闭合；具体操作和验证见 `references/repository-editing.md`。
+6. **结果先行收尾。** 先回答数学结论，再简要报告文件、验证、沉淀内容与一个可执行复盘动作。工程元任务不使用数学收尾格式。
 
-## 自适应讲解
+## 停止条件
 
-不要强制每道题出现同一组标题。始终保留有用信息，删去重复复述：
+- OCR 或题面歧义会产生根本不同问题且没有可靠默认时，停止入库并询问关键符号；不影响核心方法时声明假设后继续。
+- 相似度只提供查重候选；未经人工核对不得自动合并、删除或重编号。
+- 来源不明时写“用户提供 / 未注明来源”，不得猜测年份、真题身份或官方出处。
+- 发现目标文件包含重叠的无关用户改动时停止写入，不覆盖或回滚。
+- 编译器或浏览器依赖不可用时运行其余静态检查并报告 `SKIP`。
 
-- 基础题通常组织为“定位与入口—解答—条件或易错点—迁移—文件结果”。
-- 综合题、证明题和错解可展开题型定位、严谨推导、合法性检查、考场写法、替代解法与复盘。
-- “考场写法”应给出真实可抄写的拿分步骤；无需机械限定行数。
-- 没有实质新变式、公式或错因时，不为了凑结构制造内容。
-- 聊天公式使用标准 LaTeX，保证定界符成对和屏幕可读性。
+## 证据与工具预算
 
-## 归档规则
+- 只聊天的直接解答不读取 catalog、registry、模板或 references；只有用户询问仓库现有资产时才查对应事实源。
+- 写入任务在一次只读调用中加载全部适用 references；随后通常只需目标 catalog 条目、相关 registry 片段、一个实时模板及目标正文/索引。先直接使用已记录的脚本接口，把 validator 当作黑盒；不预读脚本实现、README、测试或构建代码，除非任务修改这些接口或首次验证失败。
+- 用一次有目标的检索代替全库反复扫描；不要重复读取同一文件或重复探测环境。数学结果正确、最小 diff 闭合且规定验证通过后立即停止，不为普通内容额外运行 Web、浏览器或无关测试。
+- 查重或定向检索“无匹配”是正常结果，应只处理对应的无匹配状态，不能让它成为失败工具调用，也不能吞掉语法错误；补丁上下文失配时只重读精确局部并重试一次，依赖不可用时按契约报告 `SKIP`，不要换命令反复探测。
 
-### 新题必需更新
+## 按需读取
 
-1. 主考章节 `.tex`。
-2. `tex/indexes/problem_index.tex`。
-3. `data/problem_registry.yml`。
+- `references/learning-protocol.md`：引导学习、复习、错解、OCR、知识串联或训练生成；直接解答按本 Skill 的工作流完成即可。
+- `references/archive-policy.md`：任何可能写入、查重、生成训练或维护知识关系的任务。
+- `references/repository-editing.md`：实际修改 TeX、索引、registry、catalog、模板或入口文件。
 
-仅在内容确有价值时更新：
+## 脚本入口
 
-- 新方法：`method_index.tex`。
-- 可独立复习的公式：`formula_index.tex`。
-- 用户错解或重要陷阱：`mistake_index.tex`。
-
-题目来源不明时写“用户提供 / 未注明来源”。不得推测考试年份、真题身份或官方出处。
-
-## 停止与回退
-
-- 题面歧义不影响核心方法时，声明假设后继续；歧义会产生根本不同问题且没有合理默认时，询问最小必要信息。
-- 查重结果只是候选证据，不能仅凭相似度自动合并或删除内容。
-- 编译器不可用时运行静态检查并报告 `SKIP`；不得把跳过描述为通过。
-- 发现无关用户改动与目标文件重叠时停止写入并报告冲突，不覆盖或回滚。
-
-## 资源按需读取
-
-- `references/chapter-routing.md`：catalog 不能独立确定主考讲次，或题目跨章时读取。
-- `references/mistake-taxonomy.md`：用户提供错解、卡点或要求错因复盘时读取。
-- `references/latex-style.md`：写入 TeX、索引、模板或处理 OCR 题面时读取。
-- `references/quality-gates.md`：复杂题、满分检查、章节整理或提交前质量复核时读取。
-
-## 脚本
-
-在本机使用 `codex-tools` 环境：
+在仓库根目录使用 `codex-tools`：
 
 ```powershell
 $mamba = "$env:USERPROFILE\miniforge3\Library\bin\mamba.exe"
@@ -91,24 +49,3 @@ $mamba = "$env:USERPROFILE\miniforge3\Library\bin\mamba.exe"
 & $mamba run -n codex-tools python .agents/skills/kaoyan-math1-fullscore-coach/scripts/next_problem_id.py --subject calc
 & $mamba run -n codex-tools python .agents/skills/kaoyan-math1-fullscore-coach/scripts/validate_math1_repo.py
 ```
-
-## 数学任务收尾
-
-仅在本 Skill 实际处理数学学习内容时，以紧凑形式结束：
-
-```text
-文件更新：
-- ...
-
-验证：
-- ...
-
-本次沉淀：
-- 题型 / 知识点：
-- 核心方法 / 易错点：
-
-复盘：
-- ...
-```
-
-若用户禁止写文件，在“文件更新”中写明原因。非数学元任务不得套用此收尾。

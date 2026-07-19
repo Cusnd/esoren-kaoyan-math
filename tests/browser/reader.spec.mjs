@@ -1,14 +1,29 @@
+import { readFile } from 'node:fs/promises';
+
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { SITE_ROOT, sitePath } from '../../web/reader/site.js';
 
+const WRITE_METHODS = new Set(['POST', 'PUT', 'PATCH', 'DELETE']);
+
+function monitorReadOnlyRequests(page, testInfo) {
+  const violations = [];
+  const expectedOrigin = new URL(
+    testInfo.project.use.baseURL ?? process.env.BASE_URL ?? 'http://127.0.0.1:8787',
+  ).origin;
+  page.on('request', (request) => {
+    const url = new URL(request.url());
+    if (url.origin !== expectedOrigin) violations.push(`cross-origin ${request.method()} ${request.url()}`);
+    if (WRITE_METHODS.has(request.method().toUpperCase())) {
+      violations.push(`write ${request.method()} ${request.url()}`);
+    }
+  });
+  return violations;
+}
+
 test('renders formulas with local MathJax and supports keyboard search', async ({ page }, testInfo) => {
   test.skip((testInfo.project.use.viewport?.width ?? 0) < 1280);
-  const externalRequests = [];
-  const expectedOrigin = new URL(testInfo.project.use.baseURL ?? process.env.BASE_URL ?? 'http://127.0.0.1:8787').origin;
-  page.on('request', (request) => {
-    if (new URL(request.url()).origin !== expectedOrigin) externalRequests.push(request.url());
-  });
+  const requestViolations = monitorReadOnlyRequests(page, testInfo);
   await page.goto(sitePath('calc-01-inverse-hyperbolic-sine'));
   await expect(page.locator('h1')).toHaveCount(1);
   const renderedFormula = page.locator([
@@ -48,7 +63,7 @@ test('renders formulas with local MathJax and supports keyboard search', async (
   await expect(page.locator('#reader-search')).toBeHidden();
   await expect(page.locator('body')).not.toHaveClass(/reader-modal-open/);
   expect(await page.evaluate(() => getComputedStyle(document.body).overflowY)).toBe('auto');
-  expect(externalRequests).toEqual([]);
+  expect(requestViolations).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
 });
 
@@ -81,6 +96,194 @@ test('preferences persist locally and PDF opens through a static link', async ({
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await expect(page.locator(`a[href="${sitePath('downloads/kaoyan-math1-notes.pdf')}"][target="_blank"]`)).toHaveAttribute('rel', /noopener/);
+});
+
+test('review reminders stay browser-local and synchronize across tabs', async ({ page, context }, testInfo) => {
+  test.skip(!['chrome-1280', 'edge-1440'].includes(testInfo.project.name));
+  await page.goto(sitePath('calc-01-inverse-hyperbolic-sine'));
+  await expect(page.locator('[data-reader-relations]')).toBeVisible();
+  await expect(page.getByRole('heading', { name: '可用方法' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '关联主库题' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '关联练习题' })).toBeVisible();
+  await expect(page.locator('[data-reader-relations] .reader-relations__evidence a').first()).toContainText('MATH1-CALC-0003');
+  await page.locator('[data-reader-action="open-review"]').first().click();
+  await expect(page.locator('#reader-review')).toBeVisible();
+  const exportButton = page.locator('#reader-review [data-reader-action="export-review-state"]');
+  await exportButton.focus();
+  await page.keyboard.press('Tab');
+  const fileInput = page.locator('#reader-review [data-reader-review-import]');
+  await expect(fileInput).toBeFocused();
+  const fileButton = page.locator('#reader-review .reader-file-button');
+  expect(await fileButton.evaluate((element) => getComputedStyle(element).outlineStyle)).not.toBe('none');
+  await page.locator('#reader-review details > summary').click();
+  const add = page.locator('#reader-review [data-reader-review-action="add"]').first();
+  await expect(add).toBeVisible();
+  const nodeId = await add.getAttribute('data-reader-review-node');
+  await add.click();
+  await expect.poll(() => page.evaluate((key) => JSON.parse(localStorage.getItem(key) || '{}').items ?? {}, 'math1.reader.reviews.v1'))
+    .toHaveProperty(nodeId);
+
+  const downloadPromise = page.waitForEvent('download');
+  await exportButton.click();
+  const download = await downloadPromise;
+  expect(download.suggestedFilename()).toMatch(/^math1-learning-state-\d{4}-\d{2}-\d{2}\.json$/);
+  const downloadPath = await download.path();
+  expect(downloadPath).toBeTruthy();
+  const importPayload = JSON.parse(await readFile(downloadPath, 'utf8'));
+  expect(importPayload).toMatchObject({
+    schemaVersion: 1,
+    type: 'math1-reader-state',
+  });
+  expect(importPayload.reviews.items).toHaveProperty(nodeId);
+
+  await fileInput.setInputFiles({
+    name: download.suggestedFilename(),
+    mimeType: 'application/json',
+    buffer: Buffer.from(JSON.stringify(importPayload)),
+  });
+  await expect(page.locator('[data-reader-review-import-preview]')).toContainText('确认前不会修改浏览器状态');
+  const applyImport = page.locator('[data-reader-action="apply-review-import"]');
+  await expect(applyImport).toBeVisible();
+  await applyImport.click();
+  await expect(page.locator('#reader-review [data-reader-review-status]')).toContainText('导入已应用');
+
+  await fileInput.setInputFiles({
+    name: download.suggestedFilename(),
+    mimeType: 'application/json',
+    buffer: Buffer.from(JSON.stringify(importPayload)),
+  });
+  await expect(applyImport).toBeVisible();
+
+  const second = await context.newPage();
+  await second.goto(sitePath('calc-01-inverse-hyperbolic-sine'));
+  await second.locator('[data-reader-action="open-review"]').first().click();
+  const remove = second.locator(`[data-review-node="${nodeId}"] [data-reader-review-action="remove"]`).first();
+  await expect(remove).toBeVisible();
+
+  await remove.click();
+  await expect(page.locator('[data-reader-review-import-preview]')).toContainText('导入预览已失效');
+  await expect(applyImport).toBeHidden();
+  await expect.poll(() => page.evaluate(({ key, id }) => JSON.parse(localStorage.getItem(key)).items[id].state, {
+    key: 'math1.reader.reviews.v1',
+    id: nodeId,
+  })).toBe('removed');
+  await second.close();
+});
+
+test('representative learning flows reject unsafe imports without network writes or local mutation', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'chrome-1280');
+  const requestViolations = monitorReadOnlyRequests(page, testInfo);
+  const storageKeys = [
+    'math1.reader.preferences.v1',
+    'math1.reader.progress.v1',
+    'math1.reader.reviews.v1',
+  ];
+  const snapshot = () => page.evaluate((keys) => Object.fromEntries(
+    keys.map((key) => [key, localStorage.getItem(key)]),
+  ), storageKeys);
+
+  await page.goto(SITE_ROOT);
+  await page.locator('[data-reader-action="open-search"]').first().click();
+  await page.locator('[data-reader-search-input]').fill('MATH1-CALC-0003');
+  const result = page.locator('[data-reader-search-results] a').first();
+  await expect(result).toBeVisible();
+  await result.click();
+  await expect(page.locator('h1')).toContainText('反双曲正弦');
+  await page.goto(sitePath('practice-calc-01'));
+  await expect(page.locator('html')).toHaveAttribute('data-collection', 'practice');
+  await page.locator('[data-reader-action="open-review"]').first().click();
+  await page.locator('#reader-review details > summary').click();
+  await page.locator('#reader-review [data-reader-review-action="add"]').first().click();
+
+  const fileInput = page.locator('#reader-review [data-reader-review-import]');
+  const applyImport = page.locator('[data-reader-action="apply-review-import"]');
+  const before = await snapshot();
+  await fileInput.setInputFiles({
+    name: 'malformed.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from('{"broken"'),
+  });
+  await expect(page.locator('[data-reader-review-import-preview]')).toContainText('导入失败');
+  await expect(applyImport).toBeHidden();
+  expect(await snapshot()).toEqual(before);
+
+  const unsafe = await page.evaluate(async (manifestUrl) => {
+    const manifest = await fetch(manifestUrl).then((response) => response.json());
+    const now = new Date().toISOString();
+    const slug = 'practice-calc-01';
+    return {
+      schemaVersion: 1,
+      type: 'math1-reader-state',
+      buildId: manifest.buildId,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'local',
+      exportedAt: now,
+      preferences: JSON.parse(localStorage.getItem('math1.reader.preferences.v1') || '{"schemaVersion":1,"theme":"light","fontScale":"medium","contentWidth":"standard"}'),
+      progress: {
+        schemaVersion: 1,
+        recentSlug: slug,
+        pages: {
+          [slug]: {
+            maxRatio: 0,
+            lastAnchor: '',
+            complete: false,
+            title: '练习库',
+            url: 'javascript:alert(1)',
+            updatedAt: now,
+          },
+        },
+      },
+      reviews: JSON.parse(localStorage.getItem('math1.reader.reviews.v1')),
+    };
+  }, sitePath('data/content-manifest.json'));
+  await fileInput.setInputFiles({
+    name: 'unsafe.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from(JSON.stringify(unsafe)),
+  });
+  await expect(page.locator('[data-reader-review-import-preview]')).toContainText('/math/ 同源相对路径');
+  await expect(applyImport).toBeHidden();
+  expect(await snapshot()).toEqual(before);
+  await page.waitForLoadState('networkidle');
+  expect(requestViolations).toEqual([]);
+});
+
+test('review actions disclose when browser storage rejects persistence', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'chrome-1280');
+  await page.addInitScript((reviewKey) => {
+    const original = Storage.prototype.setItem;
+    Storage.prototype.setItem = function setItem(key, value) {
+      if (key === reviewKey) throw new DOMException('Mock quota failure', 'QuotaExceededError');
+      return original.call(this, key, value);
+    };
+  }, 'math1.reader.reviews.v1');
+  await page.goto(sitePath('calc-01-inverse-hyperbolic-sine'));
+  const action = page.locator('[data-reader-relations] .reader-relations__current [data-reader-review-action="add"]').first();
+  await expect(action).toBeVisible();
+  await action.click();
+  await expect(page.locator('[data-reader-relations] [data-reader-review-status]')).toContainText('仅在本次页面打开期间临时保存');
+  await expect(page.locator('[data-reader-relations] .reader-relations__current [data-reader-review-action="remove"]').first()).toBeVisible();
+  expect(await page.evaluate(() => localStorage.getItem('math1.reader.reviews.v1'))).toBeNull();
+  await page.reload();
+  await expect(page.locator('[data-reader-relations] .reader-relations__current [data-reader-review-action="add"]').first()).toBeVisible();
+});
+
+test('a resident review page refreshes when the local calendar crosses midnight', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'chrome-1280');
+  await page.clock.install({ time: new Date(2026, 6, 18, 23, 55, 0) });
+  await page.goto(sitePath('calc-01-inverse-hyperbolic-sine'));
+  const add = page.locator('[data-reader-relations] .reader-relations__current [data-reader-review-action="add"]').first();
+  await expect(add).toBeVisible();
+  const nodeId = await add.getAttribute('data-reader-review-node');
+  await add.click();
+  await page.locator('[data-reader-action="open-review"]').first().click();
+  const dueRow = page.locator(`[data-reader-review-due] [data-review-node="${nodeId}"]`);
+  await expect(dueRow).toBeVisible();
+  await page.clock.pauseAt(new Date(2026, 6, 18, 23, 59, 58));
+  await dueRow.locator('[data-reader-review-action="tomorrow"]').click();
+  await expect(dueRow).toHaveCount(0);
+
+  await page.clock.runFor(3_000);
+  await expect(page.locator(`[data-reader-review-due] [data-review-node="${nodeId}"]`)).toBeVisible();
 });
 
 test('layout has no horizontal overflow across the viewport matrix', async ({ page }) => {
@@ -161,7 +364,7 @@ test('complete corpus and legacy routes remain available offline', async ({ page
     const statuses = await page.evaluate(async ({ home, pages }) => Promise.all(
       [home, ...pages.map((item) => item.url)].map(async (url) => (await fetch(url)).status),
     ), manifest);
-    expect(statuses).toEqual(Array(53).fill(200));
+    expect(statuses).toEqual(Array(manifest.pages.length + 1).fill(200));
     const legacy = await page.evaluate((url) => fetch(url).then((response) => response.text()), sitePath('note-1.html'));
     expect(legacy).toContain('第 1 讲 函数极限与连续');
     await page.goto(sitePath('note-1.html'));

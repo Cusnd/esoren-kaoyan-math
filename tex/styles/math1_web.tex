@@ -42,6 +42,8 @@
 
 \NewDocumentCommand{\problemAnchor}{m}{\hypertarget{problem:#1}{}}
 \NewDocumentCommand{\problemRef}{m}{\hyperlink{problem:#1}{#1}}
+\NewDocumentCommand{\answerAnchor}{m}{\hypertarget{answer:#1}{}}
+\NewDocumentCommand{\answerRef}{m}{\hyperlink{answer:#1}{答案}}
 \NewDocumentCommand{\problemIndexAnchor}{m}{\hypertarget{problem-index:#1}{}}
 \NewDocumentCommand{\problemIndexRef}{m}{\hyperlink{problem-index:#1}{索引}}
 \NewDocumentCommand{\knowledgeAnchor}{O{} m}{%
@@ -56,6 +58,8 @@
 \NewDocumentCommand{\knowledgeIndexRef}{O{} m}{%
   \IfBlankTF{#1}{\hyperlink{knowledge-index:#2}{#2}}{\hyperlink{knowledge-index:#1}{#2}}%
 }
+\NewDocumentCommand{\legacyKnowledgeAnchor}{m}{\hypertarget{knowledge:#1}{}}
+\NewDocumentCommand{\legacyKnowledgeIndexAnchor}{m}{\hypertarget{knowledge-index:#1}{}}
 
 \newtheoremstyle{mathoneplain}
   {0.8em}{0.8em}{\itshape}{}{\sffamily\bfseries\color{mathOneForest}}{.}{0.6em}{}

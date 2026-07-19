@@ -2,6 +2,7 @@ import { initNavigation } from "./navigation.js";
 import { initPreferences } from "./preferences.js";
 import { initProgress } from "./progress.js";
 import { initPWA } from "./pwa.js";
+import { initReviews } from "./reviews.js";
 import { initSearch } from "./search.js";
 
 function initializeReader() {
@@ -10,6 +11,7 @@ function initializeReader() {
   initPreferences();
   initSearch();
   initProgress();
+  initReviews();
   initPWA();
 }
 

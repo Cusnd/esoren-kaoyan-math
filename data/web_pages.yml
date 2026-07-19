@@ -1,4 +1,4 @@
-schemaVersion: 1
+schemaVersion: 2
 pages:
   - slug: calc-01-function-limit-continuity
     title: 第 1 讲 函数极限与连续
@@ -313,3 +313,13 @@ pages:
     lecture: 索引
     legacy_note: 52
     source: tex/indexes/formula_index.tex
+
+  - slug: practice-calc-01
+    lwarp_slug: practice-library
+    title: 练习库：高等数学第 1 讲 函数极限与连续
+    subject: 练习库
+    subject_key: practice
+    lecture: 高等数学 · 第 1 讲
+    collection: practice
+    chapter_key: calc-01
+    source: tex/practice/calculus/calc-01-problems.tex

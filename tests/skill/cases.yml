@@ -1,89 +1,457 @@
-- id: simple_problem
-  prompt: "求极限：lim_{x→0} (sin x)/x。"
-  task_kind: "problem"
-  response_depth: "adaptive"
-  persistence: "write"
-  required_outcomes:
-    - "定位题型、入口与必要条件"
-    - "给出足以拿满分的推导"
-    - "同步章节正文、题目索引和 registry"
-  forbidden_outcomes:
-    - "因为题目简单而只给答案"
+schema_version: 1
 
-- id: complex_problem
-  prompt: "求一个含参数的二重积分，并讨论参数改变时积分区域的变化。"
-  task_kind: "problem"
-  response_depth: "adaptive"
-  persistence: "write"
-  required_outcomes:
-    - "拆分区域并检查换序或换元的合法性"
-    - "给出可迁移的方法与考场写法"
-    - "按主考点归章并补充必要交叉引用"
-  forbidden_outcomes:
-    - "套用固定十二段标题而割裂推导"
+defaults:
+  repetitions: 1
+  fixture:
+    base: repository_snapshot
+    requires:
+      - AGENTS.md
+      - .agents/skills/kaoyan-math1-fullscore-coach/SKILL.md
+      - data/textbook_catalog.yml
+      - data/problem_registry.yml
+  file_expectations:
+    require_change: false
+    allowed_changes: []
+    post_validate: false
+  checks:
+    output_must_match: []
+    output_must_not_match:
+      - "(?i)真题.*(19|20)\\d{2}"
+    diff_must_match: []
+    diff_must_not_match: []
+  rubric: default
 
-- id: wrong_solution
-  prompt: "这是我的错解：由函数在点处连续，所以它在该点可导。请帮我找错。"
-  task_kind: "wrong_solution"
-  response_depth: "adaptive"
-  persistence: "write"
-  required_outcomes:
-    - "精确指出错误步骤和知识漏洞"
-    - "给出反例、正确关系与避免复发的方法"
-    - "更新章节易错点和 mistake_index"
-  forbidden_outcomes:
-    - "只重做题目而不诊断错因"
+rubrics:
+  default:
+    math_correctness_and_conditions: 40
+    intuition_and_exam_reproducibility: 20
+    transfer_network_and_memory: 20
+    archive_correctness: 15
+    resource_efficiency: 5
 
-- id: ocr_ambiguity
-  prompt: "OCR 题面：设 f(x)=1/x(?)，求 x→0 时……，括号和趋向方向无法辨认。"
-  task_kind: "ocr"
-  response_depth: "adaptive"
-  persistence: "write_when_resolved"
-  required_outcomes:
-    - "区分可确认文本与会改变答案的不确定条件"
-    - "不能安全恢复时停止入库并请求最小必要信息"
-  forbidden_outcomes:
-    - "猜测单侧极限或定义域后直接入库"
+fatal_failures:
+  - wrong_final_answer
+  - missing_conclusion_changing_condition
+  - fabricated_source_or_year
+  - authorization_violation
+  - duplicate_problem_id
+  - wrong_collection
+  - dangling_reference
+  - missing_solution
+  - false_validation_claim
+  - repository_changed
+  - missing_convergence_proof
+  - missing_piecewise_boundary
+  - wrong_case_split
+  - missing_positive_definite_condition
+  - wrong_denominator
+  - wrong_region
+  - missing_parameter_domain
+  - full_solution_before_diagnosis
+  - no_diagnostic
+  - no_retrieval_action
+  - only_resolves_without_diagnosis
+  - missing_network_direction
+  - fabricated_relation
+  - definition_without_intuition
+  - no_transfer
+  - guessed_problem
+  - wrong_target_problem
+  - missing_archive
+  - fabricated_source
+  - draft_published
+  - missing_answers
+  - fake_problem_id
+  - missing_knowledge_relation
+  - real_mistake_lost
+  - generic_pitfall_only
+  - math_archive_on_meta_task
+  - id_changed_on_promotion
 
-- id: duplicate_problem
-  prompt: "把这道与库内已有题目相同、但多了一种泰勒解法的题整理进去。"
-  task_kind: "problem"
-  response_depth: "adaptive"
-  persistence: "write"
-  required_outcomes:
-    - "先按题面和逐题锚点查重"
-    - "向原题补充解法并按需更新方法索引"
-  forbidden_outcomes:
-    - "分配新题号或创建重复 registry 条目"
+cases:
+  # 数学正确性：高数、线代、概率各 3 题。
+  - id: math_calc_limit_second_order
+    slice: math
+    smoke: true
+    task_kind: solve
+    prompt: "只聊天不写文件：完整求极限 lim_{x→0}(1-cos x)/x^2，并说明所用等价替换为何合法。"
+    expected: {intent: solve, collection: none, persistence: skip}
+    oracle:
+      summary: "极限为 1/2；可由 1-cos x=2sin^2(x/2) 或二阶展开得到。"
+    checks:
+      output_must_match: ["(?s)(1\\s*/\\s*2|\\\\frac\\s*(?:\\{1\\}|1)\\s*(?:\\{2\\}|2))", "(?s)(等价|恒等|泰勒)"]
+    hard_fail_if: [wrong_final_answer, repository_changed]
+    rubric: default
 
-- id: concise_with_persistence
-  prompt: "简洁回答这道极限题，但照常整理进题库。"
-  task_kind: "problem"
-  response_depth: "concise"
-  persistence: "write"
-  required_outcomes:
-    - "聊天回复压缩为结论、关键理由和风险点"
-    - "文件侧仍完成完整题库维护"
-  forbidden_outcomes:
-    - "把简洁回答解释成禁止写文件"
+  - id: math_calc_sequence_limit
+    slice: math
+    smoke: false
+    task_kind: solve
+    prompt: "只聊天不写文件：a_1=0，a_{n+1}=sqrt(2+a_n)。证明数列收敛并求极限。"
+    expected: {intent: solve, collection: none, persistence: skip}
+    oracle:
+      summary: "证明 0≤a_n≤2 且单调递增，极限满足 L=sqrt(2+L)，结合范围得 L=2。"
+    checks:
+      output_must_match: ["(?s)(单调).*(有界|上界)", "(?s)(L|极限).*2"]
+    hard_fail_if: [wrong_final_answer, missing_convergence_proof, repository_changed]
+    rubric: default
 
-- id: chat_only
-  prompt: "只聊天不写文件：解释为什么连续不一定可导。"
-  task_kind: "knowledge"
-  response_depth: "adaptive"
-  persistence: "skip"
-  required_outcomes:
-    - "给出严谨解释并明确本次没有文件修改"
-  forbidden_outcomes:
-    - "修改章节、索引或 registry"
+  - id: math_calc_parameter_integral
+    slice: math
+    smoke: false
+    task_kind: solve
+    prompt: "只聊天不写文件：设 0≤a≤1，计算 I(a)=∫_0^1 |x-a| dx，必须写出分点与最终化简。"
+    expected: {intent: solve, collection: none, persistence: skip}
+    oracle:
+      summary: "在 x=a 分段，I(a)=a^2/2+(1-a)^2/2=a^2-a+1/2。"
+    checks:
+      output_must_match: ["(?s)x\\s*=\\s*a", "(?s)a\\^?2.*a.*(1\\s*/\\s*2|\\\\frac\\{1\\}\\{2\\})"]
+    hard_fail_if: [wrong_final_answer, missing_piecewise_boundary, repository_changed]
+    rubric: default
 
-- id: non_math_meta
-  prompt: "重构这个数学 Skill 的 validator，并运行单元测试。"
-  task_kind: "meta"
-  response_depth: "adaptive"
-  persistence: "project_change"
-  required_outcomes:
-    - "按工程任务完成实现、验证和变更说明"
-  forbidden_outcomes:
-    - "套用数学学习沉淀收尾"
-    - "创建题号或修改数学正文"
+  - id: math_la_determinant
+    slice: math
+    smoke: true
+    task_kind: solve
+    prompt: "只聊天不写文件：求矩阵 [[1,2],[3,4]] 的行列式，并给考场最短写法。"
+    expected: {intent: solve, collection: none, persistence: skip}
+    oracle:
+      summary: "det=1×4-2×3=-2。"
+    checks:
+      output_must_match: ["(?s)(4\\s*-\\s*6|-2)"]
+    hard_fail_if: [wrong_final_answer, repository_changed]
+    rubric: default
+
+  - id: math_la_parameter_system
+    slice: math
+    smoke: false
+    task_kind: solve
+    prompt: "只聊天不写文件：讨论方程组 x+y=1，ax+y=1 在不同 a 下的解。"
+    expected: {intent: solve, collection: none, persistence: skip}
+    oracle:
+      summary: "a≠1 时唯一解 x=0,y=1；a=1 时两方程相同，有无穷多解 x+y=1。"
+    checks:
+      output_must_match: ["(?s)a\\s*(≠|\\\\ne)\\s*1.*x\\s*=\\s*0.*y\\s*=\\s*1", "(?s)a\\s*=\\s*1.*无穷"]
+    hard_fail_if: [wrong_case_split, repository_changed]
+    rubric: default
+
+  - id: math_la_positive_definite
+    slice: math
+    smoke: false
+    task_kind: solve
+    prompt: "只聊天不写文件：二次型 x^2+2axy+y^2 何时正定？说明判据条件。"
+    expected: {intent: solve, collection: none, persistence: skip}
+    oracle:
+      summary: "对应实对称矩阵 [[1,a],[a,1]]，顺序主子式要求 1-a^2>0，故 |a|<1。"
+    checks:
+      output_must_match: ["(?s)(1\\s*-\\s*a\\^?2|1-a\\^2)", "(?s)(\\|a\\|\\s*<\\s*1|-1\\s*<\\s*a\\s*<\\s*1)"]
+    hard_fail_if: [wrong_final_answer, missing_positive_definite_condition, repository_changed]
+    rubric: default
+
+  - id: math_prob_bayes
+    slice: math
+    smoke: true
+    task_kind: solve
+    prompt: "只聊天不写文件：患病率1%，灵敏度90%，假阳性率5%。某人阳性，求患病概率。"
+    expected: {intent: solve, collection: none, persistence: skip}
+    oracle:
+      summary: "由贝叶斯公式得 0.009/(0.009+0.99×0.05)=2/13≈15.38%。"
+    checks:
+      output_must_match: ["(?s)(2\\s*/\\s*13|\\\\frac\\s*(?:\\{2\\}|2)\\s*(?:\\{13\\}|13)|15\\.?3[78]\\\\?%|0\\.1538)", "(?s)(贝叶斯|Bayes)"]
+    hard_fail_if: [wrong_denominator, wrong_final_answer, repository_changed]
+    rubric: default
+
+  - id: math_prob_joint_density
+    slice: math
+    smoke: false
+    task_kind: solve
+    prompt: "只聊天不写文件：联合密度在 0<y<x<1 上为常数 C，其余为0。求 C 与 P(Y<1/2)。"
+    expected: {intent: solve, collection: none, persistence: skip}
+    oracle:
+      summary: "三角区域面积 1/2，C=2；积分得 P(Y<1/2)=3/4。"
+    checks:
+      output_must_match: ["(?s)C\\s*=\\s*2", "(?s)(3\\s*/\\s*4|0\\.75)"]
+    hard_fail_if: [wrong_region, wrong_final_answer, repository_changed]
+    rubric: default
+
+  - id: math_stats_exponential_mle
+    slice: math
+    smoke: false
+    task_kind: solve
+    prompt: "只聊天不写文件：X_i 独立同分布于密度 λe^{-λx}, x>0。求 λ 的最大似然估计并检查参数范围。"
+    expected: {intent: solve, collection: none, persistence: skip}
+    oracle:
+      summary: "λ>0，log L=n log λ-λΣx_i，故 λ̂=n/Σx_i=1/x̄。"
+    checks:
+      output_must_match: ["(?s)(n\\s*/\\s*.*sum|1\\s*/\\s*.*bar|\\\\bar\\{[xX]\\})", "(?s)(λ|lambda).*?>?\\s*0"]
+    hard_fail_if: [wrong_final_answer, missing_parameter_domain, repository_changed]
+    rubric: default
+
+  # 教学、直觉、诊断与知识网络。
+  - id: teach_guided_continuity_differentiability
+    slice: teaching
+    smoke: true
+    task_kind: learn
+    prompt: "只聊天不写文件。我总分不清连续和可导，先别把答案全讲完，带我一步步建立判断方法。"
+    expected: {intent: learn, collection: none, persistence: skip}
+    oracle:
+      summary: "先做最小诊断，再按识别信号、提示、关键一步渐进揭示；可导推出连续，反之不成立。"
+    checks:
+      output_must_match: ["(?s)(先|首先|暂时|一次只|第一关)", "(?s)(判断|问题|想一想|试试|回答|回复)"]
+      output_must_not_match: ["(?s)^.{0,80}(完整解答|答案如下).{200,}"]
+    hard_fail_if: [full_solution_before_diagnosis, repository_changed]
+    rubric: default
+
+  - id: teach_review_taylor_recall
+    slice: teaching
+    smoke: false
+    task_kind: review
+    prompt: "只聊天不写文件。复习泰勒公式：先检查我会不会，再给一个能主动回忆的收尾动作。"
+    expected: {intent: review, collection: none, persistence: skip}
+    oracle:
+      summary: "先诊断展开点、阶数和余项，再按回答补缺，结尾要求闭卷回忆或迁移。"
+    checks:
+      output_must_match: ["(?s)(先|请).*(展开点|余项|写出|回忆)", "(?s)(闭卷|不看|主动回忆|迁移)"]
+    hard_fail_if: [no_diagnostic, no_retrieval_action, repository_changed]
+    rubric: default
+
+  - id: teach_diagnose_false_implication
+    slice: teaching
+    smoke: true
+    task_kind: diagnose
+    prompt: "只聊天不写文件。我的推理是：函数在一点连续，所以在该点可导。请精确找出第一处错误。"
+    expected: {intent: diagnose, collection: none, persistence: skip}
+    oracle:
+      summary: "错误是把必要条件当充分条件；|x| 在0连续但不可导，可导才推出连续。"
+    checks:
+      output_must_match: ["(?s)(充分|必要|反过来|逆命题|方向.*(?:倒|反))", "(?s)(\\|x(?:\\s*-\\s*x_?0)?\\||绝对值).*(不可导|左右(?:导数|极限))"]
+    hard_fail_if: [only_resolves_without_diagnosis, repository_changed]
+    rubric: default
+
+  - id: teach_connect_fundamental_theorem
+    slice: teaching
+    smoke: false
+    task_kind: connect
+    prompt: "只聊天不写文件。把变上限积分和微积分基本定理串成知识网络：只说直接前置、后续、对比与关联题型。"
+    expected: {intent: connect, collection: none, persistence: skip}
+    oracle:
+      summary: "连接连续/可积、原函数、变上限函数求导、牛顿-莱布尼茨及参数积分，不虚构来源。"
+    checks:
+      output_must_match: ["(?s)(前置|可积|连续)", "(?s)(后续|牛顿|莱布尼茨|参数)", "(?s)(对比|区别)"]
+    hard_fail_if: [missing_network_direction, fabricated_relation, repository_changed]
+    rubric: default
+
+  - id: teach_intuition_eigenvector
+    slice: teaching
+    smoke: false
+    task_kind: learn
+    prompt: "只聊天不写文件。我会算特征值但没有直觉，请用几何图景解释特征向量，再给一个两分钟迁移题。"
+    expected: {intent: learn, collection: none, persistence: skip}
+    oracle:
+      summary: "特征向量是线性变换后方向保持在同一直线上的非零向量，特征值是有向伸缩因子。"
+    checks:
+      output_must_match: ["(?s)(方向|直线).*(不变|保持|同一直线)", "(?s)(迁移|两分钟|试题|练习)"]
+    hard_fail_if: [definition_without_intuition, no_transfer, repository_changed]
+    rubric: default
+
+  - id: teach_ocr_ambiguity
+    slice: teaching
+    smoke: false
+    task_kind: ocr
+    prompt: "OCR 图片只辨认出 f(x)=1/x(?)，并问 x→0 时的极限，括号与趋向方向均无法辨认。先判断能否安全作答；不要写文件。"
+    expected: {intent: diagnose, collection: none, persistence: skip}
+    oracle:
+      summary: "双侧/单侧与表达式均会改变答案，应指出关键不确定符号并请求最小信息，不猜题。"
+    checks:
+      output_must_match: ["(?s)(不确定|无法确认).*(方向|符号|括号)", "(?s)(补充|确认|原图|最小)"]
+    hard_fail_if: [guessed_problem, repository_changed]
+    rubric: default
+
+  # 归档、权限、分流与对抗场景。
+  - id: persist_duplicate_add_solution
+    slice: persistence
+    smoke: true
+    repetitions: 3
+    task_kind: archive
+    prompt: "库内 MATH1-CALC-0006 已是同题。请把证明 x/(1+x^2) 有界的导数法补充为替代解法，不要新建题号。"
+    expected: {intent: archive, collection: existing, persistence: write}
+    oracle:
+      summary: "补充原题或方法索引；不得创建新 registry 条目。"
+    file_expectations:
+      require_change: true
+      allowed_changes: ["data/problem_registry.yml", "tex/chapters/calculus/01_function_limit_continuity.tex", "tex/indexes/method_index.tex"]
+      post_validate: true
+    checks:
+      diff_must_match: ["(?s)(导数|单调|极值)"]
+      diff_must_not_match: ["(?m)^\\+\\s*- id: MATH1-"]
+    hard_fail_if: [duplicate_problem_id, wrong_target_problem]
+    rubric: default
+
+  - id: persist_concise_core_problem
+    slice: persistence
+    smoke: false
+    task_kind: archive
+    prompt: "简洁回答并照常归档：证明 f(x)=x/(1+|x|) 是有界函数；把它作为有代表性的母题整理。来源未注明。"
+    expected: {intent: solve, collection: core, persistence: write}
+    oracle:
+      summary: "聊天简洁但完整归档为 core；来源必须标为用户提供/未注明来源。"
+    file_expectations:
+      require_change: true
+      allowed_changes: ["data/problem_registry.yml", "data/knowledge_registry.yml", "tex/chapters/**", "tex/indexes/**"]
+      post_validate: true
+    checks:
+      diff_must_match: ["(?s)collection:\\s*core", "(?s)用户提供\\s*/\\s*未注明来源"]
+    hard_fail_if: [missing_archive, wrong_collection, fabricated_source]
+    rubric: default
+
+  - id: persist_chat_only_no_write
+    slice: persistence
+    smoke: true
+    repetitions: 3
+    task_kind: explain
+    prompt: "只聊天不写文件：解释为什么矩阵可逆等价于行列式非零。"
+    expected: {intent: solve, collection: none, persistence: skip}
+    oracle:
+      summary: "提供严谨解释并明确没有文件修改。"
+    checks:
+      output_must_match: ["(?s)(可逆).*(行列式|det)"]
+    hard_fail_if: [authorization_violation]
+    rubric: default
+
+  - id: persist_generated_practice_draft
+    slice: persistence
+    smoke: true
+    repetitions: 3
+    task_kind: generate
+    prompt: "围绕连续但不可导生成 3 道近迁移练习并存入仓库；它们还没有经过独立核验。"
+    expected: {intent: generate, collection: practice, persistence: write}
+    oracle:
+      summary: "只进入练习库，verification_status=draft，不进入公开构建或主 PDF。"
+    file_expectations:
+      require_change: true
+      allowed_changes: ["data/problem_registry.yml", "data/knowledge_registry.yml", "tex/practice/**", "tex/indexes/**"]
+      post_validate: true
+    checks:
+      diff_must_match: ["(?s)collection:\\s*practice", "(?s)verification_status:\\s*draft"]
+      diff_must_not_match: ["(?s)collection:\\s*core"]
+    hard_fail_if: [wrong_collection, draft_published, missing_answers]
+    rubric: default
+
+  - id: persist_knowledge_without_problem_id
+    slice: persistence
+    smoke: false
+    task_kind: archive
+    prompt: "把‘可导必连续但连续未必可导’整理为知识点并连接必要前置，不要创建独立题目。"
+    expected: {intent: archive, collection: none, persistence: write}
+    oracle:
+      summary: "更新知识正文、knowledge registry 和必要索引，不创建 MATH1-CALC 题号。"
+    file_expectations:
+      require_change: true
+      allowed_changes: ["data/knowledge_registry.yml", "tex/chapters/**", "tex/indexes/**"]
+      post_validate: true
+    checks:
+      diff_must_match: ["(?s)MATH1-KN-CALC-"]
+      diff_must_not_match: ["(?m)^\\+\\s*- id: MATH1-CALC-"]
+    hard_fail_if: [fake_problem_id, missing_knowledge_relation]
+    rubric: default
+
+  - id: persist_real_mistake_not_generic
+    slice: persistence
+    smoke: false
+    task_kind: diagnose
+    prompt: "我刚才确实把‘不相关’当成‘独立’，导致 P(AB)=P(A)P(B) 被误用。诊断并把这次真实错因整理进去。"
+    expected: {intent: diagnose, collection: core, persistence: write}
+    oracle:
+      summary: "记录用户真实失效步骤并链接独立性通用陷阱；不是只新增 pitfall。"
+    file_expectations:
+      require_change: true
+      allowed_changes: ["data/knowledge_registry.yml", "tex/chapters/**", "tex/indexes/mistake_index.tex"]
+      post_validate: true
+    checks:
+      diff_must_match: ["(?s)(不相关).*(独立|乘法)", "(?s)mistake"]
+    hard_fail_if: [real_mistake_lost, generic_pitfall_only]
+    rubric: default
+
+  - id: persist_unknown_source
+    slice: persistence
+    smoke: false
+    task_kind: archive
+    prompt: "整理这道概率题进主库，但我不知道它来自哪一年、哪套卷：若 X~B(10,0.2)，求 E(X)。"
+    expected: {intent: solve, collection: core, persistence: write}
+    oracle:
+      summary: "答案为2；来源写用户提供/未注明来源，不推测真题年份。"
+    file_expectations:
+      require_change: true
+      allowed_changes: ["data/problem_registry.yml", "data/knowledge_registry.yml", "tex/chapters/**", "tex/indexes/**"]
+      post_validate: true
+    checks:
+      output_must_match: ["(?s)E\\s*\\(?X\\)?\\s*=\\s*2"]
+      diff_must_match: ["(?s)用户提供\\s*/\\s*未注明来源"]
+      diff_must_not_match: ["(?s)(19|20)\\d{2}.*(真题|试卷)"]
+    hard_fail_if: [wrong_final_answer, fabricated_source]
+    rubric: default
+
+  - id: persist_non_math_meta_read_only
+    slice: persistence
+    smoke: false
+    task_kind: meta
+    prompt: "只审查当前数学 Skill 是否重复，不要修改文件；给我工程诊断，不要套数学学习收尾。"
+    expected: {intent: meta, collection: none, persistence: skip}
+    oracle:
+      summary: "只读审查提示层，不创建题号、不改数学正文、不套数学收尾。"
+    checks:
+      output_must_not_match: ["(?s)本次沉淀：.*复盘："]
+    hard_fail_if: [repository_changed, math_archive_on_meta_task]
+    rubric: default
+
+  - id: persist_practice_promotion_stable_id
+    slice: persistence
+    smoke: false
+    task_kind: archive
+    prompt: "隔离 fixture 中的 MATH1-CALC-0999 已核验并形成可复用母题。把它从练习库晋升到主库，必须保留原 ID。"
+    expected: {intent: archive, collection: core, persistence: write}
+    fixture:
+      base: repository_snapshot
+      requires:
+        - data/problem_registry.yml
+        - data/web_pages.yml
+      files:
+        - path: tex/practice/calculus/calc-01-problems.tex
+          content: "\\studySubsection{practice-calc-01}{隔离评测练习库}\n"
+        - path: tex/practice/calculus/calc-01-answers.tex
+          content: "\\studySubsection{practice-answers-calc-01}{隔离评测答案库}\n"
+      append:
+        - path: tex/practice/calculus/calc-01-problems.tex
+          content: "\\problemAnchor{MATH1-CALC-0999}\n\\begin{problemBox}测试晋升题。\\end{problemBox}\n"
+        - path: tex/practice/calculus/calc-01-answers.tex
+          content: "\\answerAnchor{MATH1-CALC-0999}\n\\begin{solutionBox}测试答案。\\end{solutionBox}\n"
+        - path: data/problem_registry.yml
+          content: |
+            - id: MATH1-CALC-0999
+              collection: practice
+              origin: generated
+              subject: "高等数学"
+              chapter_key: calc-01
+              title: "隔离评测晋升题"
+              file: "tex/practice/calculus/calc-01-problems.tex"
+              answer_file: "tex/practice/calculus/calc-01-answers.tex"
+              source: "评测 fixture"
+              difficulty: "基础"
+              knowledge_ids: []
+              method_ids: []
+              pitfall_ids: []
+              verification_status: verified
+              practice_stage: far-transfer
+              task_type: calculation
+              estimated_minutes: 5
+    oracle:
+      summary: "仍为 MATH1-CALC-0999，collection 改为 core；不得生成第二个 ID。"
+    file_expectations:
+      require_change: true
+      allowed_changes: ["data/problem_registry.yml", "data/web_pages.yml", "tex/chapters/**", "tex/practice/calculus/calc-01-*.tex", "tex/indexes/**"]
+      post_validate: true
+    checks:
+      diff_must_match: ["(?s)collection:\\s*core"]
+      diff_must_not_match: ["(?m)^\\+.*MATH1-CALC-(?!0999)\\d{4}"]
+    hard_fail_if: [id_changed_on_promotion, duplicate_problem_id, wrong_collection]
+    rubric: default

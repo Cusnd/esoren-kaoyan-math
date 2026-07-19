@@ -20,15 +20,20 @@ function stringArray(value) {
 function documentsFrom(payload) {
   const documents = Array.isArray(payload)
     ? payload
-    : payload?.documents ?? payload?.items ?? payload?.pages ?? [];
+    : payload?.items ?? payload?.documents ?? payload?.pages ?? [];
   return documents.map((item) => ({
     ...item,
+    id: String(item.id ?? ""),
+    itemType: String(item.itemType ?? item.item_type ?? "page"),
     slug: String(item.slug ?? ""),
     url: String(item.url ?? sitePath(item.slug)),
     title: String(item.title ?? "未命名页面"),
     subject: String(item.subject ?? ""),
     lecture: String(item.lecture ?? ""),
-    problemIds: stringArray(item.problemIds ?? item.problem_ids ?? item.problemId),
+    problemIds: stringArray(item.problemIds ?? item.problem_ids ?? item.problemId ?? (item.itemType === "problem" ? item.id : [])),
+    knowledgeIds: stringArray(item.knowledgeIds ?? item.knowledge_ids ?? (item.itemType === "knowledge" ? item.id : [])),
+    collection: String(item.collection ?? "core"),
+    chapterKey: String(item.chapterKey ?? item.chapter_key ?? ""),
     tags: stringArray(item.tags),
     difficulty: String(item.difficulty ?? ""),
     headings: stringArray(item.headings),
@@ -59,19 +64,22 @@ function scoreDocument(document, rawQuery) {
   const terms = query.split(" ").filter(Boolean);
   const title = normalize(document.title);
   const problemIds = document.problemIds.map(normalize);
+  const knowledgeIds = document.knowledgeIds.map(normalize);
   const tags = normalize(document.tags.join(" "));
   const meta = normalize(
-    [document.subject, document.lecture, document.difficulty].join(" "),
+    [document.subject, document.lecture, document.difficulty, document.collection, document.chapterKey].join(" "),
   );
   const headings = normalize(document.headings.join(" "));
   const body = normalize(document.body);
   const tex = normalize(document.tex);
-  const searchable = [title, problemIds.join(" "), tags, meta, headings, body, tex].join(" ");
+  const searchable = [title, document.id, problemIds.join(" "), knowledgeIds.join(" "), tags, meta, headings, body, tex].join(" ");
   if (!terms.every((term) => searchable.includes(term))) return 0;
 
   let score = 1;
   if (problemIds.some((id) => id === query)) score += 10000;
   else if (problemIds.some((id) => id.startsWith(query))) score += 7600;
+  if (knowledgeIds.some((id) => id === query)) score += 9800;
+  else if (knowledgeIds.some((id) => id.startsWith(query))) score += 7200;
   if (title === query) score += 7000;
   else if (title.startsWith(query)) score += 5200;
   else if (title.includes(query)) score += 3600;
@@ -129,9 +137,11 @@ function resultElement(item, query) {
   const meta = window.document.createElement("span");
   meta.className = "reader-search-result__meta";
   meta.textContent = [
+    item.collection === "practice" ? "练习库" : item.itemType === "knowledge" ? "知识节点" : "主库",
     item.subject,
     item.lecture,
-    ...item.problemIds.slice(0, 2),
+    ...item.problemIds.slice(0, 1),
+    ...item.knowledgeIds.slice(0, 1),
   ].filter(Boolean).join(" · ");
 
   const excerpt = window.document.createElement("span");

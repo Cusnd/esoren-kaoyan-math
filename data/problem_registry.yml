@@ -1,168 +1,207 @@
-# 题目登记表。示例见 AGENTS.md 的 problem_registry.yml 章节。
+# 题目唯一登记表。主库与练习库共享题号命名空间；草稿不得进入公开构建。
 - id: MATH1-CALC-0001
-  title: "由 f(u+1/u) 反求 f(x)"
+  collection: core
+  origin: user-provided
   subject: "高等数学"
-  chapter: "第 1 讲 函数极限与连续"
+  chapter_key: calc-01
+  title: "由 f(u+1/u) 反求 f(x)"
   file: "tex/chapters/calculus/01_function_limit_continuity.tex"
   source: "用户图片 / 教材例 1.1"
   difficulty: "基础"
-  tags:
-    - 函数表示
-    - 整体换元
-    - 值域
-  mistakes:
-    - "混淆题设参数与最终自变量"
-    - "忽略题面符号与参考答案的一致性"
-  status: "已整理"
+  knowledge_ids:
+    - MATH1-KN-CALC-0001
+    - MATH1-KN-CALC-0003
+  method_ids:
+    - MATH1-KN-CALC-0002
+  pitfall_ids:
+    - MATH1-KN-CALC-0030
+    - MATH1-KN-CALC-0031
+  verification_status: verified
+
 - id: MATH1-CALC-0002
-  title: "由 f(x) 与 f(1/x) 的关系式求 f(x)"
+  collection: core
+  origin: user-provided
   subject: "高等数学"
-  chapter: "第 1 讲 函数极限与连续"
+  chapter_key: calc-01
+  title: "由 f(x) 与 f(1/x) 的关系式求 f(x)"
   file: "tex/chapters/calculus/01_function_limit_continuity.tex"
   source: "用户图片 / 教材例 1.2"
   difficulty: "基础"
-  tags:
-    - 函数关系式
-    - 倒数代换
-    - 方程组消元
-    - 定义域
-  mistakes:
-    - "忽略 x>0 对倒数代换和根式化简的作用"
-    - "根式化简时漏掉绝对值判断"
-    - "消元倍数选择错误"
-  status: "已整理"
+  knowledge_ids:
+    - MATH1-KN-CALC-0004
+    - MATH1-KN-CALC-0007
+  method_ids:
+    - MATH1-KN-CALC-0005
+    - MATH1-KN-CALC-0006
+  pitfall_ids:
+    - MATH1-KN-CALC-0032
+    - MATH1-KN-CALC-0033
+    - MATH1-KN-CALC-0034
+  verification_status: verified
+
 - id: MATH1-CALC-0003
-  title: "求 ln(x+sqrt(x^2+1)) 的反函数"
+  collection: core
+  origin: user-provided
   subject: "高等数学"
-  chapter: "第 1 讲 函数极限与连续"
+  chapter_key: calc-01
+  title: "求 ln(x+sqrt(x^2+1)) 的反函数"
   file: "tex/chapters/calculus/01_function_limit_continuity.tex"
   source: "用户图片 / 教材例 1.3"
   difficulty: "基础"
-  tags:
-    - 反函数
-    - 对数性质
-    - 有理化
-    - 双曲函数
-  mistakes:
-    - "把反函数误认为倒数"
-    - "直接平方硬解导致计算膨胀"
-    - "忘记写反函数定义域"
-    - "忽略对数真数恒正性"
-  status: "已整理"
+  knowledge_ids:
+    - MATH1-KN-CALC-0008
+    - MATH1-KN-CALC-0009
+    - MATH1-KN-CALC-0011
+  method_ids:
+    - MATH1-KN-CALC-0010
+  pitfall_ids:
+    - MATH1-KN-CALC-0035
+    - MATH1-KN-CALC-0036
+    - MATH1-KN-CALC-0037
+    - MATH1-KN-CALC-0038
+  verification_status: verified
+
 - id: MATH1-CALC-0004
-  title: "由 f(phi(x)) 反求 phi(x) 及定义域和值域"
+  collection: core
+  origin: user-provided
   subject: "高等数学"
-  chapter: "第 1 讲 函数极限与连续"
+  chapter_key: calc-01
+  title: "由 f(phi(x)) 反求 phi(x) 及定义域和值域"
   file: "tex/chapters/calculus/01_function_limit_continuity.tex"
   source: "用户图片 / 教材例 1.4"
   difficulty: "基础"
-  tags:
-    - 复合函数
-    - 整体视角
-    - 定义域
-    - 值域
-    - 平方根分支
-  mistakes:
-    - "从平方关系反求中间函数时漏掉正负分支"
-    - "只求表达式不求定义域和值域"
-    - "值域判断时只看端点"
-  status: "已整理"
+  knowledge_ids:
+    - MATH1-KN-CALC-0012
+    - MATH1-KN-CALC-0007
+    - MATH1-KN-CALC-0003
+  method_ids:
+    - MATH1-KN-CALC-0002
+    - MATH1-KN-CALC-0013
+  pitfall_ids:
+    - MATH1-KN-CALC-0039
+    - MATH1-KN-CALC-0040
+    - MATH1-KN-CALC-0041
+  verification_status: verified
+
 - id: MATH1-CALC-0005
-  title: "分段函数复合求 g(f(x))"
+  collection: core
+  origin: user-provided
   subject: "高等数学"
-  chapter: "第 1 讲 函数极限与连续"
+  chapter_key: calc-01
+  title: "分段函数复合求 g(f(x))"
   file: "tex/chapters/calculus/01_function_limit_continuity.tex"
   source: "用户图片 / 教材例 1.5"
   difficulty: "基础"
-  tags:
-    - 复合函数
-    - 分段函数
-    - 内层函数取值
-    - 数形结合
-  mistakes:
-    - "把外层函数的分段条件误判为原自变量的条件"
-    - "边界点归属错误"
-    - "混淆内层分段与外层分段"
-  status: "已整理"
+  knowledge_ids:
+    - MATH1-KN-CALC-0012
+    - MATH1-KN-CALC-0014
+  method_ids:
+    - MATH1-KN-CALC-0015
+    - MATH1-KN-CALC-0016
+  pitfall_ids:
+    - MATH1-KN-CALC-0042
+    - MATH1-KN-CALC-0043
+    - MATH1-KN-CALC-0044
+  verification_status: verified
+
 - id: MATH1-CALC-0006
-  title: "证明 x/(1+x^2) 在全体实数上有界"
+  collection: core
+  origin: user-provided
   subject: "高等数学"
-  chapter: "第 1 讲 函数极限与连续"
+  chapter_key: calc-01
+  title: "证明 x/(1+x^2) 在全体实数上有界"
   file: "tex/chapters/calculus/01_function_limit_continuity.tex"
   source: "用户图片 / 教材例 1.6"
   difficulty: "基础"
-  tags:
-    - 有界性
-    - 绝对值
-    - 基本不等式
-    - 放缩
-  mistakes:
-    - "证明有界时忘记取绝对值"
-    - "除以 |x| 时漏掉 x=0"
-    - "误以为必须求最小上界"
-  status: "已整理"
+  knowledge_ids:
+    - MATH1-KN-CALC-0017
+    - MATH1-KN-CALC-0018
+    - MATH1-KN-CALC-0019
+  method_ids:
+    - MATH1-KN-CALC-0020
+  pitfall_ids:
+    - MATH1-KN-CALC-0033
+    - MATH1-KN-CALC-0046
+    - MATH1-KN-CALC-0047
+  verification_status: verified
+
 - id: MATH1-CALC-0007
-  title: "由严格递增条件判断图像变换后的单调性"
+  collection: core
+  origin: user-provided
   subject: "高等数学"
-  chapter: "第 1 讲 函数极限与连续"
+  chapter_key: calc-01
+  title: "由严格递增条件判断图像变换后的单调性"
   file: "tex/chapters/calculus/01_function_limit_continuity.tex"
   source: "用户图片 / 教材例 1.7"
   difficulty: "中等"
-  tags:
-    - 单调性
-    - 图像变换
-    - 定义法
-  mistakes:
-    - "把 |f(x)| 误认为保持单调"
-    - "混淆 f(-x) 与 -f(-x) 的单调性"
-    - "只看图像不写定义法证明"
-  status: "已整理"
+  knowledge_ids:
+    - MATH1-KN-CALC-0021
+  method_ids:
+    - MATH1-KN-CALC-0022
+    - MATH1-KN-CALC-0023
+  pitfall_ids:
+    - MATH1-KN-CALC-0048
+    - MATH1-KN-CALC-0049
+    - MATH1-KN-CALC-0050
+  verification_status: verified
+
 - id: MATH1-CALC-0008
-  title: "由 f(x+y)=f(x)+f(y) 证明奇函数"
+  collection: core
+  origin: user-provided
   subject: "高等数学"
-  chapter: "第 1 讲 函数极限与连续"
+  chapter_key: calc-01
+  title: "由 f(x+y)=f(x)+f(y) 证明奇函数"
   file: "tex/chapters/calculus/01_function_limit_continuity.tex"
   source: "用户图片 / 教材例 1.8"
   difficulty: "基础"
-  tags:
-    - 奇偶性
-    - 函数方程
-    - 赋值法
-  mistakes:
-    - "忘记先求 f(0)"
-    - "把奇函数条件误写成偶函数条件"
-    - "忽略任意 x,y 条件允许特殊赋值"
-  status: "已整理"
+  knowledge_ids:
+    - MATH1-KN-CALC-0024
+    - MATH1-KN-CALC-0004
+  method_ids:
+    - MATH1-KN-CALC-0025
+  pitfall_ids:
+    - MATH1-KN-CALC-0051
+    - MATH1-KN-CALC-0052
+    - MATH1-KN-CALC-0053
+  verification_status: verified
+
 - id: MATH1-CALC-0009
-  title: "由 f(x)=f(x-pi)+sin x 证明 2pi 为周期"
+  collection: core
+  origin: user-provided
   subject: "高等数学"
-  chapter: "第 1 讲 函数极限与连续"
+  chapter_key: calc-01
+  title: "由 f(x)=f(x-pi)+sin x 证明 2pi 为周期"
   file: "tex/chapters/calculus/01_function_limit_continuity.tex"
   source: "用户图片 / 教材例 1.9"
   difficulty: "基础"
-  tags:
-    - 周期性
-    - 递推式
-    - 诱导公式
-  mistakes:
-    - "只套一次等式未回到 f(x)"
-    - "诱导公式符号错误"
-    - "误以为要证明最小正周期"
-  status: "已整理"
+  knowledge_ids:
+    - MATH1-KN-CALC-0026
+    - MATH1-KN-CALC-0028
+  method_ids:
+    - MATH1-KN-CALC-0027
+  pitfall_ids:
+    - MATH1-KN-CALC-0054
+    - MATH1-KN-CALC-0055
+    - MATH1-KN-CALC-0056
+  verification_status: verified
+
 - id: MATH1-CALC-0010
-  title: "有界性放缩练习组"
+  collection: core
+  origin: generated
   subject: "高等数学"
-  chapter: "第 1 讲 函数极限与连续"
+  chapter_key: calc-01
+  title: "有界性放缩练习组"
   file: "tex/chapters/calculus/01_function_limit_continuity.tex"
   source: "用户要求生成 / 放缩练习"
   difficulty: "基础到中等"
-  tags:
-    - 有界性
-    - 放缩
-    - 基本不等式
-    - 有理化
-  mistakes:
-    - "分式放缩时忘记确认正负号"
-    - "含 |x| 的约分漏掉 x=0"
-    - "根式差未优先有理化"
-  status: "已整理"
+  knowledge_ids:
+    - MATH1-KN-CALC-0017
+    - MATH1-KN-CALC-0019
+  method_ids:
+    - MATH1-KN-CALC-0020
+    - MATH1-KN-CALC-0010
+  pitfall_ids:
+    - MATH1-KN-CALC-0057
+    - MATH1-KN-CALC-0046
+    - MATH1-KN-CALC-0058
+  verification_status: verified

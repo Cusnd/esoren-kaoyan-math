@@ -6,7 +6,9 @@ import { fileURLToPath } from 'node:url';
 
 import { load } from 'cheerio';
 import YAML from 'yaml';
-import { SITE_BASE_PATH, sitePath } from '../web/reader/site.js';
+import { SITE_BASE_PATH, SITE_ROOT, sitePath } from '../web/reader/site.js';
+import { collapsePracticeSolutions, problemBoxForId, searchBodyForProblem } from './web_content_helpers.mjs';
+import { buildRelationAdjacency, computeReaderBuildId } from './web_index_helpers.mjs';
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(SCRIPT_DIR, '..');
@@ -14,7 +16,9 @@ const SOURCE_DIR = path.resolve(process.argv[2] ?? path.join(ROOT, 'build', 'lwa
 const PUBLISH_DIR = path.resolve(process.argv[3] ?? path.join(ROOT, 'build', 'site'));
 const SITE_DIR = path.join(PUBLISH_DIR, ...SITE_BASE_PATH.slice(1).split('/'));
 const PDF_PATH = path.resolve(process.argv[4] ?? path.join(ROOT, 'build', 'pdf', 'main.pdf'));
-const SCHEMA_VERSION = 1;
+const PRACTICE_PDF_PATH = path.resolve(process.argv[5] ?? path.join(ROOT, 'build', 'pdf', 'practice.pdf'));
+const ANSWERS_PDF_PATH = path.resolve(process.argv[6] ?? path.join(ROOT, 'build', 'pdf', 'practice-answers.pdf'));
+const SCHEMA_VERSION = 2;
 const SITE_ORIGIN = String(process.env.SITE_ORIGIN ?? 'https://pee.esoren.com').replace(/\/$/, '');
 const SUBJECT_LABELS = {
   calculus: '高等数学',
@@ -62,8 +66,24 @@ function normalizeSubject(value) {
   return SUBJECT_LABELS[value] ?? value ?? '复习索引';
 }
 
+function inferChapterKey(slug) {
+  const value = String(slug ?? '');
+  const calc = value.match(/^calc-(\d{2})/);
+  if (calc) return `calc-${calc[1]}`;
+  const appendix = value.match(/^calc-appendix-(\d{2})/);
+  if (appendix) return `calc-app-${appendix[1]}`;
+  const linear = value.match(/^linear-(\d{2})/);
+  if (linear) return `la-${linear[1]}`;
+  const probability = value.match(/^prob-(\d{2})/);
+  if (probability) return `prob-${probability[1]}`;
+  const practice = value.match(/^practice-(calc|la|prob)-(\d{2})/);
+  if (practice) return `${practice[1]}-${practice[2]}`;
+  return '';
+}
+
 function normalizePage(raw, index) {
-  const legacyNote = Number(raw.legacy_note ?? raw.legacyNote ?? raw.note ?? index + 1);
+  const legacyValue = raw.legacy_note ?? raw.legacyNote ?? raw.note;
+  const legacyNote = legacyValue == null ? null : Number(legacyValue);
   return {
     slug: String(raw.slug ?? '').trim(),
     title: String(raw.title ?? '').trim(),
@@ -72,6 +92,8 @@ function normalizePage(raw, index) {
     subjectKey: String(raw.subject_key ?? raw.subject ?? 'indexes'),
     lecture: raw.lecture ?? '',
     legacyNote,
+    collection: String(raw.collection ?? 'core'),
+    chapterKey: String(raw.chapter_key ?? raw.chapterKey ?? inferChapterKey(raw.slug)),
     source: raw.source ?? raw.file ?? raw.tex ?? null,
   };
 }
@@ -83,17 +105,17 @@ async function loadPages() {
   const rows = Array.isArray(parsed) ? parsed : parsed?.pages;
   if (!Array.isArray(rows)) fail('data/web_pages.yml must contain a pages array.');
   const pages = rows.map(normalizePage);
-  if (pages.length !== 52) fail(`Expected 52 reader pages, found ${pages.length}.`);
   const slugs = new Set();
   const notes = new Set();
   for (const page of pages) {
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(page.slug)) fail(`Invalid ASCII slug: ${page.slug}`);
     if (!page.title) fail(`Missing title for ${page.slug}.`);
     if (slugs.has(page.slug)) fail(`Duplicate slug: ${page.slug}`);
-    if (!Number.isInteger(page.legacyNote) || page.legacyNote < 1) fail(`Invalid legacy_note for ${page.slug}.`);
-    if (notes.has(page.legacyNote)) fail(`Duplicate legacy_note: ${page.legacyNote}`);
+    if (!new Set(['core', 'practice']).has(page.collection)) fail(`Invalid collection for ${page.slug}: ${page.collection}`);
+    if (page.legacyNote != null && (!Number.isInteger(page.legacyNote) || page.legacyNote < 1)) fail(`Invalid legacy_note for ${page.slug}.`);
+    if (page.legacyNote != null && notes.has(page.legacyNote)) fail(`Duplicate legacy_note: ${page.legacyNote}`);
     slugs.add(page.slug);
-    notes.add(page.legacyNote);
+    if (page.legacyNote != null) notes.add(page.legacyNote);
   }
   return { pages, manifestSource: source };
 }
@@ -166,8 +188,8 @@ function tocMarkup(pages, currentSlug) {
   }).join('');
 }
 
-function offlinePanelMarkup() {
-  return `<section class="reader-offline-panel" aria-label="离线阅读">${icon('download')}<div><strong>支持离线阅读</strong><p>完整缓存后，53 页内容无需联网也可打开。</p><button type="button" data-reader-action="open-preferences">管理离线内容</button></div></section>`;
+function offlinePanelMarkup(pageCount) {
+  return `<section class="reader-offline-panel" aria-label="离线阅读">${icon('download')}<div><strong>支持离线阅读</strong><p>完整缓存后，${pageCount + 1} 页内容无需联网也可打开。</p><button type="button" data-reader-action="open-preferences">管理离线内容</button></div></section>`;
 }
 
 function dialogsMarkup() {
@@ -182,8 +204,19 @@ function dialogsMarkup() {
       <fieldset><legend>主题</legend><button type="button" data-reader-preference="theme" value="light">浅色</button><button type="button" data-reader-preference="theme" value="dark">深色</button><button type="button" data-reader-preference="theme" value="system">跟随系统</button></fieldset>
       <fieldset><legend>字号</legend><button type="button" data-reader-preference="fontScale" value="small">标准</button><button type="button" data-reader-preference="fontScale" value="medium">较大</button><button type="button" data-reader-preference="fontScale" value="large">最大</button></fieldset>
       <fieldset><legend>正文宽度</legend><button type="button" data-reader-preference="contentWidth" value="narrow">窄</button><button type="button" data-reader-preference="contentWidth" value="standard">标准</button><button type="button" data-reader-preference="contentWidth" value="wide">宽</button></fieldset>
-      <a class="reader-download-link" href="${sitePath('downloads/kaoyan-math1-notes.pdf')}" download>${icon('download')} 下载完整 PDF</a>
+      <nav class="reader-downloads" aria-label="PDF 下载"><a class="reader-download-link" href="${sitePath('downloads/kaoyan-math1-notes.pdf')}" download>${icon('download')} 主笔记</a><a class="reader-download-link" href="${sitePath('downloads/kaoyan-math1-practice.pdf')}" download>${icon('download')} 练习册</a><a class="reader-download-link" href="${sitePath('downloads/kaoyan-math1-practice-answers.pdf')}" download>${icon('download')} 答案册</a></nav>
       <button type="button" data-reader-action="install" hidden>安装到设备</button><p data-reader-install-help hidden>在 iPhone 或 iPad 上，请使用“分享 → 添加到主屏幕”。</p>
+    </div>
+  </dialog>
+  <dialog id="reader-review" aria-labelledby="reader-review-title">
+    <div class="reader-dialog__header"><h2 id="reader-review-title">今日复习</h2><button type="button" data-reader-action="close-review" aria-label="关闭今日复习">${icon('close')}</button></div>
+    <div class="reader-dialog__body reader-review-dialog__body">
+      <p>复习只安排知识节点，不评分；阅读进度不会自动推进提醒。</p>
+      <section aria-labelledby="reader-review-due-title"><h3 id="reader-review-due-title">今天到期</h3><div data-reader-review-due></div></section>
+      <div class="reader-review-prompts"><button type="button" data-reader-review-copy="review">复制复习提示词</button><button type="button" data-reader-review-copy="practice">复制出题提示词</button></div>
+      <details><summary>全部知识节点</summary><div class="reader-review-all" data-reader-review-all></div></details>
+      <section class="reader-review-transfer" aria-labelledby="reader-review-transfer-title"><h3 id="reader-review-transfer-title">备份与迁移</h3><p>导入前会完整校验并预览；确认前不会修改本地状态。</p><div><button type="button" data-reader-action="export-review-state">导出学习状态</button><label class="reader-file-button">选择导入文件<input type="file" accept="application/json,.json" data-reader-review-import></label><button type="button" data-reader-action="apply-review-import" hidden>确认应用导入</button></div><pre data-reader-review-import-preview aria-live="polite"></pre></section>
+      <p data-reader-review-status aria-live="polite"></p>
     </div>
   </dialog>
   <section class="reader-update" data-reader-update hidden aria-live="polite"><p>新版本已准备好。</p><button type="button" data-reader-action="reload-update">刷新使用</button><button type="button" data-reader-action="dismiss-update">稍后</button></section>`;
@@ -197,6 +230,7 @@ function topbarMarkup() {
     <nav class="reader-toolbar" aria-label="阅读工具">
       <button class="reader-preference-font" type="button" data-reader-action="open-preferences" aria-label="调整字号与正文宽度"><span class="reader-font-icon" aria-hidden="true">A</span><span class="reader-action__label">字号</span></button>
       <button class="reader-preference-theme" type="button" data-reader-action="open-preferences" aria-label="调整阅读主题">${icon('theme')}<span class="reader-action__label">主题</span></button>
+      <button type="button" data-reader-action="open-review" aria-label="打开今日复习">复习<span class="reader-review-count" data-reader-review-count hidden></span></button>
       <button type="button" data-reader-action="print" aria-label="打印">${icon('print')}<span class="reader-action__label">打印</span></button>
       <a href="${sitePath('downloads/kaoyan-math1-notes.pdf')}" target="_blank" rel="noopener" aria-label="在新窗口打开 PDF"><span class="reader-action__label">PDF</span></a>
     </nav>
@@ -215,12 +249,17 @@ function pageNavMarkup(previous, next) {
 
 function homeMarkup(pages) {
   const groups = groupPages(pages);
+  const coreGroups = groups.filter((group) => group.subject !== '复习索引' && group.pages.some((page) => page.collection === 'core'));
+  const practicePages = pages.filter((page) => page.collection === 'practice');
   return `<div class="reader-home">
     <header class="reader-page-header"><h1>考研数学一满分学习笔记</h1><p>按教材讲次阅读，公式、题解与复盘内容均来自同一套 LaTeX 文档。</p></header>
     <button class="reader-home-search" type="button" data-reader-action="open-search">${icon('search')} 搜索题目与知识点</button>
     <a class="reader-continue" href="${sitePath(pages[0].slug)}" data-reader-continue hidden>继续阅读：<span data-reader-continue-title>${escapeHtml(pages[0].title)}</span></a>
+    <nav class="reader-home-entrances" aria-label="学习入口"><a href="#core-library">主库</a><a href="#practice-library">练习库</a><button type="button" data-reader-action="open-search">统一搜索</button><button type="button" data-reader-action="open-review">今日复习 <span data-reader-review-count hidden></span></button></nav>
+    <section class="reader-review-home" id="today-review" data-reader-review-home><h2>今日复习</h2><p data-reader-review-home-summary>正在读取本地复习提醒…</p><button type="button" data-reader-action="open-review">打开今日复习</button></section>
     <nav class="reader-index-links" aria-label="复习索引">${pages.filter((page) => page.subject === '复习索引').map((page) => `<a href="${sitePath(page.slug)}">${escapeHtml(page.title)}</a>`).join('')}</nav>
-    ${groups.filter((group) => group.subject !== '复习索引').map((group) => `<section class="reader-home__subject"><h2>${escapeHtml(group.subject)}</h2><div class="reader-home__lectures">${groupByLecture(group.pages).map((lecture) => `<section class="reader-home__lecture"><h3>${escapeHtml(lecture.lecture)}</h3><ol>${lecture.pages.map((page) => `<li><a href="${sitePath(page.slug)}">${escapeHtml(page.title)}</a></li>`).join('')}</ol></section>`).join('')}</div></section>`).join('')}
+    <section id="core-library" class="reader-library"><h2>主库</h2>${coreGroups.map((group) => `<section class="reader-home__subject"><h3>${escapeHtml(group.subject)}</h3><div class="reader-home__lectures">${groupByLecture(group.pages.filter((page) => page.collection === 'core')).map((lecture) => `<section class="reader-home__lecture"><h4>${escapeHtml(lecture.lecture)}</h4><ol>${lecture.pages.map((page) => `<li><a href="${sitePath(page.slug)}">${escapeHtml(page.title)}</a></li>`).join('')}</ol></section>`).join('')}</div></section>`).join('')}</section>
+    <section id="practice-library" class="reader-library"><h2>练习库</h2><p>普通变式、迁移训练与交错练习；答案在页面内默认折叠。</p><ol>${practicePages.map((page) => `<li><a href="${sitePath(page.slug)}">${escapeHtml(page.title)}</a></li>`).join('') || '<li>暂无已验证练习。</li>'}</ol></section>
   </div>`;
 }
 
@@ -264,6 +303,9 @@ function prepareContent($, main, page) {
       if (index === 0) anchors.push({ id, label, type });
     });
   }
+  if (page.collection === 'practice') {
+    collapsePracticeSolutions($, main);
+  }
   return anchors;
 }
 
@@ -284,7 +326,7 @@ function contextJson(context) {
   return JSON.stringify(context).replaceAll('<', '\\u003c');
 }
 
-function documentHtml({ bodyContent, featuredMeta = '', page, pages, buildId, previous, next, anchors, outline, isHome = false }) {
+function documentHtml({ bodyContent, featuredMeta = '', page, pages, buildId, previous, next, anchors, outline, knowledgeIds = [], isHome = false }) {
   const title = isHome ? '考研数学一满分学习笔记' : `${page.title}｜考研数学一`;
   const header = isHome ? '' : `<nav class="reader-breadcrumbs" aria-label="面包屑"><a href="${sitePath()}">首页</a><span aria-hidden="true">/</span><span>${escapeHtml(page.subject)}</span><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(page.title)}</span></nav><header class="reader-page-header"><p class="reader-page-meta">${escapeHtml(page.subject)}${page.lecture !== '' ? ` · ${escapeHtml(page.lecture)}` : ''}</p><h1>${escapeHtml(page.title)}</h1>${progressMarkup('desktop')}</header>${featuredMeta ? `<div class="reader-featured-meta">${featuredMeta}</div>` : ''}${anchors.length ? `<nav class="reader-anchor-nav" aria-label="内容类型">${anchors.map((item, index) => `<a href="#${item.id}" data-reader-anchor${index === 0 ? ' aria-current="location"' : ''}>${item.label}</a>`).join('')}</nav>` : ''}`;
   const context = isHome ? { schemaVersion: SCHEMA_VERSION, buildId, basePath: SITE_BASE_PATH, slug: 'index', title, isHome: true, canonicalUrl: sitePath() } : {
@@ -296,6 +338,9 @@ function documentHtml({ bodyContent, featuredMeta = '', page, pages, buildId, pr
     subject: page.subject,
     lecture: page.lecture,
     legacyNote: page.legacyNote,
+    collection: page.collection,
+    chapterKey: page.chapterKey,
+    knowledgeIds,
     canonicalUrl: sitePath(page.slug),
     previous: previous ? { slug: previous.slug, title: previous.title, url: sitePath(previous.slug) } : null,
     next: next ? { slug: next.slug, title: next.title, url: sitePath(next.slug) } : null,
@@ -304,7 +349,7 @@ function documentHtml({ bodyContent, featuredMeta = '', page, pages, buildId, pr
   };
   const canonicalPath = isHome ? sitePath() : sitePath(page.slug);
   const assetRoot = sitePath(`assets/${buildId}`);
-  const html = `<!DOCTYPE html><html lang="zh-CN" data-reader><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#ffffff"><meta name="description" content="考研数学一满分学习笔记与题解库"><link rel="canonical" href="${SITE_ORIGIN}${canonicalPath}"><link rel="manifest" href="${sitePath('manifest.webmanifest')}"><link rel="apple-touch-icon" sizes="180x180" href="${sitePath('assets/icons/v1/icon-180.png')}"><title>${escapeHtml(title)}</title><script src="${assetRoot}/reader/preflight.js"></script><link rel="stylesheet" href="${assetRoot}/reader/reader.css"><script defer src="${assetRoot}/vendor/mathjax-3.2.2/lwarp-config.js"></script><script defer id="MathJax-script" src="${assetRoot}/vendor/mathjax-3.2.2/es5/tex-svg.js"></script><script type="module" src="${assetRoot}/reader/app.js"></script></head><body><a class="reader-skip-link" href="#reader-main">跳到正文</a>${topbarMarkup()}${isHome ? '' : progressMarkup('mobile')}<div class="reader-shell"><aside id="reader-toc" data-reader-drawer="toc" aria-label="讲次目录"><div class="reader-toc__header"><strong>全部章节</strong><button class="reader-mobile-actions" type="button" data-reader-action="close-nav" aria-label="关闭目录">${icon('close')}</button></div><button class="reader-toc__search reader-search-trigger" type="button" data-reader-action="open-search">${icon('search')}<span>搜索题目、知识点或公式</span></button>${tocMarkup(pages, isHome ? null : page.slug)}${offlinePanelMarkup()}</aside><div class="reader-content"><main id="reader-main" tabindex="-1">${header}${bodyContent}${isHome ? '' : pageNavMarkup(previous, next)}</main></div><aside id="reader-outline">${outline}</aside></div><button class="reader-backdrop" type="button" data-reader-backdrop data-reader-action="close-nav" aria-label="关闭目录" hidden></button><p class="reader-pwa-status" data-reader-pwa-status aria-live="polite"></p>${dialogsMarkup()}<script type="application/json" id="reader-page-context">${contextJson(context)}</script></body></html>`;
+  const html = `<!DOCTYPE html><html lang="zh-CN" data-reader${isHome ? '' : ` data-collection="${escapeHtml(page.collection)}"`}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#ffffff"><meta name="description" content="考研数学一满分学习笔记与题解库"><link rel="canonical" href="${SITE_ORIGIN}${canonicalPath}"><link rel="manifest" href="${sitePath('manifest.webmanifest')}"><link rel="apple-touch-icon" sizes="180x180" href="${sitePath('assets/icons/v1/icon-180.png')}"><title>${escapeHtml(title)}</title><script src="${assetRoot}/reader/preflight.js"></script><link rel="stylesheet" href="${assetRoot}/reader/reader.css"><script defer src="${assetRoot}/vendor/mathjax-3.2.2/lwarp-config.js"></script><script defer id="MathJax-script" src="${assetRoot}/vendor/mathjax-3.2.2/es5/tex-svg.js"></script><script type="module" src="${assetRoot}/reader/app.js"></script></head><body><a class="reader-skip-link" href="#reader-main">跳到正文</a>${topbarMarkup()}${isHome ? '' : progressMarkup('mobile')}<div class="reader-shell"><aside id="reader-toc" data-reader-drawer="toc" aria-label="讲次目录"><div class="reader-toc__header"><strong>全部章节</strong><button class="reader-mobile-actions" type="button" data-reader-action="close-nav" aria-label="关闭目录">${icon('close')}</button></div><button class="reader-toc__search reader-search-trigger" type="button" data-reader-action="open-search">${icon('search')}<span>搜索题目、知识点或公式</span></button>${tocMarkup(pages, isHome ? null : page.slug)}${offlinePanelMarkup(pages.length)}</aside><div class="reader-content"><main id="reader-main" tabindex="-1">${header}${bodyContent}${isHome ? '' : pageNavMarkup(previous, next)}</main></div><aside id="reader-outline">${outline}</aside></div><button class="reader-backdrop" type="button" data-reader-backdrop data-reader-action="close-nav" aria-label="关闭目录" hidden></button><p class="reader-pwa-status" data-reader-pwa-status aria-live="polite"></p>${dialogsMarkup()}<script type="application/json" id="reader-page-context">${contextJson(context)}</script></body></html>`;
   return { html, context };
 }
 
@@ -364,11 +409,11 @@ async function writeDeploymentFiles(pages, buildId) {
   await mkdir(path.join(SITE_DIR, 'assets', 'icons', 'v1'), { recursive: true });
   await cp(path.join(pwaRoot, 'icons'), path.join(SITE_DIR, 'assets', 'icons', 'v1'), { recursive: true, force: true });
 
-  const redirectLines = pages.flatMap((page) => [
+  const legacyPages = pages.filter((page) => page.legacyNote != null);
+  const redirectLines = legacyPages.flatMap((page) => [
     `${sitePath(`note-${page.legacyNote}`)} ${sitePath(page.slug)} 301`,
     `${sitePath(`note-${page.legacyNote}.html`)} ${sitePath(page.slug)} 301`,
   ]);
-  if (redirectLines.length !== 104) fail(`Expected 104 legacy redirects, found ${redirectLines.length}.`);
   await writeFile(path.join(PUBLISH_DIR, '_redirects'), `${redirectLines.join('\n')}\n`, 'utf8');
 
   const htmlHeaders = [sitePath(), ...pages.map((page) => sitePath(page.slug)), sitePath('offline.html'), sitePath('manifest.webmanifest'), sitePath('data/*')]
@@ -405,6 +450,7 @@ ${sitePath('assets/icons/v1/*')}
     sitePath('manifest.webmanifest'),
     sitePath('data/content-manifest.json'),
     sitePath('data/search-index.json'),
+    sitePath('data/relation-index.json'),
     ...assetFiles.map((file) => sitePath(path.relative(SITE_DIR, file).replaceAll('\\', '/'))),
   ];
   const physicalFiles = [
@@ -414,12 +460,13 @@ ${sitePath('assets/icons/v1/*')}
     path.join(SITE_DIR, 'manifest.webmanifest'),
     path.join(SITE_DIR, 'data', 'content-manifest.json'),
     path.join(SITE_DIR, 'data', 'search-index.json'),
+    path.join(SITE_DIR, 'data', 'relation-index.json'),
     ...assetFiles,
   ];
   const totalBytes = (await Promise.all(physicalFiles.map(async (file) => (await stat(file)).size))).reduce((sum, bytes) => sum + bytes, 0);
   const limit = 10 * 1024 * 1024;
   if (totalBytes > limit) fail(`PWA precache is ${totalBytes} bytes, above the 10 MiB limit.`);
-  const legacyRoutes = Object.fromEntries(pages.flatMap((page) => [
+  const legacyRoutes = Object.fromEntries(legacyPages.flatMap((page) => [
     [sitePath(`note-${page.legacyNote}`), sitePath(page.slug)],
     [sitePath(`note-${page.legacyNote}.html`), sitePath(page.slug)],
   ]));
@@ -433,13 +480,62 @@ ${sitePath('assets/icons/v1/*')}
   return { precache, totalBytes };
 }
 
-async function readProblemRegistry() {
+async function readYamlFile(relativePath, fallback) {
   try {
-    const parsed = YAML.parse(await readFile(path.join(ROOT, 'data', 'problem_registry.yml'), 'utf8'));
-    return Array.isArray(parsed) ? parsed : [];
+    const source = await readFile(path.join(ROOT, relativePath), 'utf8');
+    return { source, parsed: YAML.parse(source) };
   } catch {
-    return [];
+    return { source: '', parsed: fallback };
   }
+}
+
+function normalizeProblemRegistry(value) {
+  const rows = Array.isArray(value) ? value : [];
+  return rows.map((entry) => ({
+    ...entry,
+    id: String(entry.id ?? ''),
+    collection: String(entry.collection ?? 'core'),
+    origin: String(entry.origin ?? 'user-provided'),
+    subject: String(entry.subject ?? ''),
+    chapterKey: String(entry.chapter_key ?? entry.chapterKey ?? ''),
+    title: String(entry.title ?? entry.id ?? '未命名题目'),
+    file: String(entry.file ?? ''),
+    source: String(entry.source ?? '用户提供 / 未注明来源'),
+    difficulty: String(entry.difficulty ?? ''),
+    knowledgeIds: [...new Set((entry.knowledge_ids ?? entry.knowledgeIds ?? []).map(String))],
+    methodIds: [...new Set((entry.method_ids ?? entry.methodIds ?? []).map(String))],
+    pitfallIds: [...new Set((entry.pitfall_ids ?? entry.pitfallIds ?? []).map(String))],
+    verificationStatus: String(entry.verification_status ?? entry.verificationStatus ?? 'verified'),
+    practiceStage: String(entry.practice_stage ?? entry.practiceStage ?? ''),
+    taskType: String(entry.task_type ?? entry.taskType ?? ''),
+  })).filter((entry) => entry.id);
+}
+
+function normalizeKnowledgeRegistry(value) {
+  const rows = Array.isArray(value?.nodes) ? value.nodes : [];
+  const edges = Array.isArray(value?.edges) ? value.edges : [];
+  return {
+    nodes: rows.map((node) => ({
+      id: String(node.id ?? ''),
+      title: String(node.title ?? node.id ?? '未命名知识节点'),
+      kind: String(node.kind ?? 'concept'),
+      subject: String(node.subject ?? ''),
+      chapterKey: String(node.chapter_key ?? node.chapterKey ?? ''),
+      aliases: (node.aliases ?? []).map(String),
+      texAnchor: node.tex_anchor ?? node.texAnchor ?? null,
+    })).filter((node) => node.id),
+    edges: edges.map((edge) => ({
+      source: String(edge.source ?? ''),
+      target: String(edge.target ?? ''),
+      type: String(edge.type ?? ''),
+    })).filter((edge) => edge.source && edge.target && edge.type),
+  };
+}
+
+async function readPdf(filePath, label) {
+  const value = await readFile(filePath);
+  if (value.subarray(0, 5).toString('ascii') !== '%PDF-') fail(`Invalid ${label} PDF output: ${filePath}`);
+  return value;
 }
 
 function texPageFragment(page, source) {
@@ -453,8 +549,18 @@ function texPageFragment(page, source) {
 async function main() {
   const { pages, manifestSource } = await loadPages();
   await mkdir(SITE_DIR, { recursive: true });
-  const pdf = await readFile(PDF_PATH);
-  if (pdf.subarray(0, 5).toString('ascii') !== '%PDF-') fail(`Invalid PDF output: ${PDF_PATH}`);
+  const [notesPdf, practicePdf, answersPdf] = await Promise.all([
+    readPdf(PDF_PATH, 'notes'),
+    readPdf(PRACTICE_PDF_PATH, 'practice workbook'),
+    readPdf(ANSWERS_PDF_PATH, 'practice answers'),
+  ]);
+  const [problemData, knowledgeData] = await Promise.all([
+    readYamlFile(path.join('data', 'problem_registry.yml'), []),
+    readYamlFile(path.join('data', 'knowledge_registry.yml'), { nodes: [], edges: [] }),
+  ]);
+  const allProblems = normalizeProblemRegistry(problemData.parsed);
+  const registry = allProblems.filter((entry) => entry.verificationStatus === 'verified');
+  const knowledge = normalizeKnowledgeRegistry(knowledgeData.parsed);
   const generatedHtml = (await readdir(SOURCE_DIR))
     .filter((name) => name.endsWith('.html') && !['index.html', 'main-web_html.html'].includes(name))
     .sort();
@@ -466,38 +572,63 @@ async function main() {
   }
   const rawPages = [];
   for (const page of pages) {
-    const candidates = [path.join(SOURCE_DIR, `${page.lwarpSlug}.html`), path.join(SOURCE_DIR, `${page.slug}.html`), path.join(SOURCE_DIR, `note-${page.legacyNote}.html`)];
+    const candidates = [
+      path.join(SOURCE_DIR, `${page.lwarpSlug}.html`),
+      path.join(SOURCE_DIR, `${page.slug}.html`),
+      ...(page.legacyNote == null ? [] : [path.join(SOURCE_DIR, `note-${page.legacyNote}.html`)]),
+    ];
     let sourcePath;
     for (const candidate of candidates) {
       try { if ((await stat(candidate)).isFile()) { sourcePath = candidate; break; } } catch { /* next */ }
     }
-    if (!sourcePath) fail(`Missing lwarp page for ${page.slug} (legacy note-${page.legacyNote}).`);
+    if (!sourcePath) fail(`Missing lwarp page for ${page.slug}.`);
     rawPages.push({ page, sourcePath, source: await readFile(sourcePath, 'utf8') });
   }
   assertMathJaxPackages(rawPages);
+  for (const problem of allProblems.filter((entry) => entry.verificationStatus !== 'verified')) {
+    if (rawPages.some(({ source }) => source.includes(problem.id))) {
+      fail(`Unverified problem leaked into the public Web build: ${problem.id}`);
+    }
+  }
   // PDF metadata may contain build timestamps. The downloadable PDF keeps its
   // own SHA-256 in content-manifest.json, but must not trigger a false SW update.
-  const buildSeed = [SITE_ORIGIN, SITE_BASE_PATH, manifestSource, ...rawPages.flatMap(({ page, source }) => [page.slug, source])];
   const seedFiles = [
     path.join(ROOT, 'scripts', 'postprocess_web.mjs'),
+    path.join(ROOT, 'scripts', 'web_content_helpers.mjs'),
+    path.join(ROOT, 'scripts', 'web_index_helpers.mjs'),
     path.join(ROOT, 'web', 'math1-web.css'),
     ...await listFiles(path.join(ROOT, 'web', 'reader')),
     ...await listFiles(path.join(ROOT, 'web', 'pwa')),
   ];
+  const assetSeeds = [];
   for (const asset of seedFiles) {
-    buildSeed.push(path.relative(ROOT, asset), await readFile(asset));
+    assetSeeds.push({ path: path.relative(ROOT, asset), source: await readFile(asset) });
   }
-  const buildId = sha256(Buffer.concat(buildSeed.map((item) => Buffer.isBuffer(item) ? item : Buffer.from(item)))).slice(0, 20);
+  const buildId = computeReaderBuildId({
+    siteOrigin: SITE_ORIGIN,
+    siteBasePath: SITE_BASE_PATH,
+    manifestSource,
+    problemRegistrySource: problemData.source,
+    knowledgeRegistrySource: knowledgeData.source,
+    pages: rawPages.map(({ page, source }) => ({ slug: page.slug, source })),
+    assets: assetSeeds,
+  });
   await copyAssets(buildId);
   await mkdir(path.join(SITE_DIR, 'data'), { recursive: true });
   await mkdir(path.join(SITE_DIR, 'downloads'), { recursive: true });
-  await writeFile(path.join(SITE_DIR, 'downloads', 'kaoyan-math1-notes.pdf'), pdf);
+  await Promise.all([
+    writeFile(path.join(SITE_DIR, 'downloads', 'kaoyan-math1-notes.pdf'), notesPdf),
+    writeFile(path.join(SITE_DIR, 'downloads', 'kaoyan-math1-practice.pdf'), practicePdf),
+    writeFile(path.join(SITE_DIR, 'downloads', 'kaoyan-math1-practice-answers.pdf'), answersPdf),
+  ]);
 
-  const byLegacy = new Map(pages.map((page) => [page.legacyNote, page]));
+  const byLegacy = new Map(pages.filter((page) => page.legacyNote != null).map((page) => [page.legacyNote, page]));
   const bySlug = new Map(pages.map((page) => [page.slug, page]));
   const byLwarpSlug = new Map(pages.map((page) => [page.lwarpSlug, page]));
-  const registry = await readProblemRegistry();
   const searchDocuments = [];
+  const problemItems = [];
+  const problemLocations = new Map();
+  const knowledgeAnchorLocations = new Map();
 
   for (let index = 0; index < rawPages.length; index += 1) {
     const { page, source } = rawPages[index];
@@ -506,16 +637,22 @@ async function main() {
     if (!originalMain.length) fail(`Missing main.bodycontainer in ${page.slug}.`);
     $('a[href]').each((_, node) => $(node).attr('href', canonicalLink($(node).attr('href'), byLegacy, bySlug, byLwarpSlug)));
     const anchors = prepareContent($, originalMain, page);
+    const anchoredKnowledgeIds = [];
+    originalMain.find('[id]').each((_, node) => {
+      const htmlId = String($(node).attr('id') ?? '');
+      const knowledgeId = htmlId.match(/MATH1-KN-(?:CALC|LA|PROB)-\d{4}/)?.[0];
+      if (!knowledgeId) return;
+      anchoredKnowledgeIds.push(knowledgeId);
+      const locations = knowledgeAnchorLocations.get(knowledgeId) ?? [];
+      locations.push({ page, htmlId, url: `${sitePath(page.slug)}#${htmlId}` });
+      knowledgeAnchorLocations.set(knowledgeId, locations);
+    });
     const outline = outlineMarkup($, originalMain, anchors);
     const featuredMetaNode = originalMain.find('.problem-meta').first();
     const featuredMetaText = featuredMetaNode.text().replace(/\s+/g, ' ').trim();
     const featuredMeta = featuredMetaNode.length ? $.html(featuredMetaNode) : '';
     featuredMetaNode.remove();
     const bodyContent = originalMain.html() ?? '';
-    const previous = pages[index - 1] ?? null;
-    const next = pages[index + 1] ?? null;
-    const rendered = documentHtml({ $, bodyContent, featuredMeta, page, pages, buildId, previous, next, anchors, outline });
-    await writeFile(path.join(SITE_DIR, `${page.slug}.html`), rendered.html, 'utf8');
     const fragment = load(`<main>${bodyContent}</main>`);
     fragment('[data-nosnippet]').remove();
     const headings = fragment('h2,h3').map((_, node) => fragment(node).text().trim()).get();
@@ -524,31 +661,116 @@ async function main() {
     if (page.source) {
       try { tex = texPageFragment(page, await readFile(path.join(ROOT, page.source), 'utf8')); } catch { /* optional */ }
     }
-    const problems = registry.filter((entry) => entry.id && (body.includes(entry.id) || tex.includes(entry.id)));
+    const problems = registry.filter((entry) => body.includes(entry.id) || tex.includes(entry.id));
+    const knowledgeIds = [...new Set([
+      ...anchoredKnowledgeIds,
+      ...problems.flatMap((entry) => [
+        ...entry.knowledgeIds,
+        ...entry.methodIds,
+        ...entry.pitfallIds,
+      ]),
+    ])];
+    const previous = pages[index - 1] ?? null;
+    const next = pages[index + 1] ?? null;
+    const rendered = documentHtml({ $, bodyContent, featuredMeta, page, pages, buildId, previous, next, anchors, outline, knowledgeIds });
+    await writeFile(path.join(SITE_DIR, `${page.slug}.html`), rendered.html, 'utf8');
     searchDocuments.push({
+      itemType: 'page',
       slug: page.slug,
       url: sitePath(page.slug),
       title: page.title,
       subject: page.subject,
       lecture: page.lecture,
+      collection: page.collection,
+      chapterKey: page.chapterKey,
       problemIds: problems.map((entry) => entry.id).filter(Boolean),
-      tags: [...new Set(problems.flatMap((entry) => entry.tags ?? []))],
+      knowledgeIds,
+      tags: knowledgeIds,
       difficulty: [...new Set(problems.map((entry) => entry.difficulty).filter(Boolean))],
       headings,
       body,
       tex,
     });
+    for (const problem of problems) {
+      if (problemLocations.has(problem.id)) continue;
+      const anchor = problem.id.toLowerCase();
+      const hasAnchor = originalMain.find(`[id="${anchor}"]`).length > 0;
+      const url = `${sitePath(page.slug)}${hasAnchor ? `#${anchor}` : ''}`;
+      problemLocations.set(problem.id, { page, url });
+      const problemBox = problemBoxForId(fragment, fragment('main'), problem.id);
+      const itemBody = searchBodyForProblem(fragment, fragment('main'), problemBox, problem.id, body);
+      problemItems.push({
+        itemType: 'problem',
+        id: problem.id,
+        slug: page.slug,
+        url,
+        title: problem.title,
+        subject: problem.subject || page.subject,
+        lecture: page.lecture,
+        collection: problem.collection,
+        chapterKey: problem.chapterKey,
+        problemIds: [problem.id],
+        knowledgeIds: [...new Set([...problem.knowledgeIds, ...problem.methodIds, ...problem.pitfallIds])],
+        tags: [...new Set([...problem.knowledgeIds, ...problem.methodIds, ...problem.pitfallIds])],
+        difficulty: problem.difficulty,
+        headings: [],
+        body: itemBody,
+        tex: problem.file ? tex : '',
+      });
+    }
   }
 
   const home = documentHtml({ bodyContent: homeMarkup(pages), page: null, pages, buildId, previous: null, next: null, anchors: [], outline: '', isHome: true });
   await writeFile(path.join(SITE_DIR, 'index.html'), home.html, 'utf8');
-  const pdfSha256 = sha256(pdf);
   const publicPages = pages.map((page, index) => ({ ...page, url: sitePath(page.slug), previous: pages[index - 1]?.slug ?? null, next: pages[index + 1]?.slug ?? null }));
   const assetRoot = sitePath(`assets/${buildId}`);
-  await writeFile(path.join(SITE_DIR, 'data', 'content-manifest.json'), JSON.stringify({ schemaVersion: SCHEMA_VERSION, buildId, basePath: SITE_BASE_PATH, home: sitePath(), assets: { root: assetRoot, reader: `${assetRoot}/reader`, mathjax: `${assetRoot}/vendor/mathjax-3.2.2` }, pages: publicPages, pdf: { url: sitePath('downloads/kaoyan-math1-notes.pdf'), sha256: pdfSha256, bytes: pdf.length } }, null, 2), 'utf8');
-  await writeFile(path.join(SITE_DIR, 'data', 'search-index.json'), JSON.stringify({ schemaVersion: SCHEMA_VERSION, buildId, documents: searchDocuments }), 'utf8');
+  const pdfs = {
+    notes: { url: sitePath('downloads/kaoyan-math1-notes.pdf'), sha256: sha256(notesPdf), bytes: notesPdf.length },
+    practice: { url: sitePath('downloads/kaoyan-math1-practice.pdf'), sha256: sha256(practicePdf), bytes: practicePdf.length },
+    answers: { url: sitePath('downloads/kaoyan-math1-practice-answers.pdf'), sha256: sha256(answersPdf), bytes: answersPdf.length },
+  };
+  const problemLinks = registry.map((problem) => ({
+    problemId: problem.id,
+    title: problem.title,
+    collection: problem.collection,
+    url: problemLocations.get(problem.id)?.url ?? '',
+    knowledgeIds: problem.knowledgeIds,
+    methodIds: problem.methodIds,
+    pitfallIds: problem.pitfallIds,
+  }));
+  const relationNodes = knowledge.nodes.map((node) => {
+    const anchoredFile = node.texAnchor && typeof node.texAnchor === 'object' ? String(node.texAnchor.file ?? '') : '';
+    const exactAnchor = (knowledgeAnchorLocations.get(node.id) ?? [])
+      .find((location) => !anchoredFile || location.page.source === anchoredFile);
+    const anyAnchor = (knowledgeAnchorLocations.get(node.id) ?? [])[0];
+    const linkedProblem = problemLinks.find((link) => [...link.knowledgeIds, ...link.methodIds, ...link.pitfallIds].includes(node.id) && link.url);
+    const chapterPage = pages.find((page) => page.chapterKey === node.chapterKey && page.collection === 'core');
+    return { ...node, url: exactAnchor?.url ?? anyAnchor?.url ?? linkedProblem?.url ?? (chapterPage ? sitePath(chapterPage.slug) : '') };
+  });
+  const nodeItems = relationNodes.map((node) => ({
+    itemType: 'knowledge',
+    id: node.id,
+    slug: node.url.replace(SITE_ROOT, '').split('#')[0],
+    url: node.url || sitePath(),
+    title: node.title,
+    subject: node.subject,
+    lecture: node.chapterKey,
+    collection: 'core',
+    chapterKey: node.chapterKey,
+    problemIds: problemLinks.filter((link) => [...link.knowledgeIds, ...link.methodIds, ...link.pitfallIds].includes(node.id)).map((link) => link.problemId),
+    knowledgeIds: [node.id],
+    tags: [node.kind, ...node.aliases],
+    difficulty: '',
+    headings: [],
+    body: `${node.title} ${node.aliases.join(' ')}`.trim(),
+    tex: '',
+  }));
+  const adjacency = buildRelationAdjacency(relationNodes.map((node) => node.id), knowledge.edges);
+  await writeFile(path.join(SITE_DIR, 'data', 'content-manifest.json'), JSON.stringify({ schemaVersion: SCHEMA_VERSION, buildId, basePath: SITE_BASE_PATH, home: sitePath(), assets: { root: assetRoot, reader: `${assetRoot}/reader`, mathjax: `${assetRoot}/vendor/mathjax-3.2.2` }, pages: publicPages, pdf: pdfs.notes, pdfs }, null, 2), 'utf8');
+  await writeFile(path.join(SITE_DIR, 'data', 'search-index.json'), JSON.stringify({ schemaVersion: SCHEMA_VERSION, buildId, documents: searchDocuments, items: [...searchDocuments, ...problemItems, ...nodeItems] }), 'utf8');
+  await writeFile(path.join(SITE_DIR, 'data', 'relation-index.json'), JSON.stringify({ schemaVersion: SCHEMA_VERSION, buildId, nodes: relationNodes, edges: knowledge.edges, adjacency, problemLinks }), 'utf8');
   const { precache, totalBytes } = await writeDeploymentFiles(pages, buildId);
-  console.log(`Postprocessed 53 HTML documents (build ${buildId}).`);
+  console.log(`Postprocessed ${pages.length + 1} HTML documents (build ${buildId}).`);
   console.log(`PWA precache: ${precache.length} URLs, ${totalBytes} bytes.`);
 }
 

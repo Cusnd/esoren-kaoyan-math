@@ -1,0 +1,21 @@
+\documentclass[12pt,a4paper]{article}
+
+\input{tex/preamble.tex}
+
+% 练习册与答案册是两个独立 PDF；这里使用可打印定位，避免生成悬空的内部链接。
+\RenewDocumentCommand{\answerRef}{m}{答案册同编号 \texttt{#1}}
+
+\title{考研数学一练习册}
+\author{Soren}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\clearpage
+
+\studySection{practice-calculus}{高等数学练习}
+\input{tex/practice/calculus/calc-01-problems.tex}
+
+\end{document}
