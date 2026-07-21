@@ -114,7 +114,7 @@ export function validateProgress(value) {
   return errors;
 }
 
-export function prepareLearningStateImport(raw, current, knownNodeIds = [], now = new Date()) {
+export function prepareLearningStateImport(raw, current, nodePolicy = [], now = new Date()) {
   let payload = raw;
   if (typeof raw === "string") {
     if (new TextEncoder().encode(raw).byteLength > MAX_LEARNING_STATE_BYTES) {
@@ -145,7 +145,7 @@ export function prepareLearningStateImport(raw, current, knownNodeIds = [], now 
   }
   errors.push(...validatePreferences(envelope.preferences));
   errors.push(...validateProgress(envelope.progress));
-  const review = prepareReviewImport(envelope.reviews, current.reviews, knownNodeIds, now);
+  const review = prepareReviewImport(envelope.reviews, current.reviews, nodePolicy, now);
   errors.push(...review.errors);
   if (errors.length) return { ok: false, errors, warnings: review.warnings ?? [], preview: null, nextState: null };
   return {

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import shutil
@@ -36,6 +37,7 @@ from repo_model import (
     chapter_files,
     load_catalog,
     load_knowledge_registry,
+    load_resource_manifest,
     load_registry,
     practice_answer_files,
     practice_problem_files,
@@ -67,6 +69,7 @@ REQUIRED_PATHS = (
     "data/problem_registry.yml",
     "data/knowledge_registry.yml",
     "data/web_pages.yml",
+    "resources/manifest.yml",
 )
 DOC_CHAPTER_PATH_PATTERN = re.compile(r"`(tex/chapters/[^`]+\.tex)`")
 DOC_CHAPTER_KEY_PATTERN = re.compile(
@@ -107,6 +110,45 @@ TASK_TYPES = {
     "concept-diagnosis",
     "error-correction",
     "comprehensive",
+}
+CALC_MAP_PACKAGE_ID = "calc-map-2026"
+CALC_MAP_REF_PATTERN = re.compile(r"^calc-map-2026:(K\d{3}|T\d{2})$")
+CALC_MAP_BOUNDARY_REFS = {
+    "K044",
+    "K045",
+    "K078",
+    "K112",
+    "K131",
+    "K178",
+    "K208",
+    "K237",
+    "K238",
+    "K262",
+}
+CALC_MAP_FILES = {
+    "resources/考研数学一高等数学全量知识点地图_2026.md": "narrative_map",
+    "resources/考研数学一高等数学查漏补缺清单_2026.md": "audit_checklist",
+    "resources/考研数学一高等数学知识点数据库_2026.xlsx": "structured_workbook",
+}
+CALC_MAP_CHAPTER_MAPPING = {
+    "calc-01": ["K001-K015", "K024-K045", "T01-T04"],
+    "calc-02": ["K016-K023", "T05"],
+    "calc-03": ["K046-K049", "K059-K060", "T06"],
+    "calc-04": ["K050-K058", "T07"],
+    "calc-05": ["K070-K078", "T11"],
+    "calc-06": ["K061-K069", "T08-T10", "T51"],
+    "calc-07": [],
+    "calc-08": ["K079-K081", "K088-K092", "K096-K100", "T13-T15"],
+    "calc-09": ["K082-K087", "K093-K095", "K101-K105", "K112", "T12", "T16"],
+    "calc-10": ["K106-K109", "T18"],
+    "calc-11": ["T17"],
+    "calc-12": ["K110-K111"],
+    "calc-13": ["K132-K158", "T20-T26"],
+    "calc-14": ["K159-K169", "T27-T28"],
+    "calc-15": ["K239-K262", "T46-T50"],
+    "calc-16": ["K209-K238", "T41-T45"],
+    "calc-17": ["K113-K131", "T19"],
+    "calc-18": ["K170-K208", "T29-T40"],
 }
 
 
@@ -518,8 +560,8 @@ def _check_knowledge_registry(
         return None, set()
 
     errors: list[str] = []
-    if raw.get("schema_version") != 1:
-        errors.append("schema_version must equal 1")
+    if raw.get("schema_version") != 2:
+        errors.append("schema_version must equal 2")
     nodes_raw = raw.get("nodes")
     edges_raw = raw.get("edges")
     if not isinstance(nodes_raw, list) or not nodes_raw:
@@ -560,6 +602,16 @@ def _check_knowledge_registry(
             errors.append(f"{context}: subject does not match chapter_key")
         if "aliases" in node and not _validate_string_list(node["aliases"]):
             errors.append(f"{context}: aliases must be a list of non-empty strings")
+        source_refs = node.get("source_refs")
+        if source_refs is not None:
+            if not _validate_string_list(source_refs, allow_empty=False):
+                errors.append(f"{context}: source_refs must be a non-empty string list")
+            else:
+                for source_ref in source_refs:
+                    if not CALC_MAP_REF_PATTERN.fullmatch(source_ref):
+                        errors.append(f"{context}: invalid source_ref {source_ref!r}")
+        if "reviewable" in node and not isinstance(node["reviewable"], bool):
+            errors.append(f"{context}: reviewable must be a boolean")
         anchor = node.get("tex_anchor")
         if anchor is not None:
             if not isinstance(anchor, dict):
@@ -624,6 +676,280 @@ def _check_knowledge_registry(
             f"Validated {len(nodes)} knowledge nodes and {len(edge_keys)} explicit edges.",
         )
     return (None if errors else nodes), set(nodes)
+
+
+def _expand_calc_map_token(token: str) -> list[str]:
+    match = re.fullmatch(r"([KT])(\d{2,3})(?:-([KT])(\d{2,3}))?", token)
+    if not match:
+        raise ValueError(f"invalid source range {token!r}")
+    prefix, start_raw, end_prefix, end_raw = match.groups()
+    if end_prefix is not None and end_prefix != prefix:
+        raise ValueError(f"mixed source range {token!r}")
+    width = len(start_raw)
+    start = int(start_raw)
+    end = int(end_raw) if end_raw is not None else start
+    if end < start or (end_raw is not None and len(end_raw) != width):
+        raise ValueError(f"invalid source range {token!r}")
+    return [f"{prefix}{number:0{width}d}" for number in range(start, end + 1)]
+
+
+def _calc_map_expected_chapters() -> dict[str, str]:
+    result: dict[str, str] = {}
+    for chapter_key, tokens in CALC_MAP_CHAPTER_MAPPING.items():
+        for token in tokens:
+            for source_id in _expand_calc_map_token(token):
+                if source_id in result:
+                    raise ValueError(f"duplicate source mapping for {source_id}")
+                result[source_id] = chapter_key
+    return result
+
+
+def _check_calc_map_bundle(
+    root: Path,
+    report: Report,
+    nodes: dict[str, dict[str, Any]],
+) -> None:
+    try:
+        manifest = load_resource_manifest(root)
+    except RepositoryDependencyError:
+        raise
+    except RepositoryDataError as exc:
+        report.failed("resources.calc_map", "Resource manifest is invalid.", str(exc))
+        return
+
+    packages_raw = manifest.get("research_packages")
+    packages = packages_raw if isinstance(packages_raw, list) else []
+    matching = [
+        package
+        for package in packages
+        if isinstance(package, dict) and package.get("id") == CALC_MAP_PACKAGE_ID
+    ]
+    has_refs = any(
+        isinstance(source_ref, str) and source_ref.startswith(f"{CALC_MAP_PACKAGE_ID}:")
+        for node in nodes.values()
+        for source_ref in node.get("source_refs", [])
+    )
+    if not matching and not has_refs:
+        report.skipped(
+            "resources.calc_map",
+            "No calc-map-2026 research package is active in this fixture.",
+        )
+        return
+
+    errors: list[str] = []
+    if manifest.get("schema_version") != 1:
+        errors.append("resource manifest schema_version must equal 1")
+    if not isinstance(packages_raw, list):
+        errors.append("research_packages must be a list")
+    if len(matching) != 1:
+        errors.append("calc-map-2026 must appear exactly once in research_packages")
+        package: dict[str, Any] = {}
+    else:
+        package = matching[0]
+
+    if package.get("authority") != "non_authoritative_research":
+        errors.append("calc-map-2026 authority must be non_authoritative_research")
+    if package.get("build_input") is not False:
+        errors.append("calc-map-2026 must not be a build input")
+    if package.get("source_ranges") != {
+        "knowledge": "K001-K262",
+        "problem_families": "T01-T51",
+    }:
+        errors.append("calc-map-2026 source_ranges are not the approved K/T ranges")
+
+    projection = package.get("projection_policy")
+    if not isinstance(projection, dict):
+        errors.append("projection_policy must be a mapping")
+        projection = {}
+    if projection.get("searchable_aliases") is not True:
+        errors.append("external K/T aliases must be searchable")
+    if projection.get("expose_source_refs") is not False:
+        errors.append("source_refs must remain private build metadata")
+    if projection.get("import_personal_state") is not False:
+        errors.append("personal learning state import must stay disabled")
+    excluded = projection.get("excluded_public_fields")
+    required_excluded = {
+        "exam_frequency",
+        "trend",
+        "research_rating",
+        "learning_status",
+        "review_count",
+        "review_date",
+        "personal_notes",
+    }
+    if not isinstance(excluded, list) or set(excluded) != required_excluded:
+        errors.append("excluded_public_fields must list the seven private/research fields")
+
+    files_raw = package.get("files")
+    file_rows = files_raw if isinstance(files_raw, list) else []
+    files_by_path = {
+        row.get("path"): row
+        for row in file_rows
+        if isinstance(row, dict) and isinstance(row.get("path"), str)
+    }
+    if set(files_by_path) != set(CALC_MAP_FILES) or len(file_rows) != 3:
+        errors.append("calc-map-2026 must register exactly the three approved source files")
+    for relative_path, expected_role in CALC_MAP_FILES.items():
+        row = files_by_path.get(relative_path)
+        if not isinstance(row, dict):
+            continue
+        if row.get("role") != expected_role:
+            errors.append(f"{relative_path}: unexpected role {row.get('role')!r}")
+        digest = row.get("sha256")
+        if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
+            errors.append(f"{relative_path}: sha256 must be 64 lowercase hex characters")
+            continue
+        target = root / relative_path
+        if not target.is_file():
+            errors.append(f"{relative_path}: source file is missing")
+            continue
+        actual = hashlib.sha256(target.read_bytes()).hexdigest()
+        if actual != digest:
+            errors.append(f"{relative_path}: sha256 mismatch")
+
+    if package.get("chapter_mapping") != CALC_MAP_CHAPTER_MAPPING:
+        errors.append("chapter_mapping does not match the approved 18-lecture projection")
+    gaps = package.get("coverage_gaps")
+    if not isinstance(gaps, list) or not any(
+        isinstance(gap, dict)
+        and gap.get("chapter_key") == "calc-07"
+        and isinstance(gap.get("reason"), str)
+        and gap["reason"].strip()
+        for gap in gaps
+    ):
+        errors.append("calc-07 must remain an explicit documented coverage gap")
+
+    expected_chapters = _calc_map_expected_chapters()
+    expected_sources = set(expected_chapters)
+    expected_sources.update(f"K{number:03d}" for number in range(1, 263))
+    expected_sources.update(f"T{number:02d}" for number in range(1, 52))
+    if len(expected_sources) != 313 or set(expected_chapters) != expected_sources:
+        errors.append("internal approved source mapping is not exactly 313 items")
+
+    ref_nodes: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    false_refs: set[str] = set()
+    for node in nodes.values():
+        aliases = node.get("aliases", [])
+        source_refs = node.get("source_refs", [])
+        for source_ref in source_refs:
+            match = CALC_MAP_REF_PATTERN.fullmatch(source_ref) if isinstance(source_ref, str) else None
+            if not match:
+                continue
+            source_id = match.group(1)
+            ref_nodes[source_id].append(node)
+            if source_id not in aliases:
+                errors.append(f"{source_id}: external id is missing from aliases")
+            expected_chapter = expected_chapters.get(source_id)
+            if expected_chapter and node.get("chapter_key") != expected_chapter:
+                errors.append(
+                    f"{source_id}: expected {expected_chapter}, got {node.get('chapter_key')!r}"
+                )
+            if source_id.startswith("T") and node.get("kind") != "problem_family":
+                errors.append(f"{source_id}: T entries must be problem_family nodes")
+            if source_id.startswith("K") and node.get("kind") not in {
+                "concept",
+                "theorem",
+                "formula",
+                "method",
+            }:
+                errors.append(f"{source_id}: K entries have invalid semantic kind")
+            if node.get("reviewable", True) is False:
+                false_refs.add(source_id)
+
+    missing_refs = sorted(expected_sources - set(ref_nodes))
+    extra_refs = sorted(set(ref_nodes) - expected_sources)
+    duplicated_refs = sorted(source_id for source_id, mapped in ref_nodes.items() if len(mapped) != 1)
+    if missing_refs:
+        errors.append(f"missing source refs: {', '.join(missing_refs)}")
+    if extra_refs:
+        errors.append(f"unexpected source refs: {', '.join(extra_refs)}")
+    if duplicated_refs:
+        errors.append(f"source refs must map exactly once: {', '.join(duplicated_refs)}")
+    if len(nodes) != 359:
+        errors.append(f"expected 359 stable nodes, found {len(nodes)}")
+    expected_new_ids = {f"MATH1-KN-CALC-{number:04d}" for number in range(61, 361)}
+    if not expected_new_ids.issubset(nodes):
+        errors.append("stable id range MATH1-KN-CALC-0061..0360 is incomplete")
+    if false_refs != CALC_MAP_BOUNDARY_REFS:
+        errors.append(
+            "reviewable:false refs must be exactly "
+            + ", ".join(sorted(CALC_MAP_BOUNDARY_REFS))
+        )
+    false_nodes = [node for node in nodes.values() if node.get("reviewable", True) is False]
+    if len(false_nodes) != 10:
+        errors.append(f"expected exactly 10 non-reviewable nodes, found {len(false_nodes)}")
+    for source_id in ("K158", "K177"):
+        mapped = ref_nodes.get(source_id, [])
+        if len(mapped) == 1 and mapped[0].get("reviewable", True) is not True:
+            errors.append(f"{source_id} must remain reviewable")
+
+    content_counts: Counter[str] = Counter()
+    for file in chapter_files(root):
+        text = strip_tex_comments(file.read_text(encoding="utf-8", errors="replace"))
+        content_counts.update(
+            match.group("id") for match in KNOWLEDGE_CONTENT_ANCHOR_PATTERN.finditer(text)
+        )
+    first_batch = {
+        *(f"K{number:03d}" for number in range(1, 46)),
+        *(f"T{number:02d}" for number in range(1, 6)),
+    }
+    for source_id in sorted(first_batch):
+        mapped = ref_nodes.get(source_id, [])
+        if len(mapped) != 1:
+            continue
+        node_id = mapped[0]["id"]
+        if content_counts[node_id] != 1:
+            errors.append(
+                f"{source_id}: expected one content anchor for {node_id}, found {content_counts[node_id]}"
+            )
+
+    try:
+        registry = load_knowledge_registry(root)
+    except (RepositoryDataError, RepositoryDependencyError):
+        registry = {}
+    edge_keys = {
+        (edge.get("source"), edge.get("target"), edge.get("type"))
+        for edge in registry.get("edges", [])
+        if isinstance(edge, dict)
+    }
+    family_prerequisites = {
+        "T01": ["K002", "K003", "K009"],
+        "T02": ["K012", "K025", "K038", "K039", "K040"],
+        "T03": [*(f"K{number:03d}" for number in range(27, 38))],
+        "T04": ["K035", "K037"],
+        "T05": ["K021", "K022", "K023"],
+    }
+    stable_for = {
+        source_id: mapped[0]["id"]
+        for source_id, mapped in ref_nodes.items()
+        if len(mapped) == 1
+    }
+    for family, prerequisites in family_prerequisites.items():
+        for prerequisite in prerequisites:
+            required = (
+                stable_for.get(prerequisite),
+                stable_for.get(family),
+                "prerequisite_for",
+            )
+            if None not in required and required not in edge_keys:
+                errors.append(f"missing explicit prerequisite edge {prerequisite} -> {family}")
+    for family in ("T03", "T04"):
+        for prerequisite in ("MATH1-KN-CALC-0059", "MATH1-KN-CALC-0060"):
+            required = (prerequisite, stable_for.get(family), "prerequisite_for")
+            if None not in required and required not in edge_keys:
+                errors.append(f"missing explicit prerequisite edge {prerequisite} -> {family}")
+
+    if errors:
+        report.failed(
+            "resources.calc_map",
+            f"calc-map-2026 has {len(errors)} manifest/projection error(s).",
+            "\n".join(errors),
+        )
+    else:
+        report.passed(
+            "resources.calc_map",
+            "Verified three source files, 313 one-to-one refs, 359 nodes, 10 boundaries and first-batch anchors.",
+        )
 
 
 def _safe_practice_path(value: Any, suffix: str) -> str | None:
@@ -1155,6 +1481,13 @@ def validate_repository(root: Path, compile_enabled: bool = True) -> Report:
         )
 
     nodes, knowledge_ids = _check_knowledge_registry(root, report, catalog_by_key)
+    if nodes is None:
+        report.skipped(
+            "resources.calc_map",
+            "calc-map-2026 checks require a valid knowledge registry.",
+        )
+    else:
+        _check_calc_map_bundle(root, report, nodes)
     registry, registry_ids = _check_registry(root, report, catalog_by_key, nodes or {})
 
     entrypoint_inputs = _check_practice_pairs_and_entrypoints(root, report)

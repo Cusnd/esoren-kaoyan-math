@@ -224,6 +224,14 @@ def load_knowledge_registry(root: Path) -> dict[str, Any]:
     return raw
 
 
+def load_resource_manifest(root: Path) -> dict[str, Any]:
+    path = root / "resources/manifest.yml"
+    raw = _load_yaml(path)
+    if not isinstance(raw, dict):
+        raise RepositoryDataError(f"{path}: manifest root must be a mapping")
+    return raw
+
+
 def strip_tex_comments(text: str) -> str:
     """Remove unescaped TeX comments while preserving line boundaries."""
 

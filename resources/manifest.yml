@@ -1,0 +1,54 @@
+schema_version: 1
+research_packages:
+  - id: calc-map-2026
+    title: 考研数学一高等数学全量知识研究包（2026）
+    authority: non_authoritative_research
+    build_input: false
+    description: 三份文件是同一研究数据集的叙述、检查与表格视图，不是教材目录、考试大纲或构建事实源。
+    source_ranges:
+      knowledge: K001-K262
+      problem_families: T01-T51
+    projection_policy:
+      searchable_aliases: true
+      expose_source_refs: false
+      import_personal_state: false
+      excluded_public_fields:
+        - exam_frequency
+        - trend
+        - research_rating
+        - learning_status
+        - review_count
+        - review_date
+        - personal_notes
+    files:
+      - path: resources/考研数学一高等数学全量知识点地图_2026.md
+        role: narrative_map
+        sha256: c173810caf7bb4181f0d443f00ba7ac07590479baa7d82ef61684a7c3899315e
+      - path: resources/考研数学一高等数学查漏补缺清单_2026.md
+        role: audit_checklist
+        sha256: 86019168e722885d265eea9c2b58fbedadc0cc23f238c1557d2d698f86572411
+      - path: resources/考研数学一高等数学知识点数据库_2026.xlsx
+        role: structured_workbook
+        sha256: 8a2aafbcf5eb8f4587dd9b23323383baf2beeae4c175baac7c86b8edbe997506
+    chapter_mapping:
+      calc-01: [K001-K015, K024-K045, T01-T04]
+      calc-02: [K016-K023, T05]
+      calc-03: [K046-K049, K059-K060, T06]
+      calc-04: [K050-K058, T07]
+      calc-05: [K070-K078, T11]
+      calc-06: [K061-K069, T08-T10, T51]
+      calc-07: []
+      calc-08: [K079-K081, K088-K092, K096-K100, T13-T15]
+      calc-09: [K082-K087, K093-K095, K101-K105, K112, T12, T16]
+      calc-10: [K106-K109, T18]
+      calc-11: [T17]
+      calc-12: [K110-K111]
+      calc-13: [K132-K158, T20-T26]
+      calc-14: [K159-K169, T27-T28]
+      calc-15: [K239-K262, T46-T50]
+      calc-16: [K209-K238, T41-T45]
+      calc-17: [K113-K131, T19]
+      calc-18: [K170-K208, T29-T40]
+    coverage_gaps:
+      - chapter_key: calc-07
+        reason: 研究包没有与本讲物理、经济应用无歧义对应的独立条目，保留为空缺而不借用其他讲次条目。

@@ -71,6 +71,7 @@ function normalizeRelations(payload) {
       subject: String(node.subject ?? ""),
       chapterKey: String(node.chapterKey ?? node.chapter_key ?? ""),
       aliases: stringArray(node.aliases),
+      reviewable: node.reviewable !== false,
       url: String(node.url ?? ""),
     })).filter((node) => node.id),
     edges: edges.map((edge) => ({
@@ -134,6 +135,23 @@ function nodeRow(node, state, { selected = false, compact = false } = {}) {
   const row = document.createElement("article");
   row.className = `reader-review-node${compact ? " reader-review-node--compact" : ""}`;
   row.dataset.reviewNode = node.id;
+
+  const label = document.createElement("div");
+  label.append(nodeLink(node));
+  const meta = document.createElement("small");
+  meta.textContent = [node.id, node.subject, node.chapterKey].filter(Boolean).join(" · ");
+  label.append(meta);
+
+  if (node.reviewable === false) {
+    row.classList.add("reader-review-node--boundary");
+    const boundary = document.createElement("span");
+    boundary.className = "reader-review-node__boundary";
+    boundary.textContent = "边界知识 · 不加入复习";
+    label.append(boundary);
+    row.append(label);
+    return row;
+  }
+
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.name = "review-node";
@@ -142,12 +160,10 @@ function nodeRow(node, state, { selected = false, compact = false } = {}) {
   checkbox.dataset.reviewSelect = "";
   checkbox.id = `review-node-${++rowSequence}`;
 
-  const label = document.createElement("label");
-  label.htmlFor = checkbox.id;
-  label.append(nodeLink(node));
-  const meta = document.createElement("small");
-  meta.textContent = [node.id, node.subject, node.chapterKey].filter(Boolean).join(" · ");
-  label.append(meta);
+  const linkedLabel = document.createElement("label");
+  linkedLabel.append(...label.childNodes);
+  label.remove();
+  linkedLabel.htmlFor = checkbox.id;
 
   const item = state.items[node.id];
   const action = document.createElement("button");
@@ -159,12 +175,12 @@ function nodeRow(node, state, { selected = false, compact = false } = {}) {
     const due = document.createElement("span");
     due.className = "reader-review-node__due";
     due.textContent = `下次：${item.dueOn}`;
-    label.append(due);
+    linkedLabel.append(due);
   } else {
     action.dataset.readerReviewAction = "add";
     action.textContent = "加入复习";
   }
-  row.append(checkbox, label, action);
+  row.append(checkbox, linkedLabel, action);
   return row;
 }
 
@@ -356,7 +372,7 @@ function renderRelations(index, state) {
   heading.id = "reader-relations-title";
   heading.textContent = "知识关系与复习";
   const intro = document.createElement("p");
-  intro.textContent = "这里只展示一跳关系；阅读进度不会自动改变复习状态。";
+  intro.textContent = "这里只展示一跳关系；边界知识可查阅但不加入本地复习，阅读进度也不会自动改变复习状态。";
   const currentGroup = document.createElement("div");
   currentGroup.className = "reader-relations__current";
   current.forEach((node) => currentGroup.append(nodeRow(node, state, { selected: true, compact: true })));
@@ -402,7 +418,7 @@ function renderRelations(index, state) {
 
 function renderReviewSurfaces(index, state) {
   const nodeMap = new Map(index.nodes.map((node) => [node.id, node]));
-  const due = dueReviewIds(state).map((id) => nodeMap.get(id)).filter(Boolean);
+  const due = dueReviewIds(state).map((id) => nodeMap.get(id)).filter((node) => node?.reviewable !== false);
   document.querySelectorAll("[data-reader-review-count]").forEach((element) => {
     element.textContent = String(due.length);
     element.hidden = due.length === 0;
@@ -426,7 +442,7 @@ function renderReviewSurfaces(index, state) {
   const allContainer = document.querySelector("[data-reader-review-all]");
   if (allContainer) {
     allContainer.replaceChildren();
-    index.nodes.forEach((node) => allContainer.append(nodeRow(node, state)));
+    index.nodes.filter((node) => node.reviewable !== false).forEach((node) => allContainer.append(nodeRow(node, state)));
   }
   renderRelations(index, state);
 }
@@ -530,6 +546,10 @@ export function initReviews() {
       const loaded = index ?? await ready;
       const node = loaded?.nodes.find((item) => item.id === actionElement.dataset.readerReviewNode);
       if (!node) return;
+      if (node.reviewable === false) {
+        setLiveStatus("边界知识只供检索，不进入本地复习。 ");
+        return;
+      }
       state = applyReviewAction(state, node, actionElement.dataset.readerReviewAction);
       const persisted = writeJSON(REVIEW_STORAGE_KEY, state);
       setLiveStatus(persisted
@@ -574,7 +594,10 @@ export function initReviews() {
       const refreshed = prepareLearningStateImport(
         pendingImport.raw,
         latest,
-        loaded.nodes.map((node) => node.id),
+        {
+          knownNodeIds: loaded.nodes.map((node) => node.id),
+          reviewableNodeIds: loaded.nodes.filter((node) => node.reviewable !== false).map((node) => node.id),
+        },
       );
       if (!refreshed.ok) {
         invalidatePendingImport(`导入重新校验失败：${refreshed.errors.join(" ")} 未修改任何本地状态。`);
@@ -629,7 +652,10 @@ export function initReviews() {
       const prepared = prepareLearningStateImport(
         raw,
         baseline,
-        loaded.nodes.map((node) => node.id),
+        {
+          knownNodeIds: loaded.nodes.map((node) => node.id),
+          reviewableNodeIds: loaded.nodes.filter((node) => node.reviewable !== false).map((node) => node.id),
+        },
       );
       if (!prepared.ok) throw new Error(prepared.errors.join("\n"));
       pendingImport = { raw, baseToken: learningStateToken(baseline) };

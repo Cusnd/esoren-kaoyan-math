@@ -366,9 +366,16 @@ pages:
 """,
         )
         self.write(
+            "resources/manifest.yml",
+            """
+schema_version: 1
+research_packages: []
+""",
+        )
+        self.write(
             "data/knowledge_registry.yml",
             f"""
-schema_version: 1
+schema_version: 2
 nodes:
   - id: {KNOWLEDGE_ID}
     title: "极限"
@@ -903,7 +910,16 @@ class CurrentRepositoryContractTests(unittest.TestCase):
         self.assertEqual(37, len({entry.chapter_key for entry in catalog}))
         self.assertEqual(10, len(registry))
         self.assertTrue(all(entry["collection"] == "core" for entry in registry))
-        self.assertGreaterEqual(len(graph["nodes"]), 20)
+        self.assertEqual(2, graph["schema_version"])
+        self.assertEqual(359, len(graph["nodes"]))
+        self.assertEqual(
+            313,
+            sum(len(node.get("source_refs", [])) for node in graph["nodes"]),
+        )
+        self.assertEqual(
+            10,
+            sum(node.get("reviewable", True) is False for node in graph["nodes"]),
+        )
         self.assertTrue(graph["edges"])
         statuses = {check.code: check.status for check in report.checks}
         for code in (
@@ -911,6 +927,7 @@ class CurrentRepositoryContractTests(unittest.TestCase):
             "entrypoint.main.tex",
             "entrypoint.main-web.tex",
             "knowledge.schema",
+            "resources.calc_map",
             "registry.schema",
             "practice.file_pairs",
             "practice.entrypoint.practice.tex",

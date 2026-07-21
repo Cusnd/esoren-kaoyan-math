@@ -32,8 +32,18 @@ async function listFiles(directory) {
 test('publishes the manifest-driven canonical HTML documents', async () => {
   const manifest = await json('data/content-manifest.json');
   assert.equal(manifest.schemaVersion, 2);
-  assert.ok(manifest.pages.length >= 53);
+  assert.equal(manifest.pages.length, 57);
   assert.equal(new Set(manifest.pages.map((page) => page.slug)).size, manifest.pages.length);
+  for (const slug of [
+    'calc-01-function-basics',
+    'calc-01-function-limits',
+    'calc-01-continuity-theorems',
+    'calc-02-convergence-criteria',
+  ]) {
+    const page = manifest.pages.find((item) => item.slug === slug);
+    assert.ok(page, slug);
+    assert.equal(page.legacyNote, null, `${slug}: new pages must not claim legacy URLs`);
+  }
   const html = (await readdir(SITE)).filter((name) => name.endsWith('.html')).sort();
   assert.deepEqual(html, ['index.html', 'offline.html', ...manifest.pages.map((page) => `${page.slug}.html`)].sort());
   assert.equal(html.filter((name) => name !== 'offline.html').length, manifest.pages.length + 1);
@@ -130,7 +140,9 @@ test('all same-origin links and fragments resolve to published resources', async
 
 test('search index and content manifest share schema and build identity', async () => {
   const manifest = await json('data/content-manifest.json');
-  const search = await json('data/search-index.json');
+  const searchSource = await readFile(path.join(SITE, 'data/search-index.json'), 'utf8');
+  const search = JSON.parse(searchSource);
+  assert.doesNotMatch(searchSource, /calc-map-2026|source_refs|exam_frequency|research_rating|learning_status|personal_notes|review_count/);
   assert.equal(search.schemaVersion, manifest.schemaVersion);
   assert.equal(search.buildId, manifest.buildId);
   assert.equal(search.documents.length, manifest.pages.length);
@@ -143,13 +155,31 @@ test('search index and content manifest share schema and build identity', async 
   const relations = await json('data/relation-index.json');
   assert.equal(relations.schemaVersion, manifest.schemaVersion);
   assert.equal(relations.buildId, manifest.buildId);
-  assert.ok(relations.nodes.length > 0);
+  assert.equal(relations.nodes.length, 359);
   assert.ok(relations.edges.length > 0);
   assert.equal(typeof relations.adjacency, 'object');
   assert.ok(relations.problemLinks.length > 0);
   assert.ok(relations.problemLinks.every((link) => link.problemId && link.title && link.collection && link.url));
   assert.ok(relations.problemLinks.some((link) => link.collection === 'core'));
   assert.ok(relations.nodes.every((node) => /^MATH1-KN-(?:CALC|LA|PROB)-\d{4}$/.test(node.id)));
+  assert.ok(relations.nodes.every((node) => typeof node.reviewable === 'boolean'));
+  assert.ok(relations.nodes.every((node) => !('sourceRefs' in node) && !('source_refs' in node)));
+  const nodeForAlias = (alias) => relations.nodes.find((node) => node.aliases.includes(alias));
+  const k001 = nodeForAlias('K001');
+  const t05 = nodeForAlias('T05');
+  const boundary = nodeForAlias('K044');
+  assert.ok(k001?.reviewable);
+  assert.equal(t05?.kind, 'problem_family');
+  assert.ok(t05?.reviewable);
+  assert.equal(boundary?.reviewable, false);
+  for (const alias of ['K001', 'T05']) {
+    const item = search.items.find((candidate) => candidate.itemType === 'knowledge' && candidate.tags.includes(alias));
+    assert.ok(item, `${alias}: searchable alias`);
+    assert.equal(item.reviewable, true);
+  }
+  const boundaryItem = search.items.find((item) => item.itemType === 'knowledge' && item.tags.includes('K044'));
+  assert.ok(boundaryItem, 'K044: boundary remains searchable');
+  assert.equal(boundaryItem.reviewable, false);
   const nodeIds = new Set(relations.nodes.map((node) => node.id));
   assert.deepEqual(new Set(Object.keys(relations.adjacency)), nodeIds);
   for (const edge of relations.edges) {
@@ -197,6 +227,22 @@ test('legacy knowledge fragments remain valid alongside stable registry IDs', as
     'reciprocal-substitution',
   ]) {
     assert.equal(methods(`[id="LWR-ht-knowledge-index:${legacyId}"]`).length, 1, legacyId);
+  }
+});
+
+test('first-batch problem families and important limits appear in their public indexes', async () => {
+  const relations = await json('data/relation-index.json');
+  const methods = load(await readFile(path.join(SITE, 'index-methods.html'), 'utf8'));
+  const formulas = load(await readFile(path.join(SITE, 'index-formulas.html'), 'utf8'));
+  for (const alias of ['T01', 'T02', 'T03', 'T04', 'T05']) {
+    const node = relations.nodes.find((item) => item.aliases.includes(alias));
+    assert.ok(node, alias);
+    assert.equal(methods(`[id="LWR-ht-knowledge-index:${node.id}"]`).length, 1, alias);
+  }
+  for (const alias of ['K032', 'K034', 'K035']) {
+    const node = relations.nodes.find((item) => item.aliases.includes(alias));
+    assert.ok(node, alias);
+    assert.equal(formulas(`[id="LWR-ht-knowledge-index:${node.id}"]`).length, 1, alias);
   }
 });
 

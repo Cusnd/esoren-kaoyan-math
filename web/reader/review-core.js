@@ -129,6 +129,7 @@ export function normalizeReviewState(candidate, now = new Date()) {
 }
 
 export function applyReviewAction(candidate, node, action, now = new Date()) {
+  if (node?.reviewable === false) throw new TypeError("Boundary knowledge cannot enter review state.");
   const state = normalizeReviewState(candidate, now);
   const id = String(node?.id ?? node ?? "");
   if (!NODE_ID.test(id)) throw new TypeError(`Invalid knowledge node id: ${id}`);
@@ -257,7 +258,17 @@ function validateImportPayload(payload) {
   return errors;
 }
 
-export function prepareReviewImport(rawPayload, currentCandidate, knownNodeIds = [], now = new Date()) {
+function normalizeNodePolicy(value) {
+  if (value && typeof value === "object" && !Array.isArray(value) && !(value instanceof Set)) {
+    const known = new Set([...(value.knownNodeIds ?? [])].map(String));
+    const reviewableSource = value.reviewableNodeIds ?? value.knownNodeIds ?? [];
+    return { known, reviewable: new Set([...reviewableSource].map(String)) };
+  }
+  const known = new Set([...(value ?? [])].map(String));
+  return { known, reviewable: new Set(known) };
+}
+
+export function prepareReviewImport(rawPayload, currentCandidate, nodePolicy = [], now = new Date()) {
   let payload = rawPayload;
   if (typeof rawPayload === "string") {
     try {
@@ -271,7 +282,18 @@ export function prepareReviewImport(rawPayload, currentCandidate, knownNodeIds =
 
   const current = normalizeReviewState(currentCandidate, now);
   const incoming = normalizeReviewState(payload, now);
-  const known = new Set([...knownNodeIds].map(String));
+  const { known, reviewable } = normalizeNodePolicy(nodePolicy);
+  const blocked = Object.keys(incoming.items)
+    .filter((id) => known.has(id) && !reviewable.has(id));
+  if (blocked.length) {
+    return {
+      ok: false,
+      errors: [`边界知识不能导入复习状态：${blocked.sort().join("、")}。`],
+      warnings: [],
+      preview: null,
+      nextState: null,
+    };
+  }
   const warnings = Object.keys(incoming.items)
     .filter((id) => known.size && !known.has(id))
     .map((id) => `知识网络中暂时没有 ${id}，状态将保留但不会出现在今日列表。`);

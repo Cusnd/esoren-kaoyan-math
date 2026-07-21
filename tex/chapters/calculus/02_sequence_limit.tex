@@ -5,3 +5,128 @@
 
 本讲用于整理数列极限、单调有界准则、夹逼准则、递推数列极限和常见数列变形。新增题目时重点检查极限存在性、递推关系稳定点和放缩方向。
 \end{knowledgeBox}
+
+% BEGIN calculus-foundation:calc-02-pages
+\knowledgeAnchor[MATH1-KN-CALC-0065]{数列极限的 $\varepsilon$-$N$ 定义}
+\begin{knowledgeBox}
+\textbf{定义或结论：} $a_n\to A$ 指对任意 $\varepsilon>0$，存在 $N$，当 $n>N$ 时有 $|a_n-A|<\varepsilon$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 能按定义解释“任意精度最终都进入邻域”；会做最基础的定义证明。
+  \item \textbf{成立条件：} $N$ 可依赖于 $\varepsilon$，但不能依赖于具体的 $n$；“任意”与“存在”的顺序不可交换。
+  \item \textbf{典型用法与识别信号：} 按定义证明简单数列极限；否定极限定义；识别信号为 “按定义”“对任意ε”“存在N”。
+  \item \textbf{关系与迁移：} 前置知识为 绝对值不等式；可迁移到 收敛性质、反例构造、选择题逻辑。
+  \item \textbf{常见误区：} 量词顺序错误；把“存在ε”写成“任意ε”。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0066]{收敛数列的唯一性}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 若 $a_n\to A$ 且 $a_n\to B$，则 $A=B$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 理解一个数列不可能收敛到两个不同极限。
+  \item \textbf{成立条件：} 前提是同一数列在同一指标方向 $n\to\infty$。
+  \item \textbf{典型用法与识别信号：} 判断参数；证明极限唯一；识别信号为 “极限存在且等于”。
+  \item \textbf{关系与迁移：} 前置知识为 极限定义；可迁移到 递推数列极限方程的候选筛选。
+  \item \textbf{常见误区：} 由递推方程得到多个根后，误认为都是极限。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0067]{收敛数列有界性与保号性}
+\begin{knowledgeBox}
+\textbf{定义或结论：} $a_n\to A$ 则 $(a_n)$ 有界；若 $A>0$，则充分大 $n$ 有 $a_n>0$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 掌握收敛必有界；极限为正时充分靠后项为正。
+  \item \textbf{成立条件：} 有界是收敛的必要非充分条件；保号性只保证“最终”，不能保证所有项。
+  \item \textbf{典型用法与识别信号：} 判断命题真假；估计分母不为零；识别信号为 “收敛必…”“充分大n”。
+  \item \textbf{关系与迁移：} 前置知识为 极限定义；可迁移到 极限运算、级数必要条件、递推数列。
+  \item \textbf{常见误区：} 把有界当收敛；把最终性质推广到前有限项。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0068]{子列与聚点判据}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 若 $a_n\to A$，则任意子列 $a_{n_k}\to A$；若找到两子列极限不同，则原数列发散。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 理解收敛数列任一子列同极限；会用两子列不同极限证明发散。
+  \item \textbf{成立条件：} 两子列必须指标严格递增且趋于无穷；存在一个收敛子列不能推出原数列收敛。
+  \item \textbf{典型用法与识别信号：} 振荡数列判敛；构造反例；识别信号为 “偶数项/奇数项”“振荡”。
+  \item \textbf{关系与迁移：} 前置知识为 数列极限；可迁移到 函数极限的序列判据、级数部分和。
+  \item \textbf{常见误区：} 只看一个子列；把部分项趋势当整体趋势。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0069]{数列极限四则运算}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 若 $a_n\to A,b_n\to B$，则和、差、积相应收敛；若 $B\ne0$，则 $a_n/b_n\to A/B$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 熟练处理和差积商与常数倍；商法则先检查分母极限非零。
+  \item \textbf{成立条件：} 不能对 $0/0$、$\infty/\infty$ 直接分别取极限；无穷大不是普通实数。
+  \item \textbf{典型用法与识别信号：} 有理式数列极限；拆分极限；识别信号为 “各项极限已知”。
+  \item \textbf{关系与迁移：} 前置知识为 极限性质；可迁移到 夹逼、等价、递推数列。
+  \item \textbf{常见误区：} 在分母极限为0时套商法则；把不存在的分项极限拆开。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\studySubsection{calc-02-convergence-criteria}{数列极限判据与递推数列}
+
+\begin{knowledgeBox}
+本页把“候选极限”和“极限存在性”严格分开：不动点方程只负责找候选，夹逼或单调有界负责证明收敛。
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0070]{夹逼准则}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 若从某项起 $x_n\le y_n\le z_n$ 且 $x_n,z_n\to A$，则 $y_n\to A$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会构造上下界并证明两端同极限。
+  \item \textbf{成立条件：} 不等式只需从某项起成立；两端必须趋于同一有限或同向无穷极限。
+  \item \textbf{典型用法与识别信号：} 含和式、积分式、振荡因子的数列极限；识别信号为 “夹在”“绝对值≤”“和式难算”。
+  \item \textbf{关系与迁移：} 前置知识为 不等式、极限运算；可迁移到 定积分估计、级数余项、概率极限直觉。
+  \item \textbf{常见误区：} 上、下界极限不同；不说明不等式成立范围。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0071]{单调有界准则}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 单调递增且上有界，或单调递减且下有界的数列必收敛。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会证明递推数列单调且有界，从而得到收敛性。
+  \item \textbf{成立条件：} 必须同时证明单调与相应方向的界；仅由递推极限方程不能证明极限存在。
+  \item \textbf{典型用法与识别信号：} 递推数列极限；证明数列收敛；识别信号为 “递推定义”“证明极限存在”。
+  \item \textbf{关系与迁移：} 前置知识为 数学归纳法、单调性；可迁移到 不等式、函数单调性、积分递推。
+  \item \textbf{常见误区：} 先设极限再代入，跳过存在性；界选得不封闭。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0072]{递推数列极限}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 若已知 $a_n\to A$ 且递推函数连续，则 $A=\varphi(A)$；此方程只给候选，不给存在性。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会用不动点方程求候选，并用单调有界、压缩或夹逼证明存在。
+  \item \textbf{成立条件：} 取极限前须证明收敛或题目已给收敛；多个不动点需结合初值与不变区间筛选。
+  \item \textbf{典型用法与识别信号：} 求递推极限；证明单调有界；识别信号为 “$a_{n+1}=\varphi(a_n)$”。
+  \item \textbf{关系与迁移：} 前置知识为 单调有界、连续性；可迁移到 中值定理、积分不等式、函数迭代。
+  \item \textbf{常见误区：} 循环论证；忽略初值导致选错根。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0314]{递推数列极限}
+\begin{knowledgeBox}
+\textbf{题型识别：} 给初值和 $a_{n+1}=\varphi(a_n)$，求极限或证收敛；识别信号为 “递推定义”“证明数列收敛”“求lim a\_n”。
+
+\begin{itemize}
+  \item \textbf{标准流程：} ①解不动点方程找候选；②由初值构造不变区间；③证明单调或压缩；④由单调有界得收敛；⑤代入连续递推求极限；⑥排除其他根。
+  \item \textbf{方法选择：} 能证单调有界时最规范；有收缩比时用误差估计；可替代路线包括 夹逼、误差递推、数学归纳。
+  \item \textbf{合法性检查：} 每一步先核对定义域、极限或定理条件；特别防止 先设极限再代入，循环论证；不筛多个不动点。
+  \item \textbf{考场步骤：} 先写识别出的结构与必要条件，再按标准流程逐步化简，最后回代、筛根或复核单侧情形。
+  \item \textbf{迁移方向：} 分式递推、根式递推、积分递推；可与 极限、单调性、不等式 交错训练。
+\end{itemize}
+\end{knowledgeBox}
+% END calculus-foundation:calc-02-pages

@@ -35,6 +35,7 @@ function documentsFrom(payload) {
     collection: String(item.collection ?? "core"),
     chapterKey: String(item.chapterKey ?? item.chapter_key ?? ""),
     tags: stringArray(item.tags),
+    reviewable: item.reviewable !== false,
     difficulty: String(item.difficulty ?? ""),
     headings: stringArray(item.headings),
     body: String(item.body ?? item.text ?? ""),
@@ -137,7 +138,11 @@ function resultElement(item, query) {
   const meta = window.document.createElement("span");
   meta.className = "reader-search-result__meta";
   meta.textContent = [
-    item.collection === "practice" ? "练习库" : item.itemType === "knowledge" ? "知识节点" : "主库",
+    item.collection === "practice"
+      ? "练习库"
+      : item.itemType === "knowledge"
+        ? item.reviewable ? "知识节点" : "边界知识"
+        : "主库",
     item.subject,
     item.lecture,
     ...item.problemIds.slice(0, 1),

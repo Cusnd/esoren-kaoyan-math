@@ -63,6 +63,41 @@ test("learning-state import validates the complete versioned envelope", () => {
   assert.equal(prepared.nextState.reviews.items[node.id].state, "active");
 });
 
+test("boundary knowledge is rejected atomically by actions and state imports", () => {
+  const boundary = { id: "MATH1-KN-CALC-0093", title: "一致连续性（教材扩展）", reviewable: false };
+  assert.throws(
+    () => applyReviewAction(emptyReviewState(now), boundary, "add", now),
+    /Boundary knowledge/,
+  );
+
+  const boundaryItem = {
+    ...reviews.items[node.id],
+    labelSnapshot: boundary.title,
+  };
+  const incoming = envelope({
+    reviews: {
+      ...emptyReviewState(now),
+      items: { [boundary.id]: boundaryItem },
+    },
+  });
+  const current = { preferences, progress, reviews: emptyReviewState(now) };
+  const before = structuredClone(current);
+  const prepared = prepareLearningStateImport(
+    JSON.stringify(incoming),
+    current,
+    {
+      knownNodeIds: [node.id, boundary.id],
+      reviewableNodeIds: [node.id],
+    },
+    now,
+  );
+
+  assert.equal(prepared.ok, false);
+  assert.equal(prepared.nextState, null);
+  assert.match(prepared.errors.join(" "), /边界知识不能导入复习状态/);
+  assert.deepEqual(current, before);
+});
+
 test("future schemas and malformed preferences or progress are rejected", () => {
   for (const payload of [
     envelope({ schemaVersion: 2 }),

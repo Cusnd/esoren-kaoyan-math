@@ -1,448 +1,3656 @@
-schema_version: 1
-
-# 稳定知识节点是跨题目、网页复习状态和提示词的共同引用单位。
-# aliases 只用于检索；关系只来自下方显式 edges，不从标签文本推断。
+schema_version: 2
 nodes:
   - id: MATH1-KN-CALC-0001
-    title: "函数表示"
+    title: 函数表示
     kind: concept
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
+    aliases:
+      - K001
+      - 函数与对应关系
+    source_refs:
+      - calc-map-2026:K001
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0001
   - id: MATH1-KN-CALC-0002
-    title: "整体换元"
+    title: 整体换元
     kind: method
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["整体视角"]
+    aliases:
+      - 整体视角
     tex_anchor:
-      file: "tex/indexes/method_index.tex"
+      file: tex/indexes/method_index.tex
       id: MATH1-KN-CALC-0002
-
   - id: MATH1-KN-CALC-0003
-    title: "值域"
+    title: 值域
     kind: concept
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
   - id: MATH1-KN-CALC-0004
-    title: "函数关系式"
+    title: 函数关系式
     kind: problem_family
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["函数方程"]
-
+    aliases:
+      - 函数方程
   - id: MATH1-KN-CALC-0005
-    title: "倒数代换"
+    title: 倒数代换
     kind: method
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
     tex_anchor:
-      file: "tex/indexes/method_index.tex"
+      file: tex/indexes/method_index.tex
       id: MATH1-KN-CALC-0005
-
   - id: MATH1-KN-CALC-0006
-    title: "方程组消元"
+    title: 方程组消元
     kind: method
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
   - id: MATH1-KN-CALC-0007
-    title: "定义域"
+    title: 定义域
     kind: concept
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
+    aliases:
+      - K002
+      - 基本初等函数定义域
+    source_refs:
+      - calc-map-2026:K002
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0007
   - id: MATH1-KN-CALC-0008
-    title: "反函数"
+    title: 反函数
     kind: concept
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
     tex_anchor:
-      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
       id: MATH1-KN-CALC-0008
-
+    aliases:
+      - K010
+      - 反函数存在性与性质
+    source_refs:
+      - calc-map-2026:K010
+    reviewable: true
   - id: MATH1-KN-CALC-0009
-    title: "对数性质"
+    title: 对数性质
     kind: formula
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
   - id: MATH1-KN-CALC-0010
-    title: "有理化"
+    title: 有理化
     kind: method
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
   - id: MATH1-KN-CALC-0011
-    title: "双曲函数"
+    title: 双曲函数
     kind: concept
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
   - id: MATH1-KN-CALC-0012
-    title: "复合函数"
+    title: 复合函数
     kind: concept
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
     tex_anchor:
-      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
       id: MATH1-KN-CALC-0012
-
+    aliases:
+      - K009
+    source_refs:
+      - calc-map-2026:K009
+    reviewable: true
   - id: MATH1-KN-CALC-0013
-    title: "分支分析"
+    title: 分支分析
     kind: method
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["平方根分支"]
-
+    aliases:
+      - 平方根分支
   - id: MATH1-KN-CALC-0014
-    title: "分段函数"
+    title: 分段函数
     kind: concept
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
+    aliases:
+      - K012
+    source_refs:
+      - calc-map-2026:K012
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0014
   - id: MATH1-KN-CALC-0015
-    title: "内层函数取值分析"
+    title: 内层函数取值分析
     kind: method
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["内层函数取值"]
-
+    aliases:
+      - 内层函数取值
   - id: MATH1-KN-CALC-0016
-    title: "数形结合"
+    title: 数形结合
     kind: method
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
   - id: MATH1-KN-CALC-0017
-    title: "有界性"
+    title: 有界性
     kind: concept
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
     tex_anchor:
-      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
       id: MATH1-KN-CALC-0017
-
+    aliases:
+      - K004
+    source_refs:
+      - calc-map-2026:K004
+    reviewable: true
   - id: MATH1-KN-CALC-0018
-    title: "绝对值"
+    title: 绝对值
     kind: concept
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
   - id: MATH1-KN-CALC-0019
-    title: "基本不等式"
+    title: 基本不等式
     kind: formula
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
   - id: MATH1-KN-CALC-0020
-    title: "放缩"
+    title: 放缩
     kind: method
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
   - id: MATH1-KN-CALC-0021
-    title: "单调性"
+    title: 单调性
     kind: concept
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
     tex_anchor:
-      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
       id: MATH1-KN-CALC-0021
-
+    aliases:
+      - K005
+    source_refs:
+      - calc-map-2026:K005
+    reviewable: true
   - id: MATH1-KN-CALC-0022
-    title: "图像变换"
+    title: 图像变换
     kind: method
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
+    aliases:
+      - K015
+      - 平移、伸缩、对称与复合图像
+    source_refs:
+      - calc-map-2026:K015
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0022
   - id: MATH1-KN-CALC-0023
-    title: "定义法证明"
+    title: 定义法证明
     kind: method
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["定义法"]
-
+    aliases:
+      - 定义法
   - id: MATH1-KN-CALC-0024
-    title: "奇偶性"
+    title: 奇偶性
     kind: concept
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["奇函数"]
+    aliases:
+      - 奇函数
+      - K006
     tex_anchor:
-      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
       id: MATH1-KN-CALC-0024
-
+    source_refs:
+      - calc-map-2026:K006
+    reviewable: true
   - id: MATH1-KN-CALC-0025
-    title: "特殊值赋值法"
+    title: 特殊值赋值法
     kind: method
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["赋值法"]
-
+    aliases:
+      - 赋值法
   - id: MATH1-KN-CALC-0026
-    title: "周期性"
+    title: 周期性
     kind: concept
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["周期函数"]
+    aliases:
+      - 周期函数
+      - K007
+      - 周期性与最小正周期
     tex_anchor:
-      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
       id: MATH1-KN-CALC-0026
-
+    source_refs:
+      - calc-map-2026:K007
+    reviewable: true
   - id: MATH1-KN-CALC-0027
-    title: "递推式迭代"
+    title: 递推式迭代
     kind: method
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["递推式"]
-
+    aliases:
+      - 递推式
   - id: MATH1-KN-CALC-0028
-    title: "三角函数诱导公式"
+    title: 三角函数诱导公式
     kind: formula
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["诱导公式"]
-
+    aliases:
+      - 诱导公式
   - id: MATH1-KN-CALC-0029
-    title: "隐函数"
+    title: 隐函数
     kind: concept
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
     tex_anchor:
-      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
       id: MATH1-KN-CALC-0029
-
+    aliases:
+      - K011
+      - 隐函数概念
+    source_refs:
+      - calc-map-2026:K011
+    reviewable: true
   - id: MATH1-KN-CALC-0030
-    title: "变量角色混淆"
+    title: 变量角色混淆
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["混淆题设参数与最终自变量"]
-
+    aliases:
+      - 混淆题设参数与最终自变量
   - id: MATH1-KN-CALC-0031
-    title: "题面与参考符号不一致"
+    title: 题面与参考符号不一致
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["忽略题面符号与参考答案的一致性"]
-
+    aliases:
+      - 忽略题面符号与参考答案的一致性
   - id: MATH1-KN-CALC-0032
-    title: "忽略定义域条件"
+    title: 忽略定义域条件
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["忽略 x>0 对倒数代换和根式化简的作用"]
-
+    aliases:
+      - 忽略 x>0 对倒数代换和根式化简的作用
   - id: MATH1-KN-CALC-0033
-    title: "绝对值条件遗漏"
+    title: 绝对值条件遗漏
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["根式化简时漏掉绝对值判断", "证明有界时忘记取绝对值"]
-
+    aliases:
+      - 根式化简时漏掉绝对值判断
+      - 证明有界时忘记取绝对值
   - id: MATH1-KN-CALC-0034
-    title: "消元倍数错误"
+    title: 消元倍数错误
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["消元倍数选择错误"]
-
+    aliases:
+      - 消元倍数选择错误
   - id: MATH1-KN-CALC-0035
-    title: "把反函数当作倒数"
+    title: 把反函数当作倒数
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["把反函数误认为倒数"]
-
+    aliases:
+      - 把反函数误认为倒数
   - id: MATH1-KN-CALC-0036
-    title: "盲目平方导致计算膨胀"
+    title: 盲目平方导致计算膨胀
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["直接平方硬解导致计算膨胀"]
-
+    aliases:
+      - 直接平方硬解导致计算膨胀
   - id: MATH1-KN-CALC-0037
-    title: "遗漏反函数定义域"
+    title: 遗漏反函数定义域
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["忘记写反函数定义域"]
-
+    aliases:
+      - 忘记写反函数定义域
   - id: MATH1-KN-CALC-0038
-    title: "遗漏对数真数为正"
+    title: 遗漏对数真数为正
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["忽略对数真数恒正性"]
-
+    aliases:
+      - 忽略对数真数恒正性
   - id: MATH1-KN-CALC-0039
-    title: "反求时遗漏分支"
+    title: 反求时遗漏分支
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["从平方关系反求中间函数时漏掉正负分支"]
-
+    aliases:
+      - 从平方关系反求中间函数时漏掉正负分支
   - id: MATH1-KN-CALC-0040
-    title: "只求表达式不检查范围"
+    title: 只求表达式不检查范围
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["只求表达式不求定义域和值域"]
-
+    aliases:
+      - 只求表达式不求定义域和值域
   - id: MATH1-KN-CALC-0041
-    title: "值域只检查端点"
+    title: 值域只检查端点
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["值域判断时只看端点"]
-
+    aliases:
+      - 值域判断时只看端点
   - id: MATH1-KN-CALC-0042
-    title: "混淆外层条件与原自变量"
+    title: 混淆外层条件与原自变量
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["把外层函数的分段条件误判为原自变量的条件"]
-
+    aliases:
+      - 把外层函数的分段条件误判为原自变量的条件
   - id: MATH1-KN-CALC-0043
-    title: "分段边界归属错误"
+    title: 分段边界归属错误
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["边界点归属错误"]
-
+    aliases:
+      - 边界点归属错误
   - id: MATH1-KN-CALC-0044
-    title: "混淆内外层分段"
+    title: 混淆内外层分段
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["混淆内层分段与外层分段"]
-
+    aliases:
+      - 混淆内层分段与外层分段
   - id: MATH1-KN-CALC-0046
-    title: "约分或除法遗漏零点"
+    title: 约分或除法遗漏零点
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["除以 |x| 时漏掉 x=0", "含 |x| 的约分漏掉 x=0"]
-
+    aliases:
+      - 除以 |x| 时漏掉 x=0
+      - 含 |x| 的约分漏掉 x=0
   - id: MATH1-KN-CALC-0047
-    title: "把证明有界误作求最小上界"
+    title: 把证明有界误作求最小上界
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["误以为必须求最小上界"]
-
+    aliases:
+      - 误以为必须求最小上界
   - id: MATH1-KN-CALC-0048
-    title: "误判绝对值复合的单调性"
+    title: 误判绝对值复合的单调性
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["把 |f(x)| 误认为保持单调"]
-
+    aliases:
+      - 把 |f(x)| 误认为保持单调
   - id: MATH1-KN-CALC-0049
-    title: "混淆自变量反向与函数值变号"
+    title: 混淆自变量反向与函数值变号
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["混淆 f(-x) 与 -f(-x) 的单调性"]
-
+    aliases:
+      - 混淆 f(-x) 与 -f(-x) 的单调性
   - id: MATH1-KN-CALC-0050
-    title: "只看图像不写定义证明"
+    title: 只看图像不写定义证明
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["只看图像不写定义法证明"]
-
+    aliases:
+      - 只看图像不写定义法证明
   - id: MATH1-KN-CALC-0051
-    title: "函数方程漏求零点值"
+    title: 函数方程漏求零点值
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["忘记先求 f(0)"]
-
+    aliases:
+      - 忘记先求 f(0)
   - id: MATH1-KN-CALC-0052
-    title: "混淆奇偶函数条件"
+    title: 混淆奇偶函数条件
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["把奇函数条件误写成偶函数条件"]
-
+    aliases:
+      - 把奇函数条件误写成偶函数条件
   - id: MATH1-KN-CALC-0053
-    title: "未利用任意变量作特殊赋值"
+    title: 未利用任意变量作特殊赋值
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["忽略任意 x,y 条件允许特殊赋值"]
-
+    aliases:
+      - 忽略任意 x,y 条件允许特殊赋值
   - id: MATH1-KN-CALC-0054
-    title: "递推次数不足"
+    title: 递推次数不足
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["只套一次等式未回到 f(x)"]
-
+    aliases:
+      - 只套一次等式未回到 f(x)
   - id: MATH1-KN-CALC-0055
-    title: "诱导公式符号错误"
+    title: 诱导公式符号错误
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
   - id: MATH1-KN-CALC-0056
-    title: "混淆周期与最小正周期"
+    title: 混淆周期与最小正周期
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["误以为要证明最小正周期"]
-
+    aliases:
+      - 误以为要证明最小正周期
   - id: MATH1-KN-CALC-0057
-    title: "放缩前未检查符号"
+    title: 放缩前未检查符号
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["分式放缩时忘记确认正负号"]
-
+    aliases:
+      - 分式放缩时忘记确认正负号
   - id: MATH1-KN-CALC-0058
-    title: "根式差未优先有理化"
+    title: 根式差未优先有理化
     kind: pitfall
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-
   - id: MATH1-KN-CALC-0059
-    title: "七种未定式的统一化归"
+    title: 七种未定式的统一化归
     kind: method
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-01
-    aliases: ["七种未定式", "未定式极限", "未定型极限", "幂指函数极限"]
+    aliases:
+      - 七种未定式
+      - 未定式极限
+      - 未定型极限
+      - 幂指函数极限
     tex_anchor:
-      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
       id: MATH1-KN-CALC-0059
-
   - id: MATH1-KN-CALC-0060
-    title: "泰勒公式与常用展开"
+    title: 泰勒公式与常用展开
     kind: formula
-    subject: "高等数学"
+    subject: 高等数学
     chapter_key: calc-06
-    aliases: ["泰勒展开", "麦克劳林公式", "麦克劳林展开", "带皮亚诺余项的泰勒公式", "带拉格朗日余项的泰勒公式"]
+    aliases:
+      - 泰勒展开
+      - 麦克劳林公式
+      - 麦克劳林展开
+      - 带皮亚诺余项的泰勒公式
+      - 带拉格朗日余项的泰勒公式
+      - K067
+      - Taylor公式与余项
+      - K068
+      - 常用Maclaurin展开
     tex_anchor:
-      file: "tex/chapters/calculus/06_differential_applications_mvt_equations_inequalities.tex"
+      file: tex/chapters/calculus/06_differential_applications_mvt_equations_inequalities.tex
       id: MATH1-KN-CALC-0060
-
+    source_refs:
+      - calc-map-2026:K067
+      - calc-map-2026:K068
+    reviewable: true
+  - id: MATH1-KN-CALC-0061
+    title: 复合函数定义域
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K003
+    source_refs:
+      - calc-map-2026:K003
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0061
+  - id: MATH1-KN-CALC-0062
+    title: 复合函数性质
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K008
+    source_refs:
+      - calc-map-2026:K008
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0062
+  - id: MATH1-KN-CALC-0063
+    title: 指数、对数、幂函数
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K013
+    source_refs:
+      - calc-map-2026:K013
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0063
+  - id: MATH1-KN-CALC-0064
+    title: 三角与反三角函数
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K014
+    source_refs:
+      - calc-map-2026:K014
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0064
+  - id: MATH1-KN-CALC-0065
+    title: 数列极限的 $\varepsilon$-$N$ 定义
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-02
+    aliases:
+      - K016
+    source_refs:
+      - calc-map-2026:K016
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/02_sequence_limit.tex
+      id: MATH1-KN-CALC-0065
+  - id: MATH1-KN-CALC-0066
+    title: 收敛数列的唯一性
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-02
+    aliases:
+      - K017
+    source_refs:
+      - calc-map-2026:K017
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/02_sequence_limit.tex
+      id: MATH1-KN-CALC-0066
+  - id: MATH1-KN-CALC-0067
+    title: 收敛数列有界性与保号性
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-02
+    aliases:
+      - K018
+    source_refs:
+      - calc-map-2026:K018
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/02_sequence_limit.tex
+      id: MATH1-KN-CALC-0067
+  - id: MATH1-KN-CALC-0068
+    title: 子列与聚点判据
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-02
+    aliases:
+      - K019
+    source_refs:
+      - calc-map-2026:K019
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/02_sequence_limit.tex
+      id: MATH1-KN-CALC-0068
+  - id: MATH1-KN-CALC-0069
+    title: 数列极限四则运算
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-02
+    aliases:
+      - K020
+    source_refs:
+      - calc-map-2026:K020
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/02_sequence_limit.tex
+      id: MATH1-KN-CALC-0069
+  - id: MATH1-KN-CALC-0070
+    title: 夹逼准则
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-02
+    aliases:
+      - K021
+    source_refs:
+      - calc-map-2026:K021
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/02_sequence_limit.tex
+      id: MATH1-KN-CALC-0070
+  - id: MATH1-KN-CALC-0071
+    title: 单调有界准则
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-02
+    aliases:
+      - K022
+    source_refs:
+      - calc-map-2026:K022
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/02_sequence_limit.tex
+      id: MATH1-KN-CALC-0071
+  - id: MATH1-KN-CALC-0072
+    title: 递推数列极限
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-02
+    aliases:
+      - K023
+    source_refs:
+      - calc-map-2026:K023
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/02_sequence_limit.tex
+      id: MATH1-KN-CALC-0072
+  - id: MATH1-KN-CALC-0073
+    title: 有限点函数极限的定义
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K024
+    source_refs:
+      - calc-map-2026:K024
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0073
+  - id: MATH1-KN-CALC-0074
+    title: 左右极限与双侧极限
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K025
+    source_refs:
+      - calc-map-2026:K025
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0074
+  - id: MATH1-KN-CALC-0075
+    title: 无穷处与无穷函数极限
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K026
+    source_refs:
+      - calc-map-2026:K026
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0075
+  - id: MATH1-KN-CALC-0076
+    title: 函数极限四则运算与复合极限
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K027
+    source_refs:
+      - calc-map-2026:K027
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0076
+  - id: MATH1-KN-CALC-0077
+    title: 函数极限的夹逼准则
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K028
+    source_refs:
+      - calc-map-2026:K028
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0077
+  - id: MATH1-KN-CALC-0078
+    title: 函数极限的序列判据（海涅定理）
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K029
+    source_refs:
+      - calc-map-2026:K029
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0078
+  - id: MATH1-KN-CALC-0079
+    title: 无穷小、无穷大及互为倒数
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K030
+    source_refs:
+      - calc-map-2026:K030
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0079
+  - id: MATH1-KN-CALC-0080
+    title: 同阶、高阶、低阶与等价无穷小
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K031
+    source_refs:
+      - calc-map-2026:K031
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0080
+  - id: MATH1-KN-CALC-0081
+    title: 常用等价无穷小
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K032
+    source_refs:
+      - calc-map-2026:K032
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0081
+  - id: MATH1-KN-CALC-0082
+    title: 等价无穷小替换规则
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K033
+    source_refs:
+      - calc-map-2026:K033
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0082
+  - id: MATH1-KN-CALC-0083
+    title: 第一重要极限
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K034
+    source_refs:
+      - calc-map-2026:K034
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0083
+  - id: MATH1-KN-CALC-0084
+    title: 第二重要极限与 $e$
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K035
+    source_refs:
+      - calc-map-2026:K035
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0084
+  - id: MATH1-KN-CALC-0085
+    title: 代数化简、因式分解与有理化
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K036
+    source_refs:
+      - calc-map-2026:K036
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0085
+  - id: MATH1-KN-CALC-0086
+    title: 幂指型极限的对数化
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K037
+    source_refs:
+      - calc-map-2026:K037
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0086
+  - id: MATH1-KN-CALC-0087
+    title: 函数在一点连续
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K038
+    source_refs:
+      - calc-map-2026:K038
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0087
+  - id: MATH1-KN-CALC-0088
+    title: 左连续、右连续与区间连续
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K039
+    source_refs:
+      - calc-map-2026:K039
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0088
+  - id: MATH1-KN-CALC-0089
+    title: 间断点分类
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K040
+    source_refs:
+      - calc-map-2026:K040
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0089
+  - id: MATH1-KN-CALC-0090
+    title: 初等函数与复合函数连续性
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K041
+    source_refs:
+      - calc-map-2026:K041
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0090
+  - id: MATH1-KN-CALC-0091
+    title: 有界性与最大最小值定理
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K042
+    source_refs:
+      - calc-map-2026:K042
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0091
+  - id: MATH1-KN-CALC-0092
+    title: 零点定理与介值定理
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K043
+    source_refs:
+      - calc-map-2026:K043
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0092
+  - id: MATH1-KN-CALC-0093
+    title: 一致连续性（教材扩展）
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K044
+    source_refs:
+      - calc-map-2026:K044
+    reviewable: false
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0093
+  - id: MATH1-KN-CALC-0094
+    title: 柯西收敛准则与 Stolz 定理
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - K045
+    source_refs:
+      - calc-map-2026:K045
+    reviewable: false
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0094
+  - id: MATH1-KN-CALC-0095
+    title: 导数定义与差商极限
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-03
+    aliases:
+      - K046
+    source_refs:
+      - calc-map-2026:K046
+    reviewable: true
+  - id: MATH1-KN-CALC-0096
+    title: 左导数、右导数与可导判定
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-03
+    aliases:
+      - K047
+    source_refs:
+      - calc-map-2026:K047
+    reviewable: true
+  - id: MATH1-KN-CALC-0097
+    title: 可导与连续关系
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-03
+    aliases:
+      - K048
+    source_refs:
+      - calc-map-2026:K048
+    reviewable: true
+  - id: MATH1-KN-CALC-0098
+    title: 导数的几何与物理意义
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-03
+    aliases:
+      - K049
+    source_refs:
+      - calc-map-2026:K049
+    reviewable: true
+  - id: MATH1-KN-CALC-0099
+    title: 基本求导公式
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-04
+    aliases:
+      - K050
+    source_refs:
+      - calc-map-2026:K050
+    reviewable: true
+  - id: MATH1-KN-CALC-0100
+    title: 和差积商求导
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-04
+    aliases:
+      - K051
+    source_refs:
+      - calc-map-2026:K051
+    reviewable: true
+  - id: MATH1-KN-CALC-0101
+    title: 复合函数链式法则
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-04
+    aliases:
+      - K052
+    source_refs:
+      - calc-map-2026:K052
+    reviewable: true
+  - id: MATH1-KN-CALC-0102
+    title: 反函数求导
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-04
+    aliases:
+      - K053
+    source_refs:
+      - calc-map-2026:K053
+    reviewable: true
+  - id: MATH1-KN-CALC-0103
+    title: 对数求导与幂指函数求导
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-04
+    aliases:
+      - K054
+    source_refs:
+      - calc-map-2026:K054
+    reviewable: true
+  - id: MATH1-KN-CALC-0104
+    title: 隐函数求导（一元）
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-04
+    aliases:
+      - K055
+    source_refs:
+      - calc-map-2026:K055
+    reviewable: true
+  - id: MATH1-KN-CALC-0105
+    title: 参数方程求导
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-04
+    aliases:
+      - K056
+    source_refs:
+      - calc-map-2026:K056
+    reviewable: true
+  - id: MATH1-KN-CALC-0106
+    title: 高阶导数概念与基本计算
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-04
+    aliases:
+      - K057
+    source_refs:
+      - calc-map-2026:K057
+    reviewable: true
+  - id: MATH1-KN-CALC-0107
+    title: 莱布尼茨公式
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-04
+    aliases:
+      - K058
+    source_refs:
+      - calc-map-2026:K058
+    reviewable: true
+  - id: MATH1-KN-CALC-0108
+    title: 可微与微分定义
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-03
+    aliases:
+      - K059
+    source_refs:
+      - calc-map-2026:K059
+    reviewable: true
+  - id: MATH1-KN-CALC-0109
+    title: 微分运算法则与一阶形式不变性
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-03
+    aliases:
+      - K060
+    source_refs:
+      - calc-map-2026:K060
+    reviewable: true
+  - id: MATH1-KN-CALC-0110
+    title: 罗尔定理
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-06
+    aliases:
+      - K061
+    source_refs:
+      - calc-map-2026:K061
+    reviewable: true
+  - id: MATH1-KN-CALC-0111
+    title: 拉格朗日中值定理
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-06
+    aliases:
+      - K062
+    source_refs:
+      - calc-map-2026:K062
+    reviewable: true
+  - id: MATH1-KN-CALC-0112
+    title: 柯西中值定理
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-06
+    aliases:
+      - K063
+    source_refs:
+      - calc-map-2026:K063
+    reviewable: true
+  - id: MATH1-KN-CALC-0113
+    title: 辅助函数构造
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-06
+    aliases:
+      - K064
+    source_refs:
+      - calc-map-2026:K064
+    reviewable: true
+  - id: MATH1-KN-CALC-0114
+    title: $0/0$ 与 $\infty/\infty$ 型
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-06
+    aliases:
+      - K065
+    source_refs:
+      - calc-map-2026:K065
+    reviewable: true
+  - id: MATH1-KN-CALC-0115
+    title: 其他未定式的转化
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-06
+    aliases:
+      - K066
+    source_refs:
+      - calc-map-2026:K066
+    reviewable: true
+  - id: MATH1-KN-CALC-0116
+    title: Taylor极限的阶数选择
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-06
+    aliases:
+      - K069
+    source_refs:
+      - calc-map-2026:K069
+    reviewable: true
+  - id: MATH1-KN-CALC-0117
+    title: 单调区间判定
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-05
+    aliases:
+      - K070
+    source_refs:
+      - calc-map-2026:K070
+    reviewable: true
+  - id: MATH1-KN-CALC-0118
+    title: 局部极值与必要/充分条件
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-05
+    aliases:
+      - K071
+    source_refs:
+      - calc-map-2026:K071
+    reviewable: true
+  - id: MATH1-KN-CALC-0119
+    title: 闭区间最大值最小值
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-05
+    aliases:
+      - K072
+    source_refs:
+      - calc-map-2026:K072
+    reviewable: true
+  - id: MATH1-KN-CALC-0120
+    title: 凹凸性与拐点
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-05
+    aliases:
+      - K073
+    source_refs:
+      - calc-map-2026:K073
+    reviewable: true
+  - id: MATH1-KN-CALC-0121
+    title: 渐近线
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-05
+    aliases:
+      - K074
+    source_refs:
+      - calc-map-2026:K074
+    reviewable: true
+  - id: MATH1-KN-CALC-0122
+    title: 函数图形描绘
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-05
+    aliases:
+      - K075
+    source_refs:
+      - calc-map-2026:K075
+    reviewable: true
+  - id: MATH1-KN-CALC-0123
+    title: 弧微分与曲率公式
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-05
+    aliases:
+      - K076
+    source_refs:
+      - calc-map-2026:K076
+    reviewable: true
+  - id: MATH1-KN-CALC-0124
+    title: 曲率圆、曲率半径
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-05
+    aliases:
+      - K077
+    source_refs:
+      - calc-map-2026:K077
+    reviewable: true
+  - id: MATH1-KN-CALC-0125
+    title: 曲率中心、渐屈线与方程近似解
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-05
+    aliases:
+      - K078
+    source_refs:
+      - calc-map-2026:K078
+    reviewable: false
+  - id: MATH1-KN-CALC-0126
+    title: 原函数概念与存在性
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - K079
+    source_refs:
+      - calc-map-2026:K079
+    reviewable: true
+  - id: MATH1-KN-CALC-0127
+    title: 不定积分与积分常数
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - K080
+    source_refs:
+      - calc-map-2026:K080
+    reviewable: true
+  - id: MATH1-KN-CALC-0128
+    title: 基本积分公式
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - K081
+    source_refs:
+      - calc-map-2026:K081
+    reviewable: true
+  - id: MATH1-KN-CALC-0129
+    title: 第一类换元法（凑微分）
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K082
+    source_refs:
+      - calc-map-2026:K082
+    reviewable: true
+  - id: MATH1-KN-CALC-0130
+    title: 第二类换元法
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K083
+    source_refs:
+      - calc-map-2026:K083
+    reviewable: true
+  - id: MATH1-KN-CALC-0131
+    title: 分部积分法
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K084
+    source_refs:
+      - calc-map-2026:K084
+    reviewable: true
+  - id: MATH1-KN-CALC-0132
+    title: 有理函数积分
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K085
+    source_refs:
+      - calc-map-2026:K085
+    reviewable: true
+  - id: MATH1-KN-CALC-0133
+    title: 三角有理式积分
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K086
+    source_refs:
+      - calc-map-2026:K086
+    reviewable: true
+  - id: MATH1-KN-CALC-0134
+    title: 简单无理函数积分
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K087
+    source_refs:
+      - calc-map-2026:K087
+    reviewable: true
+  - id: MATH1-KN-CALC-0135
+    title: 定积分的Riemann和定义
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - K088
+    source_refs:
+      - calc-map-2026:K088
+    reviewable: true
+  - id: MATH1-KN-CALC-0136
+    title: 定积分存在性与可积函数
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - K089
+    source_refs:
+      - calc-map-2026:K089
+    reviewable: true
+  - id: MATH1-KN-CALC-0137
+    title: 线性、区间可加性与换向
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - K090
+    source_refs:
+      - calc-map-2026:K090
+    reviewable: true
+  - id: MATH1-KN-CALC-0138
+    title: 保序性、绝对值不等式与估计
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - K091
+    source_refs:
+      - calc-map-2026:K091
+    reviewable: true
+  - id: MATH1-KN-CALC-0139
+    title: 积分中值定理
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - K092
+    source_refs:
+      - calc-map-2026:K092
+    reviewable: true
+  - id: MATH1-KN-CALC-0140
+    title: 定积分换元法
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K093
+    source_refs:
+      - calc-map-2026:K093
+    reviewable: true
+  - id: MATH1-KN-CALC-0141
+    title: 定积分分部积分
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K094
+    source_refs:
+      - calc-map-2026:K094
+    reviewable: true
+  - id: MATH1-KN-CALC-0142
+    title: 对称性与周期性公式
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K095
+    source_refs:
+      - calc-map-2026:K095
+    reviewable: true
+  - id: MATH1-KN-CALC-0143
+    title: 变上限积分函数及连续性
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - K096
+    source_refs:
+      - calc-map-2026:K096
+    reviewable: true
+  - id: MATH1-KN-CALC-0144
+    title: 微积分基本定理与Newton–Leibniz公式
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - K097
+    source_refs:
+      - calc-map-2026:K097
+    reviewable: true
+  - id: MATH1-KN-CALC-0145
+    title: 复合上下限求导
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - K098
+    source_refs:
+      - calc-map-2026:K098
+    reviewable: true
+  - id: MATH1-KN-CALC-0146
+    title: 含参数积分求导（Leibniz扩展）
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - K099
+    source_refs:
+      - calc-map-2026:K099
+    reviewable: true
+  - id: MATH1-KN-CALC-0147
+    title: Riemann和极限
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - K100
+    source_refs:
+      - calc-map-2026:K100
+    reviewable: true
+  - id: MATH1-KN-CALC-0148
+    title: 无穷区间反常积分定义
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K101
+    source_refs:
+      - calc-map-2026:K101
+    reviewable: true
+  - id: MATH1-KN-CALC-0149
+    title: 无界函数反常积分定义
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K102
+    source_refs:
+      - calc-map-2026:K102
+    reviewable: true
+  - id: MATH1-KN-CALC-0150
+    title: $p$ 型反常积分
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K103
+    source_refs:
+      - calc-map-2026:K103
+    reviewable: true
+  - id: MATH1-KN-CALC-0151
+    title: 比较判别与极限比较
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K104
+    source_refs:
+      - calc-map-2026:K104
+    reviewable: true
+  - id: MATH1-KN-CALC-0152
+    title: 绝对收敛与条件收敛（反常积分）
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K105
+    source_refs:
+      - calc-map-2026:K105
+    reviewable: true
+  - id: MATH1-KN-CALC-0153
+    title: 平面图形面积
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-10
+    aliases:
+      - K106
+    source_refs:
+      - calc-map-2026:K106
+    reviewable: true
+  - id: MATH1-KN-CALC-0154
+    title: 旋转体体积与截面体积
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-10
+    aliases:
+      - K107
+    source_refs:
+      - calc-map-2026:K107
+    reviewable: true
+  - id: MATH1-KN-CALC-0155
+    title: 弧长
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-10
+    aliases:
+      - K108
+    source_refs:
+      - calc-map-2026:K108
+    reviewable: true
+  - id: MATH1-KN-CALC-0156
+    title: 旋转曲面面积
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-10
+    aliases:
+      - K109
+    source_refs:
+      - calc-map-2026:K109
+    reviewable: true
+  - id: MATH1-KN-CALC-0157
+    title: 功、液体压力、引力
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-12
+    aliases:
+      - K110
+    source_refs:
+      - calc-map-2026:K110
+    reviewable: true
+  - id: MATH1-KN-CALC-0158
+    title: 质心、平均值与力矩
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-12
+    aliases:
+      - K111
+    source_refs:
+      - calc-map-2026:K111
+    reviewable: true
+  - id: MATH1-KN-CALC-0159
+    title: Beta/Gamma函数与特殊积分
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - K112
+    source_refs:
+      - calc-map-2026:K112
+    reviewable: false
+  - id: MATH1-KN-CALC-0160
+    title: 向量坐标、模与单位向量
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K113
+    source_refs:
+      - calc-map-2026:K113
+    reviewable: true
+  - id: MATH1-KN-CALC-0161
+    title: 线性运算、共线与共面
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K114
+    source_refs:
+      - calc-map-2026:K114
+    reviewable: true
+  - id: MATH1-KN-CALC-0162
+    title: 数量积与夹角
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K115
+    source_refs:
+      - calc-map-2026:K115
+    reviewable: true
+  - id: MATH1-KN-CALC-0163
+    title: 向量积
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K116
+    source_refs:
+      - calc-map-2026:K116
+    reviewable: true
+  - id: MATH1-KN-CALC-0164
+    title: 混合积
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K117
+    source_refs:
+      - calc-map-2026:K117
+    reviewable: true
+  - id: MATH1-KN-CALC-0165
+    title: 方向数与方向余弦
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K118
+    source_refs:
+      - calc-map-2026:K118
+    reviewable: true
+  - id: MATH1-KN-CALC-0166
+    title: 平面方程
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K119
+    source_refs:
+      - calc-map-2026:K119
+    reviewable: true
+  - id: MATH1-KN-CALC-0167
+    title: 空间直线方程
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K120
+    source_refs:
+      - calc-map-2026:K120
+    reviewable: true
+  - id: MATH1-KN-CALC-0168
+    title: 直线与直线、平面与平面关系
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K121
+    source_refs:
+      - calc-map-2026:K121
+    reviewable: true
+  - id: MATH1-KN-CALC-0169
+    title: 直线与平面关系及夹角
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K122
+    source_refs:
+      - calc-map-2026:K122
+    reviewable: true
+  - id: MATH1-KN-CALC-0170
+    title: 点到平面与点到直线距离
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K123
+    source_refs:
+      - calc-map-2026:K123
+    reviewable: true
+  - id: MATH1-KN-CALC-0171
+    title: 平行平面、平行直线与异面直线距离
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K124
+    source_refs:
+      - calc-map-2026:K124
+    reviewable: true
+  - id: MATH1-KN-CALC-0172
+    title: 曲面方程与截痕法
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K125
+    source_refs:
+      - calc-map-2026:K125
+    reviewable: true
+  - id: MATH1-KN-CALC-0173
+    title: 旋转曲面
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K126
+    source_refs:
+      - calc-map-2026:K126
+    reviewable: true
+  - id: MATH1-KN-CALC-0174
+    title: 柱面
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K127
+    source_refs:
+      - calc-map-2026:K127
+    reviewable: true
+  - id: MATH1-KN-CALC-0175
+    title: 常见二次曲面识别
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K128
+    source_refs:
+      - calc-map-2026:K128
+    reviewable: true
+  - id: MATH1-KN-CALC-0176
+    title: 空间曲线的参数方程与一般方程
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K129
+    source_refs:
+      - calc-map-2026:K129
+    reviewable: true
+  - id: MATH1-KN-CALC-0177
+    title: 空间曲线投影
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K130
+    source_refs:
+      - calc-map-2026:K130
+    reviewable: true
+  - id: MATH1-KN-CALC-0178
+    title: 一般仿射坐标变换与二次曲面分类
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - K131
+    source_refs:
+      - calc-map-2026:K131
+    reviewable: false
+  - id: MATH1-KN-CALC-0179
+    title: 多元函数概念、定义域与图形
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K132
+    source_refs:
+      - calc-map-2026:K132
+    reviewable: true
+  - id: MATH1-KN-CALC-0180
+    title: 二重极限定义
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K133
+    source_refs:
+      - calc-map-2026:K133
+    reviewable: true
+  - id: MATH1-KN-CALC-0181
+    title: 路径法否定二重极限
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K134
+    source_refs:
+      - calc-map-2026:K134
+    reviewable: true
+  - id: MATH1-KN-CALC-0182
+    title: 极坐标估计二重极限
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K135
+    source_refs:
+      - calc-map-2026:K135
+    reviewable: true
+  - id: MATH1-KN-CALC-0183
+    title: 多元连续性与有界闭区域性质
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K136
+    source_refs:
+      - calc-map-2026:K136
+    reviewable: true
+  - id: MATH1-KN-CALC-0184
+    title: 一阶偏导数定义与计算
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K137
+    source_refs:
+      - calc-map-2026:K137
+    reviewable: true
+  - id: MATH1-KN-CALC-0185
+    title: 高阶偏导与混合偏导
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K138
+    source_refs:
+      - calc-map-2026:K138
+    reviewable: true
+  - id: MATH1-KN-CALC-0186
+    title: 全微分定义
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K139
+    source_refs:
+      - calc-map-2026:K139
+    reviewable: true
+  - id: MATH1-KN-CALC-0187
+    title: 可微、连续、偏导存在的逻辑关系
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K140
+    source_refs:
+      - calc-map-2026:K140
+    reviewable: true
+  - id: MATH1-KN-CALC-0188
+    title: 可微性的定义检验
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K141
+    source_refs:
+      - calc-map-2026:K141
+    reviewable: true
+  - id: MATH1-KN-CALC-0189
+    title: 一阶链式法则
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K142
+    source_refs:
+      - calc-map-2026:K142
+    reviewable: true
+  - id: MATH1-KN-CALC-0190
+    title: 二阶复合偏导
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K143
+    source_refs:
+      - calc-map-2026:K143
+    reviewable: true
+  - id: MATH1-KN-CALC-0191
+    title: 全微分形式不变性
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K144
+    source_refs:
+      - calc-map-2026:K144
+    reviewable: true
+  - id: MATH1-KN-CALC-0192
+    title: 一个方程确定一个隐函数
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K145
+    source_refs:
+      - calc-map-2026:K145
+    reviewable: true
+  - id: MATH1-KN-CALC-0193
+    title: 方程组确定隐函数组
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K146
+    source_refs:
+      - calc-map-2026:K146
+    reviewable: true
+  - id: MATH1-KN-CALC-0194
+    title: 齐次函数与Euler公式
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K147
+    source_refs:
+      - calc-map-2026:K147
+    reviewable: true
+  - id: MATH1-KN-CALC-0195
+    title: 方向导数定义
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K148
+    source_refs:
+      - calc-map-2026:K148
+    reviewable: true
+  - id: MATH1-KN-CALC-0196
+    title: 梯度及最大方向导数
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K149
+    source_refs:
+      - calc-map-2026:K149
+    reviewable: true
+  - id: MATH1-KN-CALC-0197
+    title: 曲面切平面与法线
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K150
+    source_refs:
+      - calc-map-2026:K150
+    reviewable: true
+  - id: MATH1-KN-CALC-0198
+    title: 空间曲线切线与法平面
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K151
+    source_refs:
+      - calc-map-2026:K151
+    reviewable: true
+  - id: MATH1-KN-CALC-0199
+    title: 二元函数二阶Taylor公式
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K152
+    source_refs:
+      - calc-map-2026:K152
+    reviewable: true
+  - id: MATH1-KN-CALC-0200
+    title: 驻点与必要条件
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K153
+    source_refs:
+      - calc-map-2026:K153
+    reviewable: true
+  - id: MATH1-KN-CALC-0201
+    title: 二元函数二阶充分条件
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K154
+    source_refs:
+      - calc-map-2026:K154
+    reviewable: true
+  - id: MATH1-KN-CALC-0202
+    title: 退化驻点与路径判断
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K155
+    source_refs:
+      - calc-map-2026:K155
+    reviewable: true
+  - id: MATH1-KN-CALC-0203
+    title: Lagrange乘数法
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K156
+    source_refs:
+      - calc-map-2026:K156
+    reviewable: true
+  - id: MATH1-KN-CALC-0204
+    title: 闭区域上的全局极值
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K157
+    source_refs:
+      - calc-map-2026:K157
+    reviewable: true
+  - id: MATH1-KN-CALC-0205
+    title: 最小二乘与二次型极值联系
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - K158
+    source_refs:
+      - calc-map-2026:K158
+    reviewable: true
+  - id: MATH1-KN-CALC-0206
+    title: 二重积分定义与几何/物理意义
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-14
+    aliases:
+      - K159
+    source_refs:
+      - calc-map-2026:K159
+    reviewable: true
+  - id: MATH1-KN-CALC-0207
+    title: 线性、区域可加与保序性
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-14
+    aliases:
+      - K160
+    source_refs:
+      - calc-map-2026:K160
+    reviewable: true
+  - id: MATH1-KN-CALC-0208
+    title: 二重积分中值定理
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-14
+    aliases:
+      - K161
+    source_refs:
+      - calc-map-2026:K161
+    reviewable: true
+  - id: MATH1-KN-CALC-0209
+    title: X型区域上的累次积分
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-14
+    aliases:
+      - K162
+    source_refs:
+      - calc-map-2026:K162
+    reviewable: true
+  - id: MATH1-KN-CALC-0210
+    title: Y型区域上的累次积分
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-14
+    aliases:
+      - K163
+    source_refs:
+      - calc-map-2026:K163
+    reviewable: true
+  - id: MATH1-KN-CALC-0211
+    title: 改变二重积分次序
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-14
+    aliases:
+      - K164
+    source_refs:
+      - calc-map-2026:K164
+    reviewable: true
+  - id: MATH1-KN-CALC-0212
+    title: 利用对称性计算二重积分
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-14
+    aliases:
+      - K165
+    source_refs:
+      - calc-map-2026:K165
+    reviewable: true
+  - id: MATH1-KN-CALC-0213
+    title: 极坐标变换与Jacobian
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-14
+    aliases:
+      - K166
+    source_refs:
+      - calc-map-2026:K166
+    reviewable: true
+  - id: MATH1-KN-CALC-0214
+    title: 极坐标区域描述
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-14
+    aliases:
+      - K167
+    source_refs:
+      - calc-map-2026:K167
+    reviewable: true
+  - id: MATH1-KN-CALC-0215
+    title: 二重积分一般换元与Jacobian
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-14
+    aliases:
+      - K168
+    source_refs:
+      - calc-map-2026:K168
+    reviewable: true
+  - id: MATH1-KN-CALC-0216
+    title: 参数区域与积分最值
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-14
+    aliases:
+      - K169
+    source_refs:
+      - calc-map-2026:K169
+    reviewable: true
+  - id: MATH1-KN-CALC-0217
+    title: 三重积分定义与体积/质量意义
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K170
+    source_refs:
+      - calc-map-2026:K170
+    reviewable: true
+  - id: MATH1-KN-CALC-0218
+    title: 投影法（先一后二）
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K171
+    source_refs:
+      - calc-map-2026:K171
+    reviewable: true
+  - id: MATH1-KN-CALC-0219
+    title: 截面法（先二后一）
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K172
+    source_refs:
+      - calc-map-2026:K172
+    reviewable: true
+  - id: MATH1-KN-CALC-0220
+    title: 柱坐标变换
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K173
+    source_refs:
+      - calc-map-2026:K173
+    reviewable: true
+  - id: MATH1-KN-CALC-0221
+    title: 球坐标变换
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K174
+    source_refs:
+      - calc-map-2026:K174
+    reviewable: true
+  - id: MATH1-KN-CALC-0222
+    title: 直角/柱/球坐标的选择
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K175
+    source_refs:
+      - calc-map-2026:K175
+    reviewable: true
+  - id: MATH1-KN-CALC-0223
+    title: 质量、质心与转动惯量
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K176
+    source_refs:
+      - calc-map-2026:K176
+    reviewable: true
+  - id: MATH1-KN-CALC-0224
+    title: 引力与场量积分
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K177
+    source_refs:
+      - calc-map-2026:K177
+    reviewable: true
+  - id: MATH1-KN-CALC-0225
+    title: 反常重积分与一般测度论条件
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K178
+    source_refs:
+      - calc-map-2026:K178
+    reviewable: false
+  - id: MATH1-KN-CALC-0226
+    title: 第一类曲线积分概念与性质
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K179
+    source_refs:
+      - calc-map-2026:K179
+    reviewable: true
+  - id: MATH1-KN-CALC-0227
+    title: 参数方程计算第一类曲线积分
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K180
+    source_refs:
+      - calc-map-2026:K180
+    reviewable: true
+  - id: MATH1-KN-CALC-0228
+    title: 显式曲线计算第一类曲线积分
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K181
+    source_refs:
+      - calc-map-2026:K181
+    reviewable: true
+  - id: MATH1-KN-CALC-0229
+    title: 第二类曲线积分概念与方向性
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K182
+    source_refs:
+      - calc-map-2026:K182
+    reviewable: true
+  - id: MATH1-KN-CALC-0230
+    title: 参数法直接计算
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K183
+    source_refs:
+      - calc-map-2026:K183
+    reviewable: true
+  - id: MATH1-KN-CALC-0231
+    title: 两类曲线积分的关系
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K184
+    source_refs:
+      - calc-map-2026:K184
+    reviewable: true
+  - id: MATH1-KN-CALC-0232
+    title: Green公式及正向约定
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K185
+    source_refs:
+      - calc-map-2026:K185
+    reviewable: true
+  - id: MATH1-KN-CALC-0233
+    title: 开曲线补线闭合
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K186
+    source_refs:
+      - calc-map-2026:K186
+    reviewable: true
+  - id: MATH1-KN-CALC-0234
+    title: 多连通区域与奇点处理
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K187
+    source_refs:
+      - calc-map-2026:K187
+    reviewable: true
+  - id: MATH1-KN-CALC-0235
+    title: 路径无关的等价条件
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K188
+    source_refs:
+      - calc-map-2026:K188
+    reviewable: true
+  - id: MATH1-KN-CALC-0236
+    title: 势函数求法
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K189
+    source_refs:
+      - calc-map-2026:K189
+    reviewable: true
+  - id: MATH1-KN-CALC-0237
+    title: 端点法计算保守场线积分
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K190
+    source_refs:
+      - calc-map-2026:K190
+    reviewable: true
+  - id: MATH1-KN-CALC-0238
+    title: 第一类曲面积分概念与性质
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K191
+    source_refs:
+      - calc-map-2026:K191
+    reviewable: true
+  - id: MATH1-KN-CALC-0239
+    title: 显式曲面投影计算
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K192
+    source_refs:
+      - calc-map-2026:K192
+    reviewable: true
+  - id: MATH1-KN-CALC-0240
+    title: 参数曲面面积元
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K193
+    source_refs:
+      - calc-map-2026:K193
+    reviewable: true
+  - id: MATH1-KN-CALC-0241
+    title: 第二类曲面积分概念与朝向
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K194
+    source_refs:
+      - calc-map-2026:K194
+    reviewable: true
+  - id: MATH1-KN-CALC-0242
+    title: 投影法直接计算
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K195
+    source_refs:
+      - calc-map-2026:K195
+    reviewable: true
+  - id: MATH1-KN-CALC-0243
+    title: 两类曲面积分的关系
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K196
+    source_refs:
+      - calc-map-2026:K196
+    reviewable: true
+  - id: MATH1-KN-CALC-0244
+    title: Gauss散度定理
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K197
+    source_refs:
+      - calc-map-2026:K197
+    reviewable: true
+  - id: MATH1-KN-CALC-0245
+    title: 开曲面补面闭合
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K198
+    source_refs:
+      - calc-map-2026:K198
+    reviewable: true
+  - id: MATH1-KN-CALC-0246
+    title: 奇点与挖球处理
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K199
+    source_refs:
+      - calc-map-2026:K199
+    reviewable: true
+  - id: MATH1-KN-CALC-0247
+    title: Stokes公式
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K200
+    source_refs:
+      - calc-map-2026:K200
+    reviewable: true
+  - id: MATH1-KN-CALC-0248
+    title: 张成曲面的选择
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K201
+    source_refs:
+      - calc-map-2026:K201
+    reviewable: true
+  - id: MATH1-KN-CALC-0249
+    title: 散度
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K202
+    source_refs:
+      - calc-map-2026:K202
+    reviewable: true
+  - id: MATH1-KN-CALC-0250
+    title: 旋度
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K203
+    source_refs:
+      - calc-map-2026:K203
+    reviewable: true
+  - id: MATH1-KN-CALC-0251
+    title: 梯度—散度—旋度恒等式边界
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K204
+    source_refs:
+      - calc-map-2026:K204
+    reviewable: true
+  - id: MATH1-KN-CALC-0252
+    title: Green/Gauss/Stokes选择决策
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K205
+    source_refs:
+      - calc-map-2026:K205
+    reviewable: true
+  - id: MATH1-KN-CALC-0253
+    title: 功与环流
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K206
+    source_refs:
+      - calc-map-2026:K206
+    reviewable: true
+  - id: MATH1-KN-CALC-0254
+    title: 通量
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K207
+    source_refs:
+      - calc-map-2026:K207
+    reviewable: true
+  - id: MATH1-KN-CALC-0255
+    title: 微分形式、de Rham理论与复积分
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - K208
+    source_refs:
+      - calc-map-2026:K208
+    reviewable: false
+  - id: MATH1-KN-CALC-0256
+    title: 级数、部分和与收敛定义
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K209
+    source_refs:
+      - calc-map-2026:K209
+    reviewable: true
+  - id: MATH1-KN-CALC-0257
+    title: 收敛级数的基本性质
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K210
+    source_refs:
+      - calc-map-2026:K210
+    reviewable: true
+  - id: MATH1-KN-CALC-0258
+    title: 必要条件 $u_n\to0$
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K211
+    source_refs:
+      - calc-map-2026:K211
+    reviewable: true
+  - id: MATH1-KN-CALC-0259
+    title: 正项级数部分和单调性
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K212
+    source_refs:
+      - calc-map-2026:K212
+    reviewable: true
+  - id: MATH1-KN-CALC-0260
+    title: 几何级数
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K213
+    source_refs:
+      - calc-map-2026:K213
+    reviewable: true
+  - id: MATH1-KN-CALC-0261
+    title: $p$ 级数
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K214
+    source_refs:
+      - calc-map-2026:K214
+    reviewable: true
+  - id: MATH1-KN-CALC-0262
+    title: 比较判别法
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K215
+    source_refs:
+      - calc-map-2026:K215
+    reviewable: true
+  - id: MATH1-KN-CALC-0263
+    title: 极限比较判别法
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K216
+    source_refs:
+      - calc-map-2026:K216
+    reviewable: true
+  - id: MATH1-KN-CALC-0264
+    title: 比值判别法
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K217
+    source_refs:
+      - calc-map-2026:K217
+    reviewable: true
+  - id: MATH1-KN-CALC-0265
+    title: 根值判别法
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K218
+    source_refs:
+      - calc-map-2026:K218
+    reviewable: true
+  - id: MATH1-KN-CALC-0266
+    title: 积分判别法
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K219
+    source_refs:
+      - calc-map-2026:K219
+    reviewable: true
+  - id: MATH1-KN-CALC-0267
+    title: Leibniz判别法与误差估计
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K220
+    source_refs:
+      - calc-map-2026:K220
+    reviewable: true
+  - id: MATH1-KN-CALC-0268
+    title: 绝对收敛与条件收敛
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K221
+    source_refs:
+      - calc-map-2026:K221
+    reviewable: true
+  - id: MATH1-KN-CALC-0269
+    title: 判敛方法决策树
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K222
+    source_refs:
+      - calc-map-2026:K222
+    reviewable: true
+  - id: MATH1-KN-CALC-0270
+    title: 收敛点、收敛域与和函数
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K223
+    source_refs:
+      - calc-map-2026:K223
+    reviewable: true
+  - id: MATH1-KN-CALC-0271
+    title: 幂级数收敛结构与半径
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K224
+    source_refs:
+      - calc-map-2026:K224
+    reviewable: true
+  - id: MATH1-KN-CALC-0272
+    title: 收敛半径计算
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K225
+    source_refs:
+      - calc-map-2026:K225
+    reviewable: true
+  - id: MATH1-KN-CALC-0273
+    title: 端点敛散性
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K226
+    source_refs:
+      - calc-map-2026:K226
+    reviewable: true
+  - id: MATH1-KN-CALC-0274
+    title: 逐项求导与逐项积分
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K227
+    source_refs:
+      - calc-map-2026:K227
+    reviewable: true
+  - id: MATH1-KN-CALC-0275
+    title: 幂级数的和、积及复合变换
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K228
+    source_refs:
+      - calc-map-2026:K228
+    reviewable: true
+  - id: MATH1-KN-CALC-0276
+    title: 由幂级数求和函数
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K229
+    source_refs:
+      - calc-map-2026:K229
+    reviewable: true
+  - id: MATH1-KN-CALC-0277
+    title: 由和函数求数项级数和
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K230
+    source_refs:
+      - calc-map-2026:K230
+    reviewable: true
+  - id: MATH1-KN-CALC-0278
+    title: 函数展开为Taylor级数的条件
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K231
+    source_refs:
+      - calc-map-2026:K231
+    reviewable: true
+  - id: MATH1-KN-CALC-0279
+    title: 五个标准Maclaurin展开及收敛域
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K232
+    source_refs:
+      - calc-map-2026:K232
+    reviewable: true
+  - id: MATH1-KN-CALC-0280
+    title: 间接展开法
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K233
+    source_refs:
+      - calc-map-2026:K233
+    reviewable: true
+  - id: MATH1-KN-CALC-0281
+    title: 周期函数Fourier系数
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K234
+    source_refs:
+      - calc-map-2026:K234
+    reviewable: true
+  - id: MATH1-KN-CALC-0282
+    title: Dirichlet收敛定理与间断点取值
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K235
+    source_refs:
+      - calc-map-2026:K235
+    reviewable: true
+  - id: MATH1-KN-CALC-0283
+    title: 正弦级数与余弦级数（半区间展开）
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K236
+    source_refs:
+      - calc-map-2026:K236
+    reviewable: true
+  - id: MATH1-KN-CALC-0284
+    title: 一致收敛、Weierstrass判别与一般函数列
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K237
+    source_refs:
+      - calc-map-2026:K237
+    reviewable: false
+  - id: MATH1-KN-CALC-0285
+    title: 一般项级数的Dirichlet/Abel判别与凝聚判别
+    kind: theorem
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - K238
+    source_refs:
+      - calc-map-2026:K238
+    reviewable: false
+  - id: MATH1-KN-CALC-0286
+    title: 微分方程、阶、解、通解与特解
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K239
+    source_refs:
+      - calc-map-2026:K239
+    reviewable: true
+  - id: MATH1-KN-CALC-0287
+    title: 初值问题
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K240
+    source_refs:
+      - calc-map-2026:K240
+    reviewable: true
+  - id: MATH1-KN-CALC-0288
+    title: 可分离变量方程
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K241
+    source_refs:
+      - calc-map-2026:K241
+    reviewable: true
+  - id: MATH1-KN-CALC-0289
+    title: 齐次一阶方程
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K242
+    source_refs:
+      - calc-map-2026:K242
+    reviewable: true
+  - id: MATH1-KN-CALC-0290
+    title: 一阶线性方程与积分因子
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K243
+    source_refs:
+      - calc-map-2026:K243
+    reviewable: true
+  - id: MATH1-KN-CALC-0291
+    title: Bernoulli方程
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K244
+    source_refs:
+      - calc-map-2026:K244
+    reviewable: true
+  - id: MATH1-KN-CALC-0292
+    title: 全微分方程（恰当方程）
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K245
+    source_refs:
+      - calc-map-2026:K245
+    reviewable: true
+  - id: MATH1-KN-CALC-0293
+    title: 一阶方程的适当变量代换
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K246
+    source_refs:
+      - calc-map-2026:K246
+    reviewable: true
+  - id: MATH1-KN-CALC-0294
+    title: $y^{(n)}=f(x)$ 型
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K247
+    source_refs:
+      - calc-map-2026:K247
+    reviewable: true
+  - id: MATH1-KN-CALC-0295
+    title: $y\prime\prime=f(x,y\prime)$ 型
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K248
+    source_refs:
+      - calc-map-2026:K248
+    reviewable: true
+  - id: MATH1-KN-CALC-0296
+    title: $y\prime\prime=f(y,y\prime)$ 型
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K249
+    source_refs:
+      - calc-map-2026:K249
+    reviewable: true
+  - id: MATH1-KN-CALC-0297
+    title: 线性齐次方程解的叠加与结构
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K250
+    source_refs:
+      - calc-map-2026:K250
+    reviewable: true
+  - id: MATH1-KN-CALC-0298
+    title: 非齐次方程通解结构
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K251
+    source_refs:
+      - calc-map-2026:K251
+    reviewable: true
+  - id: MATH1-KN-CALC-0299
+    title: 二阶常系数齐次方程—不同实根
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K252
+    source_refs:
+      - calc-map-2026:K252
+    reviewable: true
+  - id: MATH1-KN-CALC-0300
+    title: 二阶常系数齐次方程—重根
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K253
+    source_refs:
+      - calc-map-2026:K253
+    reviewable: true
+  - id: MATH1-KN-CALC-0301
+    title: 二阶常系数齐次方程—共轭复根
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K254
+    source_refs:
+      - calc-map-2026:K254
+    reviewable: true
+  - id: MATH1-KN-CALC-0302
+    title: 高阶常系数齐次方程
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K255
+    source_refs:
+      - calc-map-2026:K255
+    reviewable: true
+  - id: MATH1-KN-CALC-0303
+    title: 待定系数法—指数多项式型
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K256
+    source_refs:
+      - calc-map-2026:K256
+    reviewable: true
+  - id: MATH1-KN-CALC-0304
+    title: 待定系数法—三角型
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K257
+    source_refs:
+      - calc-map-2026:K257
+    reviewable: true
+  - id: MATH1-KN-CALC-0305
+    title: 右端和的叠加处理
+    kind: method
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K258
+    source_refs:
+      - calc-map-2026:K258
+    reviewable: true
+  - id: MATH1-KN-CALC-0306
+    title: Euler–Cauchy方程
+    kind: formula
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K259
+    source_refs:
+      - calc-map-2026:K259
+    reviewable: true
+  - id: MATH1-KN-CALC-0307
+    title: 增长衰减、混合与几何建模
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K260
+    source_refs:
+      - calc-map-2026:K260
+    reviewable: true
+  - id: MATH1-KN-CALC-0308
+    title: ODE与变上限积分/全微分结合
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K261
+    source_refs:
+      - calc-map-2026:K261
+    reviewable: true
+  - id: MATH1-KN-CALC-0309
+    title: 常微分方程组、Laplace变换与幂级数通法
+    kind: concept
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - K262
+    source_refs:
+      - calc-map-2026:K262
+    reviewable: false
+  - id: MATH1-KN-CALC-0310
+    title: 定义域与复合函数
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - T01
+    source_refs:
+      - calc-map-2026:T01
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0310
+  - id: MATH1-KN-CALC-0311
+    title: 分段点连续与可导参数
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - T02
+    source_refs:
+      - calc-map-2026:T02
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0311
+  - id: MATH1-KN-CALC-0312
+    title: 常规极限方法选择
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - T03
+    source_refs:
+      - calc-map-2026:T03
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0312
+  - id: MATH1-KN-CALC-0313
+    title: 幂指型极限
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-01
+    aliases:
+      - T04
+    source_refs:
+      - calc-map-2026:T04
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/01_function_limit_continuity.tex
+      id: MATH1-KN-CALC-0313
+  - id: MATH1-KN-CALC-0314
+    title: 递推数列极限
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-02
+    aliases:
+      - T05
+    source_refs:
+      - calc-map-2026:T05
+    reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/02_sequence_limit.tex
+      id: MATH1-KN-CALC-0314
+  - id: MATH1-KN-CALC-0315
+    title: 导数定义反求极限/函数值
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-03
+    aliases:
+      - T06
+    source_refs:
+      - calc-map-2026:T06
+    reviewable: true
+  - id: MATH1-KN-CALC-0316
+    title: 隐函数与参数方程高阶导数
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-04
+    aliases:
+      - T07
+    source_refs:
+      - calc-map-2026:T07
+    reviewable: true
+  - id: MATH1-KN-CALC-0317
+    title: 中值定理存在性证明
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-06
+    aliases:
+      - T08
+    source_refs:
+      - calc-map-2026:T08
+    reviewable: true
+  - id: MATH1-KN-CALC-0318
+    title: 单调性与不等式证明
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-06
+    aliases:
+      - T09
+    source_refs:
+      - calc-map-2026:T09
+    reviewable: true
+  - id: MATH1-KN-CALC-0319
+    title: Taylor高阶极限
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-06
+    aliases:
+      - T10
+    source_refs:
+      - calc-map-2026:T10
+    reviewable: true
+  - id: MATH1-KN-CALC-0320
+    title: 函数性态综合
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-05
+    aliases:
+      - T11
+    source_refs:
+      - calc-map-2026:T11
+    reviewable: true
+  - id: MATH1-KN-CALC-0321
+    title: 不定积分方法识别
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - T12
+    source_refs:
+      - calc-map-2026:T12
+    reviewable: true
+  - id: MATH1-KN-CALC-0322
+    title: 定积分对称变换
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - T13
+    source_refs:
+      - calc-map-2026:T13
+    reviewable: true
+  - id: MATH1-KN-CALC-0323
+    title: 变上限积分函数综合
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - T14
+    source_refs:
+      - calc-map-2026:T14
+    reviewable: true
+  - id: MATH1-KN-CALC-0324
+    title: Riemann和极限
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-08
+    aliases:
+      - T15
+    source_refs:
+      - calc-map-2026:T15
+    reviewable: true
+  - id: MATH1-KN-CALC-0325
+    title: 反常积分判敛与计算
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-09
+    aliases:
+      - T16
+    source_refs:
+      - calc-map-2026:T16
+    reviewable: true
+  - id: MATH1-KN-CALC-0326
+    title: 积分不等式证明
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-11
+    aliases:
+      - T17
+    source_refs:
+      - calc-map-2026:T17
+    reviewable: true
+  - id: MATH1-KN-CALC-0327
+    title: 定积分几何/物理建模
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-10
+    aliases:
+      - T18
+    source_refs:
+      - calc-map-2026:T18
+    reviewable: true
+  - id: MATH1-KN-CALC-0328
+    title: 空间直线、平面与距离
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-17
+    aliases:
+      - T19
+    source_refs:
+      - calc-map-2026:T19
+    reviewable: true
+  - id: MATH1-KN-CALC-0329
+    title: 多元复合函数偏导
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - T20
+    source_refs:
+      - calc-map-2026:T20
+    reviewable: true
+  - id: MATH1-KN-CALC-0330
+    title: 多元隐函数偏导
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - T21
+    source_refs:
+      - calc-map-2026:T21
+    reviewable: true
+  - id: MATH1-KN-CALC-0331
+    title: 多元连续、偏导、可微与方向导数辨析
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - T22
+    source_refs:
+      - calc-map-2026:T22
+    reviewable: true
+  - id: MATH1-KN-CALC-0332
+    title: 方向导数与梯度
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - T23
+    source_refs:
+      - calc-map-2026:T23
+    reviewable: true
+  - id: MATH1-KN-CALC-0333
+    title: 切平面、法线与空间曲线切线
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - T24
+    source_refs:
+      - calc-map-2026:T24
+    reviewable: true
+  - id: MATH1-KN-CALC-0334
+    title: 二元无条件极值
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - T25
+    source_refs:
+      - calc-map-2026:T25
+    reviewable: true
+  - id: MATH1-KN-CALC-0335
+    title: 条件极值与闭区域全局最值
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-13
+    aliases:
+      - T26
+    source_refs:
+      - calc-map-2026:T26
+    reviewable: true
+  - id: MATH1-KN-CALC-0336
+    title: 二重积分换序
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-14
+    aliases:
+      - T27
+    source_refs:
+      - calc-map-2026:T27
+    reviewable: true
+  - id: MATH1-KN-CALC-0337
+    title: 二重积分极坐标
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-14
+    aliases:
+      - T28
+    source_refs:
+      - calc-map-2026:T28
+    reviewable: true
+  - id: MATH1-KN-CALC-0338
+    title: 三重积分坐标选择
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - T29
+    source_refs:
+      - calc-map-2026:T29
+    reviewable: true
+  - id: MATH1-KN-CALC-0339
+    title: 二重/三重积分一般变量变换
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - T30
+    source_refs:
+      - calc-map-2026:T30
+    reviewable: true
+  - id: MATH1-KN-CALC-0340
+    title: 第一类曲线积分
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - T31
+    source_refs:
+      - calc-map-2026:T31
+    reviewable: true
+  - id: MATH1-KN-CALC-0341
+    title: 第二类曲线积分直接法
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - T32
+    source_refs:
+      - calc-map-2026:T32
+    reviewable: true
+  - id: MATH1-KN-CALC-0342
+    title: Green公式处理闭曲线积分
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - T33
+    source_refs:
+      - calc-map-2026:T33
+    reviewable: true
+  - id: MATH1-KN-CALC-0343
+    title: 开曲线补线后用Green公式
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - T34
+    source_refs:
+      - calc-map-2026:T34
+    reviewable: true
+  - id: MATH1-KN-CALC-0344
+    title: 路径无关与势函数
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - T35
+    source_refs:
+      - calc-map-2026:T35
+    reviewable: true
+  - id: MATH1-KN-CALC-0345
+    title: 第一类曲面积分
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - T36
+    source_refs:
+      - calc-map-2026:T36
+    reviewable: true
+  - id: MATH1-KN-CALC-0346
+    title: 第二类曲面积分直接法
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - T37
+    source_refs:
+      - calc-map-2026:T37
+    reviewable: true
+  - id: MATH1-KN-CALC-0347
+    title: Gauss公式处理闭曲面与补面
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - T38
+    source_refs:
+      - calc-map-2026:T38
+    reviewable: true
+  - id: MATH1-KN-CALC-0348
+    title: Stokes公式处理空间曲线积分
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - T39
+    source_refs:
+      - calc-map-2026:T39
+    reviewable: true
+  - id: MATH1-KN-CALC-0349
+    title: Green、Gauss、Stokes选择决策
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-18
+    aliases:
+      - T40
+    source_refs:
+      - calc-map-2026:T40
+    reviewable: true
+  - id: MATH1-KN-CALC-0350
+    title: 数项级数判敛决策
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - T41
+    source_refs:
+      - calc-map-2026:T41
+    reviewable: true
+  - id: MATH1-KN-CALC-0351
+    title: 幂级数收敛半径与端点
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - T42
+    source_refs:
+      - calc-map-2026:T42
+    reviewable: true
+  - id: MATH1-KN-CALC-0352
+    title: 幂级数和函数与数值级数求和
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - T43
+    source_refs:
+      - calc-map-2026:T43
+    reviewable: true
+  - id: MATH1-KN-CALC-0353
+    title: Taylor/Maclaurin展开与函数展开
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - T44
+    source_refs:
+      - calc-map-2026:T44
+    reviewable: true
+  - id: MATH1-KN-CALC-0354
+    title: Fourier级数与半区间展开
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-16
+    aliases:
+      - T45
+    source_refs:
+      - calc-map-2026:T45
+    reviewable: true
+  - id: MATH1-KN-CALC-0355
+    title: 一阶微分方程分类与求解
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - T46
+    source_refs:
+      - calc-map-2026:T46
+    reviewable: true
+  - id: MATH1-KN-CALC-0356
+    title: 可降阶高阶微分方程
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - T47
+    source_refs:
+      - calc-map-2026:T47
+    reviewable: true
+  - id: MATH1-KN-CALC-0357
+    title: 常系数线性微分方程
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - T48
+    source_refs:
+      - calc-map-2026:T48
+    reviewable: true
+  - id: MATH1-KN-CALC-0358
+    title: Euler方程与变量变换
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - T49
+    source_refs:
+      - calc-map-2026:T49
+    reviewable: true
+  - id: MATH1-KN-CALC-0359
+    title: 微分方程与积分/全微分综合
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-15
+    aliases:
+      - T50
+    source_refs:
+      - calc-map-2026:T50
+    reviewable: true
+  - id: MATH1-KN-CALC-0360
+    title: 反例构造与命题真假判断
+    kind: problem_family
+    subject: 高等数学
+    chapter_key: calc-06
+    aliases:
+      - T51
+    source_refs:
+      - calc-map-2026:T51
+    reviewable: true
 edges:
+  - source: MATH1-KN-CALC-0003
+    target: MATH1-KN-CALC-0007
+    type: contrasts_with
   - source: MATH1-KN-CALC-0003
     target: MATH1-KN-CALC-0008
     type: prerequisite_for
+  - source: MATH1-KN-CALC-0004
+    target: MATH1-KN-CALC-0025
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0004
+    target: MATH1-KN-CALC-0027
+    type: same_structure_as
+  - source: MATH1-KN-CALC-0005
+    target: MATH1-KN-CALC-0002
+    type: generalizes_to
   - source: MATH1-KN-CALC-0007
     target: MATH1-KN-CALC-0008
     type: prerequisite_for
   - source: MATH1-KN-CALC-0007
     target: MATH1-KN-CALC-0012
     type: prerequisite_for
+  - source: MATH1-KN-CALC-0007
+    target: MATH1-KN-CALC-0310
+    type: prerequisite_for
   - source: MATH1-KN-CALC-0012
     target: MATH1-KN-CALC-0015
     type: prerequisite_for
+  - source: MATH1-KN-CALC-0012
+    target: MATH1-KN-CALC-0101
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0012
+    target: MATH1-KN-CALC-0310
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0013
+    target: MATH1-KN-CALC-0015
+    type: same_structure_as
   - source: MATH1-KN-CALC-0014
     target: MATH1-KN-CALC-0015
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0014
+    target: MATH1-KN-CALC-0311
     type: prerequisite_for
   - source: MATH1-KN-CALC-0018
     target: MATH1-KN-CALC-0017
@@ -451,26 +3659,155 @@ edges:
     target: MATH1-KN-CALC-0020
     type: prerequisite_for
   - source: MATH1-KN-CALC-0021
+    target: MATH1-KN-CALC-0008
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0021
     target: MATH1-KN-CALC-0022
     type: prerequisite_for
-  - source: MATH1-KN-CALC-0004
-    target: MATH1-KN-CALC-0025
+  - source: MATH1-KN-CALC-0021
+    target: MATH1-KN-CALC-0062
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0021
+    target: MATH1-KN-CALC-0071
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0021
+    target: MATH1-KN-CALC-0118
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0021
+    target: MATH1-KN-CALC-0267
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0024
+    target: MATH1-KN-CALC-0026
+    type: same_structure_as
+  - source: MATH1-KN-CALC-0024
+    target: MATH1-KN-CALC-0142
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0024
+    target: MATH1-KN-CALC-0283
     type: prerequisite_for
   - source: MATH1-KN-CALC-0026
     target: MATH1-KN-CALC-0027
     type: prerequisite_for
-  - source: MATH1-KN-CALC-0005
-    target: MATH1-KN-CALC-0002
-    type: generalizes_to
-  - source: MATH1-KN-CALC-0004
-    target: MATH1-KN-CALC-0027
-    type: same_structure_as
-  - source: MATH1-KN-CALC-0013
-    target: MATH1-KN-CALC-0015
-    type: same_structure_as
-  - source: MATH1-KN-CALC-0003
-    target: MATH1-KN-CALC-0007
-    type: contrasts_with
-  - source: MATH1-KN-CALC-0024
-    target: MATH1-KN-CALC-0026
-    type: same_structure_as
+  - source: MATH1-KN-CALC-0029
+    target: MATH1-KN-CALC-0192
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0059
+    target: MATH1-KN-CALC-0312
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0059
+    target: MATH1-KN-CALC-0313
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0060
+    target: MATH1-KN-CALC-0312
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0060
+    target: MATH1-KN-CALC-0313
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0061
+    target: MATH1-KN-CALC-0310
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0070
+    target: MATH1-KN-CALC-0314
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0071
+    target: MATH1-KN-CALC-0259
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0071
+    target: MATH1-KN-CALC-0314
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0072
+    target: MATH1-KN-CALC-0314
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0074
+    target: MATH1-KN-CALC-0311
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0076
+    target: MATH1-KN-CALC-0312
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0077
+    target: MATH1-KN-CALC-0312
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0078
+    target: MATH1-KN-CALC-0312
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0079
+    target: MATH1-KN-CALC-0312
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0080
+    target: MATH1-KN-CALC-0312
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0081
+    target: MATH1-KN-CALC-0312
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0082
+    target: MATH1-KN-CALC-0312
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0083
+    target: MATH1-KN-CALC-0312
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0084
+    target: MATH1-KN-CALC-0312
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0084
+    target: MATH1-KN-CALC-0313
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0085
+    target: MATH1-KN-CALC-0312
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0086
+    target: MATH1-KN-CALC-0312
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0086
+    target: MATH1-KN-CALC-0313
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0087
+    target: MATH1-KN-CALC-0311
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0088
+    target: MATH1-KN-CALC-0311
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0089
+    target: MATH1-KN-CALC-0311
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0110
+    target: MATH1-KN-CALC-0111
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0111
+    target: MATH1-KN-CALC-0112
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0155
+    target: MATH1-KN-CALC-0156
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0155
+    target: MATH1-KN-CALC-0227
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0155
+    target: MATH1-KN-CALC-0231
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0163
+    target: MATH1-KN-CALC-0240
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0164
+    target: MATH1-KN-CALC-0168
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0164
+    target: MATH1-KN-CALC-0171
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0166
+    target: MATH1-KN-CALC-0197
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0166
+    target: MATH1-KN-CALC-0248
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0180
+    target: MATH1-KN-CALC-0181
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0186
+    target: MATH1-KN-CALC-0187
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0186
+    target: MATH1-KN-CALC-0188
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0260
+    target: MATH1-KN-CALC-0275
+    type: prerequisite_for

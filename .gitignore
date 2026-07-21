@@ -22,6 +22,9 @@ node_modules/
 /work/
 /tmp/
 
+# Local reference book retained outside the research bundle
+/resources/27张宇基础30讲（高数）.pdf
+
 # Python validation/test artifacts
 __pycache__/
 *.py[cod]

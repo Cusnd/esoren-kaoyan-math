@@ -1094,6 +1094,22 @@ mjx-container[display="true"] {
   margin-top: 3px;
 }
 
+.reader-review-node--boundary {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.reader-review-node--boundary > div > a,
+.reader-review-node--boundary > div > span {
+  display: block;
+}
+
+.reader-review-node__boundary {
+  color: var(--reader-accent);
+  font-family: var(--reader-ui);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
 .reader-review-due {
   border: 1px solid var(--reader-rule);
   border-radius: var(--reader-radius);

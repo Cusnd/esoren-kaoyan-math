@@ -184,9 +184,21 @@ test('representative learning flows reject unsafe imports without network writes
 
   await page.goto(SITE_ROOT);
   await page.locator('[data-reader-action="open-search"]').first().click();
+  for (const [query, label, title] of [
+    ['K001', '知识节点', '函数表示'],
+    ['T05', '知识节点', '递推数列极限'],
+    ['K044', '边界知识', '一致连续性'],
+  ]) {
+    await page.locator('[data-reader-search-input]').fill(query);
+    const match = page.locator('[data-reader-search-results] a').first();
+    await expect(match).toBeVisible();
+    await expect(match.locator('.reader-search-result__title')).toContainText(title);
+    await expect(match.locator('.reader-search-result__meta')).toContainText(label);
+  }
   await page.locator('[data-reader-search-input]').fill('MATH1-CALC-0003');
   const result = page.locator('[data-reader-search-results] a').first();
   await expect(result).toBeVisible();
+  await expect(result.locator('.reader-search-result__title')).toContainText('反双曲正弦');
   await result.click();
   await expect(page.locator('h1')).toContainText('反双曲正弦');
   await page.goto(sitePath('practice-calc-01'));
@@ -204,6 +216,52 @@ test('representative learning flows reject unsafe imports without network writes
     buffer: Buffer.from('{"broken"'),
   });
   await expect(page.locator('[data-reader-review-import-preview]')).toContainText('导入失败');
+  await expect(applyImport).toBeHidden();
+  expect(await snapshot()).toEqual(before);
+
+  const boundaryImport = await page.evaluate(async ({ manifestUrl, relationsUrl }) => {
+    const [manifest, relations] = await Promise.all([
+      fetch(manifestUrl).then((response) => response.json()),
+      fetch(relationsUrl).then((response) => response.json()),
+    ]);
+    const boundary = relations.nodes.find((node) => node.reviewable === false);
+    const now = new Date().toISOString();
+    const reviews = JSON.parse(localStorage.getItem('math1.reader.reviews.v1'));
+    reviews.updatedAt = now;
+    reviews.items[boundary.id] = {
+      state: 'active',
+      step: 0,
+      dueOn: now.slice(0, 10),
+      lastReviewedOn: null,
+      reviewCount: 0,
+      snoozeCount: 0,
+      labelSnapshot: boundary.title,
+      updatedAt: now,
+    };
+    return {
+      boundaryId: boundary.id,
+      payload: {
+        schemaVersion: 1,
+        type: 'math1-reader-state',
+        buildId: manifest.buildId,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'local',
+        exportedAt: now,
+        preferences: JSON.parse(localStorage.getItem('math1.reader.preferences.v1') || '{"schemaVersion":1,"theme":"light","fontScale":"medium","contentWidth":"standard"}'),
+        progress: JSON.parse(localStorage.getItem('math1.reader.progress.v1') || '{"schemaVersion":1,"recentSlug":null,"pages":{}}'),
+        reviews,
+      },
+    };
+  }, {
+    manifestUrl: sitePath('data/content-manifest.json'),
+    relationsUrl: sitePath('data/relation-index.json'),
+  });
+  await expect(page.locator(`#reader-review [data-review-node="${boundaryImport.boundaryId}"]`)).toHaveCount(0);
+  await fileInput.setInputFiles({
+    name: 'boundary.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from(JSON.stringify(boundaryImport.payload)),
+  });
+  await expect(page.locator('[data-reader-review-import-preview]')).toContainText('边界知识不能导入复习状态');
   await expect(applyImport).toBeHidden();
   expect(await snapshot()).toEqual(before);
 

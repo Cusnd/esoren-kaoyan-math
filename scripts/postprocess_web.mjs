@@ -214,7 +214,7 @@ function dialogsMarkup() {
       <p>复习只安排知识节点，不评分；阅读进度不会自动推进提醒。</p>
       <section aria-labelledby="reader-review-due-title"><h3 id="reader-review-due-title">今天到期</h3><div data-reader-review-due></div></section>
       <div class="reader-review-prompts"><button type="button" data-reader-review-copy="review">复制复习提示词</button><button type="button" data-reader-review-copy="practice">复制出题提示词</button></div>
-      <details><summary>全部知识节点</summary><div class="reader-review-all" data-reader-review-all></div></details>
+      <details><summary>全部可复习知识节点</summary><div class="reader-review-all" data-reader-review-all></div></details>
       <section class="reader-review-transfer" aria-labelledby="reader-review-transfer-title"><h3 id="reader-review-transfer-title">备份与迁移</h3><p>导入前会完整校验并预览；确认前不会修改本地状态。</p><div><button type="button" data-reader-action="export-review-state">导出学习状态</button><label class="reader-file-button">选择导入文件<input type="file" accept="application/json,.json" data-reader-review-import></label><button type="button" data-reader-action="apply-review-import" hidden>确认应用导入</button></div><pre data-reader-review-import-preview aria-live="polite"></pre></section>
       <p data-reader-review-status aria-live="polite"></p>
     </div>
@@ -522,6 +522,7 @@ function normalizeKnowledgeRegistry(value) {
       subject: String(node.subject ?? ''),
       chapterKey: String(node.chapter_key ?? node.chapterKey ?? ''),
       aliases: (node.aliases ?? []).map(String),
+      reviewable: node.reviewable !== false,
       texAnchor: node.tex_anchor ?? node.texAnchor ?? null,
     })).filter((node) => node.id),
     edges: edges.map((edge) => ({
@@ -760,6 +761,7 @@ async function main() {
     problemIds: problemLinks.filter((link) => [...link.knowledgeIds, ...link.methodIds, ...link.pitfallIds].includes(node.id)).map((link) => link.problemId),
     knowledgeIds: [node.id],
     tags: [node.kind, ...node.aliases],
+    reviewable: node.reviewable,
     difficulty: '',
     headings: [],
     body: `${node.title} ${node.aliases.join(' ')}`.trim(),

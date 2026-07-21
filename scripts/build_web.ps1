@@ -5,8 +5,9 @@ $ErrorActionPreference = 'Stop'
 
 $Root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $BuildRoot = Join-Path $Root 'build'
-$LwarpDir = Join-Path $BuildRoot 'lwarp'
-$PdfDir = Join-Path $BuildRoot 'pdf'
+$WorkRoot = Join-Path $BuildRoot "work-$PID"
+$LwarpDir = Join-Path $WorkRoot 'lwarp'
+$PdfDir = Join-Path $WorkRoot 'pdf'
 $SiteDir = Join-Path $BuildRoot 'site'
 
 function Assert-ChildPath {
@@ -49,13 +50,14 @@ if ([int]($nodeVersion.Split('.')[0]) -ne 24) {
 }
 
 New-Item -ItemType Directory -Path $BuildRoot -Force | Out-Null
-foreach ($dir in @($LwarpDir, $PdfDir, $SiteDir)) {
+foreach ($dir in @($WorkRoot, $SiteDir)) {
     Assert-ChildPath -Path $dir -Parent $Root
     if (Test-Path -LiteralPath $dir) {
         Remove-Item -LiteralPath $dir -Recurse -Force
     }
     New-Item -ItemType Directory -Path $dir -Force | Out-Null
 }
+New-Item -ItemType Directory -Path $LwarpDir, $PdfDir -Force | Out-Null
 
 Copy-Item -LiteralPath (Join-Path $Root 'main-web.tex') -Destination $LwarpDir
 Copy-Item -LiteralPath (Join-Path $Root 'tex') -Destination (Join-Path $LwarpDir 'tex') -Recurse
@@ -111,3 +113,6 @@ Write-Host "  Math site:    $(Join-Path $SiteDir 'math')"
 Write-Host "  Notes PDF:    $(Join-Path $SiteDir 'math\downloads\kaoyan-math1-notes.pdf')"
 Write-Host "  Practice PDF: $(Join-Path $SiteDir 'math\downloads\kaoyan-math1-practice.pdf')"
 Write-Host "  Answers PDF:  $(Join-Path $SiteDir 'math\downloads\kaoyan-math1-practice-answers.pdf')"
+
+Assert-ChildPath -Path $WorkRoot -Parent $BuildRoot
+Remove-Item -LiteralPath $WorkRoot -Recurse -Force

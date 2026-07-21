@@ -2406,3 +2406,457 @@ f(x),\qquad f\left(\frac{1}{x}\right).
 
 看到 \(f(x)\) 与 \(f\left(\frac{1}{x}\right)\) 同时出现，先写两个未知量，再做 \(x\mapsto \frac{1}{x}\) 的对偶代换，最后联立消元。
 \end{mistakeBox}
+
+% BEGIN calculus-foundation:calc-01-pages
+\studySubsection{calc-01-function-basics}{函数、定义域与基本初等函数}
+
+\begin{knowledgeBox}
+本页补齐函数基础域的稳定节点。已有的复合函数、反函数、隐函数、有界性、单调性、奇偶性和周期性详细页面继续作为唯一正文，不在此重复。
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0001]{函数与对应关系}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 函数是定义域 $D$ 到数集的单值映射；相同函数必须定义域相同且对应法则相同。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会从“每个自变量唯一对应函数值”判断是否为函数；区分函数表达式与函数本身。
+  \item \textbf{成立条件：} 定义域非空；“相同解析式”不必代表相同函数，须同时比较定义域。
+  \item \textbf{典型用法与识别信号：} 判断两个函数是否相同；由关系式识别函数；识别信号为 “同一表达式”“是否为函数”“函数相同”。
+  \item \textbf{关系与迁移：} 前置知识为 集合、初等代数；可迁移到 与极限存在、连续性、隐函数结合。
+  \item \textbf{常见误区：} 只比较解析式；忽略定义域或多值关系。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0007]{基本初等函数定义域}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 定义域由所有组成运算共同约束：分母 $\ne0$，偶次根式被开方数 $\ge0$，$\ln u$ 要求 $u>0$，$\arcsin u,\arccos u$ 要求 $|u|\le1$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 熟练处理分母非零、偶次根号内非负、对数真数正、反三角函数自变量范围。
+  \item \textbf{成立条件：} 多个条件取交集；含参数时需讨论可行集是否为空。
+  \item \textbf{典型用法与识别信号：} 求函数定义域；含参数定义域；识别信号为 “定义域”“有意义”“所有实数”。
+  \item \textbf{关系与迁移：} 前置知识为 不等式、集合交集；可迁移到 复合函数、极限、积分区间、幂级数收敛域。
+  \item \textbf{常见误区：} 把根式条件写成严格大于；忘记对数真数严格为正；漏分母。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0061]{复合函数定义域}
+\begin{knowledgeBox}
+\textbf{定义或结论：} $f(g(x))$ 的定义域为 $\{x:x\in D_g,\ g(x)\in D_f\}$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 先令内层函数有定义，再要求其值落入外层函数定义域。
+  \item \textbf{成立条件：} 不能仅把外层自变量符号机械替换；若题目只给抽象定义域，必须做集合逆像。
+  \item \textbf{典型用法与识别信号：} 已知 $D_f,D_g$ 求 $D_{f\circ g}$；识别信号为 “$f(x)$定义域为…，求$f(g(x))$”。
+  \item \textbf{关系与迁移：} 前置知识为 基本定义域、集合；可迁移到 与反函数、函数方程、连续性结合。
+  \item \textbf{常见误区：} 只求 $g(x)$ 的定义域；把 $D_f$ 当成 $x$ 的范围。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0062]{复合函数性质}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 复合单调性取决于内外层单调方向；若 $g$ 的值域落入 $f$ 的单调区间，才可组合判断。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会判断复合函数的奇偶、单调、周期与有界性。
+  \item \textbf{成立条件：} 必须限定内层值域；外层不是全域单调时不能直接套“同增异减”。
+  \item \textbf{典型用法与识别信号：} 抽象函数选择题；复合函数单调性；识别信号为 “$f$单调，$g$单调”“$f(g(x))$”。
+  \item \textbf{关系与迁移：} 前置知识为 单调性、定义域；可迁移到 反函数、极限、导数、隐函数。
+  \item \textbf{常见误区：} 忽略内层值域跨越外层不同单调区间。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0014]{分段函数}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 分段函数的性质必须在各段与连接点分别检查；连续需左右极限等于函数值，可导需左右导数相等。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会分别研究各段，并在分界点用极限、函数值、左右导数拼接。
+  \item \textbf{成立条件：} 分界点可能属于某一段或单独定义；先看定义。
+  \item \textbf{典型用法与识别信号：} 求参数使连续/可导；判断极值或拐点；识别信号为 “分段”“参数a”“在x=0连续/可导”。
+  \item \textbf{关系与迁移：} 前置知识为 左右极限；可迁移到 极限、连续、导数定义、中值定理。
+  \item \textbf{常见误区：} 只比较两段表达式值；忘记函数值或左右导数。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0063]{指数、对数、幂函数}
+\begin{knowledgeBox}
+\textbf{定义或结论：} $a^x$（$a>0,a\ne1$）、$\log_a x$（$x>0$）；实幂 $x^\alpha$ 的定义域依 $\alpha$ 而异，考研常在正邻域使用 $x^\alpha=e^{\alpha\ln x}$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 掌握定义域、单调性、图像、基本恒等式及参数影响。
+  \item \textbf{成立条件：} 做对数化时底数与真数须合法；含 $x^x$ 等表达式通常要求 $x>0$ 或局部单侧讨论。
+  \item \textbf{典型用法与识别信号：} 图像性质；指数型极限；求导积分；识别信号为 “$f(x)^{g(x)}$”“取对数”。
+  \item \textbf{关系与迁移：} 前置知识为 初等代数；可迁移到 泰勒、幂指函数、微分方程。
+  \item \textbf{常见误区：} 忽略实幂定义域；对负底数直接取对数。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0064]{三角与反三角函数}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 熟练使用 $\sin^2x+\cos^2x=1$、和差化积、倍角/半角，以及反三角函数主值范围。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 掌握定义域、值域、周期、奇偶、单调区间和基本恒等变换。
+  \item \textbf{成立条件：} 反三角函数复合恒等式须检查主值区间；例如 $\arcsin(\sin x)=x$ 仅在主值区间成立。
+  \item \textbf{典型用法与识别信号：} 基本计算、积分换元、极限；识别信号为 出现三角有理式、反三角复合。
+  \item \textbf{关系与迁移：} 前置知识为 三角恒等式；可迁移到 傅里叶级数、极坐标、参数方程。
+  \item \textbf{常见误区：} 把反函数恒等式无条件全域使用；周期判断错误。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0022]{平移、伸缩、对称与复合图像}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 横向变换作用在自变量，纵向变换作用在函数值；$f(|x|)$ 由右半图像偶延拓，$|f(x)|$ 将负值翻到上方。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 能由基本图像快速得到 $f(ax+b)$、$af(x)+b$、$|f(x)|$、$f(|x|)$。
+  \item \textbf{成立条件：} 变换顺序按表达式层级执行；横向伸缩系数与直觉相反。
+  \item \textbf{典型用法与识别信号：} 识图、区域描述、绝对值函数性质；识别信号为 “图像”“围成区域”“绝对值”。
+  \item \textbf{关系与迁移：} 前置知识为 基本初等函数图像；可迁移到 积分区域、单调极值、反函数图像。
+  \item \textbf{常见误区：} 把横向平移符号或伸缩倍数写反。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0310]{定义域与复合函数}
+\begin{knowledgeBox}
+\textbf{题型识别：} 表达式含分母、根式、对数、反三角或抽象复合；常以选择/填空出现；识别信号为 “有意义”“定义域为”“已知f的定义域，求f(g(x))”。
+
+\begin{itemize}
+  \item \textbf{标准流程：} ①列内层自身约束；②列内层值落入外层定义域；③取交集；④含参数时按临界点分段；⑤检查集合非空。
+  \item \textbf{方法选择：} 抽象复合优先集合逆像；具体表达式优先逐层约束；可替代路线包括 画数轴、不等式符号表、集合逆像。
+  \item \textbf{合法性检查：} 每一步先核对定义域、极限或定理条件；特别防止 只看最外层；把外层定义域直接当x范围；漏严格不等式。
+  \item \textbf{考场步骤：} 先写识别出的结构与必要条件，再按标准流程逐步化简，最后回代、筛根或复核单侧情形。
+  \item \textbf{迁移方向：} 含参数、嵌套根式、反函数定义域、幂级数复合收敛域；可与 函数性质、极限、幂级数 交错训练。
+\end{itemize}
+\end{knowledgeBox}
+
+\studySubsection{calc-01-function-limits}{函数极限的定义、运算与存在性}
+
+\begin{knowledgeBox}
+极限计算按“先判趋近过程与型态，再选合法工具，最后复核条件”的顺序组织；七种未定式与泰勒展开沿用既有稳定节点。
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0073]{有限点函数极限的定义}
+\begin{knowledgeBox}
+\textbf{定义或结论：} $\lim_{x\to x_0}f(x)=A$ 指对任意 $\varepsilon>0$，存在 $\delta>0$，当 $0<|x-x_0|<\delta$ 时 $|f(x)-A|<\varepsilon$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 理解去心邻域与函数值无关；会写左右极限定义。
+  \item \textbf{成立条件：} 不要求 $f(x_0)$ 有定义；只研究去心邻域。
+  \item \textbf{典型用法与识别信号：} 定义判断；极限存在与点值关系辨析；识别信号为 “极限存在但函数未定义”“去心邻域”。
+  \item \textbf{关系与迁移：} 前置知识为 数列极限量词；可迁移到 连续性、可导性、间断点。
+  \item \textbf{常见误区：} 把 $x=x_0$ 包含进极限定义；把极限等同函数值。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0074]{左右极限与双侧极限}
+\begin{knowledgeBox}
+\textbf{定义或结论：} $\lim_{x\to x_0}f(x)$ 存在且等于 $A$ 当且仅当 $f(x_0^-)=f(x_0^+)=A$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会分别计算并用“左右相等”判断双侧极限。
+  \item \textbf{成立条件：} 端点问题通常只讨论定义域内的单侧连续；趋于无穷无左右之分。
+  \item \textbf{典型用法与识别信号：} 分段函数极限；含绝对值、符号函数；识别信号为 “$x\to0$”“分段”“绝对值”。
+  \item \textbf{关系与迁移：} 前置知识为 函数极限；可迁移到 连续、可导、变上限积分。
+  \item \textbf{常见误区：} 只算一侧；左右都发散但方向不同却称极限为无穷。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0075]{无穷处与无穷函数极限}
+\begin{knowledgeBox}
+\textbf{定义或结论：} $x\to\infty$ 描述自变量离开任意有界区间；$f(x)\to\infty$ 表示函数值最终超过任意给定正数。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会处理 $x\to\infty$、$x\to-\infty$ 与 $f(x)\to\infty$ 的定义和运算。
+  \item \textbf{成立条件：} “无穷大”描述趋势，不是实数；$+\infty$ 与 $-\infty$ 方向要区分。
+  \item \textbf{典型用法与识别信号：} 有理、根式、指数对数在无穷处极限；识别信号为 “当x趋于无穷”“无界”。
+  \item \textbf{关系与迁移：} 前置知识为 增长阶比较；可迁移到 渐近线、反常积分、级数。
+  \item \textbf{常见误区：} 把 $\infty$ 当数参与减法；忽略正负无穷方向。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0076]{函数极限四则运算与复合极限}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 有限极限满足四则运算；若 $g(x)\to u_0$ 且 $f$ 在 $u_0$ 连续，则 $f(g(x))\to f(u_0)$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会在条件满足时直接代入；识别不能拆分的未定式。
+  \item \textbf{成立条件：} 商法则要求分母极限非零；复合换元须保证内层值落在外层定义域且趋近方式合法。
+  \item \textbf{典型用法与识别信号：} 直接代入型极限；复合极限；识别信号为 “代入得非零有限值”。
+  \item \textbf{关系与迁移：} 前置知识为 初等函数连续性；可迁移到 连续性、等价无穷小、泰勒。
+  \item \textbf{常见误区：} 对 $0/0$ 强行拆；内层只从一侧趋近却套双侧外极限。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0077]{函数极限的夹逼准则}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 在某去心邻域有 $g(x)\le f(x)\le h(x)$，且两端同趋于 $A$，则 $f(x)\to A$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会利用绝对值、积分界、三角界构造夹逼。
+  \item \textbf{成立条件：} 邻域内不等式必须成立；夹逼对象可以是绝对值形式 $|f(x)-A|\le\varphi(x)\to0$。
+  \item \textbf{典型用法与识别信号：} 振荡极限；积分平均值极限；识别信号为 “有界因子×无穷小”“积分区间缩短”。
+  \item \textbf{关系与迁移：} 前置知识为 不等式；可迁移到 定积分、微分中值定理、级数余项。
+  \item \textbf{常见误区：} 只写“显然夹逼”不写上下界；估计不趋零。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0078]{函数极限的序列判据（海涅定理）}
+\begin{knowledgeBox}
+\textbf{定义或结论：} $\lim_{x\to x_0}f(x)=A$ 当且仅当对任意 $x_n\to x_0$ 且 $x_n\ne x_0$，有 $f(x_n)\to A$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 理解函数极限存在等价于任意趋近点列的函数值都趋同一极限。
+  \item \textbf{成立条件：} “任意点列”是关键；构造一个反例点列可否定极限。
+  \item \textbf{典型用法与识别信号：} 证明极限不存在；构造反例；识别信号为 “沿不同路径/序列”。
+  \item \textbf{关系与迁移：} 前置知识为 数列极限；可迁移到 多元极限路径法、连续性逻辑。
+  \item \textbf{常见误区：} 用一个点列收敛来证明函数极限；只检查有限条路径后宣称存在。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0079]{无穷小、无穷大及互为倒数}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 若 $\alpha(x)\to0$，称其为无穷小；若 $|f(x)|\to\infty$，称为无穷大。非零无穷小的倒数为无穷大，反之亦然。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会在指定过程下判断；区分“无穷小量”与常数0。
+  \item \textbf{成立条件：} 必须明确趋近过程；倒数结论要求在去心邻域非零。
+  \item \textbf{典型用法与识别信号：} 判断无穷小阶；极限改写；识别信号为 “无穷小量”“无穷大量”。
+  \item \textbf{关系与迁移：} 前置知识为 极限定义；可迁移到 等价替换、级数必要条件、反常积分。
+  \item \textbf{常见误区：} 把很小的固定数称无穷小；忽略过程。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0080]{同阶、高阶、低阶与等价无穷小}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 若 $\alpha/\beta\to c\ne0$ 为同阶；趋0则 $\alpha=o(\beta)$；趋1则 $\alpha\sim\beta$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会用比值极限分类，并掌握 $o,O,\sim$ 的含义。
+  \item \textbf{成立条件：} $\beta$ 在去心邻域需非零；等价是同阶的特殊情形，不是相等。
+  \item \textbf{典型用法与识别信号：} 判断无穷小阶；求参数使同阶/等价；识别信号为 “几阶无穷小”“同阶”“等价”。
+  \item \textbf{关系与迁移：} 前置知识为 极限四则；可迁移到 泰勒展开、导数定义、级数比较。
+  \item \textbf{常见误区：} 把同阶误作等价；忽略系数；把 $O$ 与 $o$ 混用。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0081]{常用等价无穷小}
+\begin{knowledgeBox}
+\textbf{定义或结论：} $\sin x\sim x$，$\tan x\sim x$，$1-\cos x\sim x^2/2$，$e^x-1\sim x$，$\ln(1+x)\sim x$，$(1+x)^\alpha-1\sim\alpha x$，$\arcsin x\sim x$，$\arctan x\sim x$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 熟记并能推导 $x\to0$ 时三角、指数、对数、根式等价式。
+  \item \textbf{成立条件：} 仅在相应自变量趋0时使用；复合后要求内层趋0；参数导致首项消失时需升阶。
+  \item \textbf{典型用法与识别信号：} 乘商型极限快速计算；识别信号为 “趋于0的基本函数差”。
+  \item \textbf{关系与迁移：} 前置知识为 基本极限；可迁移到 泰勒、积分等价、微分方程局部分析。
+  \item \textbf{常见误区：} 漏系数1/2或α；内层不趋0；在加减式中直接逐项替换造成消项错误。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0082]{等价无穷小替换规则}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 若 $\alpha\sim\tilde\alpha$，在不发生危险消去的乘商结构中可替换；对 $\alpha-\beta$，首项可能相消，必须比较更高阶。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 理解等价替换主要安全用于乘积和商；加减结构先提取或展开。
+  \item \textbf{成立条件：} 替换后整体相对误差须可控；分母不能把误差放大。
+  \item \textbf{典型用法与识别信号：} 复杂极限方法选择；判断错误解法；识别信号为 “两个近似量相减”“首项抵消”。
+  \item \textbf{关系与迁移：} 前置知识为 等价无穷小；可迁移到 泰勒、洛必达、积分中值定理。
+  \item \textbf{常见误区：} 把 $\sin x-x$ 直接替换为0；在和差中机械替换。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0083]{第一重要极限}
+\begin{knowledgeBox}
+\textbf{定义或结论：} $\lim_{x\to0}\frac{\sin x}{x}=1$；由此得到 $\tan x/x\to1$、$\arcsin x/x\to1$ 等。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 掌握 $\lim_{x\to0}\sin x/x=1$ 及其变形。
+  \item \textbf{成立条件：} 角度使用弧度；复合内层须趋0。
+  \item \textbf{典型用法与识别信号：} 三角极限、参数极限；识别信号为 “sin(小量)/小量”。
+  \item \textbf{关系与迁移：} 前置知识为 三角函数；可迁移到 等价无穷小、导数公式。
+  \item \textbf{常见误区：} 把角度制代入；分子分母的小量不对应。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0084]{第二重要极限与 $e$}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 若 $u\to0$ 且 $v\to\infty$，并有 $uv\to A$，在底数为正时 $(1+u)^v\to e^A$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 掌握 $(1+1/n)^n\to e$、$(1+x)^{1/x}\to e$ 及一般化。
+  \item \textbf{成立条件：} 底数在邻域内必须为正以定义实幂；一般幂指型应取对数。
+  \item \textbf{典型用法与识别信号：} $1^\infty$ 型极限；参数极限；识别信号为 “底数→1，指数→∞”。
+  \item \textbf{关系与迁移：} 前置知识为 指数对数；可迁移到 对数化、泰勒、连续复利模型。
+  \item \textbf{常见误区：} 只看成 $1^\infty=1$；忽略底数正性；漏掉高阶影响。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0085]{代数化简、因式分解与有理化}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 极限允许在去心邻域内用等价表达式替换；因式分解后可约去不恒为零的公因子。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会针对 $0/0$ 消去公因子、通分、共轭有理化。
+  \item \textbf{成立条件：} 约分只要求去心邻域非零，不要求点上有定义；有理化需同时乘共轭。
+  \item \textbf{典型用法与识别信号：} 根式极限、有理式极限；识别信号为 “根号差”“高次多项式差”。
+  \item \textbf{关系与迁移：} 前置知识为 因式分解；可迁移到 泰勒、洛必达前的预处理。
+  \item \textbf{常见误区：} 约去可能在邻域内多次为零的因子而不说明；代数错误。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0086]{幂指型极限的对数化}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 令 $y=f(x)^{g(x)}>0$，则 $\ln y=g(x)\ln f(x)$；先求右侧极限 $L$，再得 $y\to e^L$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 统一处理 $0^0,1^\infty,\infty^0$ 型。
+  \item \textbf{成立条件：} 底数需在所考邻域为正；若对数极限为 $\pm\infty$，相应判断0或无穷。
+  \item \textbf{典型用法与识别信号：} $x^x$、复合幂函数极限；识别信号为 “变量底数的变量指数”。
+  \item \textbf{关系与迁移：} 前置知识为 对数函数；可迁移到 泰勒、洛必达、指数连续性。
+  \item \textbf{常见误区：} 对非正底数直接取对数；求完 $\ln y$ 忘记指数还原。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0312]{常规极限方法选择}
+\begin{knowledgeBox}
+\textbf{题型识别：} 极限可呈0/0、∞/∞、0·∞、∞−∞或直接代入型；识别信号为 代入后出现未定式；含基本小量、根式、积分或幂指。
+
+\begin{itemize}
+  \item \textbf{标准流程：} ①先判趋近过程与型态；②代数化简；③乘商看等价无穷小；④高阶消去用Taylor；⑤商型可比较洛必达；⑥振荡/积分用夹逼；⑦最后核验条件。
+  \item \textbf{方法选择：} 低阶结构用等价；需要系数/高阶用Taylor；连续可导商且求导变简单用洛必达；可替代路线包括 变量代换、导数定义、积分中值定理。
+  \item \textbf{合法性检查：} 每一步先核对定义域、极限或定理条件；特别防止 见0/0即洛必达；加减中机械等价；展开阶数不足。
+  \item \textbf{考场步骤：} 先写识别出的结构与必要条件，再按标准流程逐步化简，最后回代、筛根或复核单侧情形。
+  \item \textbf{迁移方向：} 含参数使极限有限、含绝对值单侧、积分平均值、数列和式；可与 Taylor、导数、积分、级数 交错训练。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0313]{幂指型极限}
+\begin{knowledgeBox}
+\textbf{题型识别：} 底数和指数均变化，常见 $1^\infty,0^0,\infty^0$；识别信号为 “$f(x)^{g(x)}$”“$x^x$”“底数趋1”。
+
+\begin{itemize}
+  \item \textbf{标准流程：} ①确认底数在邻域为正；②令y为原式并取ln；③求 $g\ln f$ 的极限；④用等价/Taylor/洛必达；⑤指数还原；⑥处理±∞。
+  \item \textbf{方法选择：} 结构可化 $(1+u)^v$ 且uv易求时用重要极限；否则统一对数化；可替代路线包括 改写为第二重要极限；直接Taylor指数。
+  \item \textbf{合法性检查：} 每一步先核对定义域、极限或定理条件；特别防止 把 $1^\infty$ 当1；非正底数强取ln；忘还原。
+  \item \textbf{考场步骤：} 先写识别出的结构与必要条件，再按标准流程逐步化简，最后回代、筛根或复核单侧情形。
+  \item \textbf{迁移方向：} 参数底数、指数积分、两层指数；可与 极限、对数、Taylor 交错训练。
+\end{itemize}
+\end{knowledgeBox}
+
+\studySubsection{calc-01-continuity-theorems}{连续性、间断点与闭区间定理}
+
+\begin{knowledgeBox}
+连续性问题先核对点值与左右极限，再使用闭区间定理。边界知识只保留检索入口，不进入本地复习安排。
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0087]{函数在一点连续}
+\begin{knowledgeBox}
+\textbf{定义或结论：} $f$ 在 $x_0$ 连续当且仅当 $\lim_{x\to x_0}f(x)=f(x_0)$，即 $\Delta x\to0$ 时 $\Delta y\to0$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会用极限等于函数值判断；理解连续包含有定义、极限存在、二者相等。
+  \item \textbf{成立条件：} 双侧连续要求两侧均在定义域内；端点通常用单侧连续。
+  \item \textbf{典型用法与识别信号：} 判断连续；求参数补定义；识别信号为 “连续”“补充定义”“参数”。
+  \item \textbf{关系与迁移：} 前置知识为 函数极限；可迁移到 可导性、积分上限函数、闭区间定理。
+  \item \textbf{常见误区：} 漏检查函数值；极限存在就称连续。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0088]{左连续、右连续与区间连续}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 左连续：$f(x_0^-)=f(x_0)$；右连续类似。闭区间连续指内部连续且端点相应单侧连续。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会在端点和分段点使用单侧连续。
+  \item \textbf{成立条件：} 端点外侧若不在定义域，无需讨论；分段函数边界归属要看定义。
+  \item \textbf{典型用法与识别信号：} 分段参数题；闭区间定理条件核查；识别信号为 “在[a,b]连续”“右连续”。
+  \item \textbf{关系与迁移：} 前置知识为 左右极限；可迁移到 最值、介值、积分存在性。
+  \item \textbf{常见误区：} 要求端点双侧连续；忽略分段点属于哪段。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0089]{间断点分类}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 第一类间断点左右极限均存在：相等为可去，不等为跳跃；至少一侧极限不存在或无穷为第二类。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会区分可去、跳跃、无穷和振荡间断。
+  \item \textbf{成立条件：} “函数值错误或未定义”可形成可去间断；分类依据左右极限，不依据图像是否断开。
+  \item \textbf{典型用法与识别信号：} 判间断点及类型；求参数消除间断；识别信号为 “间断点类型”“可去”。
+  \item \textbf{关系与迁移：} 前置知识为 左右极限；可迁移到 反常积分、分段函数、周期延拓。
+  \item \textbf{常见误区：} 把无穷间断归为跳跃；只看点值。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0090]{初等函数与复合函数连续性}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 基本初等函数在其定义域内连续；有限次四则运算与合法复合保持连续。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会在定义域内直接用连续性代入求极限。
+  \item \textbf{成立条件：} 商要求分母非零；复合要求内层值落在外层连续点。
+  \item \textbf{典型用法与识别信号：} 直接代入型极限；证明函数连续；识别信号为 “初等函数”“定义域内”。
+  \item \textbf{关系与迁移：} 前置知识为 基本函数；可迁移到 变上限积分、多元连续性。
+  \item \textbf{常见误区：} 忽略分母为零或外层边界点。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0091]{有界性与最大最小值定理}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 若 $f\in C[a,b]$，则存在 $x_m,x_M\in[a,b]$ 使 $f(x_m)=m,f(x_M)=M$。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 理解闭区间连续函数必有界且能取到最大、最小值。
+  \item \textbf{成立条件：} 闭区间与连续缺一不可；开区间或仅有界不保证取到最值。
+  \item \textbf{典型用法与识别信号：} 判断定理适用；证明存在最值；识别信号为 “闭区间连续”“一定存在”。
+  \item \textbf{关系与迁移：} 前置知识为 连续性；可迁移到 全局最值、积分估计、多元紧集性质。
+  \item \textbf{常见误区：} 把局部极值当全局最值；漏端点比较。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0092]{零点定理与介值定理}
+\begin{knowledgeBox}
+\textbf{定义或结论：} 若 $f\in C[a,b]$ 且 $f(a)f(b)<0$，则存在 $\xi\in(a,b)$ 使 $f(\xi)=0$；介值定理更一般。
+
+\begin{itemize}
+  \item \textbf{直觉与必会动作：} 会通过端点异号证明至少一个零点；会证明函数取某中间值。
+  \item \textbf{成立条件：} 只保证存在，不保证唯一；端点同号也不能推出无根。
+  \item \textbf{典型用法与识别信号：} 证明方程有根；根区间定位；识别信号为 “证明至少有一根”“端点异号”。
+  \item \textbf{关系与迁移：} 前置知识为 连续性、不等式；可迁移到 单调性证明唯一根、中值定理、参数方程。
+  \item \textbf{常见误区：} 把存在性与唯一性混淆；函数不连续仍套零点定理。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
+\end{itemize}
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0093]{一致连续性（教材扩展）}
+\begin{knowledgeBox}
+\textbf{边界定位：} 一致连续要求同一个 $\delta$ 能同时服务于定义域内所有点；闭区间上的连续函数具有这种更强的整体控制。
+
+\textbf{学习边界：} 本仓库把它作为边界知识：用于理解闭区间连续性的延伸，不展开证明，也不进入本地复习安排。
+
+\textbf{误区与迁移：} 常见误区是把逐点连续直接当成一致连续，或把闭区间结论无条件搬到无界区间。
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0094]{柯西收敛准则与 Stolz 定理}
+\begin{knowledgeBox}
+\textbf{边界定位：} 柯西收敛准则与 Stolz--Ces\`aro 定理可作为数列极限的拓展视角。
+
+\textbf{学习边界：} 本仓库只保留名称、用途以及它们与夹逼、单调有界方法的关系；规范解答优先使用本讲已整理的基础工具，不展开拓展证明，也不进入本地复习安排。
+
+\textbf{误区与迁移：} 常见误区是只会套拓展定理，却没有先证明适用条件或没有掌握基本判据。
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0311]{分段点连续与可导参数}
+\begin{knowledgeBox}
+\textbf{题型识别：} 分界点两侧表达式不同，要求连续、可导或二阶可导并求参数；识别信号为 “在x=0处连续/可导”“确定a,b”。
+
+\begin{itemize}
+  \item \textbf{标准流程：} ①算左右极限和点值，先解连续条件；②算左右导数，解可导条件；③二阶问题再逐侧求导；④回代核验。
+  \item \textbf{方法选择：} 表达式复杂或含绝对值时定义法更稳；解析展开明显时用系数匹配；可替代路线包括 直接用导数定义；Taylor匹配低阶系数。
+  \item \textbf{合法性检查：} 每一步先核对定义域、极限或定理条件；特别防止 跳过连续直接比导数；把某段公式在分界点直接代入；漏左右。
+  \item \textbf{考场步骤：} 先写识别出的结构与必要条件，再按标准流程逐步化简，最后回代、筛根或复核单侧情形。
+  \item \textbf{迁移方向：} 积分定义函数、参数方程拼接、连续但不可导反例；可与 极限、导数定义、Taylor 交错训练。
+\end{itemize}
+\end{knowledgeBox}
+% END calculus-foundation:calc-01-pages
