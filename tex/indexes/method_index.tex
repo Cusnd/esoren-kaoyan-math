@@ -163,6 +163,19 @@
   \item \textbf{使用提醒：} 代换前必须检查定义域封闭性；例如本题定义域为 \((0,+\infty)\)，所以 \(x>0\) 时 \(\frac{1}{x}>0\)。
   \item \textbf{关联题目：} \problemRef{MATH1-CALC-0002}。
 \end{itemize}
+
+\knowledgeIndexAnchor[MATH1-KN-CALC-0006]{方程组消元}
+\textbf{约束降维：精确消元与渐近消元}
+
+\begin{itemize}
+  \item \textbf{适用题型：} 多个变量、函数值或数列由方程、恒等式或递推式耦合，而目标只涉及其中一个量或它们的比值。
+  \item \textbf{触发特征：} 单独处理每个量都缺少信息，但题设关系可经代换、改写、作差或选取桥梁量后消去非目标量。
+  \item \textbf{核心流程：} 先用定义域、单调性或夹逼确定趋向；再由约束判断相对阶；最后只保留决定极限的主导项与系数。口诀是“先定趋向，再定阶，最后定系数”。
+  \item \textbf{两种层次：} 能联立求出精确表达式时做精确消元；精确求解困难且题目只问极限时，只需推出 \(u_n\sim C\varphi(v_n)\) 之类的渐近关系，不必强求 \(u_n=g(v_n)\)。
+  \item \textbf{桥梁量选择：} 从目标分母或标准极限反推中间量。例如见到 \(b_n^2\) 可尝试 \(1-\cos b_n\)，再用约束把它改写成含目标量的表达式。
+  \item \textbf{使用边界：} 一个方程不必然能唯一控制两个量；必须结合定义域、单调性、局部唯一性或阶的估计排除路径依赖。约束不足时不可强行降维。
+  \item \textbf{关联题目：} 精确消元见 \problemRef{MATH1-CALC-0002}；渐近消元见 \problemRef{MATH1-CALC-0012}。
+\end{itemize}
 \end{knowledgeBox}
 
 % BEGIN calculus-foundation:method-index

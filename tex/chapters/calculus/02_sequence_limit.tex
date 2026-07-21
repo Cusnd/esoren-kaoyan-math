@@ -72,6 +72,145 @@
 \end{itemize}
 \end{knowledgeBox}
 
+\problemAnchor{MATH1-CALC-0012}
+\begin{problemBox}
+\begin{problemMeta}
+\textbf{题目编号：} \problemRef{MATH1-CALC-0012} \quad
+\textbf{索引：} \problemIndexRef{MATH1-CALC-0012} \quad
+\textbf{来源：} 用户图片 / 教材例 2.11（书名未注明）
+
+\textbf{题型：} 隐式约束下耦合数列的极限与等价关系 \quad
+\textbf{难度：} 中等
+
+\textbf{知识点：} \knowledgeRef[MATH1-KN-CALC-0070]{夹逼准则}，
+\knowledgeRef[MATH1-KN-CALC-0081]{常用等价无穷小}，
+\knowledgeIndexRef[MATH1-KN-CALC-0006]{方程组消元}
+\end{problemMeta}
+
+\textbf{题目：}
+
+设
+\[
+0<a_n<\frac{\pi}{2},\qquad 0<b_n<\frac{\pi}{2},\qquad
+\cos a_n-a_n=\cos b_n,
+\]
+且 \(b_n\to0\)。求
+\[
+\lim_{n\to\infty}a_n,\qquad
+\lim_{n\to\infty}\frac{a_n}{b_n^2}.
+\]
+\end{problemBox}
+
+\begin{solutionBox}
+\textbf{共同的第一步：先确定趋向。}
+
+由题设
+\[
+\cos a_n-\cos b_n=a_n>0.
+\]
+函数 \(\cos x\) 在 \(\left(0,\frac{\pi}{2}\right)\) 上严格递减，故
+\[
+0<a_n<b_n.
+\]
+再由 \(b_n\to0\) 及夹逼准则，得
+\[
+\boxed{a_n\to0}.
+\]
+
+\textbf{方法一：选取桥梁量，按约束渐近消元。}
+
+目标分母为 \(b_n^2\)，自然联想到
+\(1-\cos b_n\sim\frac12b_n^2\)。原关系恰可改写为
+\[
+1-\cos b_n=(1-\cos a_n)+a_n.
+\]
+于是
+\begin{align*}
+\frac{a_n}{b_n^2}
+&=\frac{1-\cos b_n}{b_n^2}
+  \cdot\frac{a_n}{1-\cos b_n}\\
+&=\frac{1-\cos b_n}{b_n^2}
+  \cdot\frac{1}{\dfrac{1-\cos a_n}{a_n}+1}.
+\end{align*}
+其中
+\[
+\frac{1-\cos b_n}{b_n^2}\to\frac12,
+\qquad
+\frac{1-\cos a_n}{a_n}
+=\frac{1-\cos a_n}{a_n^2}\,a_n\to\frac12\cdot0=0.
+\]
+故
+\[
+\boxed{\lim_{n\to\infty}\frac{a_n}{b_n^2}=\frac12}.
+\]
+
+这里并没有求出精确的 \(a_n=g(b_n)\)，而是只利用约束消去了求极限所需的主导部分。
+
+\textbf{方法二：和差化积，同时得到阶的估计。}
+
+令
+\[
+U_n=\frac{a_n+b_n}{2},\qquad V_n=\frac{b_n-a_n}{2}.
+\]
+则 \(U_n,V_n\to0\)，且
+\[
+a_n=\cos a_n-\cos b_n=2\sin U_n\sin V_n.
+\]
+由 \(0<\sin x\le x\) 得
+\[
+0<a_n\le 2U_nV_n
+=\frac{b_n^2-a_n^2}{2}\le\frac{b_n^2}{2},
+\]
+从而 \(a_n/b_n\to0\)。再写成
+\[
+\frac{a_n}{b_n^2}
+=\frac12\cdot\frac{\sin U_n}{U_n}
+\cdot\frac{\sin V_n}{V_n}
+\cdot\left(1-\frac{a_n^2}{b_n^2}\right),
+\]
+各因子取极限即得 \(1/2\)。
+
+\textbf{方法三：先估阶，再作泰勒展开。}
+
+由
+\[
+a_n=(1-\cos b_n)-(1-\cos a_n)
+\]
+可知
+\[
+0<a_n\le1-\cos b_n\le\frac{b_n^2}{2},
+\]
+所以 \(a_n=O(b_n^2)\)，进而 \(a_n^2=o(b_n^2)\)。于是
+\begin{align*}
+a_n
+&=\cos a_n-\cos b_n\\
+&=\frac{b_n^2-a_n^2}{2}+o(b_n^2)
+=\frac12b_n^2+o(b_n^2),
+\end{align*}
+故仍有 \(a_n/b_n^2\to1/2\)。
+
+\textbf{答案：}
+\[
+\boxed{\lim_{n\to\infty}a_n=0,\qquad
+\lim_{n\to\infty}\frac{a_n}{b_n^2}=\frac12}.
+\]
+\end{solutionBox}
+
+\begin{knowledgeBox}
+\textbf{通用思想：利用约束降维，并在极限层面消元。}
+
+若若干变量或数列由关系 \(F(u_n,v_n)=0\) 耦合，不必总把其中一个精确解成另一个的函数；极限题往往只需找出足以确定目标的渐近关系。标准流程是：
+\begin{enumerate}
+  \item \textbf{先定趋向：} 用定义域、单调性、保号性或夹逼确定各量趋向何处；
+  \item \textbf{再定阶：} 由约束建立 \(O\)、\(o\) 或等价关系，判断谁是主导项；
+  \item \textbf{最后定系数：} 选取与目标同形的桥梁量，把目标拆成标准极限与约束因子的乘积。
+\end{enumerate}
+
+这比“强行化为一个变量”更一般：它既包含精确代换、方程组消元，也包含只在主导阶上成立的渐近消元。若约束不足，则不能如此降维；例如仅知 \(u_n+v_n\to0\)，并不能唯一确定 \(u_n/v_n\) 的极限。使用前必须确认约束与附加条件足以排除不同路径。
+
+可记为：\textbf{先定趋向，再定阶，最后定系数。}
+\end{knowledgeBox}
+
 \studySubsection{calc-02-convergence-criteria}{数列极限判据与递推数列}
 
 \begin{knowledgeBox}

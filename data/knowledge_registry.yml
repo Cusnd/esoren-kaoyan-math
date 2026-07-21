@@ -49,6 +49,13 @@ nodes:
     kind: method
     subject: 高等数学
     chapter_key: calc-01
+    aliases:
+      - 约束降维
+      - 渐近消元
+      - 先定趋向再定阶再定系数
+    tex_anchor:
+      file: tex/indexes/method_index.tex
+      id: MATH1-KN-CALC-0006
   - id: MATH1-KN-CALC-0007
     title: 定义域
     kind: concept
