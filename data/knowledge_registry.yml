@@ -418,6 +418,16 @@ nodes:
       file: "tex/chapters/calculus/01_function_limit_continuity.tex"
       id: MATH1-KN-CALC-0059
 
+  - id: MATH1-KN-CALC-0060
+    title: "泰勒公式与常用展开"
+    kind: formula
+    subject: "高等数学"
+    chapter_key: calc-06
+    aliases: ["泰勒展开", "麦克劳林公式", "麦克劳林展开", "带皮亚诺余项的泰勒公式", "带拉格朗日余项的泰勒公式"]
+    tex_anchor:
+      file: "tex/chapters/calculus/06_differential_applications_mvt_equations_inequalities.tex"
+      id: MATH1-KN-CALC-0060
+
 edges:
   - source: MATH1-KN-CALC-0003
     target: MATH1-KN-CALC-0008

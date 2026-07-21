@@ -222,4 +222,31 @@ f(x+T)=f(x)\quad (T\ne0)
   \item \textbf{易错点：} 证明一个周期不等于证明最小正周期。
   \item \textbf{关联题目：} \problemRef{MATH1-CALC-0009}。
 \end{itemize}
+
+\knowledgeIndexAnchor[MATH1-KN-CALC-0060]{泰勒公式与常用展开}
+\textbf{泰勒公式与常用麦克劳林展开}
+
+当 \(x\to a\) 时，带皮亚诺余项的泰勒公式为
+\[
+f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k
++o\!\left((x-a)^n\right).
+\]
+
+当 \(x\to0\) 时，最常用的基本展开为
+\[
+\begin{aligned}
+e^x&=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3),\\
+\sin x&=x-\frac{x^3}{3!}+\frac{x^5}{5!}+o(x^5),\\
+\cos x&=1-\frac{x^2}{2!}+\frac{x^4}{4!}+o(x^4),\\
+\ln(1+x)&=x-\frac{x^2}{2}+\frac{x^3}{3}+o(x^3),\\
+(1+x)^\alpha&=1+\alpha x+\frac{\alpha(\alpha-1)}{2!}x^2+o(x^2).
+\end{aligned}
+\]
+
+\begin{itemize}
+  \item \textbf{使用条件：} 先把局部变量化为趋于 \(0\) 的小量；展开到足以确定相消后第一个非零项。
+  \item \textbf{典型题型：} 高阶极限、主部相消、反求参数、局部多项式和误差估计。
+  \item \textbf{易错点：} 加减结构中只用一阶等价无穷小；漏写余项；把有限阶泰勒公式误当成全局恒等式。
+  \item \textbf{关联知识点：} \knowledgeRef[MATH1-KN-CALC-0060]{泰勒公式与常用展开}（第 6 讲）。
+\end{itemize}
 \end{knowledgeBox}
