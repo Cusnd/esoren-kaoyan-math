@@ -1,3 +1,428 @@
+\answerAnchor{MATH1-CALC-0011}
+\begin{problemMeta}
+\textbf{题目编号：} \texttt{MATH1-CALC-0011}\quad
+\textbf{对应题面：} \problemRef{MATH1-CALC-0011}
+\end{problemMeta}
+
+\begin{solutionBox}
+\textbf{1.1　答案：\(\mathrm{C}\)，即 \(\dfrac16\)。}
+
+\textbf{解法一（按目标作恒等变形）}
+\[
+\frac{1+f(x)}{x^2}
+=\frac{\sin x+xf(x)}{x^3}-\frac{\sin x-x}{x^3}.
+\]
+题设给出第一项趋于 \(0\)，而
+\[
+\frac{\sin x-x}{x^3}\to-\frac16,
+\]
+故所求极限为 \(0-(-1/6)=1/6\)。
+
+\textbf{解法二（把题设翻译成余项）}
+由题设 \(\sin x+xf(x)=o(x^3)\)，除以 \(x\) 得
+\[
+f(x)=-\frac{\sin x}{x}+o(x^2).
+\]
+再用 \(\dfrac{\sin x}{x}=1-\dfrac{x^2}{6}+o(x^2)\)，可得
+\[
+1+f(x)=\frac{x^2}{6}+o(x^2).
+\]
+因此极限仍为 \(1/6\)。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.2　答案：\(\mathrm{D}\)。}
+
+当 \(x\to0^+\) 时，\(1/x\to+\infty\)，所以
+\[
+\lim_{x\to0^+}g(x)=a.
+\]
+当 \(x\to0^-\) 时，\(1/x\to-\infty\)，但题设没有给出
+\(\lim_{t\to-\infty}f(t)\) 的信息。因此 \(x=0\) 既不必然是第一类间断点，也不必然是第二类间断点或连续点。
+
+更精确地说，连续的充要条件是
+\[
+a=0,\qquad \lim_{t\to-\infty}f(t)=0.
+\]
+所以 \(a\ne0\) 时必不连续；\(a=0\) 只是必要而非充分条件。在给定选项中只有 \(\mathrm D\) 正确。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.3　答案：\(x=0\) 为第二类间断点，\(x=1\) 为跳跃间断点，选 \(\mathrm D\)。}
+
+在 \(x=0\) 附近，令 \(u=x/(x-1)\)，则 \(u\sim-x\)，故
+\[
+e^u-1\sim u,\qquad
+f(x)\sim\frac1u=\frac{x-1}{x}\sim-\frac1x.
+\]
+于是 \(x\to0^-\) 时 \(f(x)\to+\infty\)，\(x\to0^+\) 时
+\(f(x)\to-\infty\)，所以 \(x=0\) 是第二类（无穷）间断点。
+
+在 \(x=1\) 附近，
+\[
+\frac{x}{x-1}=1+\frac1{x-1}.
+\]
+故
+\[
+\lim_{x\to1^-}f(x)=-1,
+\qquad
+\lim_{x\to1^+}f(x)=0.
+\]
+左右极限均有限但不相等，故 \(x=1\) 是第一类中的跳跃间断点。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.4　答案：有可去间断点，选 \(\mathrm B\)。}
+
+固定 \(x\ne0\)，在 \(t\to0\) 时底数最终为正。取对数，并令
+\(u=\sin t/x\)，则
+\[
+\begin{aligned}
+\ln f(x)
+&=\lim_{t\to0}\frac{x^2}{t}\ln\left(1+\frac{\sin t}{x}\right)\\
+&=\lim_{t\to0}
+x\frac{\sin t}{t}\frac{\ln(1+u)}{u}
+=x.
+\end{aligned}
+\]
+所以 \(f(x)=e^x\ (x\ne0)\)。原式在 \(x=0\) 没有定义，但
+\[
+\lim_{x\to0}f(x)=1.
+\]
+故 \(x=0\) 是可去间断点；补定义 \(f(0)=1\) 后即可连续。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.5　答案：只有 \(x=1\) 是间断点，选 \(\mathrm B\)。}
+
+先求逐点极限：
+\[
+f(x)=
+\begin{cases}
+0,&|x|>1,\\
+1+x,&|x|<1,\\
+0,&x=-1,\\
+1,&x=1.
+\end{cases}
+\]
+在 \(x=-1\) 处，左右极限与函数值都等于 \(0\)，故连续；在
+\(x=1\) 处，
+\[
+f(1^-)=2,\qquad f(1^+)=0,\qquad f(1)=1,
+\]
+故 \(x=1\) 是跳跃间断点。
+
+本题也说明：连续函数列的逐点极限不一定连续。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.6　答案：}
+\[
+\boxed{f_n(x)=\frac{x}{1+nx}},\qquad x\in[0,1].
+\]
+
+\textbf{解法一（归纳）}
+结论对 \(n=1\) 成立。若
+\(f_{n-1}(x)=x/[1+(n-1)x]\)，则
+\[
+f_n(x)
+=\frac{\dfrac{x}{1+(n-1)x}}
+       {1+\dfrac{x}{1+(n-1)x}}
+=\frac{x}{1+nx}.
+\]
+
+\textbf{解法二（倒数坐标线性化）}
+对 \(x>0\)，
+\[
+\frac1{f(x)}=\frac1x+1.
+\]
+每迭代一次，倒数就增加 \(1\)，故
+\[
+\frac1{f_n(x)}=\frac1x+n,
+\]
+从而得到同一公式；\(x=0\) 另验即得 \(f_n(0)=0\)。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.7　答案：\(\dfrac12\)。}
+
+\textbf{解法一（有理化与等价无穷小）}
+\[
+1-\sqrt{\cos x}=\frac{1-\cos x}{1+\sqrt{\cos x}}
+\sim\frac{x^2/2}{2}=\frac{x^2}{4}.
+\]
+又因 \(x\to0^+\)，
+\[
+1-\cos\sqrt{x}\sim\frac{(\sqrt{x})^2}{2}=\frac{x}{2}.
+\]
+故原式极限为 \((x^2/4)/(x^2/2)=1/2\)。
+
+\textbf{解法二（Taylor 展开）}
+\[
+\sqrt{\cos x}=1-\frac{x^2}{4}+O(x^4),
+\qquad
+1-\cos\sqrt{x}=\frac{x}{2}+O(x^2),
+\]
+代入即得 \(1/2\)。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.8　答案：\(e^3\)。}
+
+\textbf{解法一（第二重要极限）}
+\[
+\left(\frac{x+2}{x-1}\right)^x
+=\left(1+\frac3{x-1}\right)^x
+=\left[\left(1+\frac3{x-1}\right)^{(x-1)/3}\right]^{3x/(x-1)}
+\longrightarrow e^3.
+\]
+
+\textbf{解法二（对数化）}
+若原式为 \(y_x\)，则
+\[
+\ln y_x=x\ln\left(1+\frac3{x-1}\right)
+=\frac{3x}{x-1}\,
+\frac{\ln(1+3/(x-1))}{3/(x-1)}\to3,
+\]
+故 \(y_x\to e^3\)。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.9　答案：}
+\[
+\boxed{\ln\frac ab}.
+\]
+
+\textbf{解法一（指数展开）}
+\[
+a^{1/x}=e^{(\ln a)/x}=1+\frac{\ln a}{x}+o\!\left(\frac1x\right),
+\]
+对 \(b\) 同理，相减并乘以 \(x\) 即得 \(\ln a-\ln b\)。
+
+\textbf{解法二（导数定义）}
+令 \(u=1/x\to0^+\)，则
+\[
+x(a^{1/x}-b^{1/x})
+=\frac{a^u-b^u}{u}
+=\frac{(a^u-b^u)-(a^0-b^0)}{u}
+\to\left.\frac{\mathrm d}{\mathrm du}(a^u-b^u)\right|_{u=0},
+\]
+结果为 \(\ln a-\ln b\)。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.10　答案：\(a=-2\)。}
+
+由左侧公式及点值，
+\[
+f(0)=\lim_{x\to0^-}f(x)=a.
+\]
+右极限用等价无穷小：
+\[
+\lim_{x\to0^+}\frac{1-e^{\tan x}}{\arcsin(x/2)}
+=\lim_{x\to0^+}\frac{-\tan x}{x/2}=-2.
+\]
+连续要求两侧极限与点值相等，故 \(a=-2\)。
+
+也可对右侧的 \(0/0\) 型使用一次洛必达法则，所得导数比在 \(0\) 处同样为 \(-2\)。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.11　图像为周期 \(2\pi\)、值域 \([-\pi/2,\pi/2]\) 的三角折线波。}
+
+反正弦函数只返回主值区间 \([-\pi/2,\pi/2]\)。对任意
+\(k\in\mathbb Z\)，有
+\[
+\boxed{
+\arcsin(\sin x)=(-1)^k(x-k\pi),
+\quad
+x\in\left[k\pi-\frac\pi2,\,k\pi+\frac\pi2\right].}
+\]
+例如一个周期内
+\[
+f(x)=
+\begin{cases}
+x,&-\dfrac\pi2\le x\le\dfrac\pi2,\\[4pt]
+\pi-x,&\dfrac\pi2\le x\le\dfrac{3\pi}{2},
+\end{cases}
+\qquad f(x+2\pi)=f(x).
+\]
+依次连接
+\[
+(-2\pi,0),\ \left(-\frac{3\pi}{2},\frac\pi2\right),\ (-\pi,0),\
+\left(-\frac\pi2,-\frac\pi2\right),\ (0,0),\
+\left(\frac\pi2,\frac\pi2\right),\ (\pi,0),\
+\left(\frac{3\pi}{2},-\frac\pi2\right),\ (2\pi,0)
+\]
+即可画出图像。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.12　答案：\(\dfrac32\)。}
+
+\textbf{解法一（展开到常数项）}
+\[
+e^x(1+x)=1+2x+\frac32x^2+O(x^3),
+\qquad
+e^x-1=x+\frac{x^2}{2}+O(x^3).
+\]
+因此
+\[
+\frac{e^x(1+x)}{e^x-1}
+=\frac1x+\frac32+O(x),
+\]
+减去 \(1/x\) 后极限为 \(3/2\)。
+
+\textbf{解法二（通分后洛必达两次）}
+原式通分为
+\[
+\frac{xe^x(1+x)-(e^x-1)}{x(e^x-1)}.
+\]
+分子分母同为二阶零量，连续使用两次洛必达法则，在 \(x=0\) 处得到
+\(3/2\)。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.13　答案：}
+\[
+\boxed{a_1a_2\cdots a_n}.
+\]
+
+令
+\[
+S(x)=\frac1n\sum_{i=1}^n a_i^x>0,
+\qquad S(0)=1.
+\]
+对原式取对数并用洛必达法则：
+\[
+\begin{aligned}
+\lim_{x\to0}\frac n x\ln S(x)
+&=n\lim_{x\to0}\frac{\ln S(x)}x
+=n\frac{S'(0)}{S(0)}\\
+&=n\cdot\frac1n\sum_{i=1}^n\ln a_i
+=\ln(a_1a_2\cdots a_n).
+\end{aligned}
+\]
+指数还原即得结论。
+
+另一种看法是 \(S(x)=1+x\bigl(\sum\ln a_i\bigr)/n+O(x^2)\)，再直接套用一般化的第二重要极限。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.14　答案：}
+\[
+\boxed{a=\frac{e-e^{-1}}2}.
+\]
+
+必须分左右两侧。令 \(q=e^{1/x}\)，则 \(e^{4/x}=q^4\)。
+
+当 \(x\to0^+\) 时，\(q\to+\infty\)，故
+\[
+\frac{2+q}{1+q^4}\to0,
+\qquad
+(1+|x|)^{1/x}=(1+x)^{1/x}\to e.
+\]
+右极限为 \(e\)。
+
+当 \(x\to0^-\) 时，\(q\to0\)，故
+\[
+\frac{2+q}{1+q^4}\to2,
+\qquad
+(1+|x|)^{1/x}=(1-x)^{1/x}\to e^{-1}.
+\]
+左极限为 \(2a+e^{-1}\)。双侧极限存在要求
+\(2a+e^{-1}=e\)，解得上述结果。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.15　答案：}
+\[
+\boxed{a=1,\qquad b=-\frac52}.
+\]
+
+\textbf{解法一（系数匹配）}
+\[
+\ln(1+x)=x-\frac{x^2}{2}+o(x^2),
+\]
+故分子为
+\[
+(1-a)x+\left(-\frac12-b\right)x^2+o(x^2).
+\]
+极限有限先迫使 \(a=1\)，再由
+\(-1/2-b=2\) 得 \(b=-5/2\)。
+
+\textbf{解法二（洛必达法则）}
+有限极限要求第一次求导后的分子在 \(0\) 处仍为 \(0\)，从而
+\(1-a=0\)。随后再求导一次：
+\[
+\lim_{x\to0}\frac{-1/(1+x)^2-2b}{2}
+=\frac{-1-2b}{2}=2,
+\]
+同样得到 \(a=1,b=-5/2\)。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{1.16　答案：}
+\[
+\boxed{a=\frac43,\qquad b=-\frac13}.
+\]
+
+利用 \(\sin x\cos x=\frac12\sin2x\)，有
+\[
+f(x)=x-a\sin x-\frac b2\sin2x.
+\]
+展开到五阶：
+\[
+\begin{aligned}
+f(x)
+={}&(1-a-b)x
++\left(\frac a6+\frac{2b}{3}\right)x^3\\
+&+\left(-\frac a{120}-\frac{2b}{15}\right)x^5+o(x^5).
+\end{aligned}
+\]
+要使其为 \(x\) 的五阶无穷小，必须消去一次项和三次项：
+\[
+1-a-b=0,
+\qquad
+a+4b=0.
+\]
+解得 \(a=4/3,b=-1/3\)。回代后五次项系数为 \(1/30\ne0\)，故
+\[
+f(x)=\frac{x^5}{30}+o(x^5),
+\]
+确为五阶无穷小。
+
+也可用“导数匹配”理解：因 \(f\) 为奇函数，只需令
+\(f'(0)=f^{(3)}(0)=0\)，再核验 \(f^{(5)}(0)\ne0\)。
+\end{solutionBox}
+
 \begin{knowledgeBox}
-本讲暂无已验证练习答案。
+\textbf{脱离具体题目的方法归纳}
+
+\begin{enumerate}
+  \item \textbf{先画“趋近方向映射”。} 遇到 \(1/x\)、\(|x|\)、分段式或
+  \(e^{c/x}\)，先写清 \(x\to0^\pm\) 分别把内层送往哪里；左右极限不是最后补算，而是第一步。
+
+  \item \textbf{已知一个极限、求另一个极限时，先做精确拼接。} 设法把目标恒等地写成“题设已知项 \(+\) 标准项”，优先级高于从头展开未知函数；若题设极限为零，可直接翻译成 \(o(\cdot)\) 余项。
+
+  \item \textbf{乘商看等价，和差看首个非零项。} 等价无穷小可安全替换乘除因子；出现 \(\sin x-x\)、两项展开首部相同、或参数需要制造高阶零时，必须展开到相消后的第一项。根式差先有理化，通常能把危险和差改成安全乘商。
+
+  \item \textbf{变量指数统一对数化。} 对 \(F(x)^{G(x)}\) 先确认底数最终为正，再研究 \(G(x)\ln F(x)\)。特别地，若 \(S(0)=1\)、\(S\) 可导，则
+  \[
+    S(x)^{c/x}\longrightarrow e^{cS'(0)},
+  \]
+  这能统一处理“若干指数项取平均后再取大幂”的题。
+
+  \item \textbf{连续与间断采用三列表。} 只检查候选点，并列写
+  \(f(x_0^-)\)、\(f(x_0^+)\)、\(f(x_0)\)：左右有限相等但点值缺失或错误是可去；左右有限不等是跳跃；至少一侧无穷或不存在是第二类。
+
+  \item \textbf{函数迭代先找“会被平移或伸缩的坐标”。} 除了归纳，可寻找
+  \(T(f(x))=T(x)+c\) 或 \(T(f(x))=\lambda T(x)\)。一旦找到，共轭后的迭代就是等差或等比；最后单独检查使 \(T\) 无定义的固定点。
+
+  \item \textbf{参数极限与高阶无穷小，本质都是低阶系数消去。} “极限有限”先消去比分母更低阶的项；“恰为 \(k\) 阶”则消去所有低于 \(k\) 的项，并核验第 \(k\) 阶系数非零。奇偶性可提前砍掉一半待匹配项。
+
+  \item \textbf{反三角复合是主值折叠，不是全域抵消。} 先标出反函数主值区间，再利用原三角函数的周期与对称，把每一段折回该区间；最后用端点连续性拼接折线。
+\end{enumerate}
+
+\textbf{建议复盘：} 先遮住答案，只为 16 题各写一句“识别信号 \(\to\) 第一动作”；再独立完成 1.1、1.3、1.7、1.13、1.14、1.16 六道代表题。
 \end{knowledgeBox}

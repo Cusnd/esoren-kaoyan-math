@@ -205,3 +205,39 @@
     - MATH1-KN-CALC-0046
     - MATH1-KN-CALC-0058
   verification_status: verified
+
+- id: MATH1-CALC-0011
+  collection: practice
+  origin: user-provided
+  subject: "高等数学"
+  chapter_key: calc-01
+  title: "函数极限与连续基础习题精练 1.1--1.16"
+  file: "tex/practice/calculus/calc-01-problems.tex"
+  answer_file: "tex/practice/calculus/calc-01-answers.tex"
+  source: "用户图片 / 教材‘基础习题精练’1.1--1.16（书名未注明）"
+  difficulty: "基础到中等"
+  knowledge_ids:
+    - MATH1-KN-CALC-0060
+    - MATH1-KN-CALC-0064
+    - MATH1-KN-CALC-0074
+    - MATH1-KN-CALC-0080
+    - MATH1-KN-CALC-0081
+    - MATH1-KN-CALC-0082
+    - MATH1-KN-CALC-0084
+    - MATH1-KN-CALC-0087
+    - MATH1-KN-CALC-0311
+    - MATH1-KN-CALC-0312
+    - MATH1-KN-CALC-0313
+  method_ids:
+    - MATH1-KN-CALC-0027
+    - MATH1-KN-CALC-0085
+    - MATH1-KN-CALC-0086
+    - MATH1-KN-CALC-0089
+  pitfall_ids:
+    - MATH1-KN-CALC-0032
+    - MATH1-KN-CALC-0033
+    - MATH1-KN-CALC-0058
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 50
+  verification_status: verified
