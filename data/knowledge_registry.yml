@@ -408,6 +408,16 @@ nodes:
     subject: "高等数学"
     chapter_key: calc-01
 
+  - id: MATH1-KN-CALC-0059
+    title: "七种未定式的统一化归"
+    kind: method
+    subject: "高等数学"
+    chapter_key: calc-01
+    aliases: ["七种未定式", "未定式极限", "未定型极限", "幂指函数极限"]
+    tex_anchor:
+      file: "tex/chapters/calculus/01_function_limit_continuity.tex"
+      id: MATH1-KN-CALC-0059
+
 edges:
   - source: MATH1-KN-CALC-0003
     target: MATH1-KN-CALC-0008

@@ -6,6 +6,158 @@
 本讲用于整理函数、函数极限、无穷小比较、连续性与间断点等内容。新增题目时重点沉淀极限入口、等价替换条件、单侧极限和连续性判定。
 \end{knowledgeBox}
 
+\knowledgeAnchor[MATH1-KN-CALC-0059]{七种未定式的统一化归}
+\noindent{\footnotesize\textbf{索引：} \knowledgeIndexRef[MATH1-KN-CALC-0059]{七种未定式的统一化归}}\par
+
+\begin{knowledgeBox}
+\textbf{来源定位：}
+
+张宇基础 30 讲（高数），PDF 第 60 页（教材页码第 54 页）“七种未定式的计算”，由用户指定。
+
+\textbf{什么叫未定式：}
+
+函数极限中常见的七种未定式是
+\[
+\frac{0}{0},\qquad
+\frac{\infty}{\infty},\qquad
+0\cdot\infty,\qquad
+\infty-\infty,\qquad
+\infty^0,\qquad
+0^0,\qquad
+1^\infty.
+\]
+这里的 \(0\) 和 \(\infty\) 表示各部分的极限状态，不是把两个数直接代入运算。“未定”只表示这些状态本身不能唯一决定原极限；原极限可能是有限数、\(0\)、无穷，也可能不存在。
+
+\textbf{统一路线：}
+
+七种形式并不需要背七套互不相干的算法。真正直接处理的只有两种商式
+\[
+\frac{0}{0},\qquad \frac{\infty}{\infty}.
+\]
+其余五种先化归：积式改写成商式，差式通分或有理化，幂式先取对数。完整顺序是
+\[
+\text{代入识别}
+\longrightarrow
+\text{先做代数化简}
+\longrightarrow
+\text{化为商式}
+\longrightarrow
+\text{计算极限}.
+\]
+
+\textbf{一、\(\frac{0}{0}\) 型：先消掉共同趋零的原因。}
+
+常用入口依次是因式分解与约分、有理化、等价无穷小、泰勒展开、洛必达法则。例如
+\[
+\lim_{x\to0}\frac{e^x-1-x}{x^2}
+=\lim_{x\to0}\frac{e^x-1}{2x}
+=\lim_{x\to0}\frac{e^x}{2}
+=\frac12,
+\]
+其中连续两次使用洛必达法则，每次使用前都仍是 \(\frac00\) 型。
+
+\textbf{二、\(\frac{\infty}{\infty}\) 型：比较分子、分母的增长阶。}
+
+多项式或根式优先同除最高阶量；也可以使用等价量、泰勒展开或洛必达法则。例如
+\[
+\lim_{x\to+\infty}\frac{3x^2+x}{2x^2-1}
+=\lim_{x\to+\infty}\frac{3+\frac1x}{2-\frac1{x^2}}
+=\frac32.
+\]
+
+\textbf{三、\(0\cdot\infty\) 型：把更容易取倒数的一项放到分母。}
+
+若 \(f(x)\to0\)、\(g(x)\to\infty\)，则可以选择
+\[
+f(x)g(x)=\frac{f(x)}{1/g(x)}
+\quad\text{或}\quad
+f(x)g(x)=\frac{g(x)}{1/f(x)},
+\]
+分别化为 \(\frac00\) 型或 \(\frac{\infty}{\infty}\) 型。选择导数更简单的一种。例如
+\[
+\lim_{x\to0^+}x\ln x
+=\lim_{x\to0^+}\frac{\ln x}{1/x}
+=\lim_{x\to0^+}\frac{1/x}{-1/x^2}
+=\lim_{x\to0^+}(-x)=0.
+\]
+
+\textbf{四、\(\infty-\infty\) 型：把相消关系显出来。}
+
+分式差优先通分，根式差优先乘共轭式，对数差优先合并成一个对数。例如
+\[
+\begin{aligned}
+\lim_{x\to+\infty}\left(\sqrt{x^2+x}-x\right)
+&=\lim_{x\to+\infty}
+\frac{x}{\sqrt{x^2+x}+x}\\
+&=\lim_{x\to+\infty}
+\frac{1}{\sqrt{1+1/x}+1}
+=\frac12.
+\end{aligned}
+\]
+洛必达法则不能直接作用于“差”，必须先把它化成一个商。
+
+\textbf{五、六、七：三种幂指未定式统一取对数。}
+
+设在所讨论的去心邻域内 \(f(x)>0\)，并令
+\[
+y=f(x)^{g(x)}.
+\]
+则
+\[
+\ln y=g(x)\ln f(x).
+\]
+无论原式是 \(1^\infty\)、\(0^0\) 还是 \(\infty^0\)，右端都会化为 \(0\cdot\infty\) 型；先求
+\[
+L=\lim g(x)\ln f(x),
+\]
+再还原
+\[
+\lim f(x)^{g(x)}=e^L.
+\]
+
+三种典型例子分别是
+\[
+\lim_{x\to+\infty}\left(1+\frac1x\right)^x=e,
+\]
+因为 \(x\ln(1+1/x)\to1\)；
+\[
+\lim_{x\to0^+}x^x=1,
+\]
+因为 \(x\ln x\to0\)；以及
+\[
+\lim_{x\to+\infty}x^{1/x}=1,
+\]
+因为 \(\frac{\ln x}{x}\to0\)。
+
+对 \(1^\infty\) 型还有常用速算式：若 \(u(x)\to0\)、\(v(x)\to\infty\)、\(1+u(x)>0\)，且
+\[
+\lim u(x)v(x)=A,
+\]
+则由 \(\ln(1+u)\sim u\) 得
+\[
+\lim[1+u(x)]^{v(x)}=e^A.
+\]
+因此 \(1^\infty\) 型的答案不一定是 \(e\)，而是由指数中的极限 \(A\) 决定。
+
+\textbf{洛必达法则的使用边界：}
+
+洛必达法则只直接用于 \(\frac00\) 型或 \(\frac{\infty}{\infty}\) 型。使用时要保证分子、分母在相应去心邻域内可导，分母导数不为零，并且导数之比的极限存在或为无穷。每使用一次后都要重新判型；若已经不再是这两种商式，不能机械地继续求导。
+
+\textbf{考场检查清单：}
+
+\begin{enumerate}
+  \item 先代入判型，不见未定式就不要启动洛必达法则。
+  \item 先约分、提非零因子、有理化、通分或同除最高阶量；化简往往比求导更快。
+  \item \(0\cdot\infty\) 改商，\(\infty-\infty\) 合并成商，三种幂式取对数。
+  \item 幂指函数取对数前检查底数最终为正；底数可能为负时，原式对一般实指数甚至未必有定义。
+  \item 得到答案后检查单侧、符号和定义域，尤其注意 \(x\to0^+\) 与 \(x\to0^-\) 可能不同。
+\end{enumerate}
+
+\textbf{主动回忆：}
+
+合上答案后，口述三句话：“商式直接处理；积和差先化商；幂式先取对数。”再分别说明 \(x\ln x\)、\(\sqrt{x^2+x}-x\)、\(x^x\) 应怎样完成第一次变形。
+\end{knowledgeBox}
+
 \studySubsection{calc-01-inverse-function}{反函数的定义、存在条件与图像关系}
 \knowledgeAnchor[MATH1-KN-CALC-0008]{反函数}
 \legacyKnowledgeAnchor{inverse-function}
