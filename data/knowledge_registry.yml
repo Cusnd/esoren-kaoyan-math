@@ -720,6 +720,8 @@ nodes:
     chapter_key: calc-01
     aliases:
       - K029
+      - 见证数列法
+      - 双数列判别
     source_refs:
       - calc-map-2026:K029
     reviewable: true
@@ -733,6 +735,8 @@ nodes:
     chapter_key: calc-01
     aliases:
       - K030
+      - 无界量与无穷大量的区别
+      - 振幅乘振荡因子
     source_refs:
       - calc-map-2026:K030
     reviewable: true
