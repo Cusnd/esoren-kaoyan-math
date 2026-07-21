@@ -610,6 +610,10 @@ nodes:
     chapter_key: calc-02
     aliases:
       - K020
+      - 相邻幂差
+      - 离散求导
+      - 二项式定理判阶
+      - "n^k-(n-1)^k 的降阶"
     source_refs:
       - calc-map-2026:K020
     reviewable: true

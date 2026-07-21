@@ -265,3 +265,20 @@
     - MATH1-KN-CALC-0032
     - MATH1-KN-CALC-0034
   verification_status: verified
+
+- id: MATH1-CALC-0013
+  collection: core
+  origin: user-provided
+  subject: "高等数学"
+  chapter_key: calc-02
+  title: "由相邻幂差极限反求参数 k"
+  file: "tex/chapters/calculus/02_sequence_limit.tex"
+  source: "用户图片 / 题号 2.4（书名未注明）"
+  difficulty: "基础"
+  knowledge_ids:
+    - MATH1-KN-CALC-0069
+    - MATH1-KN-CALC-0111
+  method_ids:
+    - MATH1-KN-CALC-0085
+  pitfall_ids: []
+  verification_status: verified

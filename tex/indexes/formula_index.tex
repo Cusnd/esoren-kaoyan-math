@@ -279,5 +279,23 @@ e^x&=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3),\\
   \item \textbf{条件：} 底数在邻域内必须为正以定义实幂；一般幂指型应取对数。
   \item \textbf{正文：} \knowledgeRef[MATH1-KN-CALC-0084]{第二重要极限与 $e$}。
 \end{itemize}
+
 \end{knowledgeBox}
 % END calculus-foundation:formula-index
+
+\begin{knowledgeBox}
+\knowledgeIndexAnchor[MATH1-KN-CALC-0069]{相邻幂差的降阶等价}
+\textbf{相邻幂差的降阶等价}
+
+\[
+n^k-(n-1)^k\sim k n^{k-1}\qquad(n\to\infty),
+\]
+其中 $k$ 为固定非零实数。
+
+\begin{itemize}
+  \item \textbf{直觉：} 相邻差相当于步长为 $1$ 的离散求导，所以幂次降低一次。
+  \item \textbf{使用条件：} $k$ 固定且非零；一般实数 $k$ 可用中值定理，正整数 $k$ 可直接用二项式定理。
+  \item \textbf{易错点：} 不能把 $n^k-(n-1)^k$ 的有效次数直接判成 $k$，必须检查最高阶项抵消。
+  \item \textbf{关联题目：} \problemRef{MATH1-CALC-0013}；正文见 \knowledgeRef[MATH1-KN-CALC-0069]{数列极限四则运算与相邻幂差降阶}。
+\end{itemize}
+\end{knowledgeBox}

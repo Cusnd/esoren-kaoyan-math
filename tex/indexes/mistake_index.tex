@@ -1,5 +1,13 @@
 \studySubsection{index-mistakes}{错题与错因索引}
 
 \begin{mistakeBox}
-暂无错题。新增错题时同步记录题号、错因分类、错误步骤、正确做法和复盘提醒。
+\textbf{\problemRef{MATH1-CALC-0013}：把相邻幂差的次数误判为原次数}
+
+\begin{itemize}
+  \item \textbf{错因分类：} 同阶主项相消判断遗漏。
+  \item \textbf{原错误直觉：} 分子为 $n^{99}$，分母中出现 $k$ 次幂，因此直接猜 $k=99$。
+  \item \textbf{第一个失效步骤：} 没有先计算 $n^k-(n-1)^k$ 的真实最高阶项；两个 $n^k$ 项抵消后，首项为 $k n^{k-1}$。
+  \item \textbf{正确判据：} 同阶大项相减时，先展开到第一个非零项，再比较阶数。本题应令 $k-1=99$，故 $k=100$。
+  \item \textbf{复盘提醒：} 看到“相近量作差”，立即问：最高阶项是否抵消？可否用二项式展开、中值定理或泰勒展开降阶？
+\end{itemize}
 \end{mistakeBox}

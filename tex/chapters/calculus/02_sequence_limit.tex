@@ -60,6 +60,7 @@
 \end{knowledgeBox}
 
 \knowledgeAnchor[MATH1-KN-CALC-0069]{数列极限四则运算}
+\noindent{\footnotesize\textbf{索引：} \knowledgeIndexRef[MATH1-KN-CALC-0069]{相邻幂差的降阶等价}}\par
 \begin{knowledgeBox}
 \textbf{定义或结论：} 若 $a_n\to A,b_n\to B$，则和、差、积相应收敛；若 $B\ne0$，则 $a_n/b_n\to A/B$。
 
@@ -70,6 +71,23 @@
   \item \textbf{关系与迁移：} 前置知识为 极限性质；可迁移到 夹逼、等价、递推数列。
   \item \textbf{常见误区：} 在分母极限为0时套商法则；把不存在的分项极限拆开。迁移到新题时先复核定义域、趋近方向和所用定理的条件。
 \end{itemize}
+
+\textbf{相邻幂差的降阶等价：} 对固定实数 $k\ne0$，当 $n\to\infty$ 时，
+\[
+n^k-(n-1)^k\sim k n^{k-1}.
+\]
+相邻差可看成步长为 $1$ 的离散求导。严格地，由拉格朗日中值定理，存在 $\xi_n\in(n-1,n)$，使
+\[
+n^k-(n-1)^k=k\xi_n^{k-1}\sim k n^{k-1}.
+\]
+当 $k$ 为正整数时，也可由二项式定理
+\[
+(n-1)^k=n^k-kn^{k-1}+\binom{k}{2}n^{k-2}-\cdots
+\]
+直接看出：两个 $n^k$ 项抵消后，第一个非零项为 $k n^{k-1}$。更一般地，对固定 $h$ 有
+\[
+n^k-(n-h)^k\sim kh n^{k-1}.
+\]
 \end{knowledgeBox}
 
 \problemAnchor{MATH1-CALC-0012}
@@ -210,6 +228,70 @@ a_n
 
 可记为：\textbf{先定趋向，再定阶，最后定系数。}
 \end{knowledgeBox}
+
+\problemAnchor{MATH1-CALC-0013}
+\begin{problemBox}
+\begin{problemMeta}
+\textbf{题目编号：} \problemRef{MATH1-CALC-0013} \quad
+\textbf{索引：} \problemIndexRef{MATH1-CALC-0013} \quad
+\textbf{来源：} 用户图片 / 题号 2.4（书名未注明）
+
+\textbf{题型：} 相邻幂差判阶与参数极限 \quad
+\textbf{难度：} 基础
+
+\textbf{知识点：} \knowledgeRef[MATH1-KN-CALC-0069]{数列极限四则运算与相邻幂差降阶}
+\end{problemMeta}
+
+\textbf{题目：}
+
+设 $k$ 为实常数。若有限极限
+\[
+\lim_{n\to\infty}\frac{n^{99}}{n^k-(n-1)^k}
+\]
+存在且不为零，求 $k$。
+\end{problemBox}
+
+\begin{solutionBox}
+\textbf{思路入口：先判断分母的真实阶数。}
+
+分母虽然由两个 $k$ 次量组成，但它们的最高阶项会相消。$k=0$ 时分母恒为零，应先排除。对 $k\ne0$，由相邻幂差的降阶等价，
+\[
+n^k-(n-1)^k\sim k n^{k-1}.
+\]
+因此
+\[
+\frac{n^{99}}{n^k-(n-1)^k}
+\sim \frac{n^{99}}{k n^{k-1}}
+=\frac1k n^{100-k}.
+\]
+要使极限为有限非零常数，必须有
+\[
+100-k=0,
+\]
+故
+\[
+\boxed{k=100}.
+\]
+此时原极限为
+\[
+\boxed{\frac1{100}}.
+\]
+
+若题目背景把 $k$ 限定为正整数，也可以直接使用二项式定理：
+\[
+n^k-(n-1)^k
+=k n^{k-1}-\binom{k}{2}n^{k-2}+\cdots.
+\]
+分母的有效最高次数是 $k-1$，与分子的 $99$ 次匹配便得到 $k-1=99$。
+\end{solutionBox}
+
+\begin{mistakeBox}
+\textbf{本题实际卡点：} 直觉上把分母看成 $k$ 次量，于是猜测 $k=99$。
+
+\textbf{第一个失效步骤：} 未先展开或估计 $n^k-(n-1)^k$，忽略了两个 $n^k$ 主项完全抵消；分母的真实阶数是 $k-1$，不是 $k$。
+
+\textbf{下次检查动作：} 看到两个同阶大项相减，先问“最高阶项是否抵消”，再匹配次数。可用二项式展开、中值定理或泰勒展开找到相消后的第一个非零项。
+\end{mistakeBox}
 
 \studySubsection{calc-02-convergence-criteria}{数列极限判据与递推数列}
 
