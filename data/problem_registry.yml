@@ -282,3 +282,19 @@
     - MATH1-KN-CALC-0085
   pitfall_ids: []
   verification_status: verified
+
+- id: MATH1-CALC-0014
+  collection: core
+  origin: user-provided
+  subject: "高等数学"
+  chapter_key: calc-02
+  title: "由闭区间有界性求指数平均的 n 次方根极限"
+  file: "tex/chapters/calculus/02_sequence_limit.tex"
+  source: "用户图片 / 题号 2.7（书名未注明）"
+  difficulty: "基础"
+  knowledge_ids:
+    - MATH1-KN-CALC-0091
+    - MATH1-KN-CALC-0070
+  method_ids: []
+  pitfall_ids: []
+  verification_status: verified

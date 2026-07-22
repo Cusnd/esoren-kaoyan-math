@@ -293,6 +293,86 @@ n^k-(n-1)^k
 \textbf{下次检查动作：} 看到两个同阶大项相减，先问“最高阶项是否抵消”，再匹配次数。可用二项式展开、中值定理或泰勒展开找到相消后的第一个非零项。
 \end{mistakeBox}
 
+\problemAnchor{MATH1-CALC-0014}
+\begin{problemBox}
+\begin{problemMeta}
+\textbf{题目编号：} \problemRef{MATH1-CALC-0014} \quad
+\textbf{索引：} \problemIndexRef{MATH1-CALC-0014} \quad
+\textbf{来源：} 用户图片 / 题号 2.7（书名未注明）
+
+\textbf{题型：} 闭区间有界性与 $n$ 次方根夹逼 \quad
+\textbf{难度：} 基础
+
+\textbf{知识点：} \knowledgeRef[MATH1-KN-CALC-0091]{有界性与最大最小值定理}，
+\knowledgeRef[MATH1-KN-CALC-0070]{夹逼准则}
+\end{problemMeta}
+
+\textbf{题目：}
+
+设函数 $f(x)$ 在 $[a,b]$ 上连续，点列
+$\{x_k\}_{k\ge1}\subset[a,b]$。求
+\[
+\lim_{n\to\infty}
+\sqrt[n]{\frac1n\sum_{k=1}^{n}e^{f(x_k)}}.
+\]
+\end{problemBox}
+
+\begin{solutionBox}
+\textbf{思路入口：不求平均值本身的极限，只寻找与 $n$ 无关的正上、下界。}
+
+由于 $f$ 在闭区间 $[a,b]$ 上连续，它能取得有限的最小值和最大值。记
+\[
+m=\min_{x\in[a,b]}f(x),\qquad
+M=\max_{x\in[a,b]}f(x).
+\]
+对每个 $x_k\in[a,b]$，由指数函数严格递增可得
+\[
+e^m\le e^{f(x_k)}\le e^M.
+\]
+逐项求和再除以 $n$，得到
+\[
+e^m\le
+\frac1n\sum_{k=1}^{n}e^{f(x_k)}
+\le e^M.
+\]
+三项均为正数，开 $n$ 次方后不等号方向不变：
+\[
+e^{m/n}\le
+\sqrt[n]{\frac1n\sum_{k=1}^{n}e^{f(x_k)}}
+\le e^{M/n}.
+\]
+因为 $m,M$ 是与 $n$ 无关的常数，故
+\[
+e^{m/n}\to1,\qquad e^{M/n}\to1.
+\]
+由夹逼准则，原极限为
+\[
+\boxed{1}.
+\]
+
+点列 $\{x_k\}$ 是否收敛、如何分布都不重要；闭区间上的统一界已经足以决定这个极限。
+\end{solutionBox}
+
+\begin{knowledgeBox}
+\textbf{可复用结论：} 若存在与 $n$ 无关的常数 $0<c\le C$，使
+\[
+c\le u_n\le C,
+\]
+则
+\[
+u_n^{1/n}\to1.
+\]
+本题中取
+\[
+u_n=\frac1n\sum_{k=1}^{n}e^{f(x_k)},
+\qquad c=e^m,\quad C=e^M.
+\]
+
+必须注意“正下界”不能省略。仅知道 $u_n>0$ 且有界并不足以推出结论，例如
+$u_n=e^{-n}$ 有界，但 $u_n^{1/n}=e^{-1}$。更本质的判据是
+$\ln u_n=o(n)$。
+\end{knowledgeBox}
+
 \studySubsection{calc-02-convergence-criteria}{数列极限判据与递推数列}
 
 \begin{knowledgeBox}
