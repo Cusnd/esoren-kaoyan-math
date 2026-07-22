@@ -9,6 +9,7 @@
 3. “简洁回答”只压缩聊天回复，只有明确说“只聊天不写文件”才跳过文件修改。
 4. `data/textbook_catalog.yml` 是章节顺序、稳定章节键与路径的唯一事实源；`data/problem_registry.yml` 统一登记两库题目；`data/knowledge_registry.yml` 保存稳定知识节点和显式关系。
 5. 数学内容结构以 `tex/templates/` 下的实时模板为准，不在 Skill 或复制提示词中维护镜像。
+6. 显式输入“深度讲解 K031”或“生成满分级讲义 K031、K032”时，Skill 会把主讲义写入对应章节 TeX，并把已核验的 A/B/C/M 练习与答案分别写入练习册和答案册；普通“讲解 K031”仍按需回答。
 
 ## 仓库契约验证
 
@@ -29,6 +30,14 @@ $mamba = 'C:\Users\liuso\miniforge3\Library\bin\mamba.exe'
 & $mamba run -n codex-tools python tests/skill/run_forward_eval.py --run --smoke --snapshot worktree --prompt-source head --runner wsl --model gpt-5.6-sol --effort max --output-dir C:\Temp\math1-baseline
 & $mamba run -n codex-tools python tests/skill/run_forward_eval.py --run --smoke --snapshot worktree --prompt-source worktree --runner wsl --model gpt-5.6-sol --effort max --output-dir C:\Temp\math1-candidate
 & $mamba run -n codex-tools python tests/skill/run_forward_eval.py --compare C:\Temp\math1-baseline\summary.json C:\Temp\math1-candidate\summary.json
+```
+
+新增的 K 编号深度讲义案例不进入日常 smoke；按相同模型、档位和基础树做定向 A/B：
+
+```powershell
+& $mamba run -n codex-tools python tests/skill/run_forward_eval.py --run --case deep_calculus_k031_persist --snapshot worktree --prompt-source head --runner wsl --model gpt-5.6-sol --effort max --output-dir C:\Temp\math1-deep-baseline
+& $mamba run -n codex-tools python tests/skill/run_forward_eval.py --run --case deep_calculus_k031_persist --snapshot worktree --prompt-source worktree --runner wsl --model gpt-5.6-sol --effort max --output-dir C:\Temp\math1-deep-candidate
+& $mamba run -n codex-tools python tests/skill/run_forward_eval.py --compare C:\Temp\math1-deep-baseline\summary.json C:\Temp\math1-deep-candidate\summary.json
 ```
 
 若只调整了 automatic-fatal 分类政策，可对原始 summary 做确定性重分类，不重跑模型或覆盖原文件；新文件会记录来源 SHA-256、重分类时间和策略 ID，回答、diff、token 与 strict `automatic_pass` 保持不变：

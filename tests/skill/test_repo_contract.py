@@ -908,8 +908,9 @@ class CurrentRepositoryContractTests(unittest.TestCase):
         graph = repo_model.load_knowledge_registry(REPO_ROOT)
         self.assertEqual(37, len(catalog))
         self.assertEqual(37, len({entry.chapter_key for entry in catalog}))
-        self.assertEqual(10, len(registry))
-        self.assertTrue(all(entry["collection"] == "core" for entry in registry))
+        self.assertEqual(14, len(registry))
+        self.assertEqual(13, sum(entry["collection"] == "core" for entry in registry))
+        self.assertEqual(1, sum(entry["collection"] == "practice" for entry in registry))
         self.assertEqual(2, graph["schema_version"])
         self.assertEqual(359, len(graph["nodes"]))
         self.assertEqual(
@@ -949,9 +950,9 @@ class CurrentRepositoryContractTests(unittest.TestCase):
         )
         self.assertEqual(1, manifest["schema_version"])
         cases = manifest["cases"]
-        self.assertEqual(24, len(cases))
+        self.assertEqual(27, len(cases))
         self.assertEqual(
-            Counter({"math": 9, "teaching": 6, "persistence": 9}),
+            Counter({"math": 9, "teaching": 8, "persistence": 10}),
             Counter(case["slice"] for case in cases),
         )
         self.assertEqual(8, sum(bool(case.get("smoke")) for case in cases))

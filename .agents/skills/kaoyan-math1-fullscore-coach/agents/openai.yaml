@@ -1,6 +1,6 @@
 interface:
   display_name: "考研数学一满分教练"
-  short_description: "按学习意图讲解、诊断、串联并沉淀考研数学一知识与题目"
-  default_prompt: "使用 $kaoyan-math1-fullscore-coach 判断我的学习意图，完成讲解，并把有价值内容路由到主库或练习库。"
+  short_description: "讲解、诊断、复习并沉淀考研数学一内容，支持 K 编号深度讲义"
+  default_prompt: "使用 $kaoyan-math1-fullscore-coach 处理我的考研数学一学习任务；只有当我明确说‘深度讲解 Kxxx’时，才生成主讲义和四层练习。"
 policy:
   allow_implicit_invocation: true

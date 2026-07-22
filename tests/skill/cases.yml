@@ -67,6 +67,12 @@ fatal_failures:
   - generic_pitfall_only
   - math_archive_on_meta_task
   - id_changed_on_promotion
+  - missing_deep_lecture
+  - missing_four_tier_practice
+  - research_metadata_published
+  - deep_mode_false_positive
+  - invalid_knowledge_id_guessed
+  - practice_verification_bypassed
 
 cases:
   # 数学正确性：高数、线代、概率各 3 题。
@@ -402,6 +408,79 @@ cases:
     checks:
       output_must_not_match: ["(?s)本次沉淀：.*复盘："]
     hard_fail_if: [repository_changed, math_archive_on_meta_task]
+    rubric: default
+
+  - id: deep_calculus_k031_persist
+    slice: persistence
+    smoke: false
+    task_kind: generate
+    prompt: "深度讲解 K031。把满分级主讲义写入现有 TeX，并生成、独立复核 A/B/C/M 四层配套练习，维护到练习册和答案册。不要把研究考频、趋势、重要度或未经核验的真题年份写进公开正文。"
+    expected: {intent: generate, collection: practice, persistence: write}
+    oracle:
+      summary: "原位深化 MATH1-KN-CALC-0080；主讲义含直觉、严格定义、条件、方法选择、3--5 道例题与核验；一个 verified 练习集覆盖 A/B/C/M 并有配对答案。"
+    file_expectations:
+      require_change: true
+      allowed_changes:
+        - data/problem_registry.yml
+        - data/knowledge_registry.yml
+        - tex/chapters/calculus/01_function_limit_continuity.tex
+        - tex/practice/calculus/calc-01-problems.tex
+        - tex/practice/calculus/calc-01-answers.tex
+      post_validate: true
+    checks:
+      diff_must_match:
+        - '(?s)(MATH1-KN-CALC-0080|同阶、高阶、低阶与等价无穷小)'
+        - '(?s)(直觉|为什么)'
+        - '(?s)(条件|去心邻域)'
+        - '(?s)(例题|方法选择)'
+        - '(?s)A\s*(层|级|：|:|基础).*B\s*(层|级|：|:|标准).*C\s*(层|级|：|:|综合).*M\s*(层|级|：|:|满分)'
+        - '(?s)\\answerAnchor\{MATH1-CALC-\d{4}\}'
+        - '(?s)collection:\s*practice'
+        - '(?s)practice_stage:\s*interleaved'
+        - '(?s)task_type:\s*comprehensive'
+        - '(?s)verification_status:\s*verified'
+      diff_must_not_match:
+        - '(?m)^\+.*(考频|历年频率|研究重要度|重要度[：:]|命题趋势|典型真题年份|source_refs|sha256|学习状态|复盘次数|个人笔记|个人备注)'
+        - '(?m)^\+.*((?:19|20)\d{2}.*真题|真题.*(?:19|20)\d{2})'
+    hard_fail_if:
+      - missing_deep_lecture
+      - missing_four_tier_practice
+      - research_metadata_published
+      - wrong_collection
+      - draft_published
+      - missing_answers
+      - fabricated_source
+      - false_validation_claim
+      - practice_verification_bypassed
+    rubric: default
+
+  - id: deep_calculus_invalid_k999
+    slice: teaching
+    smoke: false
+    task_kind: explain
+    prompt: "深度讲解 K999；如果编号无效，保持仓库不变并明确说明，不要猜测我想要哪个知识点。"
+    expected: {intent: diagnose, collection: none, persistence: skip}
+    oracle:
+      summary: "K999 不在 K001--K262 中；明确拒绝生成，仓库零修改，不推荐或替换成相近编号。"
+    checks:
+      output_must_match: ['(?s)K999.*(不存在|无效|范围|K001.*K262)']
+    hard_fail_if: [invalid_knowledge_id_guessed, repository_changed, fabricated_source]
+    rubric: default
+
+  - id: plain_k031_does_not_force_deep_mode
+    slice: teaching
+    smoke: false
+    task_kind: explain
+    prompt: "只聊天不写文件：讲解 K031。我不是要深度讲解；先用简洁方式解释核心定义并给一个例子。"
+    expected: {intent: solve, collection: none, persistence: skip}
+    oracle:
+      summary: "简洁解释同阶、高阶、低阶、等价无穷小及一个例子；不生成固定长讲义或 A/B/C/M 练习。"
+    checks:
+      output_must_match:
+        - '(?s)(同阶|高阶)'
+        - '(?s)(等价|\\sim)'
+      output_must_not_match: ['(?s)A\s*(层|级).*B\s*(层|级).*C\s*(层|级).*M\s*(层|级)']
+    hard_fail_if: [deep_mode_false_positive, repository_changed]
     rubric: default
 
   - id: persist_practice_promotion_stable_id
