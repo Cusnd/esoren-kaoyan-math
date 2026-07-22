@@ -1,0 +1,113 @@
+\answerAnchor{MATH1-CALC-0015}
+\begin{problemMeta}
+\textbf{题目编号：} \texttt{MATH1-CALC-0015}\quad
+\textbf{对应题面：} \problemRef{MATH1-CALC-0015}
+\end{problemMeta}
+
+\begin{solutionBox}
+\textbf{A　指数因子。}
+
+目标式是 \(f'+2f=0\)，注意到
+\[
+\bigl(e^{2x}f(x)\bigr)'=e^{2x}\bigl(f'(x)+2f(x)\bigr).
+\]
+令 \(F(x)=e^{2x}f(x)\)。由题设，
+\[
+F\in C[0,1]\cap D(0,1),\qquad F(0)=F(1)=0.
+\]
+由罗尔定理，存在 \(\xi\in(0,1)\) 使
+\[
+0=F'(\xi)=e^{2\xi}\bigl(f'(\xi)+2f(\xi)\bigr).
+\]
+因为 \(e^{2\xi}>0\)，所以 \(f'(\xi)+2f(\xi)=0\)。
+
+\textbf{核验：}取 \(f(x)=x(1-x)e^{-2x}\)，题设成立；目标式等价于
+\((x(1-x))'=0\)，可取 \(\xi=1/2\)。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{B　除以幂函数。}
+
+目标式移项为 \(xf'-2f=0\)，而
+\[
+\left(\frac{f(x)}{x^2}\right)'
+=\frac{xf'(x)-2f(x)}{x^3}.
+\]
+由于区间为 \([1,2]\)，分母不为零。令
+\[
+F(x)=\frac{f(x)}{x^2}.
+\]
+则 \(F\in C[1,2]\cap D(1,2)\)，并且
+\[
+F(1)=f(1),\qquad F(2)=\frac{f(2)}4=f(1).
+\]
+由罗尔定理，存在 \(\xi\in(1,2)\) 使 \(F'(\xi)=0\)。因
+\(\xi^3>0\)，故
+\[
+\xi f'(\xi)-2f(\xi)=0.
+\]
+
+\textbf{核验：}取 \(f(x)=Cx^2\)，端点条件成立，目标式在每一点成立。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{C　带权积分构造。}
+
+令
+\[
+F(x)=\int_0^x 2t\bigl(f(t)-I\bigr)\,\mathrm dt.
+\]
+因 \(f\) 连续，\(F\in C[0,1]\cap D(0,1)\)，且
+\[
+F(0)=0,
+\]
+\[
+\begin{aligned}
+F(1)
+&=\int_0^1 2t f(t)\,\mathrm dt
+  -I\int_0^1 2t\,\mathrm dt\\
+&=I-I=0.
+\end{aligned}
+\]
+由罗尔定理，存在 \(\xi\in(0,1)\) 使
+\[
+0=F'(\xi)=2\xi\bigl(f(\xi)-I\bigr).
+\]
+这里 \(\xi\in(0,1)\)，所以 \(2\xi>0\)，进而 \(f(\xi)=I\)。
+
+\textbf{核验：}权函数 \(2x\ge0\) 且积分为 \(1\)，故 \(I\) 是
+\(f\) 的加权平均；结论与连续函数介值性一致。上面的构造还说明了
+为何必须利用 \(\xi>0\) 排除乘子为零。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{M　参数插值与两次罗尔定理。}
+
+构造通过三个已知点的二次多项式
+\[
+p(x)=\frac{\lambda}{2}x(3-x).
+\]
+确有
+\[
+p(0)=p(3)=0,\qquad p(1)=\lambda,\qquad p''(x)=-\lambda.
+\]
+令 \(F(x)=f(x)-p(x)\)，则
+\[
+F(0)=F(1)=F(3)=0.
+\]
+分别在 \([0,1]\) 和 \([1,3]\) 上使用罗尔定理，存在
+\[
+u\in(0,1),\qquad v\in(1,3)
+\]
+使 \(F'(u)=F'(v)=0\)。由于 \(f\) 在 \((0,3)\) 内二阶可导，
+\(F'\) 在 \([u,v]\) 上连续、在 \((u,v)\) 内可导。再用一次罗尔
+定理，存在 \(\xi\in(u,v)\subset(0,3)\) 使
+\[
+0=F''(\xi)=f''(\xi)-p''(\xi)=f''(\xi)+\lambda.
+\]
+所以 \(f''(\xi)=-\lambda\)。
+
+\textbf{退化检查：}当 \(\lambda=0\) 时，\(p\equiv0\)，结论退化为
+三个零点推出某点 \(f''(\xi)=0\)，上述证明仍然成立。取 \(f=p\)
+时，目标式处处成立，也核验了常数和符号。
+\end{solutionBox}

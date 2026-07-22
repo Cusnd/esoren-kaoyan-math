@@ -1139,6 +1139,9 @@ nodes:
     source_refs:
       - calc-map-2026:K064
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/06_differential_applications_mvt_equations_inequalities.tex
+      id: MATH1-KN-CALC-0113
   - id: MATH1-KN-CALC-0114
     title: $0/0$ 与 $\infty/\infty$ 型
     kind: concept
@@ -3825,4 +3828,10 @@ edges:
     type: prerequisite_for
   - source: MATH1-KN-CALC-0260
     target: MATH1-KN-CALC-0275
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0110
+    target: MATH1-KN-CALC-0113
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0113
+    target: MATH1-KN-CALC-0317
     type: prerequisite_for

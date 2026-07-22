@@ -122,6 +122,11 @@ pages:
     lecture: 第 6 讲
     legacy_note: 17
     source: tex/chapters/calculus/06_differential_applications_mvt_equations_inequalities.tex
+  - slug: calc-06-auxiliary-function-construction
+    title: 辅助函数构造：从目标等式反推中值定理
+    subject: 高等数学
+    lecture: 第 6 讲
+    source: tex/chapters/calculus/06_differential_applications_mvt_equations_inequalities.tex
   - slug: calc-07-differential-applications-physics-economics
     title: 第 7 讲 一元函数微分学的应用（三）——物理应用与经济应用
     subject: 高等数学
@@ -343,3 +348,11 @@ pages:
     collection: practice
     chapter_key: calc-01
     source: tex/practice/calculus/calc-01-problems.tex
+  - slug: practice-calc-06
+    title: 练习库：高等数学第 6 讲 辅助函数构造
+    subject: 练习库
+    subject_key: practice
+    lecture: 高等数学 · 第 6 讲
+    collection: practice
+    chapter_key: calc-06
+    source: tex/practice/calculus/calc-06-problems.tex

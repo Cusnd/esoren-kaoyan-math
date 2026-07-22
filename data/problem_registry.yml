@@ -298,3 +298,23 @@
   method_ids: []
   pitfall_ids: []
   verification_status: verified
+
+- id: MATH1-CALC-0015
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-06
+  title: "辅助函数构造 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-06-problems.tex"
+  answer_file: "tex/practice/calculus/calc-06-answers.tex"
+  source: "Codex 原创 / K064 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0113
+    - MATH1-KN-CALC-0317
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 35
+  verification_status: verified

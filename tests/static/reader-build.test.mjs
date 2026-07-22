@@ -32,13 +32,15 @@ async function listFiles(directory) {
 test('publishes the manifest-driven canonical HTML documents', async () => {
   const manifest = await json('data/content-manifest.json');
   assert.equal(manifest.schemaVersion, 2);
-  assert.equal(manifest.pages.length, 57);
+  assert.equal(manifest.pages.length, 59);
   assert.equal(new Set(manifest.pages.map((page) => page.slug)).size, manifest.pages.length);
   for (const slug of [
     'calc-01-function-basics',
     'calc-01-function-limits',
     'calc-01-continuity-theorems',
     'calc-02-convergence-criteria',
+    'calc-06-auxiliary-function-construction',
+    'practice-calc-06',
   ]) {
     const page = manifest.pages.find((item) => item.slug === slug);
     assert.ok(page, slug);
