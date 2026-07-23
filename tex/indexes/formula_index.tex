@@ -231,6 +231,12 @@ f(x+T)=f(x)\quad (T\ne0)
 f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k
 +o\!\left((x-a)^n\right).
 \]
+若满足区间内更高阶可导条件，则带拉格朗日余项的形式为
+\[
+f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k
++\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1},
+\]
+其中 \(\xi\) 介于 \(a,x\) 之间。
 
 当 \(x\to0\) 时，最常用的基本展开为
 \[
@@ -247,7 +253,8 @@ e^x&=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3),\\
   \item \textbf{使用条件：} 先把局部变量化为趋于 \(0\) 的小量；展开到足以确定相消后第一个非零项。
   \item \textbf{典型题型：} 高阶极限、主部相消、反求参数、局部多项式和误差估计。
   \item \textbf{易错点：} 加减结构中只用一阶等价无穷小；漏写余项；把有限阶泰勒公式误当成全局恒等式。
-  \item \textbf{关联知识点：} \knowledgeRef[MATH1-KN-CALC-0060]{泰勒公式与常用展开}（第 6 讲）。
+  \item \textbf{关联知识点：} \knowledgeRef[MATH1-KN-CALC-0060]{泰勒公式与常用展开}（第 6 讲）；
+  配套训练见 \problemRef{MATH1-CALC-0018}。
 \end{itemize}
 \end{knowledgeBox}
 

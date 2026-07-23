@@ -29,4 +29,5 @@
 - 保持 `problemBox`、`solutionBox`、`knowledgeBox`、`mistakeBox`、`problemMeta` 及现有跳转接口兼容；章节文件只写数学内容和语义结构。
 - 修改前查重并保留无关用户改动；不得为数学归档顺带重构视觉系统、阅读器或发布配置。
 - 数学内容修改至少运行仓库 validator；结构、catalog、模板或样式变化还要运行相关 PDF、Web 与静态测试。
+- 除非用户在当前请求中明确特许，不得运行 Web 构建；仍应维护必要的 TeX 入口与 `data/web_pages.yml` 映射，并把原本需要的 Web 构建验证如实报告为 `SKIP（用户未授权）`。
 - 验证结果只可报告真实的 `PASS`、`FAIL` 或 `SKIP`；不得把未运行或跳过的检查描述为通过。

@@ -200,6 +200,44 @@
 \end{itemize}
 \end{knowledgeBox}
 
+\begin{knowledgeBox}
+\knowledgeIndexAnchor[MATH1-KN-CALC-0114]{$0/0$ 与 $\infty/\infty$ 型}
+\textbf{洛必达法则：直接适用的两类未定式}
+
+\begin{itemize}
+  \item \textbf{识别：} 原式是商，代入后为 \(0/0\) 或
+  \(\infty/\infty\)。
+  \item \textbf{条件：} 去心邻域内分子、分母可导，分母及其导数最终
+  不为零，且导数比的有限或无穷极限存在。
+  \item \textbf{流程：} 判型后分别求导；每使用一次都重新判型；
+  新式不再未定时立即停止。
+  \item \textbf{边界：} 导数比无极限只表示法则不给结论，不能推出
+  原比值极限不存在；数列也不能直接对离散指标求导。
+  \item \textbf{正文与训练：}
+  \knowledgeRef[MATH1-KN-CALC-0114]{$0/0$ 与 $\infty/\infty$ 型}
+  （第 6 讲），\problemRef{MATH1-CALC-0016}。
+\end{itemize}
+\end{knowledgeBox}
+
+\begin{knowledgeBox}
+\knowledgeIndexAnchor[MATH1-KN-CALC-0115]{其他未定式的转化}
+\textbf{其他未定式：先转型，再选择工具}
+
+\begin{itemize}
+  \item \textbf{\(0\cdot\infty\)：}
+  改写为 \(f/(1/g)\) 或 \(g/(1/f)\)，选择求导成本更低的商式。
+  \item \textbf{\(\infty-\infty\)：}
+  分式差通分、根式差有理化、对数差合并、同阶项提取主尺度。
+  \item \textbf{幂指型：} 确认底数最终为正，令
+  \(y=f^g\)，求 \(g\ln f\) 的极限，再指数还原。
+  \item \textbf{易错点：} 未转型直接洛必达；通分或共轭时写错符号；
+  忘记 \(\sqrt{x^2}=|x|\)；取对数后忘记还原。
+  \item \textbf{正文与训练：}
+  \knowledgeRef[MATH1-KN-CALC-0115]{其他未定式的转化}
+  （第 6 讲），\problemRef{MATH1-CALC-0017}。
+\end{itemize}
+\end{knowledgeBox}
+
 % BEGIN calculus-foundation:method-index
 \begin{knowledgeBox}
 \knowledgeIndexAnchor[MATH1-KN-CALC-0310]{定义域与复合函数}

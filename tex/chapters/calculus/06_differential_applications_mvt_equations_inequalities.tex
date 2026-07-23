@@ -407,6 +407,322 @@ u\in(-1,0),\qquad v\in(0,2)
 高阶导数和微分不等式的陌生外观中。
 \end{knowledgeBox}
 
+\studySubsection{calc-06-lhopital-indeterminate-forms}{洛必达法则：未定式判型与转化}
+
+\knowledgeAnchor[MATH1-KN-CALC-0114]{$0/0$ 与 $\infty/\infty$ 型}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0114]{$0/0$ 与 $\infty/\infty$ 型}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与本质：}
+
+洛必达法则只直接处理商式中的
+\[
+\frac00,\qquad \frac{\infty}{\infty}.
+\]
+“未定式”不是一个数值，而是说目前只知道分子、分母同时趋零或同时发散，
+还不知道二者的相对速度。例如当 \(x\to0^+\) 时，
+\[
+\frac{x^2}{x}\to0,\qquad
+\frac{x}{x}\to1,\qquad
+\frac{x}{x^2}\to+\infty,
+\]
+而
+\[
+\frac{x\sin(1/x)}{x}=\sin\frac1x
+\]
+没有极限。它们都是 \(0/0\) 型，却产生完全不同的结果。
+
+\textbf{考场安全的定理口径：}
+
+以 \(x\to a^+\) 为例。设在 \(a\) 的某个右侧去心邻域内：
+\begin{enumerate}
+  \item \(f,g\) 可导，原商有定义，且最终有 \(g'(x)\ne0\)；
+  \item 或者 \(f(x)\to0,\ g(x)\to0\)，或者
+  \(|f(x)|\to\infty,\ |g(x)|\to\infty\)；
+  \item 导数之比的广义极限存在：
+  \[
+  \lim_{x\to a^+}\frac{f'(x)}{g'(x)}=L,
+  \qquad L\in\mathbb R\cup\{\pm\infty\}.
+  \]
+\end{enumerate}
+则
+\[
+\boxed{\lim_{x\to a^+}\frac{f(x)}{g(x)}=L.}
+\]
+其他单侧极限以及 \(x\to\pm\infty\) 类似；两侧极限必须分别检查左右两侧。
+函数不必在极限点本身有定义或可导。
+
+\textbf{为什么成立：柯西中值定理是证明发动机。}
+
+先看 \(0/0\) 型。补定义 \(f(a)=g(a)=0\)，则二者在 \(a\) 连续。
+对 \([a,x]\) 使用柯西中值定理，存在
+\(\xi\in(a,x)\)，使
+\[
+\frac{f(x)-f(a)}{g(x)-g(a)}
+=\frac{f'(\xi)}{g'(\xi)}.
+\]
+因为 \(f(a)=g(a)=0\)，
+\[
+\frac{f(x)}{g(x)}=\frac{f'(\xi)}{g'(\xi)}.
+\]
+当 \(x\to a^+\) 时，\(a<\xi<x\)，故 \(\xi\to a^+\)，导数比的极限
+便传递给原比值。
+
+对 \(x\to+\infty\) 的 \(\infty/\infty\) 型，固定足够大的 \(A\)，
+在 \([A,x]\) 上使用柯西中值定理：
+\[
+\frac{f(x)-f(A)}{g(x)-g(A)}
+=\frac{f'(\xi)}{g'(\xi)},\qquad A<\xi<x.
+\]
+记右端为 \(Q_x\)，则
+\[
+\frac{f(x)}{g(x)}
+=Q_x\left(1-\frac{g(A)}{g(x)}\right)
++\frac{f(A)}{g(x)}.
+\]
+证明时先按给定精度把 \(A\) 取得充分大，使所有 \(t>A\) 处的
+\(f'(t)/g'(t)\) 都落入 \(L\) 的相应误差带内；上式中的
+\(\xi>A\)，故 \(Q_x\) 也满足同一控制。当 \(|g(x)|\to\infty\) 时，
+两个固定端点量除以 \(g(x)\) 都趋于零。让精度任意缩小，即得原比值
+趋于 \(L\)；当 \(L=\pm\infty\) 时，把“误差带”换成任意给定的
+正、负阈值，论证相同。
+
+\textbf{例 1：连续使用，但每次重新判型。}
+\[
+\begin{aligned}
+\lim_{x\to0}\frac{e^x-1-x}{x^2}
+&=\lim_{x\to0}\frac{e^x-1}{2x}
+&&\left(\frac00\text{ 型}\right)\\
+&=\lim_{x\to0}\frac{e^x}{2}
+=\frac12.
+\end{aligned}
+\]
+两次使用前都重新确认了 \(0/0\) 型。用
+\(e^x=1+x+x^2/2+o(x^2)\) 可独立核验结果。
+
+\textbf{例 2：标准 \(\infty/\infty\) 型。}
+\[
+\lim_{x\to+\infty}\frac{\ln x}{\sqrt{x}}
+=\lim_{x\to+\infty}
+\frac{1/x}{1/(2\sqrt{x})}
+=\lim_{x\to+\infty}\frac2{\sqrt{x}}
+=0.
+\]
+这也给出增长关系 \(\ln x=o(\sqrt{x})\)。
+
+\textbf{例 3：用一次后及时切换。}
+\[
+\begin{aligned}
+\lim_{x\to0}\frac{\sin x-x\cos x}{x^3}
+&=\lim_{x\to0}\frac{x\sin x}{3x^2}\\
+&=\frac13\lim_{x\to0}\frac{\sin x}{x}
+=\frac13.
+\end{aligned}
+\]
+第一次求导后约去 \(x\) 并调用基本极限，比继续机械求导更短。
+
+\textbf{法则没有逆命题：}
+
+令
+\[
+f(x)=x+x^3\sin\frac1{x^2},\qquad g(x)=x.
+\]
+则
+\[
+\frac{f(x)}{g(x)}
+=1+x^2\sin\frac1{x^2}\to1,
+\]
+但
+\[
+\frac{f'(x)}{g'(x)}
+=1+3x^2\sin\frac1{x^2}-2\cos\frac1{x^2}
+\]
+没有极限。因此导数比没有极限时，只能说“洛必达法则不给结论”，
+不能据此判定原极限不存在。
+
+\textbf{十秒决策与失分防线：}
+\begin{enumerate}
+  \item 先代入判型；不是商式就不能直接使用。
+  \item 只有 \(0/0\) 或 \(\infty/\infty\) 才进入条件检查。
+  \item 分子、分母分别求导，不是计算商的导数。
+  \item 每使用一次都重新判型；新式不再是未定式时立即停止。
+  \item 若一次求导不能降阶，或高阶相消明显，比较代数化简和泰勒公式的成本。
+  \item 数列是离散变量，不能直接“对 \(n\) 求导”；必要时构造实变量函数，
+  或改用 Stolz 定理。
+\end{enumerate}
+
+\textbf{考场写法：}
+\[
+\boxed{\text{先判型}\ \Longrightarrow\ \text{再写由洛必达法则}}
+\]
+真正掌握的标志，是能在十秒内判断“能不能用、该不该用、用一次后是否继续”。
+\end{knowledgeBox}
+
+\knowledgeAnchor[MATH1-KN-CALC-0115]{其他未定式的转化}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0115]{其他未定式的转化}}\par
+
+\begin{knowledgeBox}
+\textbf{定位：K066 是未定式的翻译层。}
+
+洛必达法则不直接处理
+\[
+0\cdot\infty,\qquad
+\infty-\infty,\qquad
+1^\infty,\qquad 0^0,\qquad \infty^0.
+\]
+必须先用精确恒等变形把竞争关系暴露出来：
+\[
+\boxed{
+\begin{aligned}
+0\cdot\infty
+&\xrightarrow{\text{取倒数改写}}
+\frac00\text{ 或 }\frac{\infty}{\infty},\\
+\infty-\infty
+&\xrightarrow{\text{通分、共轭、合并、提主项}}
+\text{商式或普通极限},\\
+1^\infty,\ 0^0,\ \infty^0
+&\xrightarrow{\ln}
+0\cdot\infty.
+\end{aligned}}
+\]
+转型后要重新判型；洛必达只是候选，不是默认动作。
+
+\textbf{\(0\cdot\infty\) 型：在两种商式中选低成本者。}
+
+若 \(f(x)\to0,\ |g(x)|\to\infty\)，则
+\[
+f(x)g(x)
+=\frac{f(x)}{1/g(x)}
+=\frac{g(x)}{1/f(x)}.
+\]
+前者通常是 \(0/0\)，后者通常是 \(\infty/\infty\)。应先预看导数，
+选择求导后更简单的一种。
+
+例如对任意 \(\alpha>0\)，
+\[
+x^\alpha\ln x
+=\frac{\ln x}{x^{-\alpha}},
+\qquad x\to0^+.
+\]
+因此
+\[
+\lim_{x\to0^+}x^\alpha\ln x
+=\lim_{x\to0^+}
+\frac{1/x}{-\alpha x^{-\alpha-1}}
+=-\frac1\alpha\lim_{x\to0^+}x^\alpha
+=0.
+\]
+这说明任意正幂在 \(0^+\) 附近都压制对数发散。
+
+\textbf{\(\infty-\infty\) 型：先找抵消结构。}
+
+\begin{itemize}
+  \item 两个分式相减：先通分；
+  \item 两个根式相减：先乘共轭式；
+  \item 两个对数相减：在真数为正时合并为
+  \(\ln A-\ln B=\ln(A/B)\)；
+  \item 两个同阶大项相减：提取共同主尺度；
+  \item 高阶平滑相消：代数处理后比较泰勒公式的成本。
+\end{itemize}
+
+例如
+\[
+\begin{aligned}
+\sqrt{x^2+3x}-x
+&=\frac{3x}{\sqrt{x^2+3x}+x}\\
+&=\frac3{\sqrt{1+3/x}+1}
+\longrightarrow\frac32,
+\qquad x\to+\infty.
+\end{aligned}
+\]
+这里提出根号内的 \(x^2\) 时使用了
+\(\sqrt{x^2}=|x|=x\)；若 \(x\to-\infty\)，不能照搬。
+
+再如
+\[
+\begin{aligned}
+\frac1{\ln(1+x)}-\frac1x
+&=\frac{x-\ln(1+x)}{x\ln(1+x)}\\
+&=\frac{\frac12x^2+o(x^2)}{x^2+o(x^2)}
+\longrightarrow\frac12.
+\end{aligned}
+\]
+决定结果的第一步是通分；通分后用泰勒比连续求导更短。
+
+\textbf{幂指型：统一研究 \(g(x)\ln f(x)\)。}
+
+若 \(f(x)>0\)，令
+\[
+y=f(x)^{g(x)}.
+\]
+则
+\[
+\ln y=g(x)\ln f(x),\qquad
+y=\exp\!\bigl(g(x)\ln f(x)\bigr).
+\]
+若
+\[
+\lim g(x)\ln f(x)=A,
+\]
+则
+\[
+\boxed{
+\lim f(x)^{g(x)}
+=
+\begin{cases}
+e^A,&A\in\mathbb R,\\
++\infty,&A=+\infty,\\
+0,&A=-\infty.
+\end{cases}}
+\]
+取对数前必须确认底数最终为正；非正底数不能擅自改成绝对值。
+
+当底数写成 \(1+u(x)\)，且 \(u(x)\to0\) 时，
+\[
+g(x)\ln(1+u(x))
+=g(x)u(x)\frac{\ln(1+u(x))}{u(x)}.
+\]
+由于最后一个因子趋于 \(1\)，\(1^\infty\) 型的核心通常就是
+\(g(x)u(x)\)。
+
+例如对常数 \(a,b\)，当 \(x\to+\infty\) 时底数最终为正，并且
+\[
+\begin{aligned}
+\ln\left(1+\frac ax\right)^{bx}
+&=bx\ln\left(1+\frac ax\right)\\
+&=ab\frac{\ln(1+a/x)}{a/x}
+\longrightarrow ab.
+\end{aligned}
+\]
+故
+\[
+\boxed{
+\left(1+\frac ax\right)^{bx}\longrightarrow e^{ab}.
+}
+\]
+当 \(a=0\) 时原式恒为 \(1\)，结论仍成立。
+
+\textbf{方法顺序与常见错误：}
+\begin{enumerate}
+  \item 先准确判定未定式，不把 \(0\cdot\infty\) 写成 \(0\)，
+  也不把 \(\infty-\infty\) 写成 \(0\)。
+  \item 先做通分、共轭、合并或提主项等精确代数变形。
+  \item 幂指型先检查底数正，再取对数，最后必须指数还原。
+  \item 转型后若已能直接求极限，就不必使用洛必达。
+  \item 根式提出平方项时写清 \(\sqrt{x^2}=|x|\)，通分时重点检查符号。
+  \item 高阶相消连续出现时，切换泰勒公式寻找首个非零项。
+\end{enumerate}
+
+\[
+\boxed{\text{先转型}\ \Longrightarrow\ \text{选方法}\
+\Longrightarrow\ \text{精确代数优先}}
+\]
+\end{knowledgeBox}
+
+\studySubsection{calc-06-taylor-formula-common-expansions}{泰勒公式、余项与常用麦克劳林展开}
+
 \knowledgeAnchor[MATH1-KN-CALC-0060]{泰勒公式与常用展开}
 \noindent{\footnotesize\textbf{索引：} \knowledgeIndexRef[MATH1-KN-CALC-0060]{泰勒公式与常用展开}}\par
 
@@ -439,6 +755,105 @@ f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k
 \]
 这是带拉格朗日余项的泰勒公式，最适合估计误差、判断余项符号和证明不等式。注意：\(n\) 次泰勒多项式的拉格朗日余项要用 \(n+1\) 阶导数。
 
+\textbf{系数中的 \(k!\) 从哪里来？}
+
+令 \(h=x-a\)，并设
+\[
+P_n(x)=c_0+c_1h+\cdots+c_nh^n.
+\]
+在 \(x=a\) 处求 \(k\) 阶导数，低于 \(k\) 次的项已经被求没，
+高于 \(k\) 次的项仍含 \(h\)，只有 \(c_kh^k\) 留下：
+\[
+P_n^{(k)}(a)=k!c_k.
+\]
+要求 \(P_n^{(k)}(a)=f^{(k)}(a)\)，便唯一得到
+\[
+c_k=\frac{f^{(k)}(a)}{k!}.
+\]
+因此泰勒多项式是在展开点匹配函数值、斜率、曲率乃至更高阶局部变化的唯一多项式。
+
+\textbf{拉格朗日余项的证明骨架：}
+
+固定 \(x\ne a\)，记
+\[
+K=\frac{f(x)-T_n(x)}{(x-a)^{n+1}},
+\]
+并构造
+\[
+\Phi(t)=f(t)-T_n(t)-K(t-a)^{n+1}.
+\]
+由 \(K\) 的定义有 \(\Phi(x)=0\)；由泰勒多项式的逐阶匹配有
+\[
+\Phi(a)=\Phi'(a)=\cdots=\Phi^{(n)}(a)=0.
+\]
+对 \(\Phi\) 反复使用罗尔定理 \(n+1\) 次，得到介于 \(a,x\) 之间的
+\(\xi\)，使
+\[
+0=\Phi^{(n+1)}(\xi)
+=f^{(n+1)}(\xi)-K(n+1)!.
+\]
+于是
+\[
+K=\frac{f^{(n+1)}(\xi)}{(n+1)!},
+\]
+代回即得拉格朗日余项。这个证明说明了三个逻辑作用：
+泰勒多项式制造前 \(n\) 阶零点，辅助项再制造一个端点零点，
+反复罗尔定理负责把这些零点传递到 \(n+1\) 阶导数。
+
+\textbf{考研要不要会“推导皮亚诺余项”？}
+
+备考时应把要求分成三层：
+\begin{enumerate}
+  \item 必须会根据各阶导数写出泰勒多项式，并正确写
+  \(o((x-a)^n)\)；
+  \item 必须会从基本公式现场推出具体展开，并用余项处理极限、
+  参数匹配和阶数判断；
+  \item 一般题目不需要从最弱条件出发完整重证泰勒--皮亚诺定理，
+  但应看懂它怎样由更强、常见的光滑条件推出。
+\end{enumerate}
+例如在考研常见初等函数中，若 \(f^{(n+1)}\) 在 \(a\) 附近有界，
+由拉格朗日余项立刻有
+\[
+R_n(x)
+=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}
+=O((x-a)^{n+1})
+=o((x-a)^n).
+\]
+这就推出了所需的皮亚诺余项。要注意，这条短推导使用了比一般
+皮亚诺公式更强的 \(n+1\) 阶光滑条件；不能反过来把它误说成
+皮亚诺公式成立的最低条件。
+
+\textbf{两种余项怎样选？}
+
+\begin{itemize}
+  \item 皮亚诺余项回答“相对哪一阶可以忽略”，用于极限、判阶和参数匹配；
+  \item 拉格朗日余项回答“误差等于什么、符号和绝对值怎样控制”，用于近似计算和不等式；
+  \item 若区间上 \(|f^{(n+1)}(t)|\le M\)，则
+  \[
+  |R_n(x)|\le\frac{M}{(n+1)!}|x-a|^{n+1}.
+  \]
+  此时 \(R_n=O((x-a)^{n+1})=o((x-a)^n)\)；
+  \item \(O(h^{n+1})\) 一般不等于 \(o(h^{n+1})\)。例如
+  \(h^{n+1}=O(h^{n+1})\)，但不是 \(o(h^{n+1})\)。
+\end{itemize}
+
+\textbf{误差示范：}
+
+用二阶麦克劳林多项式近似 \(e^{0.1}\)：
+\[
+e^{0.1}=1+0.1+\frac{0.1^2}{2}
++\frac{e^\xi}{3!}(0.1)^3,\qquad 0<\xi<0.1.
+\]
+多项式值为 \(1.105\)。又因 \(0<e^\xi<e<3\)，
+\[
+0<R_2<\frac{3}{6}\cdot10^{-3}=0.0005,
+\]
+故
+\[
+1.105<e^{0.1}<1.1055.
+\]
+这里若只写 \(o(x^2)\)，无法给出具体的 \(0.0005\) 误差界。
+
 \textbf{麦克劳林公式：}
 
 展开点 \(a=0\) 时称为麦克劳林公式。当 \(x\to0\) 时，常用展开为
@@ -454,6 +869,44 @@ e^x&=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+o(x^4),\\
 \arctan x&=x-\frac{x^3}{3}+\frac{x^5}{5}+o(x^5).
 \end{aligned}
 \]
+
+\textbf{五个母公式的记忆结构：}
+\begin{itemize}
+  \item \(e^x\)：任意阶导数仍是 \(e^x\)，所以所有幂次均出现、
+  系数全为正的 \(1/k!\)；
+  \item \(\sin x\)：奇函数，只出现奇数次幂，符号交替；
+  \item \(\cos x\)：偶函数，只出现偶数次幂，符号交替；
+  \item \(\ln(1+x)\)：第 \(k\) 项系数为
+  \((-1)^{k-1}/k\)，分母是次数 \(k\)，不是 \(k!\)；
+  \item \((1+x)^\alpha\)：第 \(k\) 项系数是下降连乘积
+  \[
+  \binom{\alpha}{k}
+  =\frac{\alpha(\alpha-1)\cdots(\alpha-k+1)}{k!}.
+  \]
+\end{itemize}
+考场口令可压缩为：“指数全正阶乘；正弦奇、余弦偶；
+对数交替除次数；二项系数向下降。”
+
+\textbf{不必重复死记的派生式：}
+
+取二项式公式中的 \(\alpha=-1\) 和 \(\alpha=1/2\)，分别得到
+\[
+\frac1{1+x}=1-x+x^2-x^3+x^4+o(x^4),
+\]
+\[
+\sqrt{1+x}
+=1+\frac{x}{2}-\frac{x^2}{8}
++\frac{x^3}{16}-\frac{5x^4}{128}+o(x^4).
+\]
+再由 \(\tan x=\sin x/\cos x\) 以及
+\((\arctan x)'=1/(1+x^2)\)，可得
+\[
+\tan x=x+\frac{x^3}{3}+\frac{2x^5}{15}+o(x^5),
+\]
+\[
+\arctan x=x-\frac{x^3}{3}+\frac{x^5}{5}+o(x^5).
+\]
+这些都是 \(x\to0\) 的有限阶局部公式；无穷幂级数的收敛区间另行讨论。
 
 \textbf{以 \(\ln(1+x)\) 为例：展开式是什么意思，怎样推出？}
 
@@ -541,6 +994,111 @@ x-\sin x=\frac{x^3}{6}+o(x^3)
 \ln x=\ln(1+h)=h-\frac{h^2}{2}+\frac{h^3}{3}+o(h^3).
 \]
 若 \(x\to\infty\)，常令 \(h=1/x\to0\) 后再展开。看到 \(e^{u(x)}\)、\(\ln(1+u(x))\) 或 \(\sin u(x)\) 时，也要先确认 \(u(x)\to0\)。
+
+\textbf{复合小量：先展开外层，再把 \(u,u^2,u^3\) 全部换回。}
+
+若 \(u(x)\to0\)，则
+\[
+e^u=1+u+\frac{u^2}{2}+\frac{u^3}{6}+o(u^3),
+\qquad
+\ln(1+u)=u-\frac{u^2}{2}+\frac{u^3}{3}+o(u^3).
+\]
+若 \(u(x)\sim cx^p\) 且 \(c\ne0\)，则
+\[
+o(u^m)=o(x^{pm}).
+\]
+但高阶系数不能只靠 \(u\sim cx^p\) 替换；必须保留 \(u^2,u^3\)
+中的交叉项。
+
+例如 \(u=x+x^2\) 时，
+\[
+u^2=x^2+2x^3+o(x^3),\qquad
+u^3=x^3+o(x^3).
+\]
+因此
+\[
+\begin{aligned}
+e^{x+x^2}
+&=1+(x+x^2)+\frac12(x^2+2x^3)+\frac16x^3+o(x^3)\\
+&=1+x+\frac32x^2+\frac76x^3+o(x^3).
+\end{aligned}
+\]
+若只使用 \(u\sim x\)，会漏掉来自 \(u^2\) 的 \(x^3\) 交叉项。
+
+再如令 \(u=\sin x\)，则
+\[
+\begin{aligned}
+\ln(1+\sin x)
+&=u-\frac{u^2}{2}+\frac{u^3}{3}+o(u^3)\\
+&=x-\frac{x^2}{2}+\frac{x^3}{6}+o(x^3).
+\end{aligned}
+\]
+这里同时使用了
+\[
+\sin x=x-\frac{x^3}{6}+o(x^3),\qquad
+u^2=x^2+o(x^3),\qquad u^3=x^3+o(x^3).
+\]
+
+\textbf{幂指型的两层展开：}
+
+令
+\[
+y=(1+x)^{1/x}.
+\]
+先取对数：
+\[
+\ln y
+=\frac{\ln(1+x)}x
+=1-\frac{x}{2}+\frac{x^2}{3}+o(x^2).
+\]
+再把指数的小量部分展开：
+\[
+\begin{aligned}
+y
+&=e\exp\left(-\frac{x}{2}+\frac{x^2}{3}+o(x^2)\right)\\
+&=e\left(1-\frac{x}{2}+\frac{11x^2}{24}+o(x^2)\right).
+\end{aligned}
+\]
+从而
+\[
+\lim_{x\to0}\frac{(1+x)^{1/x}-e}{x}
+=-\frac e2.
+\]
+第一层展开处理对数，第二层展开负责把结果指数还原。
+
+\textbf{含参数时逐阶消元：}
+
+若要求
+\[
+\lim_{x\to0}
+\frac{e^x-1-ax-bx^2}{x^3}
+\]
+存在且有限，则
+\[
+e^x-1-ax-bx^2
+=(1-a)x+\left(\frac12-b\right)x^2
++\frac{x^3}{6}+o(x^3).
+\]
+低于三阶的危险项必须全部消失，因此
+\[
+a=1,\qquad b=\frac12,
+\]
+且极限为 \(1/6\)。参数题的本质就是用参数强制消去低阶主部。
+
+\textbf{局部公式不等于全局泰勒级数：}
+
+有限阶公式带余项即可成立；即使函数无穷次可导，也不自动等于其
+无穷泰勒级数。例如
+\[
+f(x)=
+\begin{cases}
+e^{-1/x^2},&x\ne0,\\
+0,&x=0
+\end{cases}
+\]
+在 \(0\) 处任意阶导数均为 \(0\)，泰勒级数恒为 \(0\)，但
+\(x\ne0\) 时 \(f(x)>0\)。这不违背有限阶公式，因为对每个固定的
+\(n\)，都有 \(e^{-1/x^2}=o(x^n)\)。
 
 \textbf{常见误区：}
 \begin{itemize}

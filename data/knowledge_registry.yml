@@ -1152,6 +1152,9 @@ nodes:
     source_refs:
       - calc-map-2026:K065
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/06_differential_applications_mvt_equations_inequalities.tex
+      id: MATH1-KN-CALC-0114
   - id: MATH1-KN-CALC-0115
     title: 其他未定式的转化
     kind: concept
@@ -1162,6 +1165,9 @@ nodes:
     source_refs:
       - calc-map-2026:K066
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/06_differential_applications_mvt_equations_inequalities.tex
+      id: MATH1-KN-CALC-0115
   - id: MATH1-KN-CALC-0116
     title: Taylor极限的阶数选择
     kind: formula

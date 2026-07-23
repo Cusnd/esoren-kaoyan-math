@@ -318,3 +318,62 @@
   task_type: comprehensive
   estimated_minutes: 35
   verification_status: verified
+
+- id: MATH1-CALC-0016
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-06
+  title: "洛必达法则的判型、计算与边界 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-06-problems.tex"
+  answer_file: "tex/practice/calculus/calc-06-answers.tex"
+  source: "Codex 原创 / K065 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0114
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0017
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-06
+  title: "其他未定式的代数转化与幂指型 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-06-problems.tex"
+  answer_file: "tex/practice/calculus/calc-06-answers.tex"
+  source: "Codex 原创 / K066 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0115
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0018
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-06
+  title: "Taylor 公式与常用 Maclaurin 展开分层训练"
+  file: "tex/practice/calculus/calc-06-problems.tex"
+  answer_file: "tex/practice/calculus/calc-06-answers.tex"
+  source: "Codex 原创 / K067--K068 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0060
+    - MATH1-KN-CALC-0312
+    - MATH1-KN-CALC-0313
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 45
+  verification_status: verified

@@ -127,6 +127,16 @@ pages:
     subject: 高等数学
     lecture: 第 6 讲
     source: tex/chapters/calculus/06_differential_applications_mvt_equations_inequalities.tex
+  - slug: calc-06-lhopital-indeterminate-forms
+    title: 洛必达法则：未定式判型与转化
+    subject: 高等数学
+    lecture: 第 6 讲
+    source: tex/chapters/calculus/06_differential_applications_mvt_equations_inequalities.tex
+  - slug: calc-06-taylor-formula-common-expansions
+    title: 泰勒公式、余项与常用麦克劳林展开
+    subject: 高等数学
+    lecture: 第 6 讲
+    source: tex/chapters/calculus/06_differential_applications_mvt_equations_inequalities.tex
   - slug: calc-07-differential-applications-physics-economics
     title: 第 7 讲 一元函数微分学的应用（三）——物理应用与经济应用
     subject: 高等数学

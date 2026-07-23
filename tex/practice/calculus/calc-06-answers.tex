@@ -111,3 +111,401 @@ u\in(0,1),\qquad v\in(1,3)
 三个零点推出某点 \(f''(\xi)=0\)，上述证明仍然成立。取 \(f=p\)
 时，目标式处处成立，也核验了常数和符号。
 \end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0016}
+\begin{problemMeta}
+\textbf{题目编号：} \texttt{MATH1-CALC-0016}\quad
+\textbf{对应题面：} \problemRef{MATH1-CALC-0016}
+\end{problemMeta}
+
+\begin{solutionBox}
+\textbf{A　先判型，再决定能否使用。}
+
+\((1)\) 分子、分母均趋于 \(0\)，是 \(0/0\) 型，可直接使用：
+\[
+\lim_{x\to0}\frac{1-\cos x}{x^2}
+=\lim_{x\to0}\frac{\sin x}{2x}
+=\frac12.
+\]
+
+\((2)\) 是 \(0\cdot(-\infty)\) 型，不能直接使用。先改写为
+\[
+x\ln x=\frac{\ln x}{1/x},
+\]
+此时是 \((-\infty)/(+\infty)\) 型，故
+\[
+\lim_{x\to0^+}\frac{\ln x}{1/x}
+=\lim_{x\to0^+}\frac{1/x}{-1/x^2}
+=\lim_{x\to0^+}(-x)=0.
+\]
+
+\((3)\) 不是未定式。右极限为 \(+\infty\)，左极限为 \(-\infty\)，
+所以两侧极限不存在，不能用洛必达法则。
+
+\((4)\) 是 \(\infty/\infty\) 型，可直接使用：
+\[
+\lim_{x\to+\infty}\frac{\ln x}{x}
+=\lim_{x\to+\infty}\frac{1/x}{1}=0.
+\]
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{B　一次洛必达后做代数化简。}
+
+原式是 \(0/0\) 型：
+\[
+\begin{aligned}
+\lim_{x\to0}\frac{\ln(1+x)-x}{x^2}
+&=\lim_{x\to0}\frac{\frac1{1+x}-1}{2x}\\
+&=\lim_{x\to0}\frac{-x/(1+x)}{2x}
+=-\frac12.
+\end{aligned}
+\]
+\textbf{核验：}
+\(\ln(1+x)=x-x^2/2+o(x^2)\)，故结果一致。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{C　先化乘积，再用基本极限。}
+
+\[
+\begin{aligned}
+\frac{\tan x-\sin x}{x^3}
+&=\frac{\sin x(1-\cos x)}{x^3\cos x}\\
+&=\frac{\sin x}{x}\cdot
+  \frac{1-\cos x}{x^2}\cdot
+  \frac1{\cos x}.
+\end{aligned}
+\]
+三个因子分别趋于 \(1,1/2,1\)，所以
+\[
+\boxed{\lim_{x\to0}\frac{\tan x-\sin x}{x^3}=\frac12}.
+\]
+这里直接结构化简比连续使用洛必达法则更短。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{M　原比值有极限，不迫使导数比有极限。}
+
+\[
+\frac{f(x)}{g(x)}
+=1+x\sin\frac1{x^2}.
+\]
+由
+\[
+\left|x\sin\frac1{x^2}\right|\le |x|\to0,
+\]
+得 \(f(x)/g(x)\to1\)。
+
+另一方面，
+\[
+f'(x)
+=1+2x\sin\frac1{x^2}
+-\frac2x\cos\frac1{x^2},
+\qquad g'(x)=1.
+\]
+取
+\[
+x_n=\frac1{\sqrt{2\pi n}},
+\]
+则正弦项为 \(0\)、余弦项为 \(1\)，故
+\[
+\frac{f'(x_n)}{g'(x_n)}=1-\frac2{x_n}\to-\infty.
+\]
+再取
+\[
+y_n=\frac1{\sqrt{(2n+1)\pi}},
+\]
+则正弦项为 \(0\)、余弦项为 \(-1\)，故
+\[
+\frac{f'(y_n)}{g'(y_n)}=1+\frac2{y_n}\to+\infty.
+\]
+所以导数比极限不存在。这反驳了错误命题
+\[
+\lim\frac fg\text{ 存在}
+\quad\Longrightarrow\quad
+\lim\frac{f'}{g'}\text{ 存在且与其相等}.
+\]
+洛必达法则是充分条件工具，不具有上述逆命题。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0017}
+\begin{problemMeta}
+\textbf{题目编号：} \texttt{MATH1-CALC-0017}\quad
+\textbf{对应题面：} \problemRef{MATH1-CALC-0017}
+\end{problemMeta}
+
+\begin{solutionBox}
+\textbf{A　把 \(0\cdot\infty\) 改写为 \(0/0\)。}
+
+\[
+x\left(e^{1/x}-1\right)
+=\frac{e^{1/x}-1}{1/x}.
+\]
+此时分子、分母均趋于 \(0\)，故
+\[
+\lim_{x\to+\infty}
+\frac{e^{1/x}-1}{1/x}
+=
+\lim_{x\to+\infty}
+\frac{-e^{1/x}/x^2}{-1/x^2}
+=1.
+\]
+\textbf{核验：}令 \(t=1/x\to0^+\)，原式化为
+\((e^t-1)/t\to1\)。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{B　根式差先乘共轭式。}
+
+\[
+\begin{aligned}
+&\sqrt{x^2+x+1}-\sqrt{x^2-x+1}\\
+&=\frac{2x}
+{\sqrt{x^2+x+1}+\sqrt{x^2-x+1}}\\
+&=\frac{2}
+{\sqrt{1+1/x+1/x^2}+\sqrt{1-1/x+1/x^2}}.
+\end{aligned}
+\]
+因为 \(x\to+\infty\)，提出根号中的 \(x^2\) 时
+\(\sqrt{x^2}=x\)。令 \(x\to+\infty\)，得
+\[
+\boxed{\lim=1}.
+\]
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{C　幂指型先取对数。}
+
+令
+\[
+y=\left(\frac{x+1}{x-1}\right)^x.
+\]
+当 \(x>1\) 时底数为正，并且
+\[
+\ln y
+=x\ln\frac{1+1/x}{1-1/x}.
+\]
+令 \(t=1/x\to0^+\)，则
+\[
+\lim\ln y
+=\lim_{t\to0^+}\frac{\ln(1+t)-\ln(1-t)}{t}.
+\]
+由洛必达法则，
+\[
+\lim_{t\to0^+}
+\left(\frac1{1+t}+\frac1{1-t}\right)=2.
+\]
+所以
+\[
+\boxed{\lim_{x\to+\infty}y=e^2}.
+\]
+\textbf{核验：}利用
+\(\ln(1+t)-\ln(1-t)=2t+o(t)\)，同样得到对数极限为 \(2\)。
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{M　参数决定对数主部的阶数。}
+
+令
+\[
+y_\alpha=\left(1+x^{-\alpha}\right)^x.
+\]
+底数恒正，且
+\[
+\ln y_\alpha
+=x\ln\left(1+x^{-\alpha}\right)
+=x^{1-\alpha}
+\cdot\frac{\ln(1+x^{-\alpha})}{x^{-\alpha}}.
+\]
+其中第二因子趋于 \(1\)。于是
+\[
+\lim\ln y_\alpha=
+\begin{cases}
++\infty,&0<\alpha<1,\\
+1,&\alpha=1,\\
+0,&\alpha>1.
+\end{cases}
+\]
+指数还原后，
+\[
+\boxed{
+L_\alpha=
+\begin{cases}
++\infty,&0<\alpha<1,\\
+e,&\alpha=1,\\
+1,&\alpha>1.
+\end{cases}}
+\]
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0018}
+\begin{problemMeta}
+\textbf{题目编号：} \texttt{MATH1-CALC-0018}\quad
+\textbf{对应题面：} \problemRef{MATH1-CALC-0018}
+\end{problemMeta}
+
+\begin{solutionBox}
+\textbf{A1　由各阶导数确定系数。}
+
+令 \(f(x)=(1+x)^{1/2}\)。则
+\[
+f(0)=1,\qquad
+f'(0)=\frac12,
+\]
+并且
+\[
+f''(x)=-\frac14(1+x)^{-3/2},
+\qquad f''(0)=-\frac14.
+\]
+所以
+\[
+\boxed{
+\sqrt{1+x}
+=1+\frac{x}{2}-\frac{x^2}{8}+o(x^2)
+}.
+\]
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{A2　二项式系数与复合小量。}
+
+使用
+\[
+(1+u)^\alpha
+=1+\alpha u
++\frac{\alpha(\alpha-1)}{2}u^2
++\frac{\alpha(\alpha-1)(\alpha-2)}{6}u^3
++o(u^3),
+\]
+取
+\[
+\alpha=-\frac12,\qquad u=-2x.
+\]
+逐项计算得
+\[
+\boxed{
+(1-2x)^{-1/2}
+=1+x+\frac32x^2+\frac52x^3+o(x^3)
+}.
+\]
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{B1　相消到五阶，必须保留五阶项。}
+
+\[
+\sin x
+=x-\frac{x^3}{6}+\frac{x^5}{120}+o(x^5).
+\]
+所以
+\[
+\sin x-x+\frac{x^3}{6}
+=\frac{x^5}{120}+o(x^5),
+\]
+从而
+\[
+\boxed{\lim=\frac1{120}}.
+\]
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{B2　比较两个奇函数的三阶主部。}
+
+\[
+\arctan x=x-\frac{x^3}{3}+o(x^3),
+\qquad
+\sin x=x-\frac{x^3}{6}+o(x^3).
+\]
+相减得
+\[
+\arctan x-\sin x
+=-\frac{x^3}{6}+o(x^3),
+\]
+故
+\[
+\boxed{\lim=-\frac16}.
+\]
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{C　复合小量必须展开幂次中的交叉项。}
+
+令
+\[
+u=x+x^2.
+\]
+则
+\[
+\ln(1+u)=u-\frac{u^2}{2}+\frac{u^3}{3}+o(u^3),
+\]
+且
+\[
+u^2=x^2+2x^3+o(x^3),
+\qquad
+u^3=x^3+o(x^3).
+\]
+所以
+\[
+\begin{aligned}
+\ln(1+x+x^2)
+&=x+x^2-\frac12(x^2+2x^3)+\frac{x^3}{3}+o(x^3)\\
+&=x+\frac{x^2}{2}-\frac{2x^3}{3}+o(x^3).
+\end{aligned}
+\]
+因此
+\[
+\boxed{\lim=-\frac23}.
+\]
+\end{solutionBox}
+
+\begin{solutionBox}
+\textbf{M　参数匹配与拉格朗日余项。}
+
+\textbf{(1) 参数匹配。}
+\[
+\ln(1+x)
+=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+o(x^4).
+\]
+所以分子为
+\[
+\left(a-\frac12\right)x^2
++\left(b+\frac13\right)x^3
+-\frac{x^4}{4}+o(x^4).
+\]
+极限有限要求低于四阶的系数全部为零，即
+\[
+a=\frac12,\qquad b=-\frac13.
+\]
+此时
+\[
+\boxed{\lim=-\frac14}.
+\]
+
+\textbf{(2) 余项控符号与大小。}
+
+当 \(x=0\) 时两端均取等号，结论显然。下设
+\(0<x\le\pi/2\)。把 \(\cos x\) 在 \(0\) 处展开到三阶，
+则存在 \(\xi\in(0,x)\)，使
+\[
+\cos x
+=1-\frac{x^2}{2}+\frac{\cos\xi}{4!}x^4.
+\]
+此时
+\[
+0\le\xi\le\frac{\pi}{2},
+\qquad 0\le\cos\xi\le1.
+\]
+于是
+\[
+0\le\frac{\cos\xi}{24}x^4\le\frac{x^4}{24},
+\]
+从而
+\[
+\boxed{
+1-\frac{x^2}{2}
+\le\cos x
+\le1-\frac{x^2}{2}+\frac{x^4}{24}
+}.
+\]
+\end{solutionBox}
