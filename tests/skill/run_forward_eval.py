@@ -257,8 +257,8 @@ def load_manifest(path: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     rubrics = raw.get("rubrics")
     if not isinstance(defaults, dict) or not isinstance(cases, list) or not isinstance(rubrics, dict):
         raise ManifestError("defaults, rubrics and cases are required")
-    if len(cases) != 27:
-        raise ManifestError(f"expected 27 cases, found {len(cases)}")
+    if len(cases) != 28:
+        raise ManifestError(f"expected 28 cases, found {len(cases)}")
     fatal_failures = raw.get("fatal_failures")
     if (
         not isinstance(fatal_failures, list)
@@ -325,7 +325,7 @@ def load_manifest(path: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
         slice_counts[case_slice] = slice_counts.get(case_slice, 0) + 1
         expanded.append(case)
 
-    if slice_counts != {"math": 9, "teaching": 8, "persistence": 10}:
+    if slice_counts != {"math": 9, "teaching": 9, "persistence": 10}:
         raise ManifestError(f"unexpected slice distribution: {slice_counts}")
     if sum(bool(case.get("smoke")) for case in expanded) != 8:
         raise ManifestError("exactly 8 cases must be marked smoke")

@@ -28,6 +28,13 @@ rubrics:
     transfer_network_and_memory: 20
     archive_correctness: 15
     resource_efficiency: 5
+  foundational_teaching:
+    math_correctness_and_conditions: 30
+    prerequisite_closure_and_concept_teaching: 30
+    intuition_and_exam_reproducibility: 20
+    transfer_network_and_memory: 10
+    archive_correctness: 5
+    resource_efficiency: 5
 
 fatal_failures:
   - wrong_final_answer
@@ -73,6 +80,8 @@ fatal_failures:
   - deep_mode_false_positive
   - invalid_knowledge_id_guessed
   - practice_verification_bypassed
+  - prerequisite_only_named
+  - unexplained_required_dependency
 
 cases:
   # 数学正确性：高数、线代、概率各 3 题。
@@ -454,6 +463,29 @@ cases:
       - practice_verification_bypassed
     rubric: default
 
+  - id: deep_calculus_k072_prerequisite_closure
+    slice: teaching
+    smoke: false
+    task_kind: explain
+    prompt: "只聊天不写文件：深度讲解 K072。假设我可能忘了连续、闭区间、导数、局部极值、驻点和 Fermat 必要条件；不要只列前置名称，要从知识缺口处接上，再推出为什么候选点是端点、内部驻点和内部不可导点。"
+    expected: {intent: solve, collection: none, persistence: skip}
+    oracle:
+      summary: "从最小例子区分全局最值与局部极值，补讲闭区间、连续、导数、驻点及 Fermat 必要条件各自的含义和逻辑作用，再推出端点、内部驻点、内部不可导点构成完整候选清单；紧集或上确界若出现，只能被讲明或标为不承担主论证的可选视角。"
+    checks:
+      output_must_match:
+        - '(?s)(最大值|最小值).*(任意|所有|\\forall)'
+        - '(?s)(局部极值|局部最大|局部最小).*(附近|邻域)'
+        - '(?s)驻点.*(导数|f).*(0|零)'
+        - '(?s)(Fermat|费马).*(内点|内部).*(可导).*(导数).*(0|零)'
+        - '(?s)端点.*(驻点|导数为零).*(不可导).*(候选|比较|函数值)'
+    hard_fail_if:
+      - missing_deep_lecture
+      - prerequisite_only_named
+      - unexplained_required_dependency
+      - definition_without_intuition
+      - repository_changed
+    rubric: foundational_teaching
+
   - id: deep_calculus_invalid_k999
     slice: teaching
     smoke: false
@@ -471,10 +503,10 @@ cases:
     slice: teaching
     smoke: false
     task_kind: explain
-    prompt: "只聊天不写文件：讲解 K031。我不是要深度讲解；先用简洁方式解释核心定义并给一个例子。"
+    prompt: "只聊天不写文件：讲解 K031。我已经会求函数极限，也知道怎样看比值极限；我不是要深度讲解，请利用这些已掌握内容，简洁解释核心定义并给一个例子。"
     expected: {intent: solve, collection: none, persistence: skip}
     oracle:
-      summary: "简洁解释同阶、高阶、低阶、等价无穷小及一个例子；不生成固定长讲义或 A/B/C/M 练习。"
+      summary: "把用户已经展示的函数极限与比值极限能力当作掌握证据，不从头重讲；简洁解释同阶、高阶、低阶、等价无穷小及一个例子，不生成固定长讲义或 A/B/C/M 练习。"
     checks:
       output_must_match:
         - '(?s)(同阶|高阶)'

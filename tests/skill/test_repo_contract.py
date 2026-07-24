@@ -908,9 +908,9 @@ class CurrentRepositoryContractTests(unittest.TestCase):
         graph = repo_model.load_knowledge_registry(REPO_ROOT)
         self.assertEqual(37, len(catalog))
         self.assertEqual(37, len({entry.chapter_key for entry in catalog}))
-        self.assertEqual(14, len(registry))
+        self.assertEqual(18, len(registry))
         self.assertEqual(13, sum(entry["collection"] == "core" for entry in registry))
-        self.assertEqual(1, sum(entry["collection"] == "practice" for entry in registry))
+        self.assertEqual(5, sum(entry["collection"] == "practice" for entry in registry))
         self.assertEqual(2, graph["schema_version"])
         self.assertEqual(359, len(graph["nodes"]))
         self.assertEqual(
@@ -950,19 +950,29 @@ class CurrentRepositoryContractTests(unittest.TestCase):
         )
         self.assertEqual(1, manifest["schema_version"])
         cases = manifest["cases"]
-        self.assertEqual(27, len(cases))
+        self.assertEqual(28, len(cases))
         self.assertEqual(
-            Counter({"math": 9, "teaching": 8, "persistence": 10}),
+            Counter({"math": 9, "teaching": 9, "persistence": 10}),
             Counter(case["slice"] for case in cases),
         )
         self.assertEqual(8, sum(bool(case.get("smoke")) for case in cases))
         self.assertEqual(100, sum(manifest["rubrics"]["default"].values()))
+        self.assertEqual(
+            100, sum(manifest["rubrics"]["foundational_teaching"].values())
+        )
         self.assertIn("wrong_final_answer", manifest["fatal_failures"])
         self.assertIn("wrong_collection", manifest["fatal_failures"])
+        self.assertIn("prerequisite_only_named", manifest["fatal_failures"])
+        self.assertIn("unexplained_required_dependency", manifest["fatal_failures"])
         self.assertEqual(len(manifest["fatal_failures"]), len(set(manifest["fatal_failures"])))
         fatal_taxonomy = set(manifest["fatal_failures"])
         ids = [case["id"] for case in cases]
         self.assertEqual(len(ids), len(set(ids)))
+        cases_by_id = {case["id"]: case for case in cases}
+        self.assertEqual(
+            "foundational_teaching",
+            cases_by_id["deep_calculus_k072_prerequisite_closure"]["rubric"],
+        )
         for case in cases:
             with self.subTest(case=case["id"]):
                 self.assertTrue(case["prompt"].strip())
@@ -983,6 +993,12 @@ class CurrentRepositoryContractTests(unittest.TestCase):
             "math_prob_bayes": r"由贝叶斯公式，结果为 \(15.38\%\)。",
             "teach_guided_continuity_differentiability": (
                 "先把连续钉牢，暂时不谈可导。你只回答三个判断问题，想一想再回复。"
+            ),
+            "deep_calculus_k072_prerequisite_closure": (
+                "最大值点 x_M 的函数值不小于所有定义域内点的函数值。"
+                "局部极值只比较某个邻域里的点。驻点是导数等于零的点。"
+                "费马必要条件说明：内部可导的局部极值点，其导数等于 0。"
+                "因此完整候选来自端点、内部驻点和内部不可导点，最后比较函数值。"
             ),
         }
 

@@ -52,7 +52,11 @@ class CalculusKnowledgeExtractorTests(unittest.TestCase):
 
     def copy_resources(self, fixture: Path) -> Path:
         target = fixture / "resources"
-        shutil.copytree(ROOT / "resources", target)
+        shutil.copytree(
+            ROOT / "resources",
+            target,
+            ignore=shutil.ignore_patterns("~$*"),
+        )
         return target
 
     def copy_registry_fixture(self, fixture: Path) -> None:
