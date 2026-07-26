@@ -366,3 +366,466 @@ pages:
     collection: practice
     chapter_key: calc-06
     source: tex/practice/calculus/calc-06-problems.tex
+  # BEGIN k070-k150-deep-pages
+  - slug: calc-05-k070
+    title: "K070 单调区间判定"
+    subject: 高等数学
+    lecture: 第 5 讲
+    source: tex/chapters/calculus/05_differential_applications_geometry.tex
+  - slug: calc-05-k071
+    title: "K071 局部极值与必要/充分条件"
+    subject: 高等数学
+    lecture: 第 5 讲
+    source: tex/chapters/calculus/05_differential_applications_geometry.tex
+  - slug: calc-05-k072
+    title: "K072 闭区间最大值最小值"
+    subject: 高等数学
+    lecture: 第 5 讲
+    source: tex/chapters/calculus/05_differential_applications_geometry.tex
+  - slug: calc-05-k073
+    title: "K073 凹凸性与拐点"
+    subject: 高等数学
+    lecture: 第 5 讲
+    source: tex/chapters/calculus/05_differential_applications_geometry.tex
+  - slug: calc-05-k074
+    title: "K074 渐近线"
+    subject: 高等数学
+    lecture: 第 5 讲
+    source: tex/chapters/calculus/05_differential_applications_geometry.tex
+  - slug: calc-05-k075
+    title: "K075 函数图形描绘"
+    subject: 高等数学
+    lecture: 第 5 讲
+    source: tex/chapters/calculus/05_differential_applications_geometry.tex
+  - slug: calc-05-k076
+    title: "K076 弧微分与曲率公式"
+    subject: 高等数学
+    lecture: 第 5 讲
+    source: tex/chapters/calculus/05_differential_applications_geometry.tex
+  - slug: calc-05-k077
+    title: "K077 曲率圆、曲率半径"
+    subject: 高等数学
+    lecture: 第 5 讲
+    source: tex/chapters/calculus/05_differential_applications_geometry.tex
+  - slug: calc-05-k078
+    title: "K078 曲率中心、渐屈线与方程近似解"
+    subject: 高等数学
+    lecture: 第 5 讲
+    source: tex/chapters/calculus/05_differential_applications_geometry.tex
+  - slug: calc-08-k079
+    title: "K079 原函数概念与存在性"
+    subject: 高等数学
+    lecture: 第 8 讲
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-08-k080
+    title: "K080 不定积分与积分常数"
+    subject: 高等数学
+    lecture: 第 8 讲
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-08-k081
+    title: "K081 基本积分公式"
+    subject: 高等数学
+    lecture: 第 8 讲
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-09-k082
+    title: "K082 第一类换元法（凑微分）"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-09-k083
+    title: "K083 第二类换元法"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-09-k084
+    title: "K084 分部积分法"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-09-k085
+    title: "K085 有理函数积分"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-09-k086
+    title: "K086 三角有理式积分"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-09-k087
+    title: "K087 简单无理函数积分"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-08-k088
+    title: "K088 定积分的Riemann和定义"
+    subject: 高等数学
+    lecture: 第 8 讲
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-08-k089
+    title: "K089 定积分存在性与可积函数"
+    subject: 高等数学
+    lecture: 第 8 讲
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-08-k090
+    title: "K090 线性、区间可加性与换向"
+    subject: 高等数学
+    lecture: 第 8 讲
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-08-k091
+    title: "K091 保序性、绝对值不等式与估计"
+    subject: 高等数学
+    lecture: 第 8 讲
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-08-k092
+    title: "K092 积分中值定理"
+    subject: 高等数学
+    lecture: 第 8 讲
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-09-k093
+    title: "K093 定积分换元法"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-09-k094
+    title: "K094 定积分分部积分"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-09-k095
+    title: "K095 对称性与周期性公式"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-08-k096
+    title: "K096 变上限积分函数及连续性"
+    subject: 高等数学
+    lecture: 第 8 讲
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-08-k097
+    title: "K097 微积分基本定理与Newton–Leibniz公式"
+    subject: 高等数学
+    lecture: 第 8 讲
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-08-k098
+    title: "K098 复合上下限求导"
+    subject: 高等数学
+    lecture: 第 8 讲
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-08-k099
+    title: "K099 含参数积分求导（Leibniz扩展）"
+    subject: 高等数学
+    lecture: 第 8 讲
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-08-k100
+    title: "K100 Riemann和极限"
+    subject: 高等数学
+    lecture: 第 8 讲
+    source: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+  - slug: calc-09-k101
+    title: "K101 无穷区间反常积分定义"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-09-k102
+    title: "K102 无界函数反常积分定义"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-09-k103
+    title: "K103 $p$ 型反常积分"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-09-k104
+    title: "K104 比较判别与极限比较"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-09-k105
+    title: "K105 绝对收敛与条件收敛（反常积分）"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-10-k106
+    title: "K106 平面图形面积"
+    subject: 高等数学
+    lecture: 第 10 讲
+    source: tex/chapters/calculus/10_integral_applications_geometry.tex
+  - slug: calc-10-k107
+    title: "K107 旋转体体积与截面体积"
+    subject: 高等数学
+    lecture: 第 10 讲
+    source: tex/chapters/calculus/10_integral_applications_geometry.tex
+  - slug: calc-10-k108
+    title: "K108 弧长"
+    subject: 高等数学
+    lecture: 第 10 讲
+    source: tex/chapters/calculus/10_integral_applications_geometry.tex
+  - slug: calc-10-k109
+    title: "K109 旋转曲面面积"
+    subject: 高等数学
+    lecture: 第 10 讲
+    source: tex/chapters/calculus/10_integral_applications_geometry.tex
+  - slug: calc-12-k110
+    title: "K110 功、液体压力、引力"
+    subject: 高等数学
+    lecture: 第 12 讲
+    source: tex/chapters/calculus/12_integral_applications_physics_economics.tex
+  - slug: calc-12-k111
+    title: "K111 质心、平均值与力矩"
+    subject: 高等数学
+    lecture: 第 12 讲
+    source: tex/chapters/calculus/12_integral_applications_physics_economics.tex
+  - slug: calc-09-k112
+    title: "K112 Beta/Gamma函数与特殊积分"
+    subject: 高等数学
+    lecture: 第 9 讲
+    source: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+  - slug: calc-17-k113
+    title: "K113 向量坐标、模与单位向量"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k114
+    title: "K114 线性运算、共线与共面"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k115
+    title: "K115 数量积与夹角"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k116
+    title: "K116 向量积"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k117
+    title: "K117 混合积"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k118
+    title: "K118 方向数与方向余弦"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k119
+    title: "K119 平面方程"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k120
+    title: "K120 空间直线方程"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k121
+    title: "K121 直线与直线、平面与平面关系"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k122
+    title: "K122 直线与平面关系及夹角"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k123
+    title: "K123 点到平面与点到直线距离"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k124
+    title: "K124 平行平面、平行直线与异面直线距离"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k125
+    title: "K125 曲面方程与截痕法"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k126
+    title: "K126 旋转曲面"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k127
+    title: "K127 柱面"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k128
+    title: "K128 常见二次曲面识别"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k129
+    title: "K129 空间曲线的参数方程与一般方程"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k130
+    title: "K130 空间曲线投影"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-17-k131
+    title: "K131 一般仿射坐标变换与二次曲面分类"
+    subject: 高等数学
+    lecture: 第 17 讲
+    source: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+  - slug: calc-13-k132
+    title: "K132 多元函数概念、定义域与图形"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k133
+    title: "K133 二重极限定义"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k134
+    title: "K134 路径法否定二重极限"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k135
+    title: "K135 极坐标估计二重极限"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k136
+    title: "K136 多元连续性与有界闭区域性质"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k137
+    title: "K137 一阶偏导数定义与计算"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k138
+    title: "K138 高阶偏导与混合偏导"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k139
+    title: "K139 全微分定义"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k140
+    title: "K140 可微、连续、偏导存在的逻辑关系"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k141
+    title: "K141 可微性的定义检验"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k142
+    title: "K142 一阶链式法则"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k143
+    title: "K143 二阶复合偏导"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k144
+    title: "K144 全微分形式不变性"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k145
+    title: "K145 一个方程确定一个隐函数"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k146
+    title: "K146 方程组确定隐函数组"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k147
+    title: "K147 齐次函数与Euler公式"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k148
+    title: "K148 方向导数定义"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k149
+    title: "K149 梯度及最大方向导数"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: calc-13-k150
+    title: "K150 曲面切平面与法线"
+    subject: 高等数学
+    lecture: 第 13 讲
+    source: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+  - slug: practice-calc-05
+    title: "练习库：高等数学第 5 讲 一元函数微分学的应用（一）——几何应用"
+    subject: 练习库
+    subject_key: practice
+    lecture: 高等数学 · 第 5 讲
+    collection: practice
+    chapter_key: calc-05
+    source: tex/practice/calculus/calc-05-problems.tex
+  - slug: practice-calc-08
+    title: "练习库：高等数学第 8 讲 一元函数积分学的概念与性质"
+    subject: 练习库
+    subject_key: practice
+    lecture: 高等数学 · 第 8 讲
+    collection: practice
+    chapter_key: calc-08
+    source: tex/practice/calculus/calc-08-problems.tex
+  - slug: practice-calc-09
+    title: "练习库：高等数学第 9 讲 一元函数积分学的计算"
+    subject: 练习库
+    subject_key: practice
+    lecture: 高等数学 · 第 9 讲
+    collection: practice
+    chapter_key: calc-09
+    source: tex/practice/calculus/calc-09-problems.tex
+  - slug: practice-calc-10
+    title: "练习库：高等数学第 10 讲 一元函数积分学的应用（一）——几何应用"
+    subject: 练习库
+    subject_key: practice
+    lecture: 高等数学 · 第 10 讲
+    collection: practice
+    chapter_key: calc-10
+    source: tex/practice/calculus/calc-10-problems.tex
+  - slug: practice-calc-12
+    title: "练习库：高等数学第 12 讲 一元函数积分学的应用（三）——物理应用与经济应用"
+    subject: 练习库
+    subject_key: practice
+    lecture: 高等数学 · 第 12 讲
+    collection: practice
+    chapter_key: calc-12
+    source: tex/practice/calculus/calc-12-problems.tex
+  - slug: practice-calc-13
+    title: "练习库：高等数学第 13 讲 多元函数微分学"
+    subject: 练习库
+    subject_key: practice
+    lecture: 高等数学 · 第 13 讲
+    collection: practice
+    chapter_key: calc-13
+    source: tex/practice/calculus/calc-13-problems.tex
+  - slug: practice-calc-17
+    title: "练习库：高等数学第 17 讲 多元函数积分学的预备知识（仅数学一）"
+    subject: 练习库
+    subject_key: practice
+    lecture: 高等数学 · 第 17 讲
+    collection: practice
+    chapter_key: calc-17
+    source: tex/practice/calculus/calc-17-problems.tex
+  # END k070-k150-deep-pages

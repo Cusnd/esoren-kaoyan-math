@@ -1,0 +1,238 @@
+\answerAnchor{MATH1-CALC-0019}
+\begin{solutionBox}
+\textbf{A}\quad \(f'(x)=e^{-x}(1-x)\)，而 \(e^{-x}>0\)。故 \(f\) 在 \((-\infty,1]\) 上严格递增，在 \([1,\infty)\) 上严格递减。
+
+\textbf{B}\quad 分段得
+\[
+f(x)=\begin{cases}-2x,&x<-1,\\2,&-1\le x\le1,\\2x,&x>1.\end{cases}
+\]
+故在 \((-\infty,-1]\) 严格递减，在 \([-1,1]\) 为常值，在 \([1,\infty)\) 严格递增；若采用“不增/不减”，常值段同时满足二者，但不能称严格增减。
+
+\textbf{C}\quad \(f_a'(x)=1-ae^{-x}\)。若 \(a\le0\)，则 \(f_a'(x)>0\)，故在 \(\mathbb R\) 上严格递增。若 \(a>0\)，唯一驻点为 \(x=\ln a\)，且导数在其左侧为负、右侧为正，故在 \((-\infty,\ln a]\) 上严格递减，在 \([\ln a,\infty)\) 上严格递增。
+
+\textbf{M}\quad 令 \(g(x)=xe^x\)。在 \((0,\infty)\)，\(g'=e^x(1+x)>0\)，故至多一根；又 \(g(0^+)=0<1<e=g(1)\)，由连续性至少一根，故恰有一根。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0020}
+\begin{solutionBox}
+\textbf{A}\quad \(f(x)=x^4(1+x)\)。在 \(|x|<1/2\) 时 \(1+x>0\)，所以 \(f(x)\ge0=f(0)\)，且等号仅在 \(x=0\) 成立，故 \(0\) 是严格局部极小值点，极小值为 \(0\)。另一方面 \(f''(0)=0\)，二阶充分判据在等于零时无结论，不能据此否定极值。
+
+\textbf{B}\quad
+\[
+f'(x)=e^{-x}x(2-x).
+\]
+因指数因子恒正，导数符号依次为 \(-,+,-\)。故 \(x=0\) 为局部极小值点，极小值 \(0\)；\(x=2\) 为局部极大值点，极大值 \(4e^{-2}\)。
+
+\textbf{C}\quad 在 \(|x|<1\) 时 \(f=1-x^2\)，在 \(|x|>1\) 时 \(f=x^2-1\)。故 \(x=0\) 为局部极大值点，极大值 \(1\)；\(x=\pm1\) 为不可导的局部极小值点，极小值均为 \(0\)。
+
+\textbf{M}\quad \(f'=4x(x^2-a)\)。若 \(a\le0\)，仅 \(x=0\) 为极小值点，极小值 \(0\)。若 \(a>0\)，\(x=\pm\sqrt a\) 为极小值点，极小值 \(-a^2\)；\(x=0\) 为极大值点，极大值 \(0\)。符号表分别为 \(a\le0\) 时 \(-,+\)，\(a>0\) 时 \(-,+,-,+\)。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0021}
+\begin{solutionBox}
+\textbf{A}\quad 候选点为 \(0,1,3\)，函数值依次为 \(0,-1,3\)。故最大值 \(3\) 在 \(3\) 取得，最小值 \(-1\) 在 \(1\) 取得。
+
+\textbf{B}\quad
+\[
+f(x)=\begin{cases}-2x,&x<0,\\0,&x\ge0.\end{cases}
+\]
+在 \([-2,0]\) 上函数由 \(4\) 递减到 \(0\)，在 \([0,3]\) 上恒为 \(0\)。故最大值为 \(4\)，仅在 \(x=-2\) 取得；最小值为 \(0\)，在全部 \(x\in[0,3]\) 上取得。
+
+\textbf{C}\quad \(f'(x)=e^{-x}(1-x)\)，内部驻点为 \(x=1\)。比较
+\[
+f(0)=0,\qquad f(1)=e^{-1},\qquad f(3)=3e^{-3},
+\]
+且 \(f\) 在 \([0,1]\) 增、在 \([1,3]\) 减，故最大值为 \(e^{-1}\)，在 \(x=1\) 取得；最小值为 \(0\)，在 \(x=0\) 取得。
+
+\textbf{M}\quad \(f_a\) 是点 \(x\) 到 \(a\) 的距离平方，闭区间上的最大值必在离 \(a\) 更远的端点取得。比较
+\[
+f_a(0)=a^2,\qquad f_a(2)=(2-a)^2,
+\]
+二者之差为 \(4(a-1)\)。故 \(a<1\) 时最大值为 \((2-a)^2\)，在 \(x=2\) 取得；\(a>1\) 时最大值为 \(a^2\)，在 \(x=0\) 取得；\(a=1\) 时最大值为 \(1\)，在 \(x=0,2\) 两点取得。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0022}
+\begin{solutionBox}
+\textbf{A}\quad \(f''(x)=6x+2=2(3x+1)\)。故在 \((-\infty,-1/3)\) 上 \(f''<0\)，图形为凸；在 \((-1/3,\infty)\) 上 \(f''>0\)，图形为凹。凹凸性在 \(x=-1/3\) 改变，拐点为
+\[
+\left(-\frac13,\ f\!\left(-\frac13\right)\right)
+=\left(-\frac13,\frac2{27}\right).
+\]
+
+\textbf{B}\quad \(f''(x)=30x^4+12x^2=6x^2(5x^2+2)\ge0\)，且在 \(0\) 两侧均为正。故虽 \(f''(0)=0\)，凹凸性并未改变，\((0,0)\) 不是拐点。
+
+\textbf{C}\quad \(f''=1/x^2>0\) 对一切 \(x>0\) 成立，故全定义域图形为凹，无拐点。
+
+\textbf{M}\quad \(f''(x)=12x^2-4=4(3x^2-1)\)。故图形在
+\[
+(-\infty,-1/\sqrt3)\cup(1/\sqrt3,\infty)
+\]
+上为凹，在 \((-1/\sqrt3,1/\sqrt3)\) 上为凸。两处 \(f''\) 均变号，且函数值均为
+\[
+\frac19-\frac23=-\frac59,
+\]
+所以拐点为 \(\left(-1/\sqrt3,-5/9\right)\)、\(\left(1/\sqrt3,-5/9\right)\)。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0023}
+\begin{solutionBox}
+\textbf{A}\quad 作多项式除法得
+\[
+\frac{x^2+1}{x-2}=x+2+\frac5{x-2}.
+\]
+故垂直渐近线为 \(x=2\)，正、负无穷两端的斜渐近线均为 \(y=x+2\)。
+
+\textbf{B}\quad 当 \(x\to-\infty\)，有理化得
+\[
+f(x)=\frac1{\sqrt{4x^2+1}-2x}\longrightarrow0,
+\]
+故水平渐近线为 \(y=0\)。当 \(x\to+\infty\)，
+\[
+\lim\frac{f(x)}x=4,\qquad
+\lim\bigl(f(x)-4x\bigr)
+=\lim\bigl(\sqrt{4x^2+1}-2x\bigr)=0,
+\]
+故斜渐近线为 \(y=4x\)。
+
+\textbf{C}\quad 定义域为 \(\mathbb R\setminus\{0\}\)。当 \(x\to0^\pm\) 时分母趋于 \(0\)，函数无界，故 \(x=0\) 为垂直渐近线；当 \(x\to+\infty\) 时 \(f(x)\to0\)，故 \(y=0\) 为水平渐近线；当 \(x\to-\infty\) 时 \(f(x)\to-1\)，故 \(y=-1\) 为水平渐近线。除此之外没有斜渐近线。
+
+\textbf{M}\quad 设 \(f(x)=\sqrt{x^2+x+1}\)。当 \(x\to+\infty\) 时
+\[
+\lim\frac{f(x)}x=1,\qquad
+\lim(f(x)-x)
+=\lim\frac{x+1}{\sqrt{x^2+x+1}+x}=\frac12,
+\]
+故斜渐近线为 \(y=x+\frac12\)。当 \(x\to-\infty\) 时斜率为 \(-1\)，且
+\[
+\lim(f(x)+x)
+=\lim\frac{x+1}{\sqrt{x^2+x+1}-x}=-\frac12,
+\]
+故斜渐近线为 \(y=-x-\frac12\)。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0024}
+\begin{solutionBox}
+\textbf{A}\quad \(f=x^2(x^2-4)\) 为偶函数，零点为 \(-2,0,2\)，其中 \(0\) 为二重零点。由
+\[
+f'=4x(x^2-2)
+\]
+知 \(x=0\) 为局部极大值点，极大值 \(0\)；\(x=\pm\sqrt2\) 为局部极小值点，极小值 \(-4\)。又 \(f''=12x^2-8\)，拐点为
+\[
+\left(\pm\sqrt{\frac23},-\frac{20}{9}\right).
+\]
+两端均趋 \(+\infty\)，按偶对称连接即得草图。
+
+\textbf{B}\quad 函数为偶函数且 \(0\le f(x)<1\)，两端水平渐近线为 \(y=1\)。由
+\[
+f'=\frac{2x}{(1+x^2)^2},
+\]
+知函数在 \((-\infty,0]\) 减、在 \([0,\infty)\) 增，原点为全局最小值点，最小值 \(0\)。再由
+\[
+f''=\frac{2(1-3x^2)}{(1+x^2)^3},
+\]
+得拐点为 \(\left(\pm1/\sqrt3,1/4\right)\)。
+
+\textbf{C}\quad 定义域为 \(x>0\)。当 \(x\to0^+\) 时 \(f(x)\to+\infty\)，故 \(x=0\) 为垂直渐近线；当 \(x\to+\infty\) 时 \(f(x)\to0^+\)，故 \(y=0\) 为水平渐近线。函数仅在 \(x=1\) 取零，且
+\[
+f'(x)=\frac{\ln x(2-\ln x)}{x^2}.
+\]
+故在 \((0,1]\) 减、\([1,e^2]\) 增、\([e^2,\infty)\) 减；\(x=1\) 为最小值点，最小值 \(0\)，\(x=e^2\) 为局部极大值点，极大值 \(4/e^2\)。
+
+\textbf{M}\quad \(f\) 为奇函数，两端都趋于 \(0\)，零点为 \(0\)。由
+\[
+f'(x)=e^{-x^2}(1-2x^2)
+\]
+知在 \(x=-1/\sqrt2\) 取极小值 \(-m\)，在 \(x=1/\sqrt2\) 取极大值 \(m\)，其中 \(m=1/\sqrt{2e}\)。据单调分支可知：\(|c|>m\) 时无实根；\(|c|=m\) 时有 \(1\) 个实根；\(0<|c|<m\) 时有 \(2\) 个实根；\(c=0\) 时只有实根 \(x=0\)。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0025}
+\begin{solutionBox}
+\textbf{A}\quad \(y'=3x^2,y''=6x\)，故
+\[
+\kappa(1)=\frac6{(1+9)^{3/2}}=\frac3{5\sqrt{10}}.
+\]
+
+\textbf{B}\quad \(y'(1)=1,y''(1)=-1\)，故
+\[
+\kappa(1)=\frac1{(1+1)^{3/2}}=\frac1{2\sqrt2}.
+\]
+
+\textbf{C}\quad
+\[
+x'=1-\cos t,\quad y'=\sin t,\quad x''=\sin t,\quad y''=\cos t.
+\]
+在 \(t=\pi\) 时 \((x',y',x'',y'')=(2,0,0,-1)\)，故
+\[
+\kappa(\pi)=\frac{|2(-1)-0|}{(2^2+0^2)^{3/2}}=\frac14.
+\]
+
+\textbf{M}\quad 在 \(t=1\) 时，参数式给
+\[
+\kappa(1)=\frac{|(2)(6)-(3)\cdot2|}
+{(2^2+3^2)^{3/2}}
+=\frac6{13\sqrt{13}}.
+\]
+在 \(t>0\) 上消参得 \(y=x^{3/2}\)。于是 \(y'(1)=3/2,\ y''(1)=3/4\)，显函数公式同样给
+\[
+\frac{3/4}{[1+(3/2)^2]^{3/2}}=\frac6{13\sqrt{13}}.
+\]
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0026}
+\begin{solutionBox}
+\textbf{A}\quad \(\rho=1/\kappa=2/3\)。
+
+\textbf{B}\quad 对 \(y=e^x\)，在 \(x=0\) 处有 \(y'=y''=1\)，故
+\[
+\kappa=\frac1{(1+1)^{3/2}}=\frac1{2\sqrt2},
+\qquad \rho=2\sqrt2.
+\]
+曲率中心公式给
+\[
+X=0-\frac{1(1+1)}1=-2,\qquad
+Y=1+\frac{1+1}{1}=3.
+\]
+所以曲率圆为 \((x+2)^2+(y-3)^2=8\)。
+
+\textbf{C}\quad
+\[
+y'=\sinh(x/a),\qquad y''=\frac1a\cosh(x/a).
+\]
+在 \(x=0\) 处 \(y'=0,y''=1/a\)，故 \(\kappa=1/a\)，曲率半径为 \(\rho=a\)。
+
+\textbf{M}\quad \(y'=\cos x,y''=-\sin x\)，故 \(\kappa(0)=0\)。此时 \(\rho=1/\kappa\) 没有有限值，几何上表示局部二阶近似为切线、半径趋于无穷，而不是半径为零；普通有限曲率圆不存在。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0027}
+\begin{solutionBox}
+\textbf{A}\quad 三个说法都不成立。渐屈线在本节点仅作扩展辨识，并非统考主线；Newton 一步通常只给近似值，不能写成精确根；数值迭代也不能替代连续性、异号和单调性等存在唯一性证明。统考主线仍是曲率与曲率半径。
+
+\textbf{B}\quad 令曲线上点为 \((t,t^2)\)。对显函数 \(y=x^2\)，曲率中心公式给
+\[
+X=t-\frac{y'(1+y'^2)}{y''}
+=t-\frac{2t(1+4t^2)}2=-4t^3,
+\]
+\[
+Y=t^2+\frac{1+y'^2}{y''}
+=t^2+\frac{1+4t^2}{2}=3t^2+\frac12.
+\]
+故渐屈线可参数化为
+\[
+(X,Y)=\left(-4t^3,\ 3t^2+\frac12\right),\qquad t\in\mathbb R.
+\]
+
+\textbf{C}\quad
+\[
+x_1=x_0-\frac{x_0^3-2}{3x_0^2}
+=1-\frac{-1}{3}
+=\frac43.
+\]
+这是 \(\sqrt[3]{2}\) 的近似值，不是精确等式。
+
+\textbf{M}\quad 令 \(g(x)=x^3+x-1\)。在 \(\mathbb R\) 上 \(g'(x)=3x^2+1>0\)，故至多一根；又
+\[
+g(1/2)=-\frac38<0,\qquad
+g(3/4)=\frac{27}{64}+\frac34-1=\frac{11}{64}>0.
+\]
+由连续性至少一根，结合严格单调性知恰有一根；根位于 \((1/2,3/4)\)，区间长度为 \(1/4\)。
+\end{solutionBox}

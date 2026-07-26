@@ -12,10 +12,55 @@
 \tableofcontents
 \clearpage
 
+\NewDocumentCommand{\enablePublishedAnswerAnchor}{}{%
+  \RenewDocumentCommand{\answerAnchor}{m}{%
+    \hypertarget{answer:##1}{}%
+    \begin{problemMeta}
+    \textbf{题目编号：} \texttt{##1}\quad
+    \textbf{对应题面：} \problemRef{##1}
+    \end{problemMeta}%
+  }%
+}
+
 \studySection{practice-answers-calculus}{高等数学练习答案}
 \studySubsection{practice-answers-calc-01}{第 1 讲 函数极限与连续}
 \input{tex/practice/calculus/calc-01-answers.tex}
+\studySubsection{practice-answers-calc-05}{第 5 讲 一元函数微分学的应用（一）——几何应用}
+\begingroup
+\enablePublishedAnswerAnchor
+\input{tex/practice/calculus/calc-05-answers.tex}
+\endgroup
 \studySubsection{practice-answers-calc-06}{第 6 讲 辅助函数构造}
 \input{tex/practice/calculus/calc-06-answers.tex}
+\studySubsection{practice-answers-calc-08}{第 8 讲 一元函数积分学的概念与性质}
+\begingroup
+\enablePublishedAnswerAnchor
+\input{tex/practice/calculus/calc-08-answers.tex}
+\endgroup
+\studySubsection{practice-answers-calc-09}{第 9 讲 一元函数积分学的计算}
+\begingroup
+\enablePublishedAnswerAnchor
+\input{tex/practice/calculus/calc-09-answers.tex}
+\endgroup
+\studySubsection{practice-answers-calc-10}{第 10 讲 一元函数积分学的应用（一）——几何应用}
+\begingroup
+\enablePublishedAnswerAnchor
+\input{tex/practice/calculus/calc-10-answers.tex}
+\endgroup
+\studySubsection{practice-answers-calc-12}{第 12 讲 一元函数积分学的应用（三）——物理应用与经济应用}
+\begingroup
+\enablePublishedAnswerAnchor
+\input{tex/practice/calculus/calc-12-answers.tex}
+\endgroup
+\studySubsection{practice-answers-calc-13}{第 13 讲 多元函数微分学}
+\begingroup
+\enablePublishedAnswerAnchor
+\input{tex/practice/calculus/calc-13-answers.tex}
+\endgroup
+\studySubsection{practice-answers-calc-17}{第 17 讲 多元函数积分学的预备知识（仅数学一）}
+\begingroup
+\enablePublishedAnswerAnchor
+\input{tex/practice/calculus/calc-17-answers.tex}
+\endgroup
 
 \end{document}

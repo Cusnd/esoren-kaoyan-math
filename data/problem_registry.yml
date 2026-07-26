@@ -377,3 +377,1542 @@
   task_type: comprehensive
   estimated_minutes: 45
   verification_status: verified
+
+- id: MATH1-CALC-0019
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-05
+  title: "K070 单调区间判定 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-05-problems.tex"
+  answer_file: "tex/practice/calculus/calc-05-answers.tex"
+  source: "Codex 原创 / K070 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0117
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0020
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-05
+  title: "K071 局部极值与必要/充分条件 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-05-problems.tex"
+  answer_file: "tex/practice/calculus/calc-05-answers.tex"
+  source: "Codex 原创 / K071 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0118
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0021
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-05
+  title: "K072 闭区间最大值最小值 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-05-problems.tex"
+  answer_file: "tex/practice/calculus/calc-05-answers.tex"
+  source: "Codex 原创 / K072 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0119
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0022
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-05
+  title: "K073 凹凸性与拐点 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-05-problems.tex"
+  answer_file: "tex/practice/calculus/calc-05-answers.tex"
+  source: "Codex 原创 / K073 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0120
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0023
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-05
+  title: "K074 渐近线 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-05-problems.tex"
+  answer_file: "tex/practice/calculus/calc-05-answers.tex"
+  source: "Codex 原创 / K074 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0121
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0024
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-05
+  title: "K075 函数图形描绘 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-05-problems.tex"
+  answer_file: "tex/practice/calculus/calc-05-answers.tex"
+  source: "Codex 原创 / K075 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0122
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0025
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-05
+  title: "K076 弧微分与曲率公式 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-05-problems.tex"
+  answer_file: "tex/practice/calculus/calc-05-answers.tex"
+  source: "Codex 原创 / K076 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0123
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0026
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-05
+  title: "K077 曲率圆、曲率半径 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-05-problems.tex"
+  answer_file: "tex/practice/calculus/calc-05-answers.tex"
+  source: "Codex 原创 / K077 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0124
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0027
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-05
+  title: "K078 曲率中心、渐屈线与方程近似解 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-05-problems.tex"
+  answer_file: "tex/practice/calculus/calc-05-answers.tex"
+  source: "Codex 原创 / K078 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0125
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0028
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-08
+  title: "K079 原函数概念与存在性 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-08-problems.tex"
+  answer_file: "tex/practice/calculus/calc-08-answers.tex"
+  source: "Codex 原创 / K079 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0126
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0029
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-08
+  title: "K080 不定积分与积分常数 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-08-problems.tex"
+  answer_file: "tex/practice/calculus/calc-08-answers.tex"
+  source: "Codex 原创 / K080 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0127
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0030
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-08
+  title: "K081 基本积分公式 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-08-problems.tex"
+  answer_file: "tex/practice/calculus/calc-08-answers.tex"
+  source: "Codex 原创 / K081 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0128
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0031
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K082 第一类换元法（凑微分） A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K082 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0129
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0032
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K083 第二类换元法 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K083 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0130
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0033
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K084 分部积分法 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K084 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0131
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0034
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K085 有理函数积分 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K085 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0132
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0035
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K086 三角有理式积分 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K086 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0133
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0036
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K087 简单无理函数积分 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K087 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0134
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0037
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-08
+  title: "K088 定积分的Riemann和定义 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-08-problems.tex"
+  answer_file: "tex/practice/calculus/calc-08-answers.tex"
+  source: "Codex 原创 / K088 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0135
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0038
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-08
+  title: "K089 定积分存在性与可积函数 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-08-problems.tex"
+  answer_file: "tex/practice/calculus/calc-08-answers.tex"
+  source: "Codex 原创 / K089 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0136
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0039
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-08
+  title: "K090 线性、区间可加性与换向 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-08-problems.tex"
+  answer_file: "tex/practice/calculus/calc-08-answers.tex"
+  source: "Codex 原创 / K090 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0137
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0040
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-08
+  title: "K091 保序性、绝对值不等式与估计 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-08-problems.tex"
+  answer_file: "tex/practice/calculus/calc-08-answers.tex"
+  source: "Codex 原创 / K091 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0138
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0041
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-08
+  title: "K092 积分中值定理 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-08-problems.tex"
+  answer_file: "tex/practice/calculus/calc-08-answers.tex"
+  source: "Codex 原创 / K092 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0139
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0042
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K093 定积分换元法 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K093 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0140
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0043
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K094 定积分分部积分 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K094 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0141
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0044
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K095 对称性与周期性公式 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K095 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0142
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0045
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-08
+  title: "K096 变上限积分函数及连续性 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-08-problems.tex"
+  answer_file: "tex/practice/calculus/calc-08-answers.tex"
+  source: "Codex 原创 / K096 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0143
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0046
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-08
+  title: "K097 微积分基本定理与Newton–Leibniz公式 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-08-problems.tex"
+  answer_file: "tex/practice/calculus/calc-08-answers.tex"
+  source: "Codex 原创 / K097 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0144
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0047
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-08
+  title: "K098 复合上下限求导 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-08-problems.tex"
+  answer_file: "tex/practice/calculus/calc-08-answers.tex"
+  source: "Codex 原创 / K098 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0145
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0048
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-08
+  title: "K099 含参数积分求导（Leibniz扩展） A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-08-problems.tex"
+  answer_file: "tex/practice/calculus/calc-08-answers.tex"
+  source: "Codex 原创 / K099 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0146
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0049
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-08
+  title: "K100 Riemann和极限 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-08-problems.tex"
+  answer_file: "tex/practice/calculus/calc-08-answers.tex"
+  source: "Codex 原创 / K100 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0147
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0050
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K101 无穷区间反常积分定义 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K101 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0148
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0051
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K102 无界函数反常积分定义 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K102 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0149
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0052
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K103 $p$ 型反常积分 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K103 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0150
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0053
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K104 比较判别与极限比较 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K104 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0151
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0054
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K105 绝对收敛与条件收敛（反常积分） A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K105 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0152
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0055
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-10
+  title: "K106 平面图形面积 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-10-problems.tex"
+  answer_file: "tex/practice/calculus/calc-10-answers.tex"
+  source: "Codex 原创 / K106 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0153
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0056
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-10
+  title: "K107 旋转体体积与截面体积 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-10-problems.tex"
+  answer_file: "tex/practice/calculus/calc-10-answers.tex"
+  source: "Codex 原创 / K107 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0154
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0057
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-10
+  title: "K108 弧长 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-10-problems.tex"
+  answer_file: "tex/practice/calculus/calc-10-answers.tex"
+  source: "Codex 原创 / K108 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0155
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0058
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-10
+  title: "K109 旋转曲面面积 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-10-problems.tex"
+  answer_file: "tex/practice/calculus/calc-10-answers.tex"
+  source: "Codex 原创 / K109 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0156
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0059
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-12
+  title: "K110 功、液体压力、引力 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-12-problems.tex"
+  answer_file: "tex/practice/calculus/calc-12-answers.tex"
+  source: "Codex 原创 / K110 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0157
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0060
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-12
+  title: "K111 质心、平均值与力矩 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-12-problems.tex"
+  answer_file: "tex/practice/calculus/calc-12-answers.tex"
+  source: "Codex 原创 / K111 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0158
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0061
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-09
+  title: "K112 Beta/Gamma函数与特殊积分 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-09-problems.tex"
+  answer_file: "tex/practice/calculus/calc-09-answers.tex"
+  source: "Codex 原创 / K112 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0159
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0062
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K113 向量坐标、模与单位向量 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K113 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0160
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0063
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K114 线性运算、共线与共面 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K114 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0161
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0064
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K115 数量积与夹角 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K115 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0162
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0065
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K116 向量积 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K116 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0163
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0066
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K117 混合积 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K117 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0164
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0067
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K118 方向数与方向余弦 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K118 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0165
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0068
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K119 平面方程 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K119 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0166
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0069
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K120 空间直线方程 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K120 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0167
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0070
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K121 直线与直线、平面与平面关系 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K121 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0168
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0071
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K122 直线与平面关系及夹角 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K122 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0169
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0072
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K123 点到平面与点到直线距离 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K123 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0170
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0073
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K124 平行平面、平行直线与异面直线距离 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K124 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0171
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0074
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K125 曲面方程与截痕法 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K125 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0172
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0075
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K126 旋转曲面 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K126 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0173
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0076
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K127 柱面 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K127 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0174
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0077
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K128 常见二次曲面识别 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K128 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0175
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0078
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K129 空间曲线的参数方程与一般方程 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K129 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0176
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0079
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K130 空间曲线投影 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K130 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0177
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0080
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-17
+  title: "K131 一般仿射坐标变换与二次曲面分类 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-17-problems.tex"
+  answer_file: "tex/practice/calculus/calc-17-answers.tex"
+  source: "Codex 原创 / K131 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0178
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0081
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K132 多元函数概念、定义域与图形 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K132 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0179
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0082
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K133 二重极限定义 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K133 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0180
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0083
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K134 路径法否定二重极限 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K134 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0181
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0084
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K135 极坐标估计二重极限 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K135 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0182
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0085
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K136 多元连续性与有界闭区域性质 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K136 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0183
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0086
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K137 一阶偏导数定义与计算 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K137 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0184
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0087
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K138 高阶偏导与混合偏导 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K138 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0185
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0088
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K139 全微分定义 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K139 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0186
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0089
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K140 可微、连续、偏导存在的逻辑关系 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K140 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0187
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0090
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K141 可微性的定义检验 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K141 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0188
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0091
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K142 一阶链式法则 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K142 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0189
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0092
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K143 二阶复合偏导 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K143 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0190
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0093
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K144 全微分形式不变性 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K144 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids: []
+  method_ids:
+    - MATH1-KN-CALC-0191
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0094
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K145 一个方程确定一个隐函数 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K145 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0192
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0095
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K146 方程组确定隐函数组 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K146 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0193
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0096
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K147 齐次函数与Euler公式 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K147 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0194
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0097
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K148 方向导数定义 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K148 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0195
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0098
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K149 梯度及最大方向导数 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K149 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0196
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified
+
+- id: MATH1-CALC-0099
+  collection: practice
+  origin: generated
+  subject: "高等数学"
+  chapter_key: calc-13
+  title: "K150 曲面切平面与法线 A/B/C/M 分层训练"
+  file: "tex/practice/calculus/calc-13-problems.tex"
+  answer_file: "tex/practice/calculus/calc-13-answers.tex"
+  source: "Codex 原创 / K150 深度讲义配套练习（非真题）"
+  difficulty: "基础到综合"
+  knowledge_ids:
+    - MATH1-KN-CALC-0197
+  method_ids: []
+  pitfall_ids: []
+  practice_stage: interleaved
+  task_type: comprehensive
+  estimated_minutes: 30
+  verification_status: verified

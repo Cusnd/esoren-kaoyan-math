@@ -5,3 +5,688 @@
 
 本讲用于整理原函数、不定积分、定积分定义、定积分性质、变上限积分函数和反常积分基础。新增题目时重点检查积分存在性、区间、奇偶性、周期性和收敛性。
 \end{knowledgeBox}
+
+\studySubsection{calc-08-k079}{K079 原函数：存在性与逻辑边界}
+
+\knowledgeAnchor[MATH1-KN-CALC-0126]{原函数概念与存在性}
+\noindent{\footnotesize\textbf{稳定引用：} \knowledgeRef[MATH1-KN-CALC-0126]{原函数概念与存在性}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}原函数把“已知变化率 \(f\)”反向还原为“函数 \(F\)”。本讲先定义，再区分“连续、可积、有原函数”三种性质。
+
+\textbf{直接前置（首次完整闭环）：}导数定义与差商极限说明 \(F'(x)\) 是 \(F\) 的局部变化率；本题需要把 \(f\) 识别为某个函数的导数。使用时通过求导核验候选 \(F\)，而不是凭积分符号猜测。最小例 \(F=x^2\) 有 \(F'=2x\)，所以 \(x^2\) 是 \(2x\) 在 \(\mathbb R\) 上的一个原函数。导函数还具有介值性：若导数在两点取一正一负，它会取遍中间值，即使它不连续。
+
+\textbf{严格核心与条件：}若在区间 \(I\) 上处处有 \(F'(x)=f(x)\)，则称 \(F\) 为 \(f\) 在 \(I\) 上的一个原函数。连续函数在区间上必有原函数；反之不成立，导函数可以不连续。普通 Riemann 可积也不推出有原函数：阶跃函数虽可积，却因跳过中间值而不可能是导数。
+
+\textbf{方法选择：}“求原函数”用求导公式反向匹配；“是否存在”先看明显跳跃并用导数介值性否定；不要把“定积分存在”当充分条件。
+
+\textbf{例 1（直接核验）}\quad
+\textbf{信号：}判断 \(F=x^2+1\) 是否为 \(f=2x\) 的原函数。\textbf{分析：}按定义求导。
+\textbf{完整解答：} \(F'=2x=f\)，故是；常数 \(1\) 不影响导数。
+\textbf{条件：}在同一区间 \(\mathbb R\) 上比较。\textbf{易错：}要求 \(F\) 形式唯一。\textbf{核验：}差商或基本求导均得 \(2x\)。
+
+\textbf{例 2（连续保证存在）}\quad
+\textbf{信号：} \(f(x)=\cos x\)。\textbf{分析：}连续且能直接反求。
+\textbf{完整解答：} \(F(x)=\sin x\) 满足 \(F'=\cos x\)，故原函数存在。
+\textbf{条件：}\(\cos x\) 在全实轴连续。\textbf{易错：}把某个原函数与全体原函数混同。\textbf{核验：}对 \(\sin x\) 求导。
+
+\textbf{例 3（可积不推出有原函数）}\quad
+\textbf{信号：}阶跃函数 \(f=-1\,(x<0),\,1\,(x\ge0)\)。\textbf{分析：}它有跳跃。
+\textbf{完整解答：} \(f\) 在有限闭区间可积；若它是某个导数，则导数在负、正半轴分别取 \(-1,1\)，由导数介值性应在其间取 \(0\)，矛盾，故任何跨 \(0\) 的区间上无原函数。
+\textbf{条件：}讨论区间必须跨越 \(0\)。\textbf{易错：}用“函数不连续”直接否定；不连续导数确实存在。\textbf{核验：}在不跨 \(0\) 的单侧区间上分别存在原函数。
+
+\textbf{例 4（不连续但有原函数）}\quad
+\textbf{信号：}反驳“有原函数必连续”。\textbf{分析：}先造可导函数再取其导数。
+\textbf{完整解答：}令
+\[
+F(x)=\begin{cases}x^2\sin(1/x),&x\ne0,\\0,&x=0.\end{cases}
+\]
+则 \(F'(0)=\lim_{h\to0}h\sin(1/h)=0\)，而 \(x\ne0\) 时
+\[
+F'(x)=2x\sin(1/x)-\cos(1/x),
+\]
+它在 \(0\) 不连续，却显然有原函数 \(F\)。
+\textbf{条件：}点 \(0\) 的导数须由定义单独核验。\textbf{易错：}直接把分段公式代 \(x=0\)。\textbf{核验：}导数虽振荡，但没有第一类跳跃。
+
+\textbf{失分防线：}错误逻辑“可积 \(\Rightarrow\) 有原函数”被阶跃函数反驳；“有原函数 \(\Rightarrow\) 连续”被例 4 反驳。快速画箭头：连续 \(\Rightarrow\) 有原函数；其余逆向均需反例。
+
+\textbf{考场表达：}存在性判断要写明区间；否定时指出导数介值性与跳跃矛盾，不能只写“不连续”。
+
+\textbf{三级掌握标准：}基础过关：能按 \(F'=f\) 核验；\(130+\)：能区分可积与有原函数；满分能力：能构造“导数不连续”反例并说明它不违反介值性。
+
+\textbf{知识连接：}直接后续为 \knowledgeRef[MATH1-KN-CALC-0127]{K080 不定积分}；连续函数原函数的标准构造将在 \knowledgeRef[MATH1-KN-CALC-0143]{K096 变上限积分}闭合。
+\end{knowledgeBox}
+
+\studySubsection{calc-08-k080}{K080 不定积分与积分常数：全体原函数}
+
+\knowledgeAnchor[MATH1-KN-CALC-0127]{不定积分与积分常数}
+\noindent{\footnotesize\textbf{稳定引用：} \knowledgeRef[MATH1-KN-CALC-0127]{不定积分与积分常数}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}不定积分不是一个数，而是某个区间上全部原函数组成的函数族。
+
+\textbf{直接前置四要素桥：}\knowledgeRef[MATH1-KN-CALC-0126]{K079 原函数}规定 \(F'=f\)；此处需要比较任意两个原函数。若 \(F'=G'=f\)，则 \((F-G)'=0\)，由中值定理 \(F-G\) 在连通区间上为常数。最小例 \(x^2\) 与 \(x^2+3\) 都是 \(2x\) 的原函数，恰差常数 \(3\)。
+
+\textbf{严格核心与条件：}
+\[
+\int f(x)\,dx=F(x)+C,\qquad C\in\mathbb R.
+\]
+“相差常数”要求定义域是一个区间；若定义域不连通，各分支可取不同常数。例如 \(1/x\) 在 \((-\infty,0)\) 与 \((0,\infty)\) 上的原函数常数彼此独立。
+
+\textbf{方法选择：}直接积分后必须写 \(+C\)；给初值时再用条件确定 \(C\)；含绝对值或分母零点时先分连通分支。
+
+\textbf{例 1（函数族）}\quad
+\textbf{信号：}\(\int2x\,dx\)。\textbf{分析：}反求幂函数。
+\textbf{完整解答：}\(\int2x\,dx=x^2+C\)。
+\textbf{条件：}全实轴连通。\textbf{易错：}漏 \(C\)。\textbf{核验：}\((x^2+C)'=2x\)。
+
+\textbf{例 2（初值定常数）}\quad
+\textbf{信号：} \(F'=e^x,F(0)=2\)。\textbf{分析：}先写通式。
+\textbf{完整解答：} \(F=e^x+C\)，代 \(F(0)=2\) 得 \(C=1\)，故 \(F=e^x+1\)。
+\textbf{条件：}初值点在定义区间内。\textbf{易错：}把 \(C\) 当成随 \(x\) 变化。\textbf{核验：}求导并代初值。
+
+\textbf{例 3（非连通定义域）}\quad
+\textbf{信号：}\(\int dx/x\) 在 \(\mathbb R\setminus\{0\}\)。\textbf{分析：}定义域有两个分支。
+\textbf{完整解答：}
+\[
+F(x)=\begin{cases}\ln|x|+C_-,&x<0,\\ \ln|x|+C_+,&x>0,\end{cases}
+\]
+其中 \(C_-,C_+\) 可独立。
+\textbf{条件：}不能跨 \(0\) 使用中值定理。\textbf{易错：}强迫两个常数相同。\textbf{核验：}两支求导均为 \(1/x\)。
+
+\textbf{例 4（由导数恢复函数）}\quad
+\textbf{信号：} \(f'(x)=3x^2-2,\ f(1)=4\)。\textbf{分析：}积分后代点。
+\textbf{完整解答：} \(f=x^3-2x+C\)，代入得 \(4=1-2+C\)，故 \(C=5\)。
+\textbf{条件：}等式在含 \(1\) 的同一连通区间成立。\textbf{易错：}先代点再积分。\textbf{核验：} \(f(1)=4\) 且 \(f'=3x^2-2\)。
+
+\textbf{失分防线：}不定积分漏 \(C\) 会丢失全部解；非连通域上“一个 \(C\)”会无故增加跨断点约束。快速检查：答案求导能还原吗？题设初值用了吗？
+
+\textbf{考场表达：}“先得 \(F=F_0+C\)，由初值……得 \(C=\cdots\)”；若域不连通，明确写各分支常数。
+
+\textbf{三级掌握标准：}基础过关：每次不定积分保留 \(C\)；\(130+\)：能处理初值与分支；满分能力：能用中值定理证明同一区间原函数只差常数。
+
+\textbf{知识连接：}下一节 \knowledgeRef[MATH1-KN-CALC-0128]{K081}提供基本公式；\knowledgeRef[MATH1-KN-CALC-0144]{K097}把原函数用于定积分。
+\end{knowledgeBox}
+
+\studySubsection{calc-08-k081}{K081 基本积分公式：反向求导与条件核验}
+
+\knowledgeAnchor[MATH1-KN-CALC-0128]{基本积分公式}
+\noindent{\footnotesize\textbf{稳定引用：} \knowledgeRef[MATH1-KN-CALC-0128]{基本积分公式}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}基本积分公式是求导公式的反向读取；每个系数、符号和定义域都可用求导复核。
+
+\textbf{直接前置四要素桥：}\knowledgeRef[MATH1-KN-CALC-0127]{K080}说明答案必须是函数族 \(F+C\)；这里需要建立常用 \(F'\leftrightarrow f\) 配对。使用时先识别幂、指数、三角和反三角型，再处理常数因子；最小例 \((x^{n+1}/(n+1))'=x^n\)。
+
+\textbf{严格核心：}
+\[
+\int x^\alpha dx=\frac{x^{\alpha+1}}{\alpha+1}+C\ (\alpha\ne-1),\quad
+\int\frac{dx}{x}=\ln|x|+C,
+\]
+\[
+\int e^x dx=e^x+C,\quad
+\int\cos x\,dx=\sin x+C,\quad
+\int\frac{dx}{1+x^2}=\arctan x+C.
+\]
+带参数时必须说明非零或正性条件；线性内层会产生系数倒数。
+
+\textbf{方法选择：}先查是否只差一个常数倍；若结构不直接匹配，留给换元、分部等后续方法，不强行套表。
+
+\textbf{例 1（幂函数边界）}\quad
+\textbf{信号：}\(\int x^{-2}dx\)。\textbf{分析：}\(\alpha=-2\ne-1\)。
+\textbf{完整解答：}\(\int x^{-2}dx=-x^{-1}+C\)。
+\textbf{条件：}在不跨 \(0\) 的区间。\textbf{易错：}把所有负幂都写成对数。\textbf{核验：}\((-1/x)'=1/x^2\)。
+
+\textbf{例 2（绝对值不可漏）}\quad
+\textbf{信号：}\(\int dx/x\)。\textbf{分析：}原函数须同时适用于正、负分支。
+\textbf{完整解答：}\(\ln|x|+C\)。
+\textbf{条件：} \(x\ne0\)，各分支常数可独立。\textbf{易错：}写 \(\ln x\) 却不限制 \(x>0\)。\textbf{核验：} \((\ln|x|)'=1/x\)。
+
+\textbf{例 3（参数反三角型）}\quad
+\textbf{信号：}\(\int dx/(a^2+x^2)\)。\textbf{分析：}缩放到 \(1+u^2\)。
+\textbf{完整解答：}若 \(a>0\)，
+\[
+\int\frac{dx}{a^2+x^2}=\frac1a\arctan\frac xa+C.
+\]
+\textbf{条件：}此写法取 \(a>0\)；一般非零 \(a\) 可用 \(|a|\) 统一。\textbf{易错：}漏前面的 \(1/a\)。\textbf{核验：}链式求导。
+
+\textbf{例 4（线性内层）}\quad
+\textbf{信号：}\(\int(e^{2x}+3\cos3x)\,dx\)。\textbf{分析：}逐项反求并除以内层系数。
+\textbf{完整解答：}\(\frac12e^{2x}+\sin3x+C\)。
+\textbf{条件：}线性性成立。\textbf{易错：}第二项写成 \(3\sin3x\)。\textbf{核验：}求导得 \(e^{2x}+3\cos3x\)。
+
+\textbf{失分防线：}\(\alpha=-1\) 是幂公式唯一边界；\(\ln|x|\)、内层系数倒数和 \(+C\) 是三项固定检查。
+
+\textbf{考场表达：}能直接套公式的题不展开冗长推导，但答案后用一次心算求导核验符号与系数。
+
+\textbf{三级掌握标准：}基础过关：基本公式无停顿；\(130+\)：参数与定义域不漏；满分能力：能迅速识别“非基本型”并切换方法而不误套。
+
+\textbf{知识连接：}为积分计算提供字典；定积分将在 \knowledgeRef[MATH1-KN-CALC-0144]{K097}用端点差消去 \(C\)。
+\end{knowledgeBox}
+
+\studySubsection{calc-08-k088}{K088 定积分的 Riemann 和定义}
+
+\knowledgeAnchor[MATH1-KN-CALC-0135]{定积分的Riemann和定义}
+\noindent{\footnotesize\textbf{稳定引用：} \knowledgeRef[MATH1-KN-CALC-0135]{定积分的Riemann和定义}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}定积分把“很多个小矩形面积之和”的共同极限记为一个数；定义同时解释了和式极限怎样转为积分。
+
+\textbf{直接前置四要素桥：}有限和的每一项是“高度 \(f(\xi_i)\)×宽度 \(\Delta x_i\)”；本题需要让最大宽度趋零以消除取点误差。使用时识别区间、宽度和采样点；最小例把 \([0,1]\) 等分后，\(\frac1n\sum k/n\) 正是右端点矩形和。
+
+\textbf{严格核心与条件：}分割 \(a=x_0<\cdots<x_n=b\)，在每段取 \(\xi_i\)，若当网格 \(\lambda=\max\Delta x_i\to0\) 时
+\[
+\sum_{i=1}^n f(\xi_i)\Delta x_i
+\]
+对所有分割和取点趋于同一有限数 \(I\)，则 \(f\) Riemann 可积，记 \(I=\int_a^b f(x)\,dx\)。共同极限必须与取点无关。
+
+\textbf{方法选择：}等距和先找 \(\Delta x=(b-a)/n\)；把剩余表达式写成 \(f(a+k\Delta x)\)。索引平移或中点采样只要仍落在小区间内，极限通常相同。
+
+\textbf{例 1（一次函数）}\quad
+\textbf{信号：}\(\frac1n\sum_{k=1}^n k/n\)。\textbf{分析：}\(\Delta x=1/n,x_k=k/n\)。
+\textbf{完整解答：}极限为 \(\int_0^1x\,dx=1/2\)。
+\textbf{条件：} \(x\) 在 \([0,1]\) 连续。\textbf{易错：}漏外层 \(1/n\)。\textbf{核验：}和式精确值 \((n+1)/(2n)\to1/2\)。
+
+\textbf{例 2（二次函数）}\quad
+\textbf{信号：}\(\frac1n\sum(k/n)^2\)。\textbf{分析：}同一区间右端采样。
+\textbf{完整解答：}\(\int_0^1x^2dx=1/3\)。
+\textbf{条件：}连续可积。\textbf{易错：}误读成 \(\int_0^n\)。\textbf{核验：}\(\sum k^2/n^3\to1/3\)。
+
+\textbf{例 3（中点采样）}\quad
+\textbf{信号：}\(\frac1n\sum f((k-\frac12)/n)\)。\textbf{分析：}采样点是每个小区间中点。
+\textbf{完整解答：}若 \(f\in C[0,1]\)，极限为 \(\int_0^1f(x)dx\)。
+\textbf{条件：}连续性保证可积与取点无关。\textbf{易错：}把偏移量当成积分区间改变。\textbf{核验：}采样点始终落在 \([(k-1)/n,k/n]\)。
+
+\textbf{例 4（识别被积函数）}\quad
+\textbf{信号：}\(\frac1n\sum_{k=1}^n1/(1+k/n)\)。\textbf{分析：} \(f(x)=1/(1+x)\)。
+\textbf{完整解答：}极限为 \(\int_0^1dx/(1+x)=\ln2\)。
+\textbf{条件：}分母在区间上非零。\textbf{易错：}把 \(k/n\) 当 \(x\) 后漏 \(dx\) 对应的 \(1/n\)。\textbf{核验：}每项在 \(1/2\) 与 \(1\) 间，极限 \(\ln2\) 合理。
+
+\textbf{失分防线：}三要素“宽度、区间、采样点”少一项就可能读错；若外层尺度不是 \(\Delta x\)，先提取到标准形式。
+
+\textbf{考场表达：}明确写“令 \(\Delta x=\cdots,x_k=\cdots\)，原式为 \([a,b]\) 上 \(f\) 的 Riemann 和，故……。”
+
+\textbf{三级掌握标准：}基础过关：标准等距和能读出积分；\(130+\)：会处理中点、偏移与缩放；满分能力：能从一般区间反向设计 Riemann 和并核验可积性。
+
+\textbf{知识连接：}可积条件由 \knowledgeRef[MATH1-KN-CALC-0136]{K089}给出；和式极限方法将在 \knowledgeRef[MATH1-KN-CALC-0147]{K100}系统化。
+\end{knowledgeBox}
+
+\studySubsection{calc-08-k089}{K089 定积分存在性：哪些函数可积}
+
+\knowledgeAnchor[MATH1-KN-CALC-0136]{定积分存在性与可积函数}
+\noindent{\footnotesize\textbf{稳定引用：} \knowledgeRef[MATH1-KN-CALC-0136]{定积分存在性与可积函数}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}在计算定积分前，先确认它作为普通 Riemann 积分是否存在。
+
+\textbf{直接前置四要素桥：}\knowledgeRef[MATH1-KN-CALC-0135]{K088}要求所有细分取点的和趋于同一值；这里需要容易检查的充分条件。连续、分段连续、单调有界函数在闭区间可积；最小例阶跃函数虽在一点跳跃，但细分变细后含跳点的小区间贡献趋零。
+
+\textbf{严格核心与边界：}闭区间连续函数必可积；有限个第一类间断点且有界的分段连续函数可积；单调有界函数可积。普通 Riemann 可积必有界，但“有界”本身不充分。无界端点应转为反常积分，不能直接称普通定积分。
+
+\textbf{方法选择：}初等函数先查定义域和有界性；有限分段点通常可积；稠密振荡函数需回定义判；无界立即转反常框架。
+
+\textbf{例 1（连续函数）}\quad
+\textbf{信号：} \(e^{-x^2}\) 在 \([0,1]\)。\textbf{分析：}连续充分。
+\textbf{完整解答：}函数在闭区间连续，故 Riemann 可积。
+\textbf{条件：}闭且有界区间。\textbf{易错：}因原函数不能初等表示便说不可积。\textbf{核验：}“可积”与“能写初等原函数”不同。
+
+\textbf{例 2（有限跳跃）}\quad
+\textbf{信号：} \(f=0\,(x<0),1\,(x\ge0)\) 在 \([-1,1]\)。\textbf{分析：}有界且仅一个跳点。
+\textbf{完整解答：}分段连续，故可积，且积分为 \(1\)。
+\textbf{条件：}点值改变不影响积分。\textbf{易错：}不连续便判不可积。\textbf{核验：}两段积分为 \(0+1\)。
+
+\textbf{例 3（有界仍不可积）}\quad
+\textbf{信号：}Dirichlet 函数 \(f=1\)（有理），\(0\)（无理）。\textbf{分析：}任意小区间都同时含两类点。
+\textbf{完整解答：}任意分割的上和恒为区间长度、下和恒为 \(0\)，二者差不趋零，故不可 Riemann 积。
+\textbf{条件：}使用有理数、无理数均稠密。\textbf{易错：}仅由有界推出可积。\textbf{核验：}取点不同可让 Riemann 和趋向不同。
+
+\textbf{例 4（无界端点）}\quad
+\textbf{信号：} \(1/\sqrt x\) 在 \([0,1]\)。\textbf{分析：} \(0\) 处无界。
+\textbf{完整解答：}它不是普通 Riemann 可积；若按反常积分定义，\(\lim_{\varepsilon\to0^+}\int_\varepsilon^1x^{-1/2}dx=2\)，则反常积分收敛。
+\textbf{条件：}必须明确“普通”与“反常”。\textbf{易错：}因反常值有限便倒推普通可积。\textbf{核验：}普通可积函数必有界。
+
+\textbf{失分防线：}连续是充分条件而非必要条件；有界是必要条件而非充分条件。快速检查：“闭区间？有界？间断点类型与数量？”
+
+\textbf{考场表达：}先引用准确充分条件；遇无界点写“普通定积分不存在，以下改按反常积分定义”。
+
+\textbf{三级掌握标准：}基础过关：连续/分段连续能判；\(130+\)：会给有界不可积反例；满分能力：能严格区分可积、原函数存在与反常收敛。
+
+\textbf{知识连接：}前置为 \knowledgeRef[MATH1-KN-CALC-0135]{K088}；性质运算从 \knowledgeRef[MATH1-KN-CALC-0137]{K090}开始。
+\end{knowledgeBox}
+
+\studySubsection{calc-08-k090}{K090 定积分线性、区间可加性与换向}
+
+\knowledgeAnchor[MATH1-KN-CALC-0137]{线性、区间可加性与换向}
+\noindent{\footnotesize\textbf{稳定引用：} \knowledgeRef[MATH1-KN-CALC-0137]{线性、区间可加性与换向}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}这些代数性质负责拆区间、合并同被积函数，并处理上下限方向。
+
+\textbf{直接前置四要素桥：}\knowledgeRef[MATH1-KN-CALC-0135]{K088 Riemann 和}本身是有限和；本讲性质来自有限和的线性与区间拼接。使用时只合并同一积分变量下的相同被积结构；最小例 \(\int_0^2f=\int_0^1f+\int_1^2f\)。
+
+\textbf{严格核心与条件：}
+\[
+\int_a^b(\alpha f+\beta g)=\alpha\int_a^bf+\beta\int_a^bg,\quad
+\int_a^bf+\int_b^cf=\int_a^cf,
+\]
+\[
+\int_b^af=-\int_a^bf,\qquad \int_a^af=0.
+\]
+函数须在相关区间可积；区间方向由符号编码。
+
+\textbf{方法选择：}绝对值、分段函数按分界点拆；含变量上限的式子先统一方向再拼区间；被积函数不同不能只凭端点相接强行合并。
+
+\textbf{例 1（线性）}\quad
+\textbf{信号：}已知 \(\int_0^1f=2,\int_0^1g=-1\)。\textbf{分析：}直接线性。
+\textbf{完整解答：}\(\int_0^1(3f-2g)=3\cdot2-2(-1)=8\)。
+\textbf{条件：}两函数均可积。\textbf{易错：}漏负号。\textbf{核验：}把两个系数分别计算。
+
+\textbf{例 2（区间拼接）}\quad
+\textbf{信号：}\(\int_0^2f+\int_2^5f\)。\textbf{分析：}同一被积函数、首尾相接。
+\textbf{完整解答：}\(\int_0^5f\)。
+\textbf{条件：} \(f\) 在 \([0,5]\) 可积。\textbf{易错：}被积函数不同时仍合并。\textbf{核验：}区间方向连续为 \(0\to2\to5\)。
+
+\textbf{例 3（换向）}\quad
+\textbf{信号：}\(\int_3^1x\,dx\)。\textbf{分析：}先换向。
+\textbf{完整解答：}\(-\int_1^3x\,dx=-(9-1)/2=-4\)。
+\textbf{条件：}连续可积。\textbf{易错：}换上下限不变号。\textbf{核验：}直接原函数代入得 \(1/2-9/2=-4\)。
+
+\textbf{例 4（绝对值分段）}\quad
+\textbf{信号：}\(\int_{-1}^2|x|dx\)。\textbf{分析：}在 \(0\) 拆区间。
+\textbf{完整解答：}\(\int_{-1}^0(-x)dx+\int_0^2x\,dx=1/2+2=5/2\)。
+\textbf{条件：}分段后表达式正确。\textbf{易错：}整段去绝对值。\textbf{核验：}积分非负。
+
+\textbf{失分防线：}端点相接但被积函数不同不能合并；换向必变号。快速用“有向箭头”检查端点链。
+
+\textbf{考场表达：}先统一方向，再写可加性；绝对值题先标分界点，避免心算漏段。
+
+\textbf{三级掌握标准：}基础过关：线性与换向零失误；\(130+\)：变量上限和分段拼接稳定；满分能力：能在复杂等式中选择最少拆分。
+
+\textbf{知识连接：}这些代数性质为 \knowledgeRef[MATH1-KN-CALC-0138]{K091 估计}和 \knowledgeRef[MATH1-KN-CALC-0145]{K098 复合上下限}提供化简基础。
+\end{knowledgeBox}
+
+\studySubsection{calc-08-k091}{K091 保序性、绝对值不等式与积分估计}
+
+\knowledgeAnchor[MATH1-KN-CALC-0138]{保序性、绝对值不等式与估计}
+\noindent{\footnotesize\textbf{稳定引用：} \knowledgeRef[MATH1-KN-CALC-0138]{保序性、绝对值不等式与估计}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}把点态不等式积起来，是定积分估计的第一选择；它用于夹逼极限、证明非负性和控制误差。
+
+\textbf{直接前置四要素桥：}\knowledgeRef[MATH1-KN-CALC-0135]{K088}把积分看成带正宽度的和；若每个采样点 \(f\le g\)，对应和也保持次序，极限仍保序。使用时统一为 \(a<b\) 并确认可积；最小例 \(0\le x\le1\) 推出 \(0\le\int_0^1x\,dx\le1\)。
+
+\textbf{严格核心与条件：}若 \(a<b\)、\(f\le g\)，则 \(\int_a^bf\le\int_a^bg\)；并有
+\[
+\left|\int_a^bf\right|\le\int_a^b|f|,\qquad
+m(b-a)\le\int_a^bf\le M(b-a)
+\]
+当 \(m\le f\le M\)。由积分大小通常不能反推处处的点态大小；严格不等式需要函数在一段正长度区间上真正严格。
+
+\textbf{方法选择：}先找常数界、单调端点界或简单比较函数；符号变化时先取绝对值；连续非负函数积分为零可反推恒为零。
+
+\textbf{例 1（常数界）}\quad
+\textbf{信号：}估计 \(I=\int_0^1dx/(1+x^2)\)。\textbf{分析：}区间上 \(1/2\le1/(1+x^2)\le1\)。
+\textbf{完整解答：}\(1/2\le I\le1\)。
+\textbf{条件：}区间方向正向。\textbf{易错：}比较方向写反。\textbf{核验：}精确值 \(\pi/4\) 在界内。
+
+\textbf{例 2（绝对值）}\quad
+\textbf{信号：}控制 \(\int_0^\pi f(x)\sin x\,dx\)，已知 \(|f|\le2\)。\textbf{分析：}\(\sin x\ge0\)。
+\textbf{完整解答：}
+\[
+\left|\int_0^\pi f\sin x\,dx\right|
+\le\int_0^\pi|f|\sin x\,dx\le2\int_0^\pi\sin x\,dx=4.
+\]
+\textbf{条件：} \(f\) 可积。\textbf{易错：}把绝对值直接移入却不写不等号。\textbf{核验：} \(f\equiv\pm2\) 可取等。
+
+\textbf{例 3（单调端点界）}\quad
+\textbf{信号：}\(e^{-x^2}\) 在 \([0,1]\) 单调减。\textbf{分析：}端点给常数界。
+\textbf{完整解答：}\(e^{-1}\le e^{-x^2}\le1\)，故
+\[
+e^{-1}\le\int_0^1e^{-x^2}dx\le1.
+\]
+\textbf{条件：}连续可积。\textbf{易错：}把函数值界忘乘区间长度；本题长度恰为 \(1\)。\textbf{核验：}积分为正。
+
+\textbf{例 4（零积分反推）}\quad
+\textbf{信号：}连续 \(f\ge0\) 且 \(\int_a^bf=0\)。\textbf{分析：}反证某点正。
+\textbf{完整解答：}若 \(f(x_0)>0\)，由连续性存在一小区间使 \(f\ge f(x_0)/2>0\)，其积分正，与总积分为零矛盾，故 \(f\equiv0\)。
+\textbf{条件：}连续与非负都关键。\textbf{易错：}对任意变号函数也反推恒零。\textbf{核验：} \(f(x)=x\) 在 \([-1,1]\) 积分为零但不恒零。
+
+\textbf{失分防线：}积分不等式方向依赖有向区间；由积分结论反推点态结论通常错误。快速检查点态前提是否对整个区间成立。
+
+\textbf{考场表达：}先写点态界，再两端积分；不要直接跳到数值界。
+
+\textbf{三级掌握标准：}基础过关：会用 \(m,M\) 和绝对值；\(130+\)：能选更紧比较函数；满分能力：能判断何时积分等号迫使点态等号。
+
+\textbf{知识连接：}与 \knowledgeRef[MATH1-KN-CALC-0119]{K072 最值}直接相连；平均值观点进入 \knowledgeRef[MATH1-KN-CALC-0139]{K092}。
+\end{knowledgeBox}
+
+\studySubsection{calc-08-k092}{K092 积分中值定理：连续函数取到平均值}
+
+\knowledgeAnchor[MATH1-KN-CALC-0139]{积分中值定理}
+\noindent{\footnotesize\textbf{稳定引用：} \knowledgeRef[MATH1-KN-CALC-0139]{积分中值定理}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}积分中值定理把一整段函数的累计量压缩成某点函数值乘区间长度；核心是“连续函数能取到自己的平均值”。
+
+\textbf{直接前置四要素桥：}\knowledgeRef[MATH1-KN-CALC-0138]{K091 保序性}给出 \(m(b-a)\le\int f\le M(b-a)\)；本题需要连续性保证介于 \(m,M\) 的平均值确被 \(f\) 取到。使用时先除以 \(b-a>0\)，再用介值性；最小例 \(f(x)=x\) 在 \([0,1]\) 的平均值为 \(1/2=f(1/2)\)。
+
+\textbf{严格核心与条件：}若 \(f\in C[a,b]\)，则存在 \(\xi\in[a,b]\) 使
+\[
+\int_a^bf(x)dx=f(\xi)(b-a).
+\]
+若 \(f\) 连续、\(g\) 可积且不变号，则存在 \(\xi\) 使
+\[
+\int_a^bf(x)g(x)dx=f(\xi)\int_a^bg(x)dx.
+\]
+权函数变号时不能套加权形式；\(\xi\) 只保证存在，不必是中点，也通常不唯一。
+
+\textbf{方法选择：}出现“存在 \(\xi\) 使积分等于函数值×常数”优先；若权函数不变号用加权版；若题目要求极限，平均值点随区间收缩再用连续性。
+
+\textbf{例 1（可求中值点）}\quad
+\textbf{信号：}\(\int_0^1x^2dx=f(\xi)\)。\textbf{分析：}区间长度为 \(1\)。
+\textbf{完整解答：}\(1/3=\xi^2\)，在 \([0,1]\) 可取 \(\xi=1/\sqrt3\)。
+\textbf{条件：} \(x^2\) 连续。\textbf{易错：}默认 \(\xi=1/2\)。\textbf{核验：}\((1/\sqrt3)^2=1/3\)。
+
+\textbf{例 2（不必求 \(\xi\)）}\quad
+\textbf{信号：}证明存在 \(\xi\in[0,\pi]\) 使 \(\int_0^\pi\sin x\,dx=\pi\sin\xi\)。
+\textbf{分析：}直接基本中值定理。\textbf{完整解答：}\(\sin x\) 连续，故所述 \(\xi\) 存在；事实上 \(\sin\xi=2/\pi\)。
+\textbf{条件：}连续闭区间。\textbf{易错：}把存在性题做成求精确 \(\xi\)。\textbf{核验：} \(2/\pi\in[0,1]\)。
+
+\textbf{例 3（加权形式）}\quad
+\textbf{信号：}\(\int_0^1e^x x\,dx\)。\textbf{分析：}权函数 \(x\ge0\)。
+\textbf{完整解答：}存在 \(\xi\in[0,1]\) 使
+\[
+\int_0^1xe^x dx=e^\xi\int_0^1x\,dx=\frac12e^\xi.
+\]
+\textbf{条件：} \(e^x\) 连续，\(x\) 不变号。\textbf{易错：}权函数变号也硬套。\textbf{核验：}积分值 \(1\)，故 \(e^\xi=2\)，\(\xi=\ln2\in[0,1]\)。
+
+\textbf{例 4（局部平均极限）}\quad
+\textbf{信号：}\(\lim_{h\to0^+}\frac1h\int_x^{x+h}f(t)dt\)，\(f\) 在 \(x\) 连续。
+\textbf{分析：}缩短区间上的中值点趋向 \(x\)。
+\textbf{完整解答：}存在 \(\xi_h\in[x,x+h]\) 使原式 \(=f(\xi_h)\)。因 \(\xi_h\to x\)，连续性给极限 \(f(x)\)。
+\textbf{条件：} \(h>0\) 且 \(f\) 在邻域连续。\textbf{易错：}把 \(\xi_h\) 当固定点。\textbf{核验：}对常函数结论立即成立。
+
+\textbf{失分防线：}加权权函数必须不变号；中值点依赖区间和函数。快速检查等式右侧是否还应乘 \(\int g\) 或 \(b-a\)。
+
+\textbf{考场表达：}先写连续性与权函数符号，再引用定理；存在性问题无需擅自求 \(\xi\)。
+
+\textbf{三级掌握标准：}基础过关：公式与区间长度不漏；\(130+\)：会用加权形式；满分能力：能把收缩区间中值点用于局部平均极限。
+
+\textbf{知识连接：}由 \knowledgeRef[MATH1-KN-CALC-0138]{K091}与介值性推出，并为 \knowledgeRef[MATH1-KN-CALC-0143]{K096}的导数证明提供直觉。
+\end{knowledgeBox}
+
+\studySubsection{calc-08-k096}{K096 变上限积分函数：连续性、求导与性质}
+
+\knowledgeAnchor[MATH1-KN-CALC-0143]{变上限积分函数及连续性}
+\noindent{\footnotesize\textbf{稳定引用：} \knowledgeRef[MATH1-KN-CALC-0143]{变上限积分函数及连续性}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}把积分上限换成变量 \(x\)，定积分就成为新函数
+\[
+F(x)=\int_a^x f(t)\,dt.
+\]
+本讲先证明 \(F\) 连续，再在 \(f\) 的连续点求导。
+
+\textbf{直接前置四要素桥：}\knowledgeRef[MATH1-KN-CALC-0137]{K090 区间可加性}给
+\[
+F(x+h)-F(x)=\int_x^{x+h}f(t)dt;
+\]
+本题用这段“小面积”控制函数增量。若 \(|f|\le M\)，则增量绝对值不超过 \(M|h|\)，故趋零。最小例 \(f\equiv1\) 时 \(F(x)=x-a\)，上限移动多少，面积就改变多少。
+
+\textbf{严格核心与条件：}若 \(f\) 在闭区间可积，则有界，从而 \(F\) 连续；若 \(f\) 在点 \(x\) 连续，则
+\[
+\frac{F(x+h)-F(x)}h=\frac1h\int_x^{x+h}f(t)dt\to f(x),
+\]
+故 \(F'(x)=f(x)\)。积分变量 \(t\) 是哑变量，不能与外变量 \(x\) 混用。
+
+\textbf{方法选择：}只问连续性用有界估计；问导数先检查被积函数在对应点连续；问单调性则看 \(F'=f\) 的符号。
+
+\textbf{例 1（直接构造原函数）}\quad
+\textbf{信号：} \(F(x)=\int_0^xt^2dt\)。\textbf{分析：}被积函数连续。
+\textbf{完整解答：} \(F=x^3/3\)，且 \(F'=x^2\)。
+\textbf{条件：}全实轴连续。\textbf{易错：}把结果写成 \(x^2\)。\textbf{核验：}直接积分与基本定理一致。
+
+\textbf{例 2（连续但二阶性质分段）}\quad
+\textbf{信号：} \(F(x)=\int_0^x|t|dt\)。\textbf{分析：}被积函数连续但分段。
+\textbf{完整解答：}
+\[
+F(x)=\begin{cases}x^2/2,&x\ge0,\\-x^2/2,&x<0,\end{cases}
+\qquad F'(x)=|x|.
+\]
+\textbf{条件：}换向积分使负半轴结果为负。\textbf{易错：}误写成 \(x^2/2\) 对所有 \(x\)。\textbf{核验：} \(F\) 为奇函数。
+
+\textbf{例 3（不连续点仍连续）}\quad
+\textbf{信号：} \(f(t)=-1\,(t<0),1\,(t\ge0)\)，\(F=\int_0^xf\)。
+\textbf{分析：} \(f\) 可积有界，故 \(F\) 连续。
+\textbf{完整解答：} \(F(x)=|x|\)，在 \(0\) 连续但不可导；这说明 \(f\) 不连续点不能机械套 \(F'=f\)。
+\textbf{条件：}点值 \(f(0)\) 不改变积分。\textbf{易错：}写 \(F'(0)=f(0)=1\)。\textbf{核验：}\(|x|\) 左右导数不同。
+
+\textbf{例 4（奇偶迁移）}\quad
+\textbf{信号：} \(F(x)=\int_0^x t/(1+t^2)dt\)。\textbf{分析：}被积函数为奇函数。
+\textbf{完整解答：} \(F(x)=\frac12\ln(1+x^2)\)，故 \(F\) 为偶函数且在 \((-\infty,0]\) 减、\([0,\infty)\) 增。
+\textbf{条件：}分母恒正。\textbf{易错：}认为奇函数的变上限积分仍为奇函数。\textbf{核验：}显式结果是偶函数。
+
+\textbf{失分防线：}把哑变量写成外变量会造成 \(\int_a^x f(x)dx\) 的歧义；\(f\) 在一点不连续时，不能不加判断写 \(F'=f\)。快速检查“积分号内变量、连续点、上下限方向”。
+
+\textbf{考场表达：}“由区间可加性……；因 \(f\) 在 \(x\) 连续，局部平均趋于 \(f(x)\)，故 \(F'(x)=f(x)\)。”
+
+\textbf{三级掌握标准：}基础过关：会把它当函数求值求导；\(130+\)：会在不连续点逐点判断；满分能力：能用导数符号分析其奇偶、单调、极值及积分方程。
+
+\textbf{知识连接：}闭合 \knowledgeRef[MATH1-KN-CALC-0126]{K079 连续函数有原函数}；直接进入 \knowledgeRef[MATH1-KN-CALC-0144]{K097 微积分基本定理}。
+\end{knowledgeBox}
+
+\studySubsection{calc-08-k097}{K097 微积分基本定理与 Newton--Leibniz 公式}
+
+\knowledgeAnchor[MATH1-KN-CALC-0144]{微积分基本定理与Newton–Leibniz公式}
+\noindent{\footnotesize\textbf{稳定引用：} \knowledgeRef[MATH1-KN-CALC-0144]{微积分基本定理与Newton–Leibniz公式}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}基本定理说明“积分生成原函数”，Newton--Leibniz 公式说明“用任一原函数的端点差计算定积分”。
+
+\textbf{直接前置四要素桥：}\knowledgeRef[MATH1-KN-CALC-0143]{K096}已证 \(\frac d{dx}\int_a^xf=f(x)\)（\(f\) 连续）；本题需要把这个标准原函数与任意原函数比较。若 \(G'=f\)，则 \(G(x)-\int_a^xf\) 为常数；最小例 \(f=2x\) 的积分从 \(0\) 到 \(x\) 等于 \(x^2\)。
+
+\textbf{严格核心与条件：}若 \(f\in C[a,b]\)，\(G'=f\)，则
+\[
+\int_a^bf(x)dx=G(b)-G(a).
+\]
+端点差使不定积分常数自动消去。普通公式不能把无穷直接当端点；反常积分须先截断再取极限。
+
+\textbf{方法选择：}定积分计算先找最短原函数；变上限求导用基本定理；给导数和初值的模型可写成积分形式。
+
+\textbf{例 1（端点差）}\quad
+\textbf{信号：}\(\int_0^13x^2dx\)。\textbf{分析：}原函数 \(x^3\)。
+\textbf{完整解答：}\([x^3]_0^1=1\)。
+\textbf{条件：}连续。\textbf{易错：}上限减下限次序反。\textbf{核验：}被积函数非负，结果为正。
+
+\textbf{例 2（变上限求导）}\quad
+\textbf{信号：}\(F=\int_2^x\cos tdt\)。\textbf{分析：}直接基本定理。
+\textbf{完整解答：} \(F'(x)=\cos x\)。
+\textbf{条件：}\(\cos t\) 连续。\textbf{易错：}把下限 \(2\) 代入导数。\textbf{核验：}显式 \(F=\sin x-\sin2\)。
+
+\textbf{例 3（任意原函数）}\quad
+\textbf{信号：}已知 \(G'=f\)，化简 \(\int_u^vf\)。\textbf{分析：}常数不影响端点差。
+\textbf{完整解答：}\(\int_u^vf=G(v)-G(u)\)。
+\textbf{条件：} \(f\) 在 \([u,v]\) 连续且 \(G\) 是该区间原函数。\textbf{易错：}写成 \(G(u)-G(v)\)。\textbf{核验：}令 \(f\equiv1\) 得 \(v-u\)。
+
+\textbf{例 4（初值积分表示）}\quad
+\textbf{信号：} \(y'=e^{-x^2},y(0)=3\)。\textbf{分析：}原函数未必初等，但积分表示完整。
+\textbf{完整解答：}
+\[
+y(x)=3+\int_0^xe^{-t^2}dt.
+\]
+\textbf{条件：}被积函数连续。\textbf{易错：}因无初等原函数便认为无解。\textbf{核验：}求导并代 \(x=0\)。
+
+\textbf{失分防线：}反常积分的“无穷”不是可直接代入的数；定积分不写 \(+C\)。快速检查端点顺序与区间方向。
+
+\textbf{考场表达：}“取原函数 \(G=\cdots\)，由 Newton--Leibniz 公式，积分 \(=[G]_a^b=G(b)-G(a)=\cdots\)”。
+
+\textbf{三级掌握标准：}基础过关：端点差零失误；\(130+\)：能在无初等原函数时用积分表示；满分能力：能在证明中自由切换导数式和积分式并守住连续/反常边界。
+
+\textbf{知识连接：}前置为 \knowledgeRef[MATH1-KN-CALC-0143]{K096}；复合上下限进入 \knowledgeRef[MATH1-KN-CALC-0145]{K098}。
+\end{knowledgeBox}
+
+\studySubsection{calc-08-k098}{K098 复合上下限求导：上端减下端}
+
+\knowledgeAnchor[MATH1-KN-CALC-0145]{复合上下限求导}
+\noindent{\footnotesize\textbf{稳定引用：} \knowledgeRef[MATH1-KN-CALC-0145]{复合上下限求导}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}当积分上下限都是 \(x\) 的函数，而被积函数不显含外变量 \(x\) 时，基本定理与链式法则合成“上端减下端”。
+
+\textbf{直接前置四要素桥：}\knowledgeRef[MATH1-KN-CALC-0144]{K097}给 \(H'(u)=f(u)\)，链式法则给 \(\frac d{dx}H(\beta(x))=f(\beta)\beta'\)。本题把
+\[
+\int_{\alpha(x)}^{\beta(x)}f(t)dt=H(\beta(x))-H(\alpha(x))
+\]
+两项求导。最小例 \(\int_0^{x^2}1dt=x^2\)，导数 \(2x\) 正是上端函数值 \(1\) 乘上限导数 \(2x\)。
+
+\textbf{严格核心与条件：}
+\[
+\frac d{dx}\int_{\alpha(x)}^{\beta(x)}f(t)dt
+=f(\beta(x))\beta'(x)-f(\alpha(x))\alpha'(x).
+\]
+要求 \(f\) 在相关端点连续、上下限可导。若被积函数还显含 \(x\)，此式不完整，须加积分内偏导项。
+
+\textbf{方法选择：}先圈出上限、下限、哑变量；写“上端项－下端项”；对称上下限结合奇偶性可先化简。
+
+\textbf{例 1（复合上限）}\quad
+\textbf{信号：}\(F=\int_0^{x^2}\cos tdt\)。\textbf{分析：}上限链式。
+\textbf{完整解答：} \(F'=2x\cos(x^2)\)。
+\textbf{条件：}\(\cos t\) 连续。\textbf{易错：}漏 \(2x\)。\textbf{核验：}显式 \(F=\sin(x^2)\)。
+
+\textbf{例 2（上下限都变）}\quad
+\textbf{信号：}\(F=\int_x^{x^2}e^tdt\)。\textbf{分析：}上端减下端。
+\textbf{完整解答：} \(F'=2xe^{x^2}-e^x\)。
+\textbf{条件：}上下限可导。\textbf{易错：}下限项漏负号。\textbf{核验：}显式 \(e^{x^2}-e^x\)。
+
+\textbf{例 3（对称上下限）}\quad
+\textbf{信号：}\(F=\int_{-x}^{x}dt/(1+t^2)\)。\textbf{分析：}两端均贡献正项。
+\textbf{完整解答：}
+\[
+F'=\frac1{1+x^2}-\frac1{1+x^2}(-1)=\frac2{1+x^2}.
+\]
+\textbf{条件：}被积函数连续。\textbf{易错：}因端点对称而相消。\textbf{核验：} \(F=2\arctan x\)。
+
+\textbf{例 4（参数确定）}\quad
+\textbf{信号：} \(F(x)=\int_{ax}^{x^2}(1+t^2)dt\)，求 \(F'(0)\)。
+\textbf{分析：}上下端公式后代点。
+\textbf{完整解答：}
+\[
+F'=2x(1+x^4)-a(1+a^2x^2),\qquad F'(0)=-a.
+\]
+\textbf{条件：} \(a\) 为常数。\textbf{易错：}先把 \(x=0\) 代入积分得到 \(0\)，再误判导数为零。\textbf{核验：}一阶小量主要来自下限 \(ax\)。
+
+\textbf{失分防线：}两处链式因子、下限负号缺一不可；被积函数显含 \(x\) 时立即转 K099。快速口诀：“上端函数值乘上端导数，减下端函数值乘下端导数。”
+
+\textbf{考场表达：}先把积分变量改成 \(t\)，避免与外变量混；一行写完整公式后再化简。
+
+\textbf{三级掌握标准：}基础过关：上减下无失误；\(130+\)：复合与对称端点稳定；满分能力：能识别是否还缺积分内偏导项。
+
+\textbf{知识连接：}复用 \knowledgeRef[MATH1-KN-CALC-0144]{K097}和链式法则；被积函数含参数进入 \knowledgeRef[MATH1-KN-CALC-0146]{K099}。
+\end{knowledgeBox}
+
+\studySubsection{calc-08-k099}{K099 含参数积分求导：Leibniz 扩展及边界}
+
+\knowledgeAnchor[MATH1-KN-CALC-0146]{含参数积分求导（Leibniz扩展）}
+\noindent{\footnotesize\textbf{稳定引用：} \knowledgeRef[MATH1-KN-CALC-0146]{含参数积分求导（Leibniz扩展）}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}若被积函数 \(F(x,t)\) 也显含外变量 \(x\)，积分变化除端点移动外，还有整个区间内部函数值的变化。
+
+\textbf{直接前置四要素桥：}\knowledgeRef[MATH1-KN-CALC-0145]{K098}只处理端点效应；偏导 \(F_x\) 则描述固定 \(t\) 时被积函数随 \(x\) 的变化。本题把二者相加。最小例 \(\int_0^1xt\,dt=x/2\)，上下限不动但导数为 \(1/2=\int_0^1t\,dt\)。
+
+\textbf{严格核心与条件：}在 \(F,F_x\) 连续等足以交换求导与积分的条件下，
+\[
+\frac d{dx}\int_{a(x)}^{b(x)}F(x,t)dt
+=F(x,b)b'-F(x,a)a'+\int_a^bF_x(x,t)dt.
+\]
+一般分析条件不是此处扩展重点，但“光滑性足够”不能完全不写。
+
+\textbf{方法选择：}固定端点只剩积分内偏导；被积函数不含 \(x\) 就退化为 K098；初等函数可先直接积分时，也可用显式结果复核。
+
+\textbf{例 1（固定端点）}\quad
+\textbf{信号：} \(I(x)=\int_0^1e^{xt}dt\)。\textbf{分析：}只有内项。
+\textbf{完整解答：} \(I'(x)=\int_0^1te^{xt}dt\)。
+\textbf{条件：}被积函数及其偏导连续。\textbf{易错：}因端点固定便写导数为零。\textbf{核验：} \(x\ne0\) 时显式 \(I=(e^x-1)/x\) 可求导比较。
+
+\textbf{例 2（变上限加内项）}\quad
+\textbf{信号：} \(I=\int_0^x(x+t)dt\)。\textbf{分析：}上端效应加 \(\partial/\partial x\)。
+\textbf{完整解答：}
+\[
+I'=(x+x)\cdot1+\int_0^x1\,dt=3x.
+\]
+\textbf{条件：}多项式光滑。\textbf{易错：}只算端点得 \(2x\)。\textbf{核验：} \(I=3x^2/2\)。
+
+\textbf{例 3（两端与内项）}\quad
+\textbf{信号：} \(I=\int_x^{2x}xt\,dt\)。\textbf{分析：}三部分齐全。
+\textbf{完整解答：}
+\[
+I'=x(2x)\cdot2-x(x)\cdot1+\int_x^{2x}t\,dt
+=4x^2-x^2+\frac32x^2=\frac92x^2.
+\]
+\textbf{条件：}上下限可导。\textbf{易错：}端点代值时把外变量 \(x\) 也替成端点。\textbf{核验：} \(I=\frac32x^3\)，导数 \(9x^2/2\)。
+
+\textbf{例 4（边界意识）}\quad
+\textbf{信号：}有人对任意 \(F\) 无条件交换求导和积分。\textbf{分析：}指出缺失条件。
+\textbf{完整解答：}该步骤一般不合法；至少需题设给出连续偏导等足以保证交换的条件。统考初等光滑题可核验后使用，但不能把公式当无条件代数恒等式。
+\textbf{条件：}这是方法边界判断。\textbf{易错：}只背公式不写光滑性。\textbf{核验：}当 \(F_x\) 连续于紧矩形时，常用充分条件满足。
+
+\textbf{失分防线：}最常见错误是漏 \(\int F_x\)；其次是把端点代入时改变外变量。快速标色：外变量 \(x\) 保留，哑变量 \(t\) 才替成端点。
+
+\textbf{考场表达：}先声明“在题设光滑条件下可交换求导与积分”，再写端点两项与内项。
+
+\textbf{三级掌握标准：}基础过关：固定端点会积分内求偏导；\(130+\)：三项公式完整；满分能力：能辨别何时只能保留形式、何时可由初等显式积分复核。
+
+\textbf{知识连接：}是 \knowledgeRef[MATH1-KN-CALC-0145]{K098}的扩展；其一般条件只作边界意识，不展开实分析。
+\end{knowledgeBox}
+
+\studySubsection{calc-08-k100}{K100 Riemann 和极限：三要素识别与归一化}
+
+\knowledgeAnchor[MATH1-KN-CALC-0147]{Riemann和极限}
+\noindent{\footnotesize\textbf{稳定引用：} \knowledgeRef[MATH1-KN-CALC-0147]{Riemann和极限}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}本讲把 K088 的定义变成考场算法：看到 \(n\) 项和，先找 \(\Delta x\)、积分区间和采样点，再决定是否为 Riemann 和。
+
+\textbf{直接前置四要素桥：}\knowledgeRef[MATH1-KN-CALC-0135]{K088}定义了 \(\sum f(\xi_k)\Delta x_k\)；这里需要把非标准系数归一化成宽度。使用时先把 \(k/n\) 看成位置、把外层 \(1/n\) 看成宽度；最小例 \(\frac1{n^2}\sum k=\frac1n\sum(k/n)\to\int_0^1x\,dx\)。
+
+\textbf{严格核心与条件：}若 \(f\) 在 \([a,b]\) 可积，则
+\[
+\frac{b-a}{n}\sum_{k=1}^n
+f\!\left(a+\frac{k(b-a)}n\right)\to\int_a^bf(x)dx.
+\]
+采样点可作 \(O(1/n)\) 偏移而仍处于对应小区间；尺度若多一个或少一个 \(n\)，极限会根本改变。
+
+\textbf{方法选择：}标准 \(k/n\) 对应 \([0,1]\)；\(a+k(b-a)/n\) 对应 \([a,b]\)；若有 \(1/n^p\)，先提成 \((1/n)\times\) 某个 \(f(k/n)\)。
+
+\textbf{例 1（缩放识别）}\quad
+\textbf{信号：}\(\frac1{n^2}\sum_{k=1}^nk\)。\textbf{分析：}改写为 \(\frac1n\sum k/n\)。
+\textbf{完整解答：}极限为 \(\int_0^1x\,dx=1/2\)。
+\textbf{条件：}连续可积。\textbf{易错：}把 \(1/n^2\) 当宽度。\textbf{核验：}精确和为 \((n+1)/(2n)\)。
+
+\textbf{例 2（非多项式）}\quad
+\textbf{信号：}\(\frac1n\sum1/[1+(k/n)^2]\)。\textbf{分析：}被积函数 \(1/(1+x^2)\)。
+\textbf{完整解答：}极限为 \(\int_0^1dx/(1+x^2)=\pi/4\)。
+\textbf{条件：}分母恒正。\textbf{易错：}把结果写成 \(\arctan n\)。\textbf{核验：}结果在 \(1/2\) 与 \(1\) 间。
+
+\textbf{例 3（偏移采样）}\quad
+\textbf{信号：}\(\frac1n\sum f((k-\theta)/n)\)，\(0\le\theta\le1\)。
+\textbf{分析：}采样点仍在第 \(k\) 个小区间。
+\textbf{完整解答：}若 \(f\in C[0,1]\)，极限仍为 \(\int_0^1f(x)dx\)。
+\textbf{条件：}\(\theta\) 固定且采样点不跑出网格。\textbf{易错：}认为任何随 \(n\) 的大偏移都无影响。\textbf{核验：}右端、中点、左端分别对应 \(\theta=0,1/2,1\)。
+
+\textbf{例 4（一般区间）}\quad
+\textbf{信号：}\(\frac2n\sum_{k=1}^n\ln(1+2k/n)\)。\textbf{分析：}\(\Delta x=2/n\)，采样点 \(x_k=2k/n\)。
+\textbf{完整解答：}极限为
+\[
+\int_0^2\ln(1+x)dx=3\ln3-2.
+\]
+\textbf{条件：}函数在 \([0,2]\) 连续。\textbf{易错：}仍写成 \([0,1]\)。\textbf{核验：}原式每项非负，结果 \(3\ln3-2>0\)。
+
+\textbf{失分防线：}只看 \(k/n\) 不看外层尺度会读错区间；双重和或奇异采样不能未经整理直接贴积分。快速写三行：\(\Delta x=?\)、\(x_k=?\)、\(f=?\)。
+
+\textbf{考场表达：}“原式 \(=\sum f(x_k)\Delta x\)，其中……，是 \(f\) 在 \([a,b]\) 上的 Riemann 和，故极限为……。”
+
+\textbf{三级掌握标准：}基础过关：标准和式秒转积分；\(130+\)：会处理缩放、偏移和一般区间；满分能力：能辨别不是 Riemann 和的尺度并改用夹逼或其他极限方法。
+
+\textbf{知识连接：}以 \knowledgeRef[MATH1-KN-CALC-0135]{K088}为定义基础，并依赖 \knowledgeRef[MATH1-KN-CALC-0136]{K089}的可积性保证。
+\end{knowledgeBox}

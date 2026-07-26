@@ -5,3 +5,2172 @@
 
 本讲用于整理换元积分法、分部积分法、有理函数积分、三角代换、定积分计算技巧和反常积分计算。新增题目时重点沉淀凑微分、换元边界、分部策略和对称性。
 \end{knowledgeBox}
+
+\studySubsection{calc-09-k082}{K082 第一类换元法（凑微分）}
+
+\knowledgeAnchor[MATH1-KN-CALC-0129]{第一类换元法（凑微分）}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0129]{第一类换元法（凑微分）}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+第一类换元法把求导的链式法则反向使用。它解决的核心问题是：被积函数
+看似复杂，但外层函数与内层函数的导数成套出现。路线是“圈内层、找微分、
+补常数、换成基本积分、最后回代”。
+
+\textbf{直接前置闭环：链式法则与原函数。}
+
+链式法则负责把“外层导数”与“内层导数”连接起来；
+\knowledgeRef[MATH1-KN-CALC-0126]{K079 原函数}与
+\knowledgeRef[MATH1-KN-CALC-0127]{K080 不定积分}负责解释逆运算及
+积分常数。若 \(H'(u)=f(u)\)，且 \(u=\varphi(x)\) 可导，则
+\[
+\frac{\mathrm d}{\mathrm dx}H(\varphi(x))
+=f(\varphi(x))\varphi'(x).
+\]
+这里“外层导数乘内层导数”正是本法要识别的结构；反向读便得到原函数。
+所谓原函数，是满足 \(F'=g\) 的函数 \(F\)。例如
+\((1+x^2)'=2x\)，所以 \(\int2x\,\mathrm dx=1+x^2+C\)。
+这两个前置分别负责识别复合结构与解释积分结果。
+
+\textbf{严格核心、条件与推导：}
+
+若 \(H'=f\)，\(\varphi\) 在所讨论区间可导，且复合函数有定义，则
+\[
+\boxed{\int f(\varphi(x))\varphi'(x)\,\mathrm dx
+=H(\varphi(x))+C.}
+\]
+写 \(u=\varphi(x)\)、\(\mathrm du=\varphi'(x)\mathrm dx\) 只是这条
+链式法则的压缩记号，不是把 \(\mathrm dx\) 当普通数任意约分。不定积分
+完成后必须回到 \(x\)；若只差非零常数 \(k\varphi'(x)\)，先提出 \(k\)。
+
+\textbf{方法选择：}
+
+识别信号依次是
+\[
+\frac{\varphi'}{\varphi},\qquad
+\varphi'e^{\varphi},\qquad
+\frac{\varphi'}{1+\varphi^2},\qquad
+\varphi'\cos\varphi,\qquad
+\varphi'\varphi^\alpha .
+\]
+先找“最复杂的整体”作 \(u\)，再检查它的导数是否在旁边；若缺的不是常数
+而是 \(x\) 的函数，就不能硬凑，应切换分部积分或第二类换元。
+
+\textbf{例 1（基础：平方和的对数导数）}
+
+\textbf{题面信号：}分母为 \(1+x^2\)，分子含其导数的一半。求
+\(\int \frac{2x}{1+x^2}\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}令 \(u=1+x^2\)，则
+\(\mathrm du=2x\,\mathrm dx\)，结构完全匹配。
+
+\textbf{完整解答：}
+\[
+\int\frac{2x}{1+x^2}\,\mathrm dx
+=\int\frac{\mathrm du}{u}
+=\ln|u|+C=\ln(1+x^2)+C.
+\]
+
+\textbf{条件、易错与核验：}\(1+x^2>0\)，故可去绝对值；若误写
+\(\ln|x|\) 就丢失了整体。求导
+\((\ln(1+x^2))'=2x/(1+x^2)\)，核验通过。
+
+\textbf{例 2（标准：复合指数）}
+
+\textbf{题面信号：}指数为 \(x^2-x\)，旁边出现其导数。求
+\[
+\int(2x-1)e^{x^2-x}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}取 \(u=x^2-x\)，不需要展开指数。
+
+\textbf{完整解答：}
+\[
+\int(2x-1)e^{x^2-x}\,\mathrm dx
+=\int e^u\,\mathrm du=e^u+C
+=e^{x^2-x}+C.
+\]
+
+\textbf{条件、易错与核验：}指数函数处处有定义。易错是把
+\(2x-1\) 再积分一次；直接求导最终结果即还原原被积函数。
+
+\textbf{例 3（方法选择：先补常数）}
+
+\textbf{题面信号：}分母 \(4+x^2\) 对应反正切型，但分子只有常数。求
+\[
+\int\frac{\mathrm dx}{4+x^2}.
+\]
+
+\textbf{分析与方法选择：}把内层缩放为 \(u=x/2\)，使分母出现
+\(1+u^2\)，而不是硬套 \(\arctan x\)。
+
+\textbf{完整解答：}
+\[
+u=\frac x2,\quad \mathrm dx=2\,\mathrm du,
+\qquad
+\int\frac{\mathrm dx}{4+x^2}
+=\frac12\int\frac{\mathrm du}{1+u^2}
+=\frac12\arctan\frac x2+C.
+\]
+
+\textbf{条件、易错与核验：}分母恒正。最易漏外系数 \(1/2\)；
+对答案求导得
+\(\frac12\cdot\frac{1/2}{1+x^2/4}=1/(4+x^2)\)。
+
+\textbf{例 4（迁移：复合三角与幂）}
+
+\textbf{题面信号：}出现 \(\tan x\) 与 \(\sec^2x\) 成套。求
+\[
+\int \tan^3x\,\sec^2x\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}令 \(u=\tan x\)，因为
+\(\mathrm du=\sec^2x\,\mathrm dx\)；这比展开三角恒等式短。
+
+\textbf{完整解答：}
+\[
+\int \tan^3x\,\sec^2x\,\mathrm dx
+=\int u^3\,\mathrm du
+=\frac{u^4}{4}+C
+=\frac{\tan^4x}{4}+C.
+\]
+
+\textbf{条件、易错与核验：}结论在不跨越
+\(\cos x=0\) 的任一连通区间成立。求导得到
+\(\tan^3x\sec^2x\)，并且不能把不同连通分支的积分常数强行视为同一个。
+
+\textbf{失分防线：}
+
+错误写法“令 \(u=\varphi(x)\)，但仍保留原式中的 \(x\)”会混用变量；
+错误原因是换元没有完整完成。最小反例是
+\(\int2x\cos(x^2)\mathrm dx\)：若只把 \(\cos(x^2)\) 写成
+\(\cos u\) 而不换 \(2x\mathrm dx\)，式子没有意义。正确判据是换元后
+积分号内只能剩 \(u,\mathrm du\)；考场快速检查是对最终答案求导。
+
+\textbf{考场写法：}
+\[
+u=\varphi(x),\quad \mathrm du=\varphi'(x)\mathrm dx,
+\quad I=\int f(u)\,\mathrm du=H(u)+C=H(\varphi(x))+C.
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能识别四类常见复合结构，并保留积分常数。
+  \item \textbf{130 分以上：}能在十秒内判断只差常数还是根本不匹配，
+  并用求导反查系数。
+  \item \textbf{满分能力：}能在含参数或定义域分支的题中说明合法区间，
+  并与 K083、K084 之间作成本选择。
+\end{itemize}
+本节以前置“链式法则”为发动机，直接支持 K083、K093 及微分方程中的
+变量分离。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k083}{K083 第二类换元法}
+
+\knowledgeAnchor[MATH1-KN-CALC-0130]{第二类换元法}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0130]{第二类换元法}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+当原变量 \(x\) 本身造成根式或分式结构困难时，第二类换元主动令
+\(x=\varphi(t)\)，把整个被积式改写成 \(t\) 的基本型。路线是：
+按根式选择代换、限定 \(t\) 的范围、连同 \(\mathrm dx\) 换掉、积分、
+再回代。
+
+\textbf{直接前置四要素桥：三角恒等式与可逆代换。}
+
+\knowledgeRef[MATH1-KN-CALC-0129]{K082 第一类换元法}已经说明换元是
+链式法则的逆用；这里需要进一步主动设 \(x=\varphi(t)\) 来消去根式。
+\[
+1-\sin^2t=\cos^2t,\qquad
+1+\tan^2t=\sec^2t,\qquad
+\sec^2t-1=\tan^2t.
+\]
+它们分别消去
+\(\sqrt{a^2-x^2}\)、\(\sqrt{x^2+a^2}\)、
+\(\sqrt{x^2-a^2}\)。必须选使代换在区间内单值的 \(t\) 范围，
+这样回代才不含歧义。例如 \(x=a\sin t\) 配
+\(t\in[-\pi/2,\pi/2]\)，则 \(\cos t\ge0\)，
+\(\sqrt{a^2-x^2}=a\cos t\)。这是本题需要的符号保证。
+
+\textbf{严格核心、条件与推导：}
+
+若 \(x=\varphi(t)\) 可导，且在所用区间单调、复合式有定义，则
+\[
+\boxed{\int f(x)\,\mathrm dx
+=\int f(\varphi(t))\varphi'(t)\,\mathrm dt.}
+\]
+其依据仍是链式法则。三类标准选择为
+\[
+\sqrt{a^2-x^2}:x=a\sin t,\quad
+\sqrt{x^2+a^2}:x=a\tan t,\quad
+\sqrt{x^2-a^2}:x=a\sec t.
+\]
+根号化简时总有 \(\sqrt{q(t)^2}=|q(t)|\)，范围选择负责判断绝对值。
+
+\textbf{方法选择：}
+
+先看一次凑微分能否完成；不能时再让新变量消去根式。若代换后式子更长，
+检查双曲代换、倒代换或代数恒等变形是否更短。三角代换是工具，不是看到
+根式就无条件使用。
+
+\textbf{例 1（基础：圆型根式）}
+
+\textbf{题面信号：}出现 \(\sqrt{4-x^2}\)。求
+\(\int\sqrt{4-x^2}\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}令 \(x=2\sin t\)，取
+\(t\in[-\pi/2,\pi/2]\)，从而根号无绝对值歧义。
+
+\textbf{完整解答：}
+\[
+\mathrm dx=2\cos t\,\mathrm dt,\qquad
+\sqrt{4-x^2}=2\cos t,
+\]
+\[
+\begin{aligned}
+I&=4\int\cos^2t\,\mathrm dt
+=2t+\sin2t+C\\
+&=2\arcsin\frac x2+\frac x2\sqrt{4-x^2}+C.
+\end{aligned}
+\]
+
+\textbf{条件、易错与核验：}实函数积分在 \(|x|<2\) 的区间内讨论；
+易漏 \(\mathrm dx\) 的 \(2\cos t\)。求导答案可还原根式。
+
+\textbf{例 2（标准：双曲型根式）}
+
+\textbf{题面信号：}出现 \(x^2+1\) 的平方根。求
+\[
+\int\frac{\mathrm dx}{\sqrt{x^2+1}}.
+\]
+
+\textbf{分析与方法选择：}取 \(x=\tan t\)，
+\(t\in(-\pi/2,\pi/2)\)，则 \(\sec t>0\)。
+
+\textbf{完整解答：}
+\[
+\mathrm dx=\sec^2t\,\mathrm dt,\qquad
+\sqrt{x^2+1}=\sec t,
+\]
+\[
+I=\int\sec t\,\mathrm dt
+=\ln|\sec t+\tan t|+C
+=\ln\left|x+\sqrt{x^2+1}\right|+C.
+\]
+
+\textbf{条件、易错与核验：}根式恒正，且
+\(x+\sqrt{x^2+1}>0\)，绝对值可去。对答案求导得
+\(1/\sqrt{x^2+1}\)。
+
+\textbf{例 3（方法选择：倒代换有理化）}
+
+\textbf{题面信号：}分母同时含 \(x\) 与 \(\sqrt{1+x^2}\)。求
+\[
+\int\frac{\mathrm dx}{x^2\sqrt{1+x^2}},\qquad x\ne0.
+\]
+
+\textbf{分析与方法选择：}注意
+\(\left(\sqrt{1+x^2}/x\right)'\) 直接匹配；这提示先尝试结构识别，
+不必机械三角代换。
+
+\textbf{完整解答：}
+\[
+\left(\frac{\sqrt{1+x^2}}x\right)'
+=-\frac1{x^2\sqrt{1+x^2}},
+\]
+所以
+\[
+I=-\frac{\sqrt{1+x^2}}x+C.
+\]
+
+\textbf{条件、易错与核验：}答案分别在 \(x>0\)、\(x<0\) 的连通区间
+成立。该例核验了“第二类换元并非默认首选”；直接求导确认负号。
+
+\textbf{例 4（迁移：\(\sqrt{x^2-a^2}\)）}
+
+\textbf{题面信号：}在 \(x>1\) 上求
+\(\int\sqrt{x^2-1}\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}取 \(x=\sec t\)，
+\(t\in(0,\pi/2)\)，则 \(\tan t>0\)。
+
+\textbf{完整解答：}
+\[
+\mathrm dx=\sec t\tan t\,\mathrm dt,\qquad
+\sqrt{x^2-1}=\tan t,
+\]
+\[
+\begin{aligned}
+I&=\int(\sec^3t-\sec t)\,\mathrm dt\\
+&=\frac12\sec t\tan t-\frac12\ln|\sec t+\tan t|+C\\
+&=\frac12x\sqrt{x^2-1}
+-\frac12\ln\left(x+\sqrt{x^2-1}\right)+C.
+\end{aligned}
+\]
+
+\textbf{条件、易错与核验：}若不限定 \(x>1\)，回代的符号与对数形式
+需分支处理。求导答案得 \(\sqrt{x^2-1}\)。
+
+\textbf{失分防线：}
+
+错误写法 \(\sqrt{a^2-a^2\sin^2t}=a\cos t\) 在任意 \(t\) 上都成立；
+实际应为 \(a|\cos t|\)。取 \(t=2\pi/3\) 即为最小反例。正确判据是先
+写 \(t\) 的范围，再去绝对值；考场检查是“根号符号、微分、回代”三项。
+
+\textbf{考场写法：}
+
+“令 \(x=\varphi(t)\)，并取 \(t\in I\)，则
+\(\mathrm dx=\varphi'(t)\mathrm dt\)，且根式 \(=\cdots\)。故原积分
+\(=\cdots\)，最后由 \(t=\varphi^{-1}(x)\) 回代。”
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}会三类标准根式代换并写清变量范围。
+  \item \textbf{130 分以上：}能比较凑微分、三角代换和结构求导的成本。
+  \item \textbf{满分能力：}能处理定义域分支、定积分直接换限和非单调
+  代换的分段问题。
+\end{itemize}
+本节复用 K082 的链式法则，直接连接 K087 简单无理积分与 K093
+定积分换元。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k084}{K084 分部积分法}
+
+\knowledgeAnchor[MATH1-KN-CALC-0131]{分部积分法}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0131]{分部积分法}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+分部积分是乘积求导的逆用，适合“一个因子求导后明显变简单，另一个因子
+容易积分”的乘积。它的目的不是拆开乘积，而是把难积分转移为更易积分。
+
+\textbf{直接前置闭环：乘积求导与微分记号。}
+
+乘积求导法则给出本法的代数起点，
+\knowledgeRef[MATH1-KN-CALC-0128]{K081 基本积分公式}保证选中的
+\(\mathrm dv\) 容易积分。由
+\[
+(uv)'=u'v+uv'
+\]
+积分得到
+\[
+uv=\int v\,\mathrm du+\int u\,\mathrm dv.
+\]
+因此
+\[
+\boxed{\int u\,\mathrm dv=uv-\int v\,\mathrm du.}
+\]
+这里 \(\mathrm du=u'(x)\mathrm dx\)，
+\(\mathrm dv=v'(x)\mathrm dx\)。例如令 \(u=x\)、\(\mathrm dv=e^x
+\mathrm dx\)，则 \(\mathrm du=\mathrm dx\)、\(v=e^x\)；这个最小模型
+说明“求导一边、积分另一边”的角色。
+
+\textbf{条件与方法选择：}
+
+\(u,v\) 要在所论区间可导，相关积分存在。经验顺序“反、对、幂、三、指”
+只帮助选 \(u\)，不是定理；真正判据是剩余积分更简单或形成可解的递推。
+定积分还要保留边界项，反常积分必须先截断。
+
+\textbf{例 1（基础：多项式乘指数）}
+
+\textbf{题面信号：}多项式求导降次，指数易积分。求
+\(\int xe^x\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}取 \(u=x\)，\(\mathrm dv=e^x\mathrm dx\)。
+
+\textbf{完整解答：}
+\[
+\mathrm du=\mathrm dx,\quad v=e^x,\qquad
+\int xe^x\,\mathrm dx=xe^x-\int e^x\,\mathrm dx
+=e^x(x-1)+C.
+\]
+
+\textbf{条件、易错与核验：}处处有定义；易错是漏负号。求导
+\(e^x(x-1)\) 得 \(xe^x\)。
+
+\textbf{例 2（标准：对数单独出现）}
+
+\textbf{题面信号：}\(\ln x\) 看似不是乘积，可写成
+\(\ln x\cdot1\)。求 \(\int\ln x\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}取 \(u=\ln x\)、\(\mathrm dv=\mathrm dx\)，
+对数求导变为 \(1/x\)。
+
+\textbf{完整解答：}
+\[
+\mathrm du=\frac{\mathrm dx}{x},\quad v=x,\qquad
+\int\ln x\,\mathrm dx=x\ln x-\int1\,\mathrm dx
+=x\ln x-x+C.
+\]
+
+\textbf{条件、易错与核验：}在 \(x>0\) 上讨论；若积分
+\(\ln|x|\)，则可在不跨零的区间使用同一公式。求导核验通过。
+
+\textbf{例 3（方法选择：两次分部）}
+
+\textbf{题面信号：}二次多项式乘 \(\sin x\)。求
+\(\int x^2\sin x\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}连续让多项式降次；表格法只是两次分部的记账。
+
+\textbf{完整解答：}
+\[
+\begin{aligned}
+I&=-x^2\cos x+\int2x\cos x\,\mathrm dx\\
+&=-x^2\cos x+2x\sin x-2\int\sin x\,\mathrm dx\\
+&=-x^2\cos x+2x\sin x+2\cos x+C.
+\end{aligned}
+\]
+
+\textbf{条件、易错与核验：}三角函数处处可导。求导三项后中间项相消，
+只余 \(x^2\sin x\)，这是最可靠的符号核验。
+
+\textbf{例 4（迁移：制造递推方程）}
+
+\textbf{题面信号：}指数与三角乘积，分部两次会回到原积分。求
+\(I=\int e^x\cos x\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}任取一因子分部后继续一次，并把回到的 \(I\)
+移项求解。
+
+\textbf{完整解答：}
+\[
+I=e^x\cos x+\int e^x\sin x\,\mathrm dx
+=e^x\cos x+e^x\sin x-I,
+\]
+故
+\[
+\boxed{I=\frac{e^x}{2}(\sin x+\cos x)+C.}
+\]
+
+\textbf{条件、易错与核验：}移项时常漏系数 \(2\)。对答案求导，
+余下恰为 \(e^x\cos x\)；积分常数在方程移项后仍统一写一个 \(C\)。
+
+\textbf{失分防线：}
+
+错误规则“总把反三角函数选作 \(\mathrm dv\)”会使 \(v\) 难求。
+最小例子 \(\int x\arctan x\,\mathrm dx\) 中应取
+\(u=\arctan x\)，因为其导数有理化。正确判据不是背顺序，而是看
+\(v\) 是否易得、剩余积分是否降阶；考场快速检查是对结果求导并观察
+交叉项是否相消。
+
+\textbf{考场写法：}
+\[
+u=\cdots,\quad \mathrm dv=\cdots,\quad
+\mathrm du=\cdots,\quad v=\cdots;
+\qquad
+I=uv-\int v\,\mathrm du.
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能正确选取一次分部并写全四个量。
+  \item \textbf{130 分以上：}能用降幂、去对数、制造递推三种目标选法。
+  \item \textbf{满分能力：}能控制多次分部、边界项及反常端点。
+\end{itemize}
+本节直接连接 K094 定积分分部和 K105 振荡尾积分。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k085}{K085 有理函数积分}
+
+\knowledgeAnchor[MATH1-KN-CALC-0132]{有理函数积分}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0132]{有理函数积分}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+有理函数是 \(P(x)/Q(x)\) 形式的多项式之比。标准算法是
+\[
+\boxed{\text{先长除化真分式}\to\text{分母实因式分解}
+\to\text{完整设部分分式}\to\text{逐项积分}.}
+\]
+
+\textbf{直接前置四要素桥：多项式分解与待定系数。}
+
+\knowledgeRef[MATH1-KN-CALC-0128]{K081 基本积分公式}给出分解后各项
+的原函数；这里要先用多项式除法和待定系数把一般有理式化到那些基本型。
+若 \(\deg P\ge\deg Q\)，多项式除法给
+\(P/Q=S+R/Q\)，其中 \(\deg R<\deg Q\)。在实数范围，分母分成
+一次因子幂与不可约二次因子幂。一次重因子 \((x-a)^m\) 必须写
+\[
+\frac{A_1}{x-a}+\cdots+\frac{A_m}{(x-a)^m};
+\]
+不可约二次因子 \(q(x)^m\) 的每一级分子都要写 \(B_kx+C_k\)。
+待定系数通过通分比较多项式系数确定；例如
+\(\frac1{x(x+1)}=\frac1x-\frac1{x+1}\)。
+
+\textbf{核心积分模块：}
+
+\[
+\int\frac{\mathrm dx}{x-a}=\ln|x-a|+C,\qquad
+\int\frac{\mathrm dx}{(x-a)^m}
+=-\frac1{m-1}(x-a)^{1-m}+C,
+\]
+二次项通过“分子凑导数＋配方”化为对数与反正切。
+
+\textbf{例 1（基础：两个一次因子）}
+
+\textbf{题面信号：}真分式且分母已分解。求
+\[
+\int\frac{\mathrm dx}{x(x+1)}.
+\]
+
+\textbf{分析与方法选择：}设 \(1/[x(x+1)]=A/x+B/(x+1)\)。
+
+\textbf{完整解答：}
+\[
+1=A(x+1)+Bx,\quad A=1,\ B=-1,
+\]
+\[
+I=\int\left(\frac1x-\frac1{x+1}\right)\mathrm dx
+=\ln|x|-\ln|x+1|+C.
+\]
+
+\textbf{条件、易错与核验：}在不跨越 \(0,-1\) 的连通区间成立；
+通分答案得回 \(1/[x(x+1)]\)。
+
+\textbf{例 2（标准：假分式先长除）}
+
+\textbf{题面信号：}分子次数不低于分母。求
+\[
+\int\frac{x^2+1}{x+1}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}先做多项式除法，不直接设部分分式。
+
+\textbf{完整解答：}
+\[
+\frac{x^2+1}{x+1}=x-1+\frac2{x+1},
+\]
+\[
+I=\frac{x^2}{2}-x+2\ln|x+1|+C.
+\]
+
+\textbf{条件、易错与核验：}定义域排除 \(x=-1\)。把商与余式重新相乘
+可核验长除，求导可核验积分。
+
+\textbf{例 3（方法选择：重根不能漏项）}
+
+\textbf{题面信号：}分母含 \(x^2(x+1)\)。求
+\[
+\int\frac{\mathrm dx}{x^2(x+1)}.
+\]
+
+\textbf{分析与方法选择：}重根 \(x^2\) 要写 \(A/x+B/x^2\) 两项。
+
+\textbf{完整解答：}
+\[
+\frac1{x^2(x+1)}
+=-\frac1x+\frac1{x^2}+\frac1{x+1},
+\]
+\[
+I=-\ln|x|-\frac1x+\ln|x+1|+C.
+\]
+
+\textbf{条件、易错与核验：}若漏 \(1/x^2\) 就无法配平常数项。
+通分三项的分子为 \(1\)，核验通过。
+
+\textbf{例 4（综合：不可约二次）}
+
+\textbf{题面信号：}分母 \(x^2+2x+2=(x+1)^2+1\)。求
+\[
+\int\frac{2x+3}{x^2+2x+2}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}分子拆成分母导数 \(2x+2\) 与余下常数 \(1\)。
+
+\textbf{完整解答：}
+\[
+\begin{aligned}
+I&=\int\frac{2x+2}{x^2+2x+2}\,\mathrm dx
++\int\frac{\mathrm dx}{(x+1)^2+1}\\
+&=\ln(x^2+2x+2)+\arctan(x+1)+C.
+\end{aligned}
+\]
+
+\textbf{条件、易错与核验：}二次式恒正；易把反正切项系数写错。
+求导两项相加即原被积函数。
+
+\textbf{失分防线：}
+
+错误模板“不可约二次因子上只放常数”不能表示一般真分式；例如
+\((2x+1)/(x^2+1)\) 的奇部无法由常数分子产生。正确判据是分子次数
+严格低于对应不可约因子的次数；考场快速检查是通分后比较最高次项与常数项。
+
+\textbf{考场写法：}
+
+先写“长除后为真分式”，再按因子逐级设系数；解出系数后先通分核验，
+最后逐项积分。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}会两个一次因子的部分分式。
+  \item \textbf{130 分以上：}不漏重根层级和二次分子的线性项。
+  \item \textbf{满分能力：}能迅速用代值、比较系数与凑导数混合解系数，
+  并在反常积分中先检查极点。
+\end{itemize}
+本节复用 K082 的凑微分，连接 K086 万能代换后的有理积分与 K102 瑕点扫描。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k086}{K086 三角有理式积分}
+
+\knowledgeAnchor[MATH1-KN-CALC-0133]{三角有理式积分}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0133]{三角有理式积分}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+对 \(R(\sin x,\cos x)\)，先用幂次奇偶寻找低成本代换，最后才用
+万能代换。路线是
+\[
+\boxed{\text{某函数奇次：拆一项凑微分；两者偶次：降幂；
+一般有理式：}t=\tan(x/2).}
+\]
+
+\textbf{直接前置四要素桥：}
+
+\knowledgeRef[MATH1-KN-CALC-0129]{K082 第一类换元法}已说明
+“内层导数在旁边”即可换元；
+\knowledgeRef[MATH1-KN-CALC-0132]{K085 有理函数积分}负责处理万能
+代换所得的有理式。这里先用
+\(\sin^2x+\cos^2x=1\) 把余下偶次幂改写成新变量。降幂公式
+\[
+\sin^2x=\frac{1-\cos2x}{2},\qquad
+\cos^2x=\frac{1+\cos2x}{2}
+\]
+来自二倍角公式。万能代换取 \(t=\tan(x/2)\)，则
+\[
+\sin x=\frac{2t}{1+t^2},\quad
+\cos x=\frac{1-t^2}{1+t^2},\quad
+\mathrm dx=\frac{2\,\mathrm dt}{1+t^2},
+\]
+从而全部化为 \(t\) 的有理函数。
+
+\textbf{方法边界：}
+
+万能代换在跨越 \(x=(2k+1)\pi\) 时要分区间理解，且常带来高次代数；
+能用一次凑微分时不应把题做复杂。
+
+\textbf{例 1（基础：正弦奇次）}
+
+\textbf{题面信号：}\(\sin^3x\cos^2x\) 中正弦为奇次。求其不定积分。
+
+\textbf{分析与方法选择：}拆出 \(\sin x\mathrm dx\)，其余
+\(\sin^2x=1-\cos^2x\)，令 \(u=\cos x\)。
+
+\textbf{完整解答：}
+\[
+\begin{aligned}
+I&=\int(1-\cos^2x)\cos^2x\sin x\,\mathrm dx\\
+&=-\int(u^2-u^4)\,\mathrm du
+=-\frac{u^3}{3}+\frac{u^5}{5}+C\\
+&=-\frac{\cos^3x}{3}+\frac{\cos^5x}{5}+C.
+\end{aligned}
+\]
+
+\textbf{条件、易错与核验：}处处有定义；因
+\(\mathrm du=-\sin x\mathrm dx\) 易漏负号。求导核验通过。
+
+\textbf{例 2（标准：两者偶次降幂）}
+
+\textbf{题面信号：}\(\sin^2x\cos^2x\) 两者均为偶次。
+
+\textbf{分析与方法选择：}用
+\(\sin^22x=4\sin^2x\cos^2x\)，再降幂。
+
+\textbf{完整解答：}
+\[
+\sin^2x\cos^2x=\frac18(1-\cos4x),
+\]
+\[
+\int\sin^2x\cos^2x\,\mathrm dx
+=\frac x8-\frac{\sin4x}{32}+C.
+\]
+
+\textbf{条件、易错与核验：}易把 \(4x\) 的链式系数漏掉；求导
+\(-\sin4x/32\) 得 \(-\cos4x/8\)，正好还原。
+
+\textbf{例 3（方法选择：先认对数导数）}
+
+\textbf{题面信号：}求
+\(\int\tan x\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}\(\tan x=\sin x/\cos x\)，分子差
+分母导数一个负号，无需万能代换。
+
+\textbf{完整解答：}
+\[
+\int\tan x\,\mathrm dx
+=-\int\frac{\mathrm d(\cos x)}{\cos x}
+=-\ln|\cos x|+C.
+\]
+
+\textbf{条件、易错与核验：}在 \(\cos x\ne0\) 的连通区间成立；
+答案求导为 \(\tan x\)。
+
+\textbf{例 4（综合：万能代换）}
+
+\textbf{题面信号：}分母 \(1+\sin x\) 不呈现直接奇偶幂结构。求
+\[
+\int\frac{\mathrm dx}{1+\sin x}.
+\]
+
+\textbf{分析与方法选择：}可用万能代换；本题也可乘
+\((1-\sin x)/(1-\sin x)\)，后者更短，体现备用路线价值。
+
+\textbf{完整解答：}
+\[
+\frac1{1+\sin x}
+=\frac{1-\sin x}{\cos^2x}
+=\sec^2x-\sec x\tan x,
+\]
+\[
+I=\tan x-\sec x+C.
+\]
+
+\textbf{条件、易错与核验：}原式要求 \(\sin x\ne-1\)；代数变形处还用了
+\(\cos x\ne0\)，但结果应按原定义域的各连通区间理解。求导
+\(\tan x-\sec x\) 得原式。
+
+\textbf{失分防线：}
+
+错误策略“一律万能代换”不会必然算错，却常把低次题变为高次部分分式；
+\(\int\tan x\mathrm dx\) 就是最小成本反例。正确判据是先找奇次与降幂
+结构；考场检查顺序为“奇次拆一项、偶次降幂、最后万能代换”。
+
+\textbf{考场写法：}
+
+先一句说明幂次结构，再写所拆出的微分或降幂恒等式；万能代换时一次写全
+\(\sin x,\cos x,\mathrm dx\) 三式，避免漏换。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}会奇次拆项与偶次降幂。
+  \item \textbf{130 分以上：}能优先发现对数导数和有理化捷径。
+  \item \textbf{满分能力：}能说明万能代换的区间边界，并完成得到的
+  K085 有理积分。
+\end{itemize}
+本节连接 K082、K085，也为 K108 弧长中的三角化简提供工具。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k087}{K087 简单无理函数积分}
+
+\knowledgeAnchor[MATH1-KN-CALC-0134]{简单无理函数积分}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0134]{简单无理函数积分}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+“简单无理积分”不是要求处理所有根式，而是把线性式的有限次根、或两个
+线性式根的比值，通过代换化为有理函数。目标是有理化，不是追求根式外观
+的统一公式。
+
+\textbf{直接前置四要素桥：最小公倍次数与有理化。}
+
+若式中含 \((ax+b)^{1/m}\)、\((ax+b)^{1/n}\)，令
+\(t=(ax+b)^{1/\operatorname{lcm}(m,n)}\)，则各根式都成为 \(t\)
+的整数幂，且 \(x,\mathrm dx\) 也可改写为 \(t\)。这复用
+\knowledgeRef[MATH1-KN-CALC-0130]{K083 第二类换元法}
+“用新变量消去结构障碍”的原理，并由
+\knowledgeRef[MATH1-KN-CALC-0132]{K085 有理函数积分}完成换元后的
+积分。最小例子：
+\(t=\sqrt x\) 时 \(x=t^2,\mathrm dx=2t\mathrm dt\)，
+\(\int\mathrm dx/\sqrt x=2\int\mathrm dt\)。
+
+\textbf{严格核心与边界：}
+
+含 \(\sqrt[n]{ax+b}\) 时可令其为 \(t\)；含
+\(\sqrt{(ax+b)/(cx+d)}\) 时可令该比值为 \(t\) 并解出 \(x\)。
+代换后必须记录原定义域、根的分支并最终回代。若出现不可初等积分的
+复杂根式，不应越过考研范围硬求。
+
+\textbf{例 1（基础：单一平方根）}
+
+\textbf{题面信号：}求
+\[
+\int\frac{\mathrm dx}{1+\sqrt x},\qquad x>0.
+\]
+
+\textbf{分析与方法选择：}令 \(t=\sqrt x\)，则分母线性化。
+
+\textbf{完整解答：}
+\[
+x=t^2,\quad \mathrm dx=2t\,\mathrm dt,
+\]
+\[
+I=\int\frac{2t}{1+t}\,\mathrm dt
+=2t-2\ln|1+t|+C
+=2\sqrt x-2\ln(1+\sqrt x)+C.
+\]
+
+\textbf{条件、易错与核验：}在 \(x>0\) 上 \(1+\sqrt x>0\)；
+易漏 \(2t\)。求导答案还原原式。
+
+\textbf{例 2（标准：平方根与立方根并存）}
+
+\textbf{题面信号：}求
+\[
+\int\frac{\mathrm dx}{\sqrt x+\sqrt[3]x},\qquad x>0.
+\]
+
+\textbf{分析与方法选择：}次数 \(2,3\) 的最小公倍数为 \(6\)，令
+\(t=x^{1/6}\)。
+
+\textbf{完整解答：}
+\[
+x=t^6,\quad \mathrm dx=6t^5\mathrm dt,\quad
+\sqrt x=t^3,\quad\sqrt[3]x=t^2,
+\]
+\[
+I=6\int\frac{t^3}{t+1}\,\mathrm dt
+=6\int\left(t^2-t+1-\frac1{t+1}\right)\mathrm dt,
+\]
+\[
+I=2t^3-3t^2+6t-6\ln(t+1)+C,
+\]
+再代回 \(t=x^{1/6}\)。
+
+\textbf{条件、易错与核验：}限定 \(x>0\) 保证实根与单值；
+用多项式长除及求导可双重核验。
+
+\textbf{例 3（方法选择：线性根式直接代换）}
+
+\textbf{题面信号：}求
+\[
+\int\frac{x}{\sqrt{2x+1}}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}令 \(t=\sqrt{2x+1}\)，可同时把 \(x\) 解为
+\((t^2-1)/2\)。
+
+\textbf{完整解答：}
+\[
+t^2=2x+1,\quad x=\frac{t^2-1}{2},\quad
+\mathrm dx=t\,\mathrm dt,
+\]
+\[
+I=\frac12\int(t^2-1)\,\mathrm dt
+=\frac{t^3}{6}-\frac t2+C
+=\frac{(2x+1)^{3/2}}6-\frac{\sqrt{2x+1}}2+C.
+\]
+
+\textbf{条件、易错与核验：}实数范围需 \(2x+1>0\) 才在开区间可微；
+求导核验系数 \(1/6,1/2\)。
+
+\textbf{例 4（迁移：根式比值代换）}
+
+\textbf{题面信号：}在 \(0<x<1\) 上求
+\[
+\int\sqrt{\frac{x}{1-x}}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}令
+\(t=\sqrt{x/(1-x)}\)，则
+\(x=t^2/(1+t^2)\)。
+
+\textbf{完整解答：}
+\[
+\mathrm dx=\frac{2t}{(1+t^2)^2}\,\mathrm dt,
+\]
+\[
+I=\int\frac{2t^2}{(1+t^2)^2}\,\mathrm dt
+=\int\left(\frac2{1+t^2}-\frac2{(1+t^2)^2}\right)\mathrm dt
+=\arctan t-\frac{t}{1+t^2}+C.
+\]
+因此
+\[
+I=\arctan\sqrt{\frac{x}{1-x}}-\sqrt{x(1-x)}+C.
+\]
+
+\textbf{条件、易错与核验：}\(0<x<1\) 保证 \(t>0\) 且代换单值；
+对最终式求导或回到 \(t\) 式核验。
+
+\textbf{失分防线：}
+
+错误做法是代换得到 \(t\) 后只替换根式，不替换其中的 \(x\) 与
+\(\mathrm dx\)。最小反例为例 3：若保留 \(x\)，积分仍未有理化。
+正确判据是新积分只含 \(t,\mathrm dt\)；快速检查是列出
+\(x(t)\)、\(\mathrm dx\)、每个根式三栏。
+
+\textbf{考场写法：}
+
+“令 \(t=\sqrt[n]{ax+b}\)（并注明取值范围），解得
+\(x=\cdots,\mathrm dx=\cdots\)，原积分化为有理积分
+\(\cdots\)，积分后回代。”
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}会单一线性根式代换。
+  \item \textbf{130 分以上：}会用根指数最小公倍数统一多个根式。
+  \item \textbf{满分能力：}能识别根式比值、控制定义域，并判断何时超出
+  初等积分范围。
+\end{itemize}
+本节连接 K083 和 K085；后续反常积分中还要先检查代换是否跨越瑕点。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k093}{K093 定积分换元法}
+
+\knowledgeAnchor[MATH1-KN-CALC-0140]{定积分换元法}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0140]{定积分换元法}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+定积分换元与不定积分换元使用同一链式法则，但新增了两个不能漏的对象：
+上下限和方向。考场路线是“写代换、同步换微分、立刻换限、只在新变量中
+算完”，通常不再回代。
+
+\textbf{直接前置四要素桥：定积分与两类换元。}
+
+由 \knowledgeRef[MATH1-KN-CALC-0135]{K088 定积分定义}与
+\knowledgeRef[MATH1-KN-CALC-0137]{K090 区间可加性与换向}可知，
+定积分 \(\int_a^b f(x)\mathrm dx\) 表示带方向的累积量，交换上下限会变号。
+\knowledgeRef[MATH1-KN-CALC-0129]{K082 第一类换元法}处理
+\(u=\varphi(x)\)，
+\knowledgeRef[MATH1-KN-CALC-0130]{K083 第二类换元法}处理
+\(x=\varphi(t)\)；这里把端点也映射。
+最小模型是 \(u=x^2\)：
+\[
+\int_0^1 2x\,\mathrm dx=\int_0^1\mathrm du=1.
+\]
+若从 \(x=2\) 积到 \(x=1\)，新限也从 \(u=4\) 到 \(u=1\)，方向自动保留。
+
+\textbf{严格核心、条件与推导：}
+
+若 \(\varphi\in C^1[\alpha,\beta]\)，在该区间单调，且
+\(\varphi(\alpha)=a,\varphi(\beta)=b\)，则在可积条件满足时
+\[
+\boxed{\int_a^b f(x)\,\mathrm dx
+=\int_\alpha^\beta f(\varphi(t))\varphi'(t)\,\mathrm dt.}
+\]
+单调性保证区间被一次扫描；若代换非单调，应按单调段分开，不能让同一
+\(x\) 被重复计数。
+
+\textbf{方法选择：}
+
+复合结构用直接换元；二次根式用三角代换；区间与被积函数有配对结构时
+考虑 \(x=a+b-t\)、\(x=-t\)、\(x=1/t\)。换限后若仍回代，通常只是增加
+出错机会。
+
+\textbf{例 1（基础：复合型直接换限）}
+
+\textbf{题面信号：}求
+\[
+\int_0^1 2x e^{x^2}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}取 \(u=x^2\)，端点 \(0,1\) 仍映为 \(0,1\)。
+
+\textbf{完整解答：}
+\[
+u=x^2,\quad\mathrm du=2x\,\mathrm dx,\quad
+I=\int_0^1e^u\,\mathrm du=e-1.
+\]
+
+\textbf{条件、易错与核验：}在 \([0,1]\) 上代换单调；上式中的
+\(\mathrm dx\) 应写为 \(\mathrm dx\)，即
+\[
+u=x^2,\qquad\mathrm du=2x\,\mathrm dx.
+\]
+用原函数 \(e^{x^2}\) 代端点同样得 \(e-1\)，核验通过。
+
+\textbf{例 2（标准：三角代换直接换限）}
+
+\textbf{题面信号：}求
+\[
+\int_0^1\frac{\mathrm dx}{\sqrt{1-x^2}}.
+\]
+
+\textbf{分析与方法选择：}令 \(x=\sin t\)，取
+\(t\in[0,\pi/2]\)，新限清楚且 \(\cos t\ge0\)。
+
+\textbf{完整解答：}
+\[
+x=0\Rightarrow t=0,\qquad x=1\Rightarrow t=\frac\pi2,
+\]
+\[
+I=\int_0^{\pi/2}\frac{\cos t}{\cos t}\,\mathrm dt
+=\frac\pi2.
+\]
+
+\textbf{条件、易错与核验：}端点 \(x=1\) 为无界端点，严格说应先积到
+\(r<1\) 再令 \(r\to1^-\)；结果有限。几何上它是单位圆四分之一对应的
+反正弦增量，也核验 \(\pi/2\)。
+
+\textbf{例 3（方法选择：对称代换配对）}
+
+\textbf{题面信号：}设 \(f\) 在 \([0,1]\) 可积，计算
+\[
+I=\int_0^1\frac{f(x)}{f(x)+f(1-x)}\,\mathrm dx,
+\]
+并假设分母处处非零。
+
+\textbf{分析与方法选择：}令 \(x=1-t\) 会交换分子中的两项。
+
+\textbf{完整解答：}
+\[
+I=\int_0^1\frac{f(1-t)}{f(1-t)+f(t)}\,\mathrm dt.
+\]
+与原式相加，
+\[
+2I=\int_0^1 1\,\mathrm dx=1,
+\qquad \boxed{I=\frac12}.
+\]
+
+\textbf{条件、易错与核验：}必须保证商可积且分母不为零；不能因为形式
+对称就省略该条件。两份被积函数点态相加为 \(1\)，可直接核验。
+
+\textbf{例 4（迁移：非单调代换必须分段）}
+
+\textbf{题面信号：}求
+\[
+\int_{-1}^{1}\frac{|x|}{1+x^2}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}若令 \(u=x^2\)，它在整个 \([-1,1]\) 非单调；
+先按 \(0\) 分段，或先用偶性化为两倍。
+
+\textbf{完整解答：}
+\[
+I=2\int_0^1\frac{x}{1+x^2}\,\mathrm dx.
+\]
+令 \(u=1+x^2\)，新限 \(1\to2\)，得
+\[
+I=\int_1^2\frac{\mathrm du}{u}=\ln2.
+\]
+
+\textbf{条件、易错与核验：}直接把 \([-1,1]\) 两端都映为 \(u=1\)
+会错误得到零，这正暴露非单调问题。被积函数非负，答案 \(\ln2>0\)
+通过符号核验。
+
+\textbf{失分防线：}
+
+错误写法“换了变量却保留旧上下限”会把不同变量的端点混在一起；例 2 若
+写成 \(\int_0^1\mathrm dt\) 就错为 \(1\)。正确判据是积分变量与上下限
+必须属于同一坐标；快速检查是换元行同时写出“旧端点 \(\mapsto\) 新端点”。
+
+\textbf{考场写法：}
+\[
+u=\varphi(x),\quad \mathrm du=\varphi'(x)\mathrm dx,\quad
+x=a\Rightarrow u=\alpha,\ x=b\Rightarrow u=\beta,
+\quad I=\int_\alpha^\beta\cdots\,\mathrm du.
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}被积函数、微分和上下限三者同步换元。
+  \item \textbf{130 分以上：}会用中心反射、倒代换制造配对。
+  \item \textbf{满分能力：}能识别非单调代换并正确分段，能处理端点反常性。
+\end{itemize}
+本节复用 K082、K083，直接连接 K095 对称公式和 K102 反常端点。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k094}{K094 定积分分部积分}
+
+\knowledgeAnchor[MATH1-KN-CALC-0141]{定积分分部积分}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0141]{定积分分部积分}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+\knowledgeRef[MATH1-KN-CALC-0131]{K084 分部积分法}进入定积分后，
+边界项成为得分点；进入反常积分后，还必须
+先截断再取极限。路线是“选 \(u,\mathrm dv\)、写 \([uv]_a^b\)、
+算剩余积分、检查边界”。
+
+\textbf{直接前置闭环：}
+
+由乘积求导，并用
+\knowledgeRef[MATH1-KN-CALC-0144]{K097 Newton--Leibniz 公式}处理
+有限区间边界，
+\((uv)'=u'v+uv'\)，在 \([a,b]\) 积分并用 Newton--Leibniz 公式，
+\[
+u(b)v(b)-u(a)v(a)
+=\int_a^b u'v\,\mathrm dx+\int_a^b uv'\,\mathrm dx.
+\]
+故
+\[
+\boxed{\int_a^b u\,\mathrm dv=[uv]_a^b-\int_a^b v\,\mathrm du.}
+\]
+这里 \([uv]_a^b=u(b)v(b)-u(a)v(a)\)，不是只代上限。
+
+\textbf{条件与方法选择：}
+
+普通区间要求相应函数可导且积分存在。无穷端点或被积函数无界时，
+公式只能先用于有限截断区间；边界项与剩余积分分别取极限。
+
+\textbf{例 1（基础：边界项）}
+
+\textbf{题面信号：}求 \(\int_0^1 xe^x\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}取 \(u=x,\mathrm dv=e^x\mathrm dx\)，
+多项式降次。
+
+\textbf{完整解答：}
+\[
+\int_0^1xe^x\,\mathrm dx
+=[xe^x]_0^1-\int_0^1e^x\,\mathrm dx
+=e-(e-1)=1.
+\]
+
+\textbf{条件、易错与核验：}易漏下限边界；被积函数在区间非负且不超过
+\(e\)，答案 \(1\) 数量级合理。也可代入 K084 的原函数核验。
+
+\textbf{例 2（标准：三角边界）}
+
+\textbf{题面信号：}求 \(\int_0^\pi x\sin x\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}令 \(u=x,\mathrm dv=\sin x\mathrm dx\)，
+边界的正弦余弦值简单。
+
+\textbf{完整解答：}
+\[
+I=[-x\cos x]_0^\pi+\int_0^\pi\cos x\,\mathrm dx
+=\pi+[\sin x]_0^\pi=\pi.
+\]
+
+\textbf{条件、易错与核验：}最常见错误是把
+\(\int\cos x\mathrm dx\) 前的符号写反。由 K095 的中心对称配对也可独立
+得到 \(\pi\)。
+
+\textbf{例 3（方法选择：递推）}
+
+\textbf{题面信号：}对整数 \(n\ge1\)，设
+\[
+I_n=\int_0^1x^n e^x\,\mathrm dx,
+\]
+建立递推关系。
+
+\textbf{分析与方法选择：}让 \(x^n\) 求导降次，指数积分不变。
+
+\textbf{完整解答：}
+\[
+I_n=[x^ne^x]_0^1-n\int_0^1x^{n-1}e^x\,\mathrm dx
+=e-nI_{n-1}.
+\]
+并且 \(I_0=e-1\)，故递推闭合。
+
+\textbf{条件、易错与核验：}\(n\ge1\) 时下限项 \(0^n e^0=0\)；
+\(n=0\) 不能机械写 \(0^0\)。取 \(n=1\) 得 \(I_1=1\)，与例 1 一致。
+
+\textbf{例 4（迁移：反常积分先截断）}
+
+\textbf{题面信号：}求
+\[
+\int_0^\infty xe^{-x}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}无穷上限禁止直接写
+\([-xe^{-x}]_0^\infty\)，先截到 \(R\)。
+
+\textbf{完整解答：}
+\[
+\begin{aligned}
+\int_0^Rxe^{-x}\,\mathrm dx
+&=[-xe^{-x}]_0^R+\int_0^Re^{-x}\,\mathrm dx\\
+&=-Re^{-R}+1-e^{-R}.
+\end{aligned}
+\]
+因 \(Re^{-R}\to0\)、\(e^{-R}\to0\)，故
+\[
+\boxed{\int_0^\infty xe^{-x}\,\mathrm dx=1.}
+\]
+
+\textbf{条件、易错与核验：}“\(e^{-\infty}=0\)”不是合法代入；
+极限 \(Re^{-R}\to0\) 可由洛必达或增长阶核验。被积函数非负，结果合理。
+
+\textbf{失分防线：}
+
+错误公式 \(\int_a^b u\,\mathrm dv=uv-\int_a^bv\,\mathrm du\) 的
+\(uv\) 没有边界含义。最小反例取 \(u=x,v=x\) 于 \([0,1]\)，若不写
+\([x^2]_0^1\) 就无法得到数值。正确判据是定积分结果必须是数；
+快速检查是看到分部立即圈出 \([uv]_a^b\)。
+
+\textbf{考场写法：}
+
+\[
+u=\cdots,\quad\mathrm dv=\cdots;\qquad
+I=[uv]_a^b-\int_a^bv\,\mathrm du.
+\]
+若端点反常，先写 \(I=\lim_{R\to\cdots}\int_{\cdots}^{R}\)，再在有限区间分部。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}边界项上下限不漏。
+  \item \textbf{130 分以上：}能建立递推并识别边界值简化。
+  \item \textbf{满分能力：}能严格处理反常端点，分别验证边界极限和剩余积分。
+\end{itemize}
+本节由 K084 推出，直接支撑 K105 的简单振荡积分与 K112 的特殊外观积分。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k095}{K095 对称性与周期性公式}
+
+\knowledgeAnchor[MATH1-KN-CALC-0142]{对称性与周期性公式}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0142]{对称性与周期性公式}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+对称性不是“看起来对称就砍一半”，而是通过合法换元把同一积分写成第二种
+形式，再相加或相减。周期性则把完整周期上的累积量与起点分离。
+
+\textbf{直接前置四要素桥：奇偶、周期与中心反射。}
+
+\knowledgeRef[MATH1-KN-CALC-0024]{K006 奇偶性}定义零中心对称，
+\knowledgeRef[MATH1-KN-CALC-0026]{K007 周期性}定义重复结构，
+\knowledgeRef[MATH1-KN-CALC-0140]{K093 定积分换元法}负责把这些
+结构转成等式。若 \(f(-x)=-f(x)\) 称奇函数；若
+\(f(-x)=f(x)\) 称偶函数。
+在关于 \(0\) 对称且可积的区间，
+\[
+\int_{-a}^a f_{\rm odd}=0,\qquad
+\int_{-a}^a f_{\rm even}=2\int_0^a f.
+\]
+最小例子是 \(\int_{-1}^1x\,\mathrm dx=0\)，但
+\(\int_0^1x\,\mathrm dx\ne0\)，说明区间对称不可缺。
+若 \(f(x+T)=f(x)\)，称 \(T\) 为周期；整周期积分与起点无关。
+
+\textbf{严格核心与推导：}
+
+K093 中令 \(x=a+b-t\) 得
+\[
+\boxed{\int_a^bf(x)\,\mathrm dx
+=\int_a^bf(a+b-x)\,\mathrm dx.}
+\]
+两式相加可把被积函数配成常数或简式。若 \(f\) 以 \(T\) 为周期且可积，
+\[
+\int_c^{c+T}f(x)\,\mathrm dx=\int_0^Tf(x)\,\mathrm dx,
+\]
+长度为 \(nT\) 时乘 \(n\)；长度不是整数周期时不能直接缩短。
+
+\textbf{例 1（基础：奇偶分解）}
+
+\textbf{题面信号：}求
+\[
+\int_{-1}^{1}\left(x^3+\sqrt{1-x^2}\right)\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}\(x^3\) 奇，根式偶。
+
+\textbf{完整解答：}
+\[
+I=0+2\int_0^1\sqrt{1-x^2}\,\mathrm dx
+=2\cdot\frac{\pi}{4}=\frac\pi2.
+\]
+
+\textbf{条件、易错与核验：}根式在 \([-1,1]\) 有定义；几何上偶函数部分
+是单位圆上半圆面积 \(\pi/2\)，核验通过。
+
+\textbf{例 2（标准：中心配对）}
+
+\textbf{题面信号：}求
+\[
+I=\int_0^\pi x\sin x\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}令 \(x=\pi-t\)，利用
+\(\sin(\pi-t)=\sin t\)。
+
+\textbf{完整解答：}
+\[
+I=\int_0^\pi(\pi-x)\sin x\,\mathrm dx.
+\]
+两式相加，
+\[
+2I=\pi\int_0^\pi\sin x\,\mathrm dx=2\pi,
+\qquad I=\pi.
+\]
+
+\textbf{条件、易错与核验：}中心是 \(\pi/2\)，不是关于零做奇偶；
+K094 分部积分给出同一结果。
+
+\textbf{例 3（方法选择：抽象配对）}
+
+\textbf{题面信号：}设 \(f>0\) 且在 \([0,2]\) 连续，求
+\[
+I=\int_0^2\frac{f(x)}{f(x)+f(2-x)}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}中心反射 \(x=2-t\) 交换分子。
+
+\textbf{完整解答：}
+\[
+I=\int_0^2\frac{f(2-x)}{f(2-x)+f(x)}\,\mathrm dx,
+\]
+\[
+2I=\int_0^2 1\,\mathrm dx=2,\qquad \boxed{I=1}.
+\]
+
+\textbf{条件、易错与核验：}\(f>0\) 保证分母不为零；若只说连续，
+分母可能为零，结论不成立。配对两项点态和为 \(1\)。
+
+\textbf{例 4（迁移：整周期与起点无关）}
+
+\textbf{题面信号：}求
+\[
+\int_1^{1+4\pi}(2+\sin x)\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}\(2+\sin x\) 的周期为 \(2\pi\)，区间长度
+\(4\pi\) 是两个完整周期。
+
+\textbf{完整解答：}
+\[
+I=2\int_0^{2\pi}(2+\sin x)\,\mathrm dx
+=2\cdot4\pi=8\pi.
+\]
+
+\textbf{条件、易错与核验：}不能因 \(\sin x\) 周期为 \(2\pi\) 就把常数
+项遗漏；直接原函数计算也得 \(8\pi\)。
+
+\textbf{失分防线：}
+
+错误命题“周期函数在任意区间积分为零”以常函数 \(f\equiv1\) 为最小反例。
+正确结论只是整周期积分与起点无关，是否为零还取决于一个周期内的平均值。
+考场快速检查是先算“区间长度/周期”是否为整数，再判断周期积分本身。
+
+\textbf{考场写法：}
+
+写出代换后的第二个积分，再与原式相加；不要只写“由对称性显然”。
+奇偶题先同时核验函数奇偶与区间对称。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}会奇函数消零、偶函数折半。
+  \item \textbf{130 分以上：}能用 \(a+b-x\) 处理抽象函数和非零中心。
+  \item \textbf{满分能力：}能区分点态对称、区间对称与周期长度条件，
+  并主动检查分母非零。
+\end{itemize}
+本节建立在 K093 换元之上，连接 Fourier 型周期积分与多重积分区域对称。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k101}{K101 无穷区间反常积分定义}
+
+\knowledgeAnchor[MATH1-KN-CALC-0148]{无穷区间反常积分定义}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0148]{无穷区间反常积分定义}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+无穷不是可代入的端点。无穷区间积分的唯一合法入口是把它截成普通定积分，
+再研究截断极限。路线是“识别无穷端、选有限分点、逐端截断、分别判极限”。
+
+\textbf{直接前置四要素桥：极限与普通定积分。}
+
+\knowledgeRef[MATH1-KN-CALC-0137]{K090 区间可加性}负责拆分两端，
+\knowledgeRef[MATH1-KN-CALC-0144]{K097 Newton--Leibniz 公式}只在
+有限截断区间上计算。\(\lim_{R\to\infty}A(R)=L\) 表示
+\(R\) 任意增大时 \(A(R)\) 逼近唯一
+有限数 \(L\)。普通 \(\int_a^Rf\) 只在有限区间上使用 Newton--Leibniz
+公式；极限负责让 \(R\) 走向无穷。例如
+\(\int_1^R x^{-2}\mathrm dx=1-1/R\)，再令 \(R\to\infty\) 得 \(1\)。
+这解释了两项前置在定义中的具体作用。
+
+\textbf{严格定义：}
+
+\[
+\boxed{\int_a^\infty f(x)\,\mathrm dx
+:=\lim_{R\to\infty}\int_a^R f(x)\,\mathrm dx.}
+\]
+极限有限称收敛，否则发散。对全实轴，任选有限 \(c\)，
+\[
+\int_{-\infty}^{\infty}f
+=\int_{-\infty}^{c}f+\int_c^\infty f,
+\]
+两项必须各自收敛；分点选择不改变结论。让左右端以同一速度趋于无穷所得的
+Cauchy 主值，不等于通常反常积分。
+
+\textbf{方法选择：}
+
+只问数值时先求截断原函数；只问敛散可用 K103、K104。两端无穷一律拆开，
+含参数时先分参数再取极限。
+
+\textbf{例 1（基础：无穷上限）}
+
+\textbf{题面信号：}求 \(\int_1^\infty x^{-2}\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}先截到 \(R\)，再取 \(R\to\infty\)。
+
+\textbf{完整解答：}
+\[
+\int_1^\infty\frac{\mathrm dx}{x^2}
+=\lim_{R\to\infty}\left[-\frac1x\right]_1^R
+=\lim_{R\to\infty}\left(1-\frac1R\right)=1.
+\]
+
+\textbf{条件、易错与核验：}不能写“把 \(x=\infty\) 代入”；
+部分积分随 \(R\) 单调增且小于 \(1\)，极限 \(1\) 合理。
+
+\textbf{例 2（标准：两端分别收敛）}
+
+\textbf{题面信号：}求 \(\int_{-\infty}^{\infty}e^{-|x|}\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}以 \(0\) 分开，并按绝对值分别化简。
+
+\textbf{完整解答：}
+\[
+\int_{-\infty}^{0}e^x\,\mathrm dx=1,\qquad
+\int_0^\infty e^{-x}\,\mathrm dx=1,
+\]
+故
+\[
+\int_{-\infty}^{\infty}e^{-|x|}\,\mathrm dx=2.
+\]
+
+\textbf{条件、易错与核验：}两侧都需写成截断极限；函数为偶函数，
+也可在确认单侧收敛后写成 \(2\int_0^\infty e^{-x}\mathrm dx\) 核验。
+
+\textbf{例 3（方法边界：主值不能冒充收敛）}
+
+\textbf{题面信号：}判断
+\(\int_{-\infty}^{\infty}x\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}不能因被积函数为奇函数就写零，要分别检查两端。
+
+\textbf{完整解答：}
+\[
+\int_0^R x\,\mathrm dx=\frac{R^2}{2}\to\infty,
+\qquad
+\int_{-R}^0x\,\mathrm dx=-\frac{R^2}{2}\to-\infty.
+\]
+两项均不收敛，故通常反常积分发散；但对称主值
+\(\lim_{R\to\infty}\int_{-R}^Rx\,\mathrm dx=0\)。
+
+\textbf{条件、易错与核验：}“正负无穷抵消”没有定义；改变左右截断速度即
+得到不同结果，核验了不能合并。
+
+\textbf{例 4（迁移：参数决定收敛）}
+
+\textbf{题面信号：}讨论
+\[
+I(a)=\int_0^\infty e^{-ax}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}按 \(a\) 的符号讨论无穷端行为。
+
+\textbf{完整解答：}若 \(a>0\)，
+\[
+I(a)=\lim_{R\to\infty}\frac{1-e^{-aR}}a=\frac1a.
+\]
+若 \(a=0\)，部分积分为 \(R\to\infty\)；若 \(a<0\)，
+被积函数指数增长，部分积分也发散。因此仅 \(a>0\) 收敛。
+
+\textbf{条件、易错与核验：}不能先写 \(1/a\) 再补 \(a\ne0\)；
+真正条件是 \(a>0\)。单位上 \(a\) 越大衰减越快，积分 \(1/a\) 越小。
+
+\textbf{失分防线：}
+
+错误写法 \([F(x)]_a^\infty=F(\infty)-F(a)\) 把 \(\infty\) 当数。
+最小反例是 \(F(x)=\sin x\)，\(F(\infty)\) 根本不存在。正确判据是必须
+出现截断变量与极限；考场快速检查是看到无穷端就先写 \(\lim\)。
+
+\textbf{考场写法：}
+\[
+\int_a^\infty f(x)\,\mathrm dx
+=\lim_{R\to\infty}\int_a^Rf(x)\,\mathrm dx
+=\lim_{R\to\infty}[F(x)]_a^R.
+\]
+全实轴先任选有限分点，左右各写一条极限。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}任何无穷端都能写出正确截断极限。
+  \item \textbf{130 分以上：}能区分两侧通常收敛与对称主值。
+  \item \textbf{满分能力：}能处理参数、分点独立性并选择 K103/K104 判敛。
+\end{itemize}
+本节是 K103--K105 的定义基础，也连接概率密度的归一化积分。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k102}{K102 无界函数反常积分定义}
+
+\knowledgeAnchor[MATH1-KN-CALC-0149]{无界函数反常积分定义}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0149]{无界函数反常积分定义}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+积分区间有限不代表是普通定积分；被积函数在端点或内部无界时，该点叫瑕点。
+路线是“扫描定义域、标出全部瑕点、按瑕点切段、每侧单独取单侧极限”。
+
+\textbf{直接前置四要素桥：单侧极限与瑕点切分。}
+
+\knowledgeRef[MATH1-KN-CALC-0073]{K024 有限点函数极限}给出单侧逼近，
+\knowledgeRef[MATH1-KN-CALC-0137]{K090 区间可加性}负责在每个内部
+瑕点切段。\(t\to b^-\) 表示 \(t<b\) 且从左逼近 \(b\)，它负责保证积分始终留在
+原区间。例如 \(x^{-1/2}\) 在 \(0\) 无界，但
+\(\int_\varepsilon^1x^{-1/2}\mathrm dx=2-2\sqrt\varepsilon\to2\)；
+“函数无界”不等于“积分必发散”，决定因素是面积累积的极限。
+
+\textbf{严格定义：}
+
+若 \(f\) 在 \(b\) 左侧无界，
+\[
+\boxed{\int_a^bf(x)\,\mathrm dx
+:=\lim_{t\to b^-}\int_a^tf(x)\,\mathrm dx.}
+\]
+若内部 \(c\in(a,b)\) 是瑕点，则
+\[
+\int_a^bf=\int_a^cf+\int_c^bf,
+\]
+左右两项必须分别收敛；左右发散量不能相消。多个瑕点逐个切分。
+
+\textbf{方法选择：}
+
+先扫描分母零点、对数与根式边界，再计算。幂型优先 K103，复杂非负函数
+优先 K104；能直接求原函数时仍要保留单侧极限。
+
+\textbf{例 1（基础：可积的端点无界）}
+
+\textbf{题面信号：}求 \(\int_0^1x^{-1/2}\,\mathrm dx\)。
+
+\textbf{分析与方法选择：}\(x=0\) 是瑕点，从右侧截断。
+
+\textbf{完整解答：}
+\[
+\int_0^1x^{-1/2}\,\mathrm dx
+=\lim_{\varepsilon\to0^+}[2\sqrt x]_\varepsilon^1
+=\lim_{\varepsilon\to0^+}(2-2\sqrt\varepsilon)=2.
+\]
+
+\textbf{条件、易错与核验：}不能直接把 \(0^{-1/2}\) 视作函数值；
+面积正且有限，结果与 K103 的零端阈值 \(p=1/2<1\) 一致。
+
+\textbf{例 2（标准：临界发散）}
+
+\textbf{题面信号：}判断 \(\int_0^1\mathrm dx/x\)。
+
+\textbf{分析与方法选择：}在 \(0\) 右侧截断。
+
+\textbf{完整解答：}
+\[
+\int_0^1\frac{\mathrm dx}{x}
+=\lim_{\varepsilon\to0^+}[\ln x]_\varepsilon^1
+=\lim_{\varepsilon\to0^+}(-\ln\varepsilon)=+\infty.
+\]
+故发散。
+
+\textbf{条件、易错与核验：}错误的“\(\ln0=-\infty\)，相减得无穷”不是
+严格计算；部分积分随 \(\varepsilon\downarrow0\) 无界增长，核验发散。
+
+\textbf{例 3（方法边界：内部瑕点）}
+
+\textbf{题面信号：}判断
+\[
+\int_{-1}^{1}\frac{\mathrm dx}{x}.
+\]
+
+\textbf{分析与方法选择：}\(x=0\) 是内部瑕点，必须左右拆开。
+
+\textbf{完整解答：}
+\[
+\int_{-1}^{0}\frac{\mathrm dx}{x}
+=\lim_{t\to0^-}(\ln|t|-\ln1)=-\infty,
+\]
+\[
+\int_{0}^{1}\frac{\mathrm dx}{x}
+=\lim_{s\to0^+}(\ln1-\ln s)=+\infty.
+\]
+两侧不分别收敛，故通常反常积分发散；对称主值为 \(0\) 也不能改变结论。
+
+\textbf{条件、易错与核验：}奇函数对称只说明截断相消，不证明两侧收敛。
+
+\textbf{例 4（迁移：内部瑕点但收敛）}
+
+\textbf{题面信号：}求
+\[
+\int_0^2\frac{\mathrm dx}{\sqrt{|x-1|}}.
+\]
+
+\textbf{分析与方法选择：}\(x=1\) 为内部瑕点，左右分别令
+\(u=1-x\)、\(u=x-1\)。
+
+\textbf{完整解答：}
+\[
+\int_0^1\frac{\mathrm dx}{\sqrt{1-x}}=2,\qquad
+\int_1^2\frac{\mathrm dx}{\sqrt{x-1}}=2,
+\]
+故总积分为 \(4\)。
+
+\textbf{条件、易错与核验：}两侧都属于零端 \(p=1/2<1\)；
+图形关于 \(x=1\) 对称，两个贡献相等，核验总值。
+
+\textbf{失分防线：}
+
+错误动作是只看区间端点而漏掉内部零点。以例 3 为最小反例，原函数在
+\([-1,1]\) 上不能跨过 \(0\) 使用。正确判据是积分前先做定义域扫描；
+快速检查是把分母、根式、对数的危险点全部标在数轴上。
+
+\textbf{考场写法：}
+
+“\(c\) 为瑕点，故原积分收敛当且仅当
+\(\lim_{t\to c^-}\int_a^t f\) 与
+\(\lim_{s\to c^+}\int_s^bf\) 均存在且有限”，随后分别计算。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能识别端点与内部瑕点并写单侧极限。
+  \item \textbf{130 分以上：}能区分无界函数与不可积函数。
+  \item \textbf{满分能力：}能处理多个瑕点、参数移动瑕点与主值陷阱。
+\end{itemize}
+本节与 K101 共同给出反常积分定义，后续由 K103、K104快速判敛。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k103}{K103 \(p\) 型反常积分}
+
+\knowledgeAnchor[MATH1-KN-CALC-0150]{$p$ 型反常积分}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0150]{$p$ 型反常积分}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+\(p\) 型积分是反常积分的标尺。无穷端问“衰减够不够快”，零端问“爆炸
+够不够弱”，两套阈值方向相反，临界 \(p=1\) 都是对数发散。
+
+\textbf{直接前置四要素桥：幂函数原函数与两类截断。}
+
+当 \(p\ne1\)，
+\[
+\int x^{-p}\mathrm dx=\frac{x^{1-p}}{1-p}+C;
+\]
+当 \(p=1\)，原函数为 \(\ln x\)。
+\knowledgeRef[MATH1-KN-CALC-0148]{K101 无穷区间反常积分}负责令上限
+\(R\to\infty\)，
+\knowledgeRef[MATH1-KN-CALC-0149]{K102 无界函数反常积分}负责令下限
+\(\varepsilon\to0^+\)。例如 \(p=2\) 在无穷端收敛，
+却在零端发散，说明不能只背一个“\(p>1\)”。
+
+\textbf{严格结论与推导：}
+
+\[
+\boxed{\int_1^\infty x^{-p}\mathrm dx\text{ 收敛}\iff p>1,}
+\qquad
+\boxed{\int_0^1 x^{-p}\mathrm dx\text{ 收敛}\iff p<1.}
+\]
+因为 \(R^{1-p}\to0\) 当且仅当 \(p>1\)，而
+\(\varepsilon^{1-p}\to0\) 当且仅当 \(p<1\)；\(p=1\) 都归为对数。
+
+\textbf{例 1（基础：无穷端阈值）}
+
+\textbf{题面信号：}讨论 \(\int_1^\infty x^{-p}\mathrm dx\)。
+
+\textbf{分析与方法选择：}按 \(p=1\) 与 \(p\ne1\) 分开。
+
+\textbf{完整解答：}若 \(p\ne1\)，
+\[
+\int_1^R x^{-p}\mathrm dx
+=\frac{R^{1-p}-1}{1-p}.
+\]
+仅 \(p>1\) 时 \(R^{1-p}\to0\)，极限为 \(1/(p-1)\)；\(p<1\) 发散。
+\(p=1\) 时 \(\ln R\to\infty\)。故阈值为 \(p>1\)。
+
+\textbf{条件、易错与核验：}临界值不能代入 \(1/(p-1)\)；取
+\(p=2\) 得 \(1\)，取 \(p=0\) 得无限区间长度，方向核验无误。
+
+\textbf{例 2（标准：零端阈值）}
+
+\textbf{题面信号：}讨论 \(\int_0^1x^{-p}\mathrm dx\)。
+
+\textbf{分析与方法选择：}在 \(0\) 右侧截断。
+
+\textbf{完整解答：}若 \(p\ne1\)，
+\[
+\int_\varepsilon^1x^{-p}\mathrm dx
+=\frac{1-\varepsilon^{1-p}}{1-p}.
+\]
+仅 \(p<1\) 时极限有限，为 \(1/(1-p)\)；\(p>1\) 发散。
+\(p=1\) 时为 \(-\ln\varepsilon\to\infty\)。
+
+\textbf{条件、易错与核验：}取 \(p=0\) 得普通积分 \(1\)，取 \(p=2\)
+在零处严重爆炸，帮助记住方向。
+
+\textbf{例 3（方法选择：同时检查两端）}
+
+\textbf{题面信号：}对 \(b>0\)，讨论
+\[
+\int_0^\infty\frac{x^a}{1+x^b}\,\mathrm dx
+\]
+的收敛参数。
+
+\textbf{分析与方法选择：}在 \(0\) 附近像 \(x^a=x^{-(-a)}\)；
+在无穷处像 \(x^{a-b}=x^{-(b-a)}\)。
+
+\textbf{完整解答：}
+\[
+x\to0^+:\quad a>-1;
+\qquad
+x\to\infty:\quad b-a>1.
+\]
+故收敛当且仅当
+\[
+\boxed{-1<a<b-1}.
+\]
+
+\textbf{条件、易错与核验：}必须同时满足两端，且 \(b>0\) 使两种主导
+描述成立。边界 \(a=-1\) 或 \(a=b-1\) 都退化为对数发散。
+
+\textbf{例 4（迁移：临界幂上的对数修正）}
+
+\textbf{题面信号：}讨论
+\[
+\int_e^\infty\frac{\mathrm dx}{x(\ln x)^q}.
+\]
+
+\textbf{分析与方法选择：}幂次正好是临界 \(1/x\)，令 \(u=\ln x\)
+观察下一层 \(p\) 型。
+
+\textbf{完整解答：}
+\[
+u=\ln x,\quad \mathrm du=\frac{\mathrm dx}{x},\qquad
+\int_e^\infty\frac{\mathrm dx}{x(\ln x)^q}
+=\int_1^\infty u^{-q}\,\mathrm du.
+\]
+故当且仅当 \(q>1\) 收敛。
+
+\textbf{条件、易错与核验：}下限 \(e\) 保证 \(\ln x>0\)；
+不能只看到 \(1/x\) 就宣布发散，对数因子会改变临界行为。
+
+\textbf{失分防线：}
+
+错误口诀“\(p>1\) 收敛”省略端点。最小反例
+\(\int_0^1x^{-2}\mathrm dx\) 发散。正确判据是先问危险点在零还是无穷；
+快速检查用 \(p=0\) 与 \(p=2\) 各代一个值判断阈值方向。
+
+\textbf{考场写法：}
+
+先写“在某危险端 \(f(x)\sim Cx^{-p}\)”或直接化成标准型，再明确调用
+对应端点的阈值；临界 \(p=1\) 单独写对数。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}两套阈值不混。
+  \item \textbf{130 分以上：}能同时扫描零端、无穷端并处理临界值。
+  \item \textbf{满分能力：}能识别变量代换后的幂次及对数修正。
+\end{itemize}
+本节是 K104 比较判别的标准参照，也与数项级数的 \(p\) 判别同构。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k104}{K104 比较判别与极限比较}
+
+\knowledgeAnchor[MATH1-KN-CALC-0151]{比较判别与极限比较}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0151]{比较判别与极限比较}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+只问敛散时，求完整原函数常常没有必要。比较法只抓危险端点附近的主导行为，
+把复杂非负函数与 K103 的标准函数比较。
+
+\textbf{直接前置四要素桥：非负累积与等价主项。}
+
+\knowledgeRef[MATH1-KN-CALC-0138]{K091 保序性与估计}把点态大小传到
+有限区间积分；
+\knowledgeRef[MATH1-KN-CALC-0150]{K103 \(p\) 型反常积分}提供比较标尺。
+若 \(0\le f\le g\)，则每个截断区间上
+\(\int f\le\int g\)。若 \(\int g\) 的截断面积有有限上界，
+\(\int f\) 也收敛；反过来，若 \(0\le g\le f\) 且 \(\int g\) 发散，
+则 \(\int f\) 发散。极限 \(f/g\to c\in(0,\infty)\) 意味着最终
+\((c/2)g\le f\le(3c/2)g\)，所以二者同敛散。
+
+\textbf{严格口径：}
+
+比较只需在危险端点的某个邻域成立，因为剩余有限闭区间上的连续部分不影响
+敛散。函数须最终非负；符号变化时先研究绝对值或使用别的方法。
+
+\textbf{例 1（基础：直接上界比较）}
+
+\textbf{题面信号：}判断
+\[
+\int_1^\infty\frac{\mathrm dx}{1+x^2}.
+\]
+
+\textbf{分析与方法选择：}对 \(x\ge1\)，
+\(0<1/(1+x^2)\le1/x^2\)。
+
+\textbf{完整解答：}因
+\(\int_1^\infty x^{-2}\mathrm dx\) 收敛，由比较判别，原积分收敛。
+
+\textbf{条件、易错与核验：}这里只判敛无需算 \(\pi/4\)；比较方向是
+“小于一个收敛函数”。原函数 \(\arctan x\) 有有限极限可独立核验。
+
+\textbf{例 2（标准：极限比较）}
+
+\textbf{题面信号：}判断
+\[
+\int_1^\infty\frac{x}{x^3+1}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}分子分母最高次给主项 \(1/x^2\)。
+
+\textbf{完整解答：}
+\[
+\lim_{x\to\infty}
+\frac{x/(x^3+1)}{1/x^2}
+=\lim_{x\to\infty}\frac{x^3}{x^3+1}=1.
+\]
+因 \(\int_1^\infty x^{-2}\mathrm dx\) 收敛，原积分收敛。
+
+\textbf{条件、易错与核验：}两函数在尾部非负，极限为正有限数；
+若极限为 \(0\) 或 \(\infty\)，不能直接说同敛散。
+
+\textbf{例 3（方法选择：含参数的零端主项）}
+
+\textbf{题面信号：}讨论
+\[
+\int_0^1\frac{\sin x}{x^p}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}\(\sin x\sim x\)，故被积函数
+与 \(x^{1-p}=x^{-(p-1)}\) 极限比较。
+
+\textbf{完整解答：}
+\[
+\lim_{x\to0^+}
+\frac{\sin x/x^p}{x^{1-p}}
+=\lim_{x\to0^+}\frac{\sin x}{x}=1.
+\]
+零端 \(p\) 型要求 \(p-1<1\)，故
+\[
+\boxed{p<2\text{ 时收敛， }p\ge2\text{ 时发散}.}
+\]
+
+\textbf{条件、易错与核验：}在 \((0,1]\) 上 \(\sin x>0\)；
+\(p=2\) 主项为 \(1/x\)，对数发散，核验临界值。
+
+\textbf{例 4（迁移：下界比较判发散）}
+
+\textbf{题面信号：}判断
+\[
+\int_1^\infty\frac{\mathrm dx}{\sqrt{x^2+1}}.
+\]
+
+\textbf{分析与方法选择：}它与 \(1/x\) 极限比较。
+
+\textbf{完整解答：}
+\[
+\lim_{x\to\infty}
+\frac{1/\sqrt{x^2+1}}{1/x}
+=\lim_{x\to\infty}\frac{x}{\sqrt{x^2+1}}=1.
+\]
+因 \(\int_1^\infty\mathrm dx/x\) 发散，原积分发散。
+
+\textbf{条件、易错与核验：}函数虽趋于 \(0\)，积分仍发散；
+原函数 \(\ln(x+\sqrt{x^2+1})\to\infty\) 可核验。
+
+\textbf{失分防线：}
+
+错误推理“\(0\le f\le g\)，\(\int f\) 收敛，所以 \(\int g\) 收敛”
+方向颠倒。最小反例取 \(f=1/x^2,g=1/x\)。正确口令是“小于收敛判收敛，
+大于发散判发散”；快速检查用这两个标准函数代入检验方向。
+
+\textbf{考场写法：}
+
+明确危险端、标准函数 \(g\)、非负性，并写
+\(\lim f/g=c\in(0,\infty)\)；随后一句“由极限比较判别，与 \(g\)
+同敛散”。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能正确使用两种比较方向。
+  \item \textbf{130 分以上：}能由等价无穷小找出局部幂次与临界值。
+  \item \textbf{满分能力：}能处理多个危险端、参数分段及符号变化前的
+  绝对值判定。
+\end{itemize}
+本节以 K103 为标尺，直接连接 K105 的绝对收敛判断。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k105}{K105 反常积分的绝对收敛与条件收敛}
+
+\knowledgeAnchor[MATH1-KN-CALC-0152]{绝对收敛与条件收敛（反常积分）}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0152]{绝对收敛与条件收敛（反常积分）}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+符号振荡可能让正负面积相互抑制。若 \(\int|f|\) 收敛，称
+\(\int f\) 绝对收敛；若 \(\int f\) 收敛但 \(\int|f|\) 发散，称条件
+收敛。备考重点是理解这一区分，并会处理题内可由比较或分部积分解决的简单
+振荡型；不把一般高等判别法扩成额外背诵任务。
+
+\textbf{直接前置闭环：绝对值与 Cauchy 尾量。}
+
+对任何有限区间，
+\[
+\left|\int_A^Bf(x)\mathrm dx\right|
+\le\int_A^B|f(x)|\mathrm dx.
+\]
+若右侧在 \(A\to\infty\) 时可任意小，则左侧尾积分也可任意小，故
+\(\int|f|\) 收敛推出 \(\int f\) 收敛。逆命题不成立，因为振荡可以让
+\(\int f\) 的尾量相消，却不能让 \(\int|f|\) 相消。
+
+\textbf{方法选择：}
+
+先看绝对值后能否用
+\knowledgeRef[MATH1-KN-CALC-0150]{K103 \(p\) 型积分}或
+\knowledgeRef[MATH1-KN-CALC-0151]{K104 比较判别}；若绝对值发散，
+再检查原积分是否能由有限
+区间分部积分给出趋零的尾量。仅有 \(f(x)\to0\) 不是充分条件。
+
+\textbf{例 1（基础：绝对收敛）}
+
+\textbf{题面信号：}判断
+\[
+\int_1^\infty\frac{\sin x}{x^2}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}先取绝对值并与 \(1/x^2\) 比较。
+
+\textbf{完整解答：}
+\[
+0\le\frac{|\sin x|}{x^2}\le\frac1{x^2},
+\]
+而 \(\int_1^\infty x^{-2}\mathrm dx\) 收敛，故
+\(\int_1^\infty|\sin x|/x^2\,\mathrm dx\) 收敛，原积分绝对收敛。
+
+\textbf{条件、易错与核验：}无需求出积分值；比较对象非负且方向正确。
+
+\textbf{例 2（标准：简单条件收敛）}
+
+\textbf{题面信号：}判断
+\[
+\int_1^\infty\frac{\sin x}{x}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}对尾积分在有限 \([A,B]\) 上分部，证明其尾量
+趋零；再说明绝对值积分发散。
+
+\textbf{完整解答：}
+\[
+\int_A^B\frac{\sin x}{x}\mathrm dx
+=\left[-\frac{\cos x}{x}\right]_A^B
+-\int_A^B\frac{\cos x}{x^2}\mathrm dx,
+\]
+故其绝对值不超过
+\[
+\frac1A+\frac1B+\int_A^\infty\frac{\mathrm dx}{x^2}
+\le\frac3A\to0.
+\]
+因此原积分收敛。另一方面，在每个足够大的周期中
+\(|\sin x|\ge1/2\) 的子区间长度固定，故
+\(\int_1^\infty|\sin x|/x\,\mathrm dx\) 至少控制一个调和型发散和，
+所以不绝对收敛。原积分条件收敛。
+
+\textbf{条件、易错与核验：}分部只能先在有限区间做；尾量估计给出
+Cauchy 收敛。不能把振荡产生的收敛误写成绝对收敛。
+
+\textbf{例 3（方法边界：趋零不够）}
+
+\textbf{题面信号：}由 \(f(x)\to0\) 能否推出
+\(\int_1^\infty f(x)\mathrm dx\) 收敛？
+
+\textbf{分析与方法选择：}用最小反例检验命题。
+
+\textbf{完整解答：}取 \(f(x)=1/x\)，则 \(f(x)\to0\)，但
+\[
+\int_1^R\frac{\mathrm dx}{x}=\ln R\to\infty.
+\]
+所以命题错误。趋零至多是某些振荡积分收敛的必要背景，不是充分条件。
+
+\textbf{条件、易错与核验：}该反例非负，不存在正负相消，清楚隔离了
+“点态趋零”与“累计面积有限”的差异。
+
+\textbf{例 4（迁移：参数振荡尾）}
+
+\textbf{题面信号：}讨论
+\[
+\int_1^\infty\frac{\sin x}{x^p}\,\mathrm dx.
+\]
+
+\textbf{分析与方法选择：}先判绝对收敛，再对 \(p>0\) 用分部尾量；
+\(p\le0\) 检查截断积分是否有极限。
+
+\textbf{完整解答：}
+绝对值积分与 \(\int x^{-p}\) 同阶，故 \(p>1\) 时绝对收敛，
+\(p\le1\) 时不绝对收敛。若 \(p>0\)，对 \([A,B]\) 分部可得尾量
+绝对值不超过 \(C/A^p\)，故原积分收敛。因此
+\[
+\boxed{p>1\text{ 绝对收敛};\quad0<p\le1\text{ 条件收敛}.}
+\]
+当 \(p=0\)，部分积分 \(\cos1-\cos R\) 无极限；当 \(p<0\)，振幅不衰减，
+同样发散。
+
+\textbf{条件、易错与核验：}绝对值后的周期平均为正常数，不能因零点多就
+判收敛；临界 \(p=1\) 与例 2 一致。
+
+\textbf{失分防线：}
+
+错误命题“\(\int f\) 收敛就有 \(\int|f|\) 收敛”被例 2 直接反驳。
+正确关系只有绝对收敛推出收敛；考场快速动作是先给被积函数加绝对值，
+分别标注两次判敛结论。
+
+\textbf{考场写法：}
+
+“由 \(0\le|f|\le g\) 且 \(\int g\) 收敛，知绝对收敛”；若要证明条件
+收敛，必须再给“原积分收敛”的独立证明与“绝对值积分发散”的独立证明。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}知道绝对收敛的单向蕴含。
+  \item \textbf{130 分以上：}能比较绝对值并用分部估计简单振荡尾。
+  \item \textbf{满分能力：}能按参数区分绝对、条件与发散，且不调用未说明
+  的高级定理跳步。
+\end{itemize}
+本节依赖 K101、K103、K104，并为数项级数的同名概念提供连续模型。
+\end{knowledgeBox}
+
+\studySubsection{calc-09-k112}{K112 Beta/Gamma 函数与特殊积分的大纲边界}
+
+\knowledgeAnchor[MATH1-KN-CALC-0159]{Beta/Gamma函数与特殊积分}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0159]{Beta/Gamma 函数与特殊积分}}\par
+
+\begin{knowledgeBox}
+\textbf{定位：识别边界，而不是扩展背诵。}
+
+本节点是大纲边界型知识。Beta、Gamma 等名称可用来描述某些参数反常积分，
+但不把它们作为数学一的独立复习任务，也不要求背特殊函数恒等式。题目若出现
+特殊外观，应优先用本章已经闭合的换元、分部、对称和反常积分定义解决。
+
+\textbf{直接前置四要素桥：}
+
+\knowledgeRef[MATH1-KN-CALC-0148]{K101}、
+\knowledgeRef[MATH1-KN-CALC-0149]{K102}规定特殊积分首先是反常积分，
+必须截断；\knowledgeRef[MATH1-KN-CALC-0140]{K093}允许合法换元；
+\knowledgeRef[MATH1-KN-CALC-0141]{K094}允许在有限截断区间分部。
+这四件事足以完成本节例题。最小模型
+\[
+\int_0^\infty e^{-x}\mathrm dx
+=\lim_{R\to\infty}(1-e^{-R})=1
+\]
+完全不需要给它另起特殊函数名称。
+
+\textbf{可选认识与严格边界：}
+
+学有余力时可知道符号
+\[
+\Gamma(s)=\int_0^\infty x^{s-1}e^{-x}\mathrm dx,\qquad
+B(p,q)=\int_0^1x^{p-1}(1-x)^{q-1}\mathrm dx
+\]
+常用于压缩表达；但这些定义的参数收敛条件仍需检查，而且任何未在题面给出的
+特殊值或恒等式都不能在考场答案中无说明跳用。删去这段可选认识，不影响下面
+所有标准解法。
+
+\textbf{方法选择：}
+
+指数乘幂先截断再分部；\(x\) 与 \(1-x\) 对称的平方根考虑
+\(x=\sin^2t\)；\((1+x^2)^{-1}\) 用反正切。目标是回到已学工具，
+不是辨认一个术语。
+
+\textbf{例 1（基础：特殊名称不增加步骤）}
+
+\textbf{题面信号：}求 \(\int_0^\infty e^{-x}\mathrm dx\)。
+
+\textbf{分析与方法选择：}只有无穷上限，直接用 K101。
+
+\textbf{完整解答：}
+\[
+\int_0^\infty e^{-x}\mathrm dx
+=\lim_{R\to\infty}[-e^{-x}]_0^R=1.
+\]
+
+\textbf{条件、易错与核验：}指数衰减保证极限；不能写
+\(e^{-\infty}\) 作为代入。部分积分单调增且小于 \(1\)。
+
+\textbf{例 2（标准：截断后分部）}
+
+\textbf{题面信号：}求
+\(\int_0^\infty xe^{-x}\mathrm dx\)。
+
+\textbf{分析与方法选择：}先截断，再用 K094；不调用任何特殊函数递推。
+
+\textbf{完整解答：}
+\[
+\int_0^Rxe^{-x}\mathrm dx
+=-Re^{-R}+1-e^{-R}\to1.
+\]
+故原积分等于 \(1\)。
+
+\textbf{条件、易错与核验：}\(Re^{-R}\to0\) 需作为极限说明；
+与 K094 例 4 一致，核验方法稳定。
+
+\textbf{例 3（方法选择：Beta 外观化为普通三角积分）}
+
+\textbf{题面信号：}求
+\[
+\int_0^1\frac{\mathrm dx}{\sqrt{x(1-x)}}.
+\]
+
+\textbf{分析与方法选择：}两端均为 \(p=1/2\) 的可积瑕点；令
+\(x=\sin^2t\) 同时消去两个根。
+
+\textbf{完整解答：}
+\[
+x=\sin^2t,\quad t\in[0,\pi/2],\quad
+\mathrm dx=2\sin t\cos t\,\mathrm dt,
+\]
+\[
+\sqrt{x(1-x)}=\sin t\cos t,
+\qquad
+I=2\int_0^{\pi/2}\mathrm dt=\pi.
+\]
+
+\textbf{条件、易错与核验：}严格换元可先避开两端再取极限；
+结果也符合被积函数关于 \(x=1/2\) 的对称性。
+
+\textbf{例 4（迁移：Gamma 外观之外的标准积分）}
+
+\textbf{题面信号：}求
+\[
+\int_0^\infty\frac{\mathrm dx}{1+x^2}.
+\]
+
+\textbf{分析与方法选择：}原函数为 \(\arctan x\)，直接截断即可。
+
+\textbf{完整解答：}
+\[
+\int_0^\infty\frac{\mathrm dx}{1+x^2}
+=\lim_{R\to\infty}[\arctan x]_0^R=\frac\pi2.
+\]
+
+\textbf{条件、易错与核验：}不需要把它归入任何特殊函数体系；
+几何上对应反正切从 \(0\) 到 \(\pi/2\) 的增量。
+
+\textbf{失分防线：}
+
+错误策略是看见参数反常积分就背诵未说明的
+\(\Gamma(s+1)=s\Gamma(s)\) 或 Beta--Gamma 关系并跳步。即使结论正确，
+来源与条件也未闭合。正确判据是每一步都能回落到本章标准工具；快速检查是问：
+“删掉特殊函数名称，我还能否把截断、换元或分部写完整？”
+
+\textbf{考场写法：}
+
+先标危险端并写截断极限，再用普通换元或分部完成。若题面主动给出一个特殊
+函数定义，可以按题设使用，但仍要核验参数落在其定义允许范围内。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}知道无需背 Beta/Gamma 公式，能识别反常端点。
+  \item \textbf{130 分以上：}能把特殊外观还原为 K093、K094 的标准步骤。
+  \item \textbf{满分能力：}能在题面给定义时安全调用，同时明确哪些高级
+  恒等式并非必需、不能无说明使用。
+\end{itemize}
+本节只作边界识别，向前复用 K101--K105；概率论中若再次出现相似积分，
+仍优先遵循题设与当章工具，不扩展独立特殊函数课程。
+\end{knowledgeBox}

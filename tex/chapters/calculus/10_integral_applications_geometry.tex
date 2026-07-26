@@ -5,3 +5,565 @@
 
 本讲用于整理平面图形面积、旋转体体积、平行截面面积、弧长等几何应用。新增题目时重点画清图形、确定积分变量和上下限。
 \end{knowledgeBox}
+
+\studySubsection{calc-10-k106}{K106 平面图形面积}
+
+\knowledgeAnchor[MATH1-KN-CALC-0153]{平面图形面积}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0153]{平面图形面积}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+面积题的计算通常不难，难点是把图形切成不会重复、不会出现负“高度”的细条。
+固定路线是
+\[
+\boxed{\text{画草图}\to\text{求交点}\to\text{选竖条或横条}
+\to\text{判上下/左右}\to\text{必要时分段}.}
+\]
+
+\textbf{直接前置四要素桥：函数图像、交点与面积微元。}
+
+\knowledgeRef[MATH1-KN-CALC-0135]{K088 定积分定义}把细条和的极限写成
+积分，\knowledgeRef[MATH1-KN-CALC-0144]{K097 Newton--Leibniz 公式}
+负责最后求值。两曲线交点由方程联立得到，它们决定积分限与上下关系可能变化的位置。
+在宽度 \(\Delta x\) 很小的竖条上，面积近似
+\((y_{\text{上}}-y_{\text{下}})\Delta x\)；把所有细条相加并令最大宽度趋零，
+得到定积分。例如 \(0\le y\le x\)、\(0\le x\le1\) 的三角形面积为
+\(\int_0^1x\mathrm dx=1/2\)，这说明“高度乘宽度”的作用。
+
+\textbf{严格核心与条件：}
+
+\[
+A=\int_a^b\bigl(y_{\text{上}}(x)-y_{\text{下}}(x)\bigr)\,\mathrm dx,
+\]
+或
+\[
+A=\int_c^d\bigl(x_{\text{右}}(y)-x_{\text{左}}(y)\bigr)\,\mathrm dy.
+\]
+极坐标中扇形微元为 \(\frac12r^2\mathrm d\theta\)，故
+\[
+A=\frac12\int_\alpha^\beta
+\bigl(r_{\text{外}}^2-r_{\text{内}}^2\bigr)\,\mathrm d\theta.
+\]
+差值必须非负；若上下或左右关系改变就分段。极坐标角区间不能重复扫描区域。
+
+\textbf{方法选择：}
+
+能直接写成上下函数时用 \(x\)；若解 \(y=f(x)\) 会出现多值而
+\(x=g(y)\) 简单，改用 \(y\)。极坐标边界以射线描述更自然时才使用极坐标。
+
+\textbf{例 1（基础：上下函数固定）}
+
+\textbf{题面信号：}求 \(y=x\) 与 \(y=x^2\) 围成的面积。
+
+\textbf{分析与方法选择：}交点 \(x=0,1\)；在 \((0,1)\) 上
+\(x>x^2\)。
+
+\textbf{完整解答：}
+\[
+A=\int_0^1(x-x^2)\,\mathrm dx
+=\left[\frac{x^2}{2}-\frac{x^3}{3}\right]_0^1
+=\frac16.
+\]
+
+\textbf{条件、易错与核验：}上下函数顺序不能反；图形位于单位正方形内，
+\(0<A<1\)，且粗略三角形面积量级与 \(1/6\) 相符。
+
+\textbf{例 2（标准：绝对值导致分段）}
+
+\textbf{题面信号：}求 \(y=|x|\) 与 \(y=x^2\) 围成的总面积。
+
+\textbf{分析与方法选择：}交点为 \(-1,0,1\)，图形关于 \(y\) 轴对称；
+在 \(0<x<1\) 上上方为 \(y=x\)。
+
+\textbf{完整解答：}
+\[
+A=2\int_0^1(x-x^2)\,\mathrm dx=\frac13.
+\]
+
+\textbf{条件、易错与核验：}不能只解 \(x=x^2\) 而漏掉负半轴；
+由对称性是例 1 面积的两倍，核验为 \(1/3\)。
+
+\textbf{例 3（方法选择：横条更短）}
+
+\textbf{题面信号：}求 \(x=y^2\) 与 \(x=2y\) 围成的面积。
+
+\textbf{分析与方法选择：}交点由 \(y^2=2y\) 得 \(y=0,2\)；
+在该区间右边界为 \(x=2y\)，左边界为 \(x=y^2\)。
+
+\textbf{完整解答：}
+\[
+A=\int_0^2(2y-y^2)\,\mathrm dy
+=\left[y^2-\frac{y^3}{3}\right]_0^2
+=\frac43.
+\]
+
+\textbf{条件、易错与核验：}若强行改写成 \(y=\pm\sqrt x\) 会增加分段；
+差值 \(2y-y^2\ge0\)，符号核验通过。
+
+\textbf{例 4（迁移：极坐标避免重复扫描）}
+
+\textbf{题面信号：}求极坐标曲线 \(r=2\cos\theta\) 围成的面积。
+
+\textbf{分析与方法选择：}取
+\(\theta\in[-\pi/2,\pi/2]\) 时 \(r\ge0\)，射线恰好扫描一次该圆。
+
+\textbf{完整解答：}
+\[
+\begin{aligned}
+A&=\frac12\int_{-\pi/2}^{\pi/2}4\cos^2\theta\,\mathrm d\theta\\
+&=2\cdot\frac\pi2=\pi.
+\end{aligned}
+\]
+
+\textbf{条件、易错与核验：}若取长度 \(2\pi\) 的角区间会重复扫描；
+方程化为 \((x-1)^2+y^2=1\)，确为半径 \(1\) 的圆，面积 \(\pi\)。
+
+\textbf{失分防线：}
+
+错误写法 \(A=\int_a^b(f-g)\mathrm dx\) 而不判上下，可能得到负数或相消。
+最小反例是在 \([-1,1]\) 求 \(y=x\) 与 \(x\) 轴之间的总面积，直接积分为
+\(0\)，实际面积为 \(1\)。正确判据是每段高度非负；快速检查是交点处差为
+\(0\)、区间内部任选一点判符号。
+
+\textbf{考场写法：}
+
+先列交点和区间内上下关系，再写
+\[
+A=\sum\int(\text{上}-\text{下})\,\mathrm dx
+\quad\text{或}\quad
+A=\sum\int(\text{右}-\text{左})\,\mathrm dy.
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}会画草图、求交点并列单段面积。
+  \item \textbf{130 分以上：}能主动在竖条、横条之间选择并正确分段。
+  \item \textbf{满分能力：}能控制极坐标扫描次数、参数边界及绝对值区域。
+\end{itemize}
+本节依赖定积分与图像，直接支撑 K107 体积，也为二重积分区域描述奠基。
+\end{knowledgeBox}
+
+\studySubsection{calc-10-k107}{K107 旋转体体积与截面体积}
+
+\knowledgeAnchor[MATH1-KN-CALC-0154]{旋转体体积与截面体积}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0154]{旋转体体积与截面体积}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+体积是截面积沿垂直方向的累积。先画旋转轴，再决定用“垂直于轴的圆盘/垫片”
+还是“平行于轴的柱壳”，选择能避免反函数和多段边界的方法。
+
+\textbf{直接前置四要素桥：截面积与旋转半径。}
+
+\knowledgeRef[MATH1-KN-CALC-0153]{K106 平面图形面积}已经给出区域边界
+与“高度乘宽度”的微元；这里把高度替换为垂直于积分轴的截面积。
+若在位置 \(x\) 的截面积为 \(A(x)\)，厚度为 \(\Delta x\)，小体积近似
+\(A(x)\Delta x\)，极限给
+\[
+V=\int_a^bA(x)\,\mathrm dx.
+\]
+圆盘面积为 \(\pi R^2\)，垫片面积为 \(\pi(R^2-r^2)\)；半径是曲线到
+旋转轴的距离，不一定等于函数值。例如绕 \(y=1\) 旋转时，点 \(y\) 的
+半径是 \(|y-1|\)。
+
+\textbf{严格核心：}
+
+\[
+V_{\text{垫片}}=\pi\int(R^2-r^2)\,\mathrm dx,
+\qquad
+V_{\text{壳}}=2\pi\int(\text{半径})(\text{高度})\,\mathrm dx.
+\]
+区域跨过旋转轴时，要重新判断截面是否成为完整圆盘；不能把重叠生成的体积
+重复相加。
+
+\textbf{例 1（基础：圆盘法）}
+
+\textbf{题面信号：}曲线 \(y=\sqrt x\)、\(x=0,1\) 与 \(x\) 轴围成
+区域绕 \(x\) 轴旋转。
+
+\textbf{分析与方法选择：}垂直 \(x\) 轴切片直接得到半径 \(\sqrt x\)
+的圆盘。
+
+\textbf{完整解答：}
+\[
+V=\pi\int_0^1(\sqrt x)^2\,\mathrm dx
+=\pi\int_0^1x\,\mathrm dx=\frac\pi2.
+\]
+
+\textbf{条件、易错与核验：}体积公式中函数值要平方；所得旋转体装在半径
+1、长 1 的圆柱内，\(\pi/2<\pi\) 合理。
+
+\textbf{例 2（标准：柱壳法避免反函数）}
+
+\textbf{题面信号：}区域由 \(y=x\)、\(y=x^2\) 围成，绕 \(y\) 轴旋转。
+
+\textbf{分析与方法选择：}用竖条形成半径 \(x\)、高度 \(x-x^2\) 的柱壳。
+
+\textbf{完整解答：}
+\[
+V=2\pi\int_0^1x(x-x^2)\,\mathrm dx
+=2\pi\left(\frac13-\frac14\right)=\frac\pi6.
+\]
+
+\textbf{条件、易错与核验：}半径是到 \(y\) 轴的距离 \(x\)；
+高度非负。用横截面分段也应得到同一结果。
+
+\textbf{例 3（方法选择：旋转轴平移）}
+
+\textbf{题面信号：}区域
+\[
+0\le x\le1,\qquad0\le y\le1-x
+\]
+绕直线 \(x=-1\) 旋转。
+
+\textbf{分析与方法选择：}竖条与旋转轴平行，柱壳半径 \(x+1\)，高度
+\(1-x\)，无需改写横条。
+
+\textbf{完整解答：}
+\[
+\begin{aligned}
+V&=2\pi\int_0^1(x+1)(1-x)\,\mathrm dx\\
+&=2\pi\int_0^1(1-x^2)\,\mathrm dx=\frac{4\pi}{3}.
+\end{aligned}
+\]
+
+\textbf{条件、易错与核验：}半径不是 \(x\)，而是 \(x-(-1)\)。
+改用横向垫片可得
+\(\pi\int_0^1[(2-y)^2-1^2]\mathrm dy=4\pi/3\)。
+
+\textbf{例 4（迁移：外内半径都要量到旋转轴）}
+
+\textbf{题面信号：}区域由 \(y=x^2\) 与 \(y=2\) 围成，绕
+\(y=3\) 旋转。
+
+\textbf{分析与方法选择：}交点 \(x=\pm\sqrt2\)。对竖条，距轴较远的
+下边界 \(y=x^2\) 给外半径 \(R=3-x^2\)，上边界 \(y=2\) 给内半径
+\(r=1\)。
+
+\textbf{完整解答：}
+\[
+\begin{aligned}
+V&=\pi\int_{-\sqrt2}^{\sqrt2}
+\left[(3-x^2)^2-1\right]\mathrm dx\\
+&=\pi\int_{-\sqrt2}^{\sqrt2}(8-6x^2+x^4)\mathrm dx
+=\frac{48\sqrt2}{5}\pi.
+\end{aligned}
+\]
+
+\textbf{条件、易错与核验：}不要把 \(y\) 值直接当半径；被积函数
+在区间非负且为偶函数，计算可用两倍核验。
+
+\textbf{失分防线：}
+
+错误规则“绕 \(x\) 轴总用 \(\pi\int y^2\)”忽略空心与跨轴情形。
+最小反例是区域 \(1\le y\le2\) 绕 \(x\) 轴，截面应为
+\(\pi(2^2-1^2)\)，不是 \(\pi(2-1)^2\)。正确判据是先画一条截面并标
+外、内半径；快速检查单位必须是长度的三次方。
+
+\textbf{考场写法：}
+
+“取垂直于/平行于旋转轴的微元，半径为 \(\cdots\)，高度为
+\(\cdots\)，故 \(\mathrm dV=\cdots\)，积分区间为 \(\cdots\)”。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}会圆盘、垫片与已知截面积公式。
+  \item \textbf{130 分以上：}能在垫片与壳法间作最短选择。
+  \item \textbf{满分能力：}能处理平移旋转轴、跨轴、分段与避免重复计体积。
+\end{itemize}
+本节复用 K106 的区域刻画，连接重积分体积与 K111 质心微元。
+\end{knowledgeBox}
+
+\studySubsection{calc-10-k108}{K108 弧长}
+
+\knowledgeAnchor[MATH1-KN-CALC-0155]{弧长}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0155]{弧长}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+弧长来自“用许多短弦逼近曲线”。先确定曲线的表示方式与不重复的参数区间，
+再把二维距离微元积分。
+
+\textbf{直接前置四要素桥：距离公式、导数与分段光滑。}
+
+导数的几何意义给出切线方向，
+\knowledgeRef[MATH1-KN-CALC-0123]{K076 弧微分与曲率}给出局部长度
+微元。小位移满足
+\[
+\Delta s\approx\sqrt{(\Delta x)^2+(\Delta y)^2}.
+\]
+若 \(y=y(x)\)，除以 \(|\Delta x|\) 并令间距趋零，
+\[
+\mathrm ds=\sqrt{1+(y')^2}\,\mathrm dx.
+\]
+导数在这里给出切线方向；分段光滑表示可把曲线分成有限段，每段导数连续，
+长度再相加。最小例子 \(y=mx\) 在 \([0,a]\) 的长度为
+\(\int_0^a\sqrt{1+m^2}\mathrm dx=a\sqrt{1+m^2}\)，与两点距离一致。
+
+\textbf{严格公式：}
+
+\[
+s=\int_a^b\sqrt{1+(y')^2}\,\mathrm dx,
+\]
+\[
+s=\int_\alpha^\beta
+\sqrt{(x'(t))^2+(y'(t))^2}\,\mathrm dt,
+\]
+\[
+s=\int_\alpha^\beta\sqrt{r^2+(r')^2}\,\mathrm d\theta.
+\]
+参数区间若重复描迹，长度会重复计数；根号不能省略。
+
+\textbf{例 1（基础：直角坐标）}
+
+\textbf{题面信号：}求曲线
+\[
+y=\frac23x^{3/2},\qquad0\le x\le1
+\]
+的弧长。
+
+\textbf{分析与方法选择：}\(y'=\sqrt x\)，弧长被积函数可直接积分。
+
+\textbf{完整解答：}
+\[
+s=\int_0^1\sqrt{1+x}\,\mathrm dx
+=\frac23\left[(1+x)^{3/2}\right]_0^1
+=\frac23(2\sqrt2-1).
+\]
+
+\textbf{条件、易错与核验：}曲线在区间分段光滑；长度大于水平跨度 \(1\)，
+\(\frac23(2\sqrt2-1)>1\)，核验合理。
+
+\textbf{例 2（标准：参数曲线）}
+
+\textbf{题面信号：}求
+\[
+x=\cos t,\quad y=\sin t,\quad0\le t\le\frac\pi2
+\]
+的弧长。
+
+\textbf{分析与方法选择：}参数式直接套速度模。
+
+\textbf{完整解答：}
+\[
+\sqrt{(-\sin t)^2+(\cos t)^2}=1,
+\qquad
+s=\int_0^{\pi/2}1\,\mathrm dt=\frac\pi2.
+\]
+
+\textbf{条件、易错与核验：}参数只描单位圆第一象限一次；与四分之一圆周长
+\(\pi/2\) 一致。
+
+\textbf{例 3（方法选择：极坐标）}
+
+\textbf{题面信号：}求 \(r=2\cos\theta\)、
+\(-\pi/2\le\theta\le\pi/2\) 的曲线长度。
+
+\textbf{分析与方法选择：}极坐标公式最短，且给定角区间恰描圆一次。
+
+\textbf{完整解答：}
+\[
+r'=-2\sin\theta,\qquad
+\sqrt{r^2+(r')^2}=2,
+\]
+\[
+s=\int_{-\pi/2}^{\pi/2}2\,\mathrm d\theta=2\pi.
+\]
+
+\textbf{条件、易错与核验：}若把 \(\sqrt{r^2+(r')^2}\) 错写成
+\(\sqrt{1+(r')^2}\) 会错；曲线是半径 1 的圆，周长 \(2\pi\)。
+
+\textbf{例 4（迁移：参数速度的绝对值）}
+
+\textbf{题面信号：}求摆线一拱
+\[
+x=t-\sin t,\quad y=1-\cos t,\quad0\le t\le2\pi
+\]
+的弧长。
+
+\textbf{分析与方法选择：}直接计算速度模，并注意平方根化简的符号。
+
+\textbf{完整解答：}
+\[
+\begin{aligned}
+\sqrt{(1-\cos t)^2+\sin^2t}
+&=\sqrt{2-2\cos t}\\
+&=2\left|\sin\frac t2\right|
+=2\sin\frac t2
+\end{aligned}
+\]
+（因 \(0\le t/2\le\pi\)）。故
+\[
+s=\int_0^{2\pi}2\sin\frac t2\,\mathrm dt=8.
+\]
+
+\textbf{条件、易错与核验：}端点速度为零但曲线分段光滑，长度仍有定义；
+去绝对值前必须使用参数范围。结果大于两端水平距离 \(2\pi\)。
+
+\textbf{失分防线：}
+
+错误公式 \(s=\int(1+(y')^2)\mathrm dx\) 漏平方根。对直线
+\(y=x\) 于 \([0,1]\)，错误值为 \(2\)，实际两点距离为 \(\sqrt2\)。
+正确判据是弧元必须来自勾股距离；快速检查是直线模型能否还原两点距离。
+
+\textbf{考场写法：}
+
+先写参数区间与导数，再单独化简速度模；涉及平方根平方时保留绝对值并用区间
+定符号，最后积分。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}会直角坐标和参数弧长公式。
+  \item \textbf{130 分以上：}会极坐标公式与典型可积化简。
+  \item \textbf{满分能力：}能检查重复描迹、尖点、绝对值与分段光滑性。
+\end{itemize}
+本节以导数和距离为前置，直接支撑 K109 旋转曲面面积。
+\end{knowledgeBox}
+
+\studySubsection{calc-10-k109}{K109 旋转曲面面积}
+
+\knowledgeAnchor[MATH1-KN-CALC-0156]{旋转曲面面积}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0156]{旋转曲面面积}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+曲线上的短弧绕轴旋转，近似生成一条窄圆台带；其面积主项是
+“旋转周长 \(\times\) 弧长”。因此本节只在 K108 弧元上再乘到旋转轴的
+距离。
+
+\textbf{直接前置四要素桥：弧元与旋转半径。}
+
+\knowledgeRef[MATH1-KN-CALC-0155]{K108 弧长}给出
+\(\mathrm ds=\sqrt{1+(y')^2}\mathrm dx\) 或参数速度模。
+点到 \(x\) 轴的距离是 \(|y|\)，绕一周的周长为 \(2\pi|y|\)，故
+\[
+\mathrm dS=2\pi|y|\,\mathrm ds.
+\]
+最小模型是水平线段 \(y=R\)、长度 \(L\) 绕 \(x\) 轴，所得圆柱侧面积
+\(2\pi RL\)，与公式完全一致。
+
+\textbf{严格公式与条件：}
+
+\[
+\boxed{S=2\pi\int_a^b|y(x)|
+\sqrt{1+(y')^2}\,\mathrm dx,}
+\]
+参数式为
+\[
+S=2\pi\int_\alpha^\beta|y(t)|
+\sqrt{(x')^2+(y')^2}\,\mathrm dt.
+\]
+绕其他水平轴 \(y=c\) 时半径改为 \(|y-c|\)。曲线须分段光滑且参数区间
+不重复描迹；若生成曲面重叠，还要避免重复计面积。
+
+\textbf{例 1（基础：直线绕轴）}
+
+\textbf{题面信号：}线段 \(y=x\)、\(0\le x\le1\) 绕 \(x\) 轴旋转。
+
+\textbf{分析与方法选择：}\(y'=1\)，半径 \(x\ge0\)。
+
+\textbf{完整解答：}
+\[
+S=2\pi\int_0^1x\sqrt{1+1}\,\mathrm dx
+=2\pi\sqrt2\cdot\frac12=\pi\sqrt2.
+\]
+
+\textbf{条件、易错与核验：}所得为母线长 \(\sqrt2\)、底半径 \(1\) 的
+圆锥侧面积 \(\pi rl=\pi\sqrt2\)。
+
+\textbf{例 2（标准：端点导数无界但面积有限）}
+
+\textbf{题面信号：}上半圆右半段
+\[
+y=\sqrt{1-x^2},\quad0\le x\le1
+\]
+绕 \(x\) 轴旋转。
+
+\textbf{分析与方法选择：}它生成单位球的右半球面；直接公式中将出现端点
+反常性。
+
+\textbf{完整解答：}
+\[
+y'=-\frac{x}{\sqrt{1-x^2}},\qquad
+y\sqrt{1+(y')^2}=1,
+\]
+故
+\[
+S=2\pi\int_0^1 1\,\mathrm dx=2\pi.
+\]
+
+\textbf{条件、易错与核验：}在 \(x=1\) 导数无界，但乘积化简后可积；
+单位半球面积确为 \(2\pi\)。
+
+\textbf{例 3（方法选择：参数式生成球面）}
+
+\textbf{题面信号：}上半圆
+\[
+x=\cos t,\quad y=\sin t,\quad0\le t\le\pi
+\]
+绕 \(x\) 轴旋转。
+
+\textbf{分析与方法选择：}参数式避免在左右端改写成两个函数分支。
+
+\textbf{完整解答：}
+\[
+\sqrt{(x')^2+(y')^2}=1,\qquad y=\sin t\ge0,
+\]
+\[
+S=2\pi\int_0^\pi\sin t\,\mathrm dt=4\pi.
+\]
+
+\textbf{条件、易错与核验：}参数恰好描上半圆一次；生成单位球，表面积
+\(4\pi\) 核验结果。
+
+\textbf{例 4（迁移：旋转轴不在坐标轴）}
+
+\textbf{题面信号：}线段 \(y=x\)、\(0\le x\le2\) 绕直线 \(y=1\)
+旋转，求曲面面积。
+
+\textbf{分析与方法选择：}半径是 \(|x-1|\)，在 \(x=1\) 分段。
+
+\textbf{完整解答：}
+\[
+\begin{aligned}
+S&=2\pi\int_0^2|x-1|\sqrt2\,\mathrm dx\\
+&=2\pi\sqrt2\left(\int_0^1(1-x)\mathrm dx
++\int_1^2(x-1)\mathrm dx\right)\\
+&=2\pi\sqrt2.
+\end{aligned}
+\]
+
+\textbf{条件、易错与核验：}若漏绝对值，积分会相消成零；两段生成两个全等
+圆锥侧面，各面积 \(\pi\sqrt2\)，总计吻合。
+
+\textbf{失分防线：}
+
+错误做法把曲面面积写成 \(2\pi\int y\,\mathrm dx\)，漏掉弧长因子。
+对斜线 \(y=x\) 的例 1，错误值为 \(\pi\)，少了母线伸长因子 \(\sqrt2\)。
+正确判据是“周长乘真实弧长”，不是乘水平投影；快速检查用圆柱或圆锥公式。
+
+\textbf{考场写法：}
+
+写明旋转半径 \(\rho=|\text{曲线坐标}-\text{轴坐标}|\) 与
+\(\mathrm ds\)，再列
+\[
+S=2\pi\int\rho\,\mathrm ds.
+\]
+遇绝对值零点或参数重复处先分段。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}会绕坐标轴的直角坐标公式。
+  \item \textbf{130 分以上：}会参数式与平移旋转轴的距离。
+  \item \textbf{满分能力：}能处理绝对值、端点反常、重复描迹与曲面重叠。
+\end{itemize}
+本节直接复用 K108；更高维曲面积分只作为后续联系，不承担本节解题步骤。
+\end{knowledgeBox}

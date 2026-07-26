@@ -1,0 +1,366 @@
+\answerAnchor{MATH1-CALC-0028}
+\begin{solutionBox}
+\textbf{A}\quad
+\[
+F'(x)=\frac{2x}{1+x^2}=f(x),
+\]
+且 \(1+x^2>0\) 使两函数都在 \(\mathbb R\) 上有定义，故 \(F\) 是 \(f\) 在 \(\mathbb R\) 上的一个原函数。
+
+\textbf{B}\quad \(f\) 在 \(\mathbb R\) 上连续，故必有原函数；例如 \(F(x)=\arctan x\)，因为 \(F'(x)=1/(1+x^2)\)。
+
+\textbf{C}\quad \(\lfloor x\rfloor\) 在 \([0,2]\) 上有界，且只有有限个跳跃点，故 Riemann 可积。若它在 \([0,2]\) 上有原函数，则作为导数应有介值性；但在 \(x=1\) 两侧，其值从 \(0\) 跳到 \(1\) 而不取二者之间的值，违反导数的 Darboux 性质，故不存在覆盖整个 \([0,2]\) 的原函数。
+
+\textbf{M}\quad 由导数定义，
+\[
+F'(0)=\lim_{h\to0}\frac{h^3\cos(1/h^2)}h
+=\lim_{h\to0}h^2\cos(1/h^2)=0.
+\]
+当 \(x\ne0\) 时
+\[
+f(x)=F'(x)=3x^2\cos(1/x^2)+2\sin(1/x^2).
+\]
+沿使 \(\sin(1/x^2)=1\) 与 \(-1\) 的两列 \(x\to0\)，\(f(x)\) 分别趋近 \(2\) 与 \(-2\)，所以 \(f\) 在 \(0\) 处不连续；但上面的定义核验给出 \(f(0)=F'(0)=0\)，故 \(F'=f\) 在全实轴成立，\(F\) 确为 \(f\) 的原函数。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0029}
+\begin{solutionBox}
+\textbf{A}\quad
+\[
+\int(e^x+\cos x)dx=e^x+\sin x+C.
+\]
+
+\textbf{B}\quad \(F=\sin x+C\)。由 \(F(\pi/2)=1+C=3\)，得 \(C=2\)，故 \(F=\sin x+2\)。
+
+\textbf{C}\quad 先作部分分式分解：
+\[
+\frac1{x(x-1)}=-\frac1x+\frac1{x-1}.
+\]
+故在三个连通分支 \(I_1=(-\infty,0)\)、\(I_2=(0,1)\)、\(I_3=(1,\infty)\) 上，
+\[
+F(x)=\ln|x-1|-\ln|x|+C_j,\qquad x\in I_j\quad(j=1,2,3),
+\]
+其中 \(C_1,C_2,C_3\) 相互独立，因为不能跨定义域断点应用中值定理。
+
+\textbf{M}\quad 令 \(H=F-G\)，则 \(H'=F'-G'=f-f=0\)。任取 \(x_1<x_2\) 于区间 \(I\)，由拉格朗日中值定理，
+\[
+H(x_2)-H(x_1)=H'(\xi)(x_2-x_1)=0,
+\]
+故 \(H\) 为常数。若集合非连通，任意两点之间的闭区间未必仍在定义域内，上述中值定理链断裂，各连通分支可有不同常数。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0030}
+\begin{solutionBox}
+\textbf{A}\quad 被积函数的实定义域为 \(x>0\)，在该区间上
+\[
+\int(x^{1/2}+x^{-3})dx
+=\frac23x^{3/2}-\frac1{2x^2}+C.
+\]
+
+\textbf{B}\quad
+\[
+\int\frac{dx}{9+4x^2}
+=\frac16\arctan\frac{2x}{3}+C.
+\]
+求导得
+\[
+\frac16\cdot\frac{2/3}{1+4x^2/9}
+=\frac1{9+4x^2}.
+\]
+
+\textbf{C}\quad 在任一包含于 \((-1,1)\) 的连通区间上，
+\[
+\int\left[\frac3{1+9x^2}+\frac1{\sqrt{1-x^2}}\right]dx
+=\arctan(3x)+\arcsin x+C.
+\]
+实被积函数的定义域为 \((-1,1)\)，求导可核验结果。
+
+\textbf{M}\quad 在 \(ax+b\ne0\) 的任一连通区间上，
+\[
+\int\frac{dx}{ax+b}=\frac1a\ln|ax+b|+C.
+\]
+求导为 \(\frac1a\cdot a/(ax+b)=1/(ax+b)\)。绝对值保证线性因子为负的分支也成立。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0037}
+\begin{solutionBox}
+\textbf{A}\quad 原式是 \(f(x)=1+x\) 在 \([0,1]\) 上的右端点和，故极限
+\[
+\int_0^1(1+x)dx=\frac32.
+\]
+
+\textbf{B}\quad 令 \(\Delta x=2/n\)、\(x_k=1+2k/n\)，则原式是 \(x^3\) 在 \([1,3]\) 上的右端点和，故极限为
+\[
+\int_1^3x^3dx=\frac{3^4-1^4}{4}=20.
+\]
+
+\textbf{C}\quad 取分割点
+\[
+\xi_{k,n}=\left(\frac{k}{n}\right)^2\qquad(k=0,1,\ldots,n).
+\]
+第 \(k\) 段长度为
+\[
+\Delta x_{k,n}=\xi_{k,n}-\xi_{k-1,n}=\frac{2k-1}{n^2},
+\]
+题中取的是该段右端点 \(f(\xi_{k,n})\)。又网格
+\[
+\max_k\Delta x_{k,n}=\frac{2n-1}{n^2}\to0.
+\]
+因此题中和是 \([0,1]\) 上的合法 Riemann 和，连续性给出极限 \(\int_0^1f(x)dx\)。
+
+\textbf{M}\quad 令 \(\Delta x=(b-a)/n\)，左端点为
+\[
+\xi_{k,n}=a+(k-1)\Delta x.
+\]
+所求和为
+\[
+\frac{b-a}{n}\sum_{k=1}^nf\!\left(a+\frac{(k-1)(b-a)}n\right).
+\]
+因 \(f\in C[a,b]\)，它 Riemann 可积，网格 \((b-a)/n\to0\)，故极限按定义为 \(\int_a^bf(x)dx\)。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0038}
+\begin{solutionBox}
+\textbf{A}\quad \(\sqrt{1-x^2}\) 在 \([-1,1]\) 上连续，故 Riemann 可积。
+
+\textbf{B}\quad 若函数有界，且只有有限个跳跃间断点，则它是闭区间上的分段连续函数，因而 Riemann 可积。这里“有界、有限个第一类间断点、闭区间”共同构成所用充分条件。
+
+\textbf{C}\quad \(1/x\) 在 \(0\) 附近无界，而普通 Riemann 可积函数必有界，故普通积分不存在。对应反常积分
+\[
+\lim_{\varepsilon\to0^+}\int_\varepsilon^1\frac{dx}{x}
+=\lim_{\varepsilon\to0^+}(-\ln\varepsilon)=+\infty,
+\]
+故发散。
+
+\textbf{M}\quad 任一小区间 \([x_{i-1},x_i]\) 都同时含有理数与无理数，所以 \(T\) 的下确界为 \(0\)，上确界为 \(x_i\)。因此任意分割 \(P\) 的下和为 \(0\)，而上和满足
+\[
+U(T,P)=\sum_i x_i(x_i-x_{i-1})
+\ge\int_0^1x\,dx=\frac12.
+\]
+上下和之差始终至少为 \(1/2\)，不可能趋于 \(0\)，故 \(T\) 不可 Riemann 积。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0039}
+\begin{solutionBox}
+\textbf{A}\quad 记
+\[
+A=\int_0^2f,\qquad B=\int_0^2g.
+\]
+题设给 \(A+B=4,\ 2A-B=1\)，解得 \(A=5/3,\ B=7/3\)。故由线性性
+\[
+\int_0^2(3f+2g)=3A+2B=\frac{29}{3}.
+\]
+
+\textbf{B}\quad 前两项合为 \(\int_{-1}^4f\)，第三项为 \(-\int_2^4f\)，故总和为 \(\int_{-1}^2f\)。
+
+\textbf{C}\quad 当 \(x\in[a,b]\) 且 \(f\) 在 \([a,b]\) 可积时，由区间可加性
+\[
+\int_a^xf(t)dt+\int_x^bf(t)dt=\int_a^bf(t)dt.
+\]
+用有向积分约定时公式还可扩展，但本题的标准拼接范围为 \(x\in[a,b]\)。
+
+\textbf{M}\quad 被积函数为偶函数，并在 \(x=\pm1\) 变号，故
+\[
+\int_{-2}^2|x^2-1|dx
+=2\left[\int_0^1(1-x^2)dx+\int_1^2(x^2-1)dx\right]
+=2\left(\frac23+\frac43\right)=4.
+\]
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0040}
+\begin{solutionBox}
+\textbf{A}\quad 在 \([0,2]\) 上
+\[
+\frac14\le\frac1{2+x}\le\frac12.
+\]
+两端积分并乘区间长度 \(2\)，得
+\[
+\frac12\le I\le1.
+\]
+
+\textbf{B}\quad 因 \(x\ge0\)，
+\[
+\left|\int_0^2xf(x)dx\right|
+\le\int_0^2x|f(x)|dx
+\le3\int_0^2x\,dx=6.
+\]
+
+\textbf{C}\quad 若 \(f\equiv0\)，积分显然为零。反之，若 \(f\not\equiv0\)，则存在 \(x_0\) 使 \(|f(x_0)|>0\)。由 \(|f|\) 的连续性，存在一段正长度邻域使 \(|f(x)|\ge |f(x_0)|/2>0\)，从而 \(\int_a^b|f(x)|dx>0\)，矛盾；故 \(f\equiv0\)。
+
+\textbf{M}\quad 由保序性，
+\[
+0\le\int_0^1f_n(x)dx\le\int_0^1\frac1n\,dx=\frac1n\to0.
+\]
+夹逼定理得结论；核心传递是点态保序性及常数上下界积分估计。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0041}
+\begin{solutionBox}
+\textbf{A}\quad \(\int_0^2x\,dx=2\)，故 \(2\xi=2\)，可取 \(\xi=1\)。
+
+\textbf{B}\quad \(f\) 连续，权函数 \(g(x)=\sin x\) 在 \([0,\pi]\) 上非负且积分不为零。由加权积分中值定理，存在 \(\xi\in[0,\pi]\) 使
+\[
+\int_0^\pi f(x)\sin x\,dx
+=f(\xi)\int_0^\pi\sin x\,dx
+=2f(\xi).
+\]
+
+\textbf{C}\quad 对每个充分小的 \(h>0\)，由积分中值定理，存在 \(\xi_h\in[x_0-h,x_0+h]\) 使
+\[
+\frac1{2h}\int_{x_0-h}^{x_0+h}f(t)dt=f(\xi_h).
+\]
+因 \(|\xi_h-x_0|\le h\to0\) 且 \(f\) 在 \(x_0\) 连续，右端趋 \(f(x_0)\)。
+
+\textbf{M}\quad 由积分中值定理，存在 \(\xi\in[0,1]\) 使
+\[
+0=\int_0^1f(x)dx=f(\xi)(1-0),
+\]
+故 \(f(\xi)=0\)。若去掉连续性，可取前半区间为 \(1\)、后半区间为 \(-1\) 的阶跃函数；其积分为零却从不取零值。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0045}
+\begin{solutionBox}
+\textbf{A}\quad \(F(1)=0\)。因被积函数连续，基本定理给
+\[
+F'(x)=e^{-x^2}.
+\]
+
+\textbf{B}\quad 按 \(-1,1\) 分段并注意有向积分，得到
+\[
+F(x)=
+\begin{cases}
+x+2,&x\le-1,\\
+-x,&-1<x<1,\\
+x-2,&x\ge1.
+\end{cases}
+\]
+在 \(x=-1\) 处两段函数值均为 \(1\)，在 \(x=1\) 处两段函数值均为 \(-1\)，故 \(F\) 在两点都连续。\(x=-1\) 处左右导数分别为 \(1,-1\)，\(x=1\) 处左右导数分别为 \(-1,1\)，故在两点都不可导。
+
+\textbf{C}\quad \(F'=x^2-1\)，故在 \((-\infty,-1]\)、\([1,\infty)\) 增，在 \([-1,1]\) 减。\(x=-1\) 为局部极大值点，\(F(-1)=2/3\)；\(x=1\) 为局部极小值点，\(F(1)=-2/3\)。
+
+\textbf{M}\quad 若 \(f\) 偶，
+\[
+F(-x)=\int_0^{-x}f(t)dt=-\int_0^xf(-u)du=-F(x),
+\]
+故 \(F\) 奇。若 \(f\) 奇，则同样换元得
+\[
+F(-x)=-\int_0^xf(-u)du=F(x),
+\]
+故 \(F\) 偶。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0046}
+\begin{solutionBox}
+\textbf{A}\quad
+\[
+\int_0^{\pi/2}\cos x\,dx=[\sin x]_0^{\pi/2}=1.
+\]
+
+\textbf{B}\quad 被积函数连续，故
+\[
+\frac d{dx}\int_3^x(1+t^4)dt=1+x^4.
+\]
+
+\textbf{C}\quad
+\[
+y(x)=\int_1^x\frac{dt}{1+t^4}.
+\]
+基本定理保证其导数为 \(1/(1+x^4)\)，代 \(x=1\) 得初值 \(0\)；积分表示本身已是完整解，不要求先把原函数写成初等函数。
+
+\textbf{M}\quad 令 \(H(x)=\int_a^xf(t)dt\)。由基本定理 \(H'=f=G'\)，故 \(G-H=C\)。代 \(x=a\) 得 \(C=G(a)\)，于是
+\[
+H(b)=G(b)-G(a).
+\]
+而 \(H(b)=\int_a^bf\)，即得结论。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0047}
+\begin{solutionBox}
+\textbf{A}\quad
+\[
+\frac d{dx}\int_1^{\sin x}e^tdt=e^{\sin x}\cos x.
+\]
+
+\textbf{B}\quad
+\[
+\frac d{dx}\int_{x^2}^{3x}\ln(1+t^2)dt
+=3\ln(1+9x^2)-2x\ln(1+x^4).
+\]
+
+\textbf{C}\quad 上下限公式给
+\[
+F'=(2x)\cdot2-(-x)(-1)=3x.
+\]
+直接积分
+\[
+F=\left[\frac{t^2}{2}\right]_{-x}^{2x}
+=\frac32x^2,
+\]
+求导同样为 \(3x\)。
+
+\textbf{M}\quad
+\[
+F_a'(x)=a(1+ax)-\bigl[1+(x-a)\bigr],
+\]
+故
+\[
+F_a'(0)=a-(1-a)=2a-1.
+\]
+所以 \(F_a'(0)=0\) 当且仅当 \(a=1/2\)。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0048}
+\begin{solutionBox}
+\textbf{A}\quad 在被积函数及偏导连续的条件下，
+\[
+I'(x)=\int_0^1-t\sin(xt)dt.
+\]
+
+\textbf{B}\quad 端点项为 \((x^2+x)\cdot1\)，积分内偏导为
+\[
+\int_0^x2x\,dt=2x^2.
+\]
+故 \(I'=3x^2+x\)。直接积分 \(I=x^3+x^2/2\) 可复核。
+
+\textbf{C}\quad 令 \(F(x,t)=e^{xt}\)。则
+\[
+I'=e^{x(x+1)}-e^{x^2}+\int_x^{x+1}t e^{xt}dt.
+\]
+
+\textbf{M}\quad 在足够光滑条件下，
+\[
+\frac d{dx}\int_{a(x)}^{b(x)}F(x,t)dt
+=F(x,b)b'-F(x,a)a'+\int_a^bF_x(x,t)dt.
+\]
+\(F,F_x\) 连续等条件保证交换求导与积分合法，并保证端点代值连续。题给固定端点积分为
+\[
+I(x)=\int_{-1}^{1}(x+t^2)dt=2x+\frac23,
+\]
+故 \(I'(x)=2\ne0\)；端点固定只会消去端点项，并不会消去积分内偏导项。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0049}
+\begin{solutionBox}
+\textbf{A}\quad 原式是 \(e^x\) 在 \([0,1]\) 的 Riemann 和，故极限
+\[
+\int_0^1e^xdx=e-1.
+\]
+
+\textbf{B}\quad
+\[
+\frac1{n^3}\sum_{k=1}^nk(n-k)
+=\frac1n\sum_{k=1}^n\frac kn\left(1-\frac kn\right)
+\to\int_0^1x(1-x)dx=\frac16.
+\]
+
+\textbf{C}\quad 把 \([0,2]\) 等分为 \(n\) 段，每段宽为 \(2/n\)，第 \(k\) 段中点为 \((2k-1)/n\)。题中和正是该中点 Riemann 和，故连续性给极限
+\[
+\int_0^2f(x)dx.
+\]
+
+\textbf{M}\quad 取 \(\Delta x=3/n\)、区间 \([0,3]\)、右端采样点 \(x_k=3k/n\)，原式为 \(\sum\sqrt{1+x_k}\Delta x\)。故极限
+\[
+\int_0^3\sqrt{1+x}dx
+=\frac23\left[(1+x)^{3/2}\right]_0^3
+=\frac{14}{3}.
+\]
+\end{solutionBox}

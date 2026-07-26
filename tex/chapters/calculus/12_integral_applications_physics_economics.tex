@@ -5,3 +5,306 @@
 
 本讲用于整理功、水压力、引力、平均值、总量积累和经济应用。新增题目时重点明确微元、积分变量、单位和积分区间。
 \end{knowledgeBox}
+
+\studySubsection{calc-12-k110}{K110 功、液体压力与引力}
+
+\knowledgeAnchor[MATH1-KN-CALC-0157]{功、液体压力、引力}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0157]{功、液体压力、引力}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+物理应用的共同骨架不是背若干孤立公式，而是
+\[
+\boxed{\text{总量}=\int(\text{位置处强度})(\text{几何微元}).}
+\]
+先选位置变量，再写一个小单元贡献，检查单位，最后积分。复杂物理背景不必
+扩展；考试重点是把一维模型列对。
+
+\textbf{直接前置四要素桥：微元与单位。}
+
+\knowledgeRef[MATH1-KN-CALC-0135]{K088 定积分的 Riemann 和定义}
+说明总量如何由局部贡献极限得到。把区间分成短段
+\(\Delta x\)，若第 \(i\) 段局部贡献率为 \(q(x_i)\)，
+总量近似 \(\sum q(x_i)\Delta x\)，极限为 \(\int q(x)\mathrm dx\)。
+例如恒力 \(F_0\) 沿直线移动距离 \(L\)，
+\(\int_0^LF_0\mathrm dx=F_0L\)，单位为
+\(\mathrm N\cdot\mathrm m=\mathrm J\)。这同时解释了微元的来源与量纲检查。
+
+\textbf{严格核心与条件：}
+
+沿运动方向的变力做功
+\[
+W=\int_a^bF(x)\,\mathrm dx.
+\]
+静止液体在深度 \(h\) 处压强 \(p=\rho gh\)，窄条面积
+\(\mathrm dA=w(h)\mathrm dh\)，故
+\[
+\mathrm dF=\rho gh\,w(h)\mathrm dh.
+\]
+万有引力微元为
+\(\mathrm dF=Gm\,\mathrm dm/r^2\)。所有密度应非负、距离不能为零，
+并保持同一单位制。
+
+\textbf{方法选择：}
+
+先问“哪个量随位置变化”：弹簧题是力，绳索题是提升距离，液压题是深度，
+引力题是质量与距离。若局部量恒定才可直接“常量乘总几何量”。
+
+\textbf{例 1（基础：变力做功）}
+
+\textbf{题面信号：}劲度系数 \(k=200\,\mathrm{N/m}\) 的弹簧，从伸长
+\(0.1\,\mathrm m\) 拉到 \(0.2\,\mathrm m\)，求外力做功。
+
+\textbf{分析与方法选择：}准静态拉伸时 \(F(x)=kx=200x\)。
+
+\textbf{完整解答：}
+\[
+W=\int_{0.1}^{0.2}200x\,\mathrm dx
+=100(0.2^2-0.1^2)=3\,\mathrm J.
+\]
+
+\textbf{条件、易错与核验：}位移变量是“相对自然长的伸长量”，不是再从
+\(0\) 积到 \(0.1\)。平均力 \(30\,\mathrm N\) 乘位移 \(0.1\,\mathrm m\)
+也得 \(3\,\mathrm J\)。
+
+\textbf{例 2（标准：绳索提升）}
+
+\textbf{题面信号：}长 \(L\) 的均匀绳索悬在高处，线密度为 \(\lambda\)，
+求把整条绳收至顶端所做的功。
+
+\textbf{分析与方法选择：}以距顶端深度 \(x\) 为变量，长
+\(\mathrm dx\) 的绳段重力为 \(\lambda g\mathrm dx\)，需提升距离 \(x\)。
+
+\textbf{完整解答：}
+\[
+\mathrm dW=\lambda gx\,\mathrm dx,\qquad
+W=\int_0^L\lambda gx\,\mathrm dx
+=\frac12\lambda gL^2.
+\]
+
+\textbf{条件、易错与核验：}不能把整条绳质量乘 \(L\)，各段提升距离不同；
+整绳质心初始位于深度 \(L/2\)，总重 \(\lambda Lg\) 乘 \(L/2\) 得同值。
+
+\textbf{例 3（方法选择：液体压力条带）}
+
+\textbf{题面信号：}宽 \(2\,\mathrm m\)、高 \(3\,\mathrm m\) 的竖直矩形
+闸门，上边缘与水面齐平，求单侧总压力；水密度为 \(\rho\)。
+
+\textbf{分析与方法选择：}以水深 \(y\) 为变量，压强 \(\rho gy\)，
+水平窄条面积 \(2\,\mathrm dy\)。
+
+\textbf{完整解答：}
+\[
+\mathrm dF=2\rho gy\,\mathrm dy,\qquad
+F=\int_0^3 2\rho gy\,\mathrm dy=9\rho g.
+\]
+
+\textbf{条件、易错与核验：}压强单位 \(\mathrm N/m^2\) 乘面积得到
+\(\mathrm N\)；用平均深度 \(3/2\) 的压强乘总面积 \(6\) 也得 \(9\rho g\)。
+
+\textbf{例 4（迁移：细杆引力）}
+
+\textbf{题面信号：}均匀细杆长 \(L\)、线密度 \(\lambda\)，质点质量
+\(m\) 位于杆延长线上，距近端 \(a>0\)。求杆对质点的引力大小。
+
+\textbf{分析与方法选择：}取从近端起坐标 \(x\)，质量微元
+\(\mathrm dm=\lambda\mathrm dx\)，距离 \(a+x\)。
+
+\textbf{完整解答：}
+\[
+\begin{aligned}
+F&=\int_0^L\frac{Gm\lambda}{(a+x)^2}\,\mathrm dx\\
+&=Gm\lambda\left(\frac1a-\frac1{a+L}\right).
+\end{aligned}
+\]
+
+\textbf{条件、易错与核验：}\(a>0\) 排除距离为零；当 \(L\) 很小，
+括号约为 \(L/a^2\)，回到点质量 \(\lambda L\) 的近似
+\(Gm\lambda L/a^2\)。
+
+\textbf{失分防线：}
+
+错误模型“总量 \(=\) 末端强度 \(\times\) 总长度”忽略局部变化。闸门例中
+若用底部压强乘全门面积会得到 \(18\rho g\)，恰好大一倍。正确判据是先写
+\(\mathrm d(\text{总量})\)；快速检查是强度单位乘微元单位应等于目标单位。
+
+\textbf{考场写法：}
+
+“取位置 \(x\) 处微元 \(\mathrm dx\)，其质量/面积为 \(\cdots\)，
+局部力/距离为 \(\cdots\)，故 \(\mathrm dW\) 或 \(\mathrm dF=\cdots\)，
+由 \(x\in[a,b]\) 积分得结论。”
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}会由变力列功积分并检查单位。
+  \item \textbf{130 分以上：}能为绳索和液压题选择正确位置变量与微元。
+  \item \textbf{满分能力：}能处理密度、距离同时变化的引力模型并做极限核验。
+\end{itemize}
+本节复用定积分微元思想，连接 K111 的质量与力矩；更复杂连续体物理模型
+留待多重积分，不在此扩展。
+\end{knowledgeBox}
+
+\studySubsection{calc-12-k111}{K111 质心、平均值与力矩}
+
+\knowledgeAnchor[MATH1-KN-CALC-0158]{质心、平均值与力矩}
+\noindent{\footnotesize\textbf{稳定引用：}
+\knowledgeRef[MATH1-KN-CALC-0158]{质心、平均值与力矩}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+平均值与质心使用同一“加权平均”结构：
+\[
+\boxed{\text{代表位置或数值}
+=\frac{\int(\text{位置或数值})(\text{权重微元})}
+{\int(\text{权重微元})}.}
+\]
+先保证分子、分母使用同一种微元，再检查总权重非零。
+
+\textbf{直接前置四要素桥：质量与一阶矩。}
+
+\knowledgeRef[MATH1-KN-CALC-0157]{K110 微元总量模型}已说明
+“局部强度乘几何微元”；这里把局部强度取为密度，并再乘位置得到一阶矩。
+细杆线密度为 \(\rho(x)\ge0\) 时，
+\[
+\mathrm dm=\rho(x)\mathrm dx,\qquad
+M=\int\mathrm dm.
+\]
+关于原点的一阶矩是
+\[
+M_x=\int x\,\mathrm dm;
+\]
+把总质量想象为集中在一点 \(\bar x\) 且保持同一力矩，就有
+\(M\bar x=M_x\)，故 \(\bar x=M_x/M\)。最小例子是均匀杆
+\([0,L]\)：\(\bar x=(\int_0^Lx\mathrm dx)/L=L/2\)，与对称性一致。
+
+\textbf{严格核心与条件：}
+
+函数在 \([a,b]\) 的平均值
+\[
+\bar f=\frac1{b-a}\int_a^bf(x)\mathrm dx.
+\]
+细杆质心
+\[
+\bar x=\frac{\int_a^bx\rho(x)\mathrm dx}
+{\int_a^b\rho(x)\mathrm dx}.
+\]
+平面薄片则用面积质量微元 \(\mathrm dm=\rho\,\mathrm dA\)；密度非负且
+总质量必须有限、非零。不同对象不能把线密度与面积微元混用。
+
+\textbf{例 1（基础：函数平均值）}
+
+\textbf{题面信号：}求 \(f(x)=x^2\) 在 \([0,2]\) 上的平均值。
+
+\textbf{分析与方法选择：}均匀权重，分母为区间长度 \(2\)。
+
+\textbf{完整解答：}
+\[
+\bar f=\frac12\int_0^2x^2\,\mathrm dx
+=\frac12\cdot\frac83=\frac43.
+\]
+
+\textbf{条件、易错与核验：}易漏除以 \(b-a\)；因 \(0\le x^2\le4\)，
+平均值 \(4/3\) 落在值域内。
+
+\textbf{例 2（标准：非均匀细杆）}
+
+\textbf{题面信号：}细杆占据 \([0,1]\)，线密度
+\(\rho(x)=1+x\)，求质心。
+
+\textbf{分析与方法选择：}先算总质量，再算关于原点的一阶矩。
+
+\textbf{完整解答：}
+\[
+M=\int_0^1(1+x)\mathrm dx=\frac32,
+\]
+\[
+M_x=\int_0^1x(1+x)\mathrm dx=\frac12+\frac13=\frac56,
+\]
+\[
+\boxed{\bar x=\frac{M_x}{M}=\frac59.}
+\]
+
+\textbf{条件、易错与核验：}分子分母都用
+\(\mathrm dm=(1+x)\mathrm dx\)；密度向右增大，所以
+\(\bar x=5/9>1/2\)，方向合理。
+
+\textbf{例 3（方法选择：薄片用条带质心）}
+
+\textbf{题面信号：}均匀薄片区域
+\[
+0\le x\le1,\qquad0\le y\le x
+\]
+密度为常数，求质心。
+
+\textbf{分析与方法选择：}取竖条，面积微元
+\(\mathrm dA=x\,\mathrm dx\)，条带自身的纵向质心为 \(y=x/2\)。
+
+\textbf{完整解答：}常密度在比值中约去。面积
+\[
+A=\int_0^1x\,\mathrm dx=\frac12.
+\]
+于是
+\[
+\bar x=\frac{\int_0^1x\cdot x\,\mathrm dx}{A}
+=\frac{1/3}{1/2}=\frac23,
+\]
+\[
+\bar y=\frac{\int_0^1(x/2)\cdot x\,\mathrm dx}{A}
+=\frac{1/6}{1/2}=\frac13.
+\]
+
+\textbf{条件、易错与核验：}求 \(\bar y\) 时不能把整条带都当作位于
+\(y=x\)；三角形三个顶点为 \((0,0),(1,0),(1,1)\)，其形心确为
+\((2/3,1/3)\)。
+
+\textbf{例 4（迁移：参数密度与退化检查）}
+
+\textbf{题面信号：}细杆占据 \((0,1]\)，线密度
+\(\rho(x)=x^\alpha\)。讨论质心存在条件并求质心。
+
+\textbf{分析与方法选择：}先要求总质量有限；再算一阶矩。
+
+\textbf{完整解答：}总质量
+\[
+M=\int_0^1x^\alpha\mathrm dx
+\]
+当且仅当 \(\alpha>-1\) 时有限，且 \(M=1/(\alpha+1)\)。此时
+\[
+M_x=\int_0^1x^{\alpha+1}\mathrm dx=\frac1{\alpha+2},
+\]
+所以
+\[
+\boxed{\bar x=\frac{\alpha+1}{\alpha+2}},\qquad\alpha>-1.
+\]
+
+\textbf{条件、易错与核验：}不能只要求一阶矩存在而忽略总质量；
+\(\alpha=0\) 时退化为均匀杆，\(\bar x=1/2\)。\(\alpha\) 增大时质量向右
+集中，质心趋近 \(1\)。
+
+\textbf{失分防线：}
+
+错误公式 \(\bar x=\int x\rho(x)\mathrm dx\) 漏除总质量，结果还会随密度
+单位缩放。把 \(\rho\) 乘 \(2\) 时真实质心不应改变，这就是最小反检。
+正确判据是“力矩除总质量”；快速检查是质心必须位于物体的坐标范围内。
+
+\textbf{考场写法：}
+
+\[
+\mathrm dm=\cdots,\qquad
+M=\int\mathrm dm,\qquad
+M_x=\int x\,\mathrm dm,\qquad
+\bar x=\frac{M_x}{M}.
+\]
+平面薄片再分别写关于两坐标的一阶矩，确保分子分母微元一致。
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}会函数平均值与均匀细杆质心。
+  \item \textbf{130 分以上：}会非均匀密度、力矩与条带质心。
+  \item \textbf{满分能力：}能处理参数可积条件、不同维度微元并做位置核验。
+\end{itemize}
+本节与 K110 共享微元思想，也为概率期望和多重积分质心提供统一模板。
+\end{knowledgeBox}

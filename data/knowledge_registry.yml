@@ -1188,6 +1188,9 @@ nodes:
     source_refs:
       - calc-map-2026:K070
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/05_differential_applications_geometry.tex
+      id: MATH1-KN-CALC-0117
   - id: MATH1-KN-CALC-0118
     title: 局部极值与必要/充分条件
     kind: theorem
@@ -1198,6 +1201,9 @@ nodes:
     source_refs:
       - calc-map-2026:K071
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/05_differential_applications_geometry.tex
+      id: MATH1-KN-CALC-0118
   - id: MATH1-KN-CALC-0119
     title: 闭区间最大值最小值
     kind: concept
@@ -1208,6 +1214,9 @@ nodes:
     source_refs:
       - calc-map-2026:K072
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/05_differential_applications_geometry.tex
+      id: MATH1-KN-CALC-0119
   - id: MATH1-KN-CALC-0120
     title: 凹凸性与拐点
     kind: concept
@@ -1218,6 +1227,9 @@ nodes:
     source_refs:
       - calc-map-2026:K073
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/05_differential_applications_geometry.tex
+      id: MATH1-KN-CALC-0120
   - id: MATH1-KN-CALC-0121
     title: 渐近线
     kind: concept
@@ -1228,6 +1240,9 @@ nodes:
     source_refs:
       - calc-map-2026:K074
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/05_differential_applications_geometry.tex
+      id: MATH1-KN-CALC-0121
   - id: MATH1-KN-CALC-0122
     title: 函数图形描绘
     kind: method
@@ -1238,6 +1253,9 @@ nodes:
     source_refs:
       - calc-map-2026:K075
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/05_differential_applications_geometry.tex
+      id: MATH1-KN-CALC-0122
   - id: MATH1-KN-CALC-0123
     title: 弧微分与曲率公式
     kind: formula
@@ -1248,6 +1266,9 @@ nodes:
     source_refs:
       - calc-map-2026:K076
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/05_differential_applications_geometry.tex
+      id: MATH1-KN-CALC-0123
   - id: MATH1-KN-CALC-0124
     title: 曲率圆、曲率半径
     kind: concept
@@ -1258,6 +1279,9 @@ nodes:
     source_refs:
       - calc-map-2026:K077
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/05_differential_applications_geometry.tex
+      id: MATH1-KN-CALC-0124
   - id: MATH1-KN-CALC-0125
     title: 曲率中心、渐屈线与方程近似解
     kind: concept
@@ -1268,6 +1292,9 @@ nodes:
     source_refs:
       - calc-map-2026:K078
     reviewable: false
+    tex_anchor:
+      file: tex/chapters/calculus/05_differential_applications_geometry.tex
+      id: MATH1-KN-CALC-0125
   - id: MATH1-KN-CALC-0126
     title: 原函数概念与存在性
     kind: concept
@@ -1278,6 +1305,9 @@ nodes:
     source_refs:
       - calc-map-2026:K079
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+      id: MATH1-KN-CALC-0126
   - id: MATH1-KN-CALC-0127
     title: 不定积分与积分常数
     kind: concept
@@ -1288,6 +1318,9 @@ nodes:
     source_refs:
       - calc-map-2026:K080
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+      id: MATH1-KN-CALC-0127
   - id: MATH1-KN-CALC-0128
     title: 基本积分公式
     kind: formula
@@ -1298,6 +1331,9 @@ nodes:
     source_refs:
       - calc-map-2026:K081
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+      id: MATH1-KN-CALC-0128
   - id: MATH1-KN-CALC-0129
     title: 第一类换元法（凑微分）
     kind: method
@@ -1308,6 +1344,9 @@ nodes:
     source_refs:
       - calc-map-2026:K082
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0129
   - id: MATH1-KN-CALC-0130
     title: 第二类换元法
     kind: method
@@ -1318,6 +1357,9 @@ nodes:
     source_refs:
       - calc-map-2026:K083
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0130
   - id: MATH1-KN-CALC-0131
     title: 分部积分法
     kind: method
@@ -1328,6 +1370,9 @@ nodes:
     source_refs:
       - calc-map-2026:K084
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0131
   - id: MATH1-KN-CALC-0132
     title: 有理函数积分
     kind: concept
@@ -1338,6 +1383,9 @@ nodes:
     source_refs:
       - calc-map-2026:K085
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0132
   - id: MATH1-KN-CALC-0133
     title: 三角有理式积分
     kind: concept
@@ -1348,6 +1396,9 @@ nodes:
     source_refs:
       - calc-map-2026:K086
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0133
   - id: MATH1-KN-CALC-0134
     title: 简单无理函数积分
     kind: concept
@@ -1358,6 +1409,9 @@ nodes:
     source_refs:
       - calc-map-2026:K087
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0134
   - id: MATH1-KN-CALC-0135
     title: 定积分的Riemann和定义
     kind: concept
@@ -1368,6 +1422,9 @@ nodes:
     source_refs:
       - calc-map-2026:K088
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+      id: MATH1-KN-CALC-0135
   - id: MATH1-KN-CALC-0136
     title: 定积分存在性与可积函数
     kind: theorem
@@ -1378,6 +1435,9 @@ nodes:
     source_refs:
       - calc-map-2026:K089
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+      id: MATH1-KN-CALC-0136
   - id: MATH1-KN-CALC-0137
     title: 线性、区间可加性与换向
     kind: concept
@@ -1388,6 +1448,9 @@ nodes:
     source_refs:
       - calc-map-2026:K090
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+      id: MATH1-KN-CALC-0137
   - id: MATH1-KN-CALC-0138
     title: 保序性、绝对值不等式与估计
     kind: concept
@@ -1398,6 +1461,9 @@ nodes:
     source_refs:
       - calc-map-2026:K091
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+      id: MATH1-KN-CALC-0138
   - id: MATH1-KN-CALC-0139
     title: 积分中值定理
     kind: theorem
@@ -1408,6 +1474,9 @@ nodes:
     source_refs:
       - calc-map-2026:K092
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+      id: MATH1-KN-CALC-0139
   - id: MATH1-KN-CALC-0140
     title: 定积分换元法
     kind: method
@@ -1418,6 +1487,9 @@ nodes:
     source_refs:
       - calc-map-2026:K093
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0140
   - id: MATH1-KN-CALC-0141
     title: 定积分分部积分
     kind: method
@@ -1428,6 +1500,9 @@ nodes:
     source_refs:
       - calc-map-2026:K094
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0141
   - id: MATH1-KN-CALC-0142
     title: 对称性与周期性公式
     kind: formula
@@ -1438,6 +1513,9 @@ nodes:
     source_refs:
       - calc-map-2026:K095
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0142
   - id: MATH1-KN-CALC-0143
     title: 变上限积分函数及连续性
     kind: concept
@@ -1448,6 +1526,9 @@ nodes:
     source_refs:
       - calc-map-2026:K096
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+      id: MATH1-KN-CALC-0143
   - id: MATH1-KN-CALC-0144
     title: 微积分基本定理与Newton–Leibniz公式
     kind: formula
@@ -1458,6 +1539,9 @@ nodes:
     source_refs:
       - calc-map-2026:K097
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+      id: MATH1-KN-CALC-0144
   - id: MATH1-KN-CALC-0145
     title: 复合上下限求导
     kind: method
@@ -1468,6 +1552,9 @@ nodes:
     source_refs:
       - calc-map-2026:K098
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+      id: MATH1-KN-CALC-0145
   - id: MATH1-KN-CALC-0146
     title: 含参数积分求导（Leibniz扩展）
     kind: method
@@ -1478,6 +1565,9 @@ nodes:
     source_refs:
       - calc-map-2026:K099
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+      id: MATH1-KN-CALC-0146
   - id: MATH1-KN-CALC-0147
     title: Riemann和极限
     kind: concept
@@ -1488,6 +1578,9 @@ nodes:
     source_refs:
       - calc-map-2026:K100
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/08_one_variable_integral_concepts_properties.tex
+      id: MATH1-KN-CALC-0147
   - id: MATH1-KN-CALC-0148
     title: 无穷区间反常积分定义
     kind: concept
@@ -1498,6 +1591,9 @@ nodes:
     source_refs:
       - calc-map-2026:K101
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0148
   - id: MATH1-KN-CALC-0149
     title: 无界函数反常积分定义
     kind: concept
@@ -1508,6 +1604,9 @@ nodes:
     source_refs:
       - calc-map-2026:K102
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0149
   - id: MATH1-KN-CALC-0150
     title: $p$ 型反常积分
     kind: formula
@@ -1518,6 +1617,9 @@ nodes:
     source_refs:
       - calc-map-2026:K103
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0150
   - id: MATH1-KN-CALC-0151
     title: 比较判别与极限比较
     kind: theorem
@@ -1528,6 +1630,9 @@ nodes:
     source_refs:
       - calc-map-2026:K104
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0151
   - id: MATH1-KN-CALC-0152
     title: 绝对收敛与条件收敛（反常积分）
     kind: concept
@@ -1538,6 +1643,9 @@ nodes:
     source_refs:
       - calc-map-2026:K105
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0152
   - id: MATH1-KN-CALC-0153
     title: 平面图形面积
     kind: concept
@@ -1548,6 +1656,9 @@ nodes:
     source_refs:
       - calc-map-2026:K106
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/10_integral_applications_geometry.tex
+      id: MATH1-KN-CALC-0153
   - id: MATH1-KN-CALC-0154
     title: 旋转体体积与截面体积
     kind: concept
@@ -1558,6 +1669,9 @@ nodes:
     source_refs:
       - calc-map-2026:K107
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/10_integral_applications_geometry.tex
+      id: MATH1-KN-CALC-0154
   - id: MATH1-KN-CALC-0155
     title: 弧长
     kind: concept
@@ -1568,6 +1682,9 @@ nodes:
     source_refs:
       - calc-map-2026:K108
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/10_integral_applications_geometry.tex
+      id: MATH1-KN-CALC-0155
   - id: MATH1-KN-CALC-0156
     title: 旋转曲面面积
     kind: concept
@@ -1578,6 +1695,9 @@ nodes:
     source_refs:
       - calc-map-2026:K109
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/10_integral_applications_geometry.tex
+      id: MATH1-KN-CALC-0156
   - id: MATH1-KN-CALC-0157
     title: 功、液体压力、引力
     kind: concept
@@ -1588,6 +1708,9 @@ nodes:
     source_refs:
       - calc-map-2026:K110
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/12_integral_applications_physics_economics.tex
+      id: MATH1-KN-CALC-0157
   - id: MATH1-KN-CALC-0158
     title: 质心、平均值与力矩
     kind: concept
@@ -1598,6 +1721,9 @@ nodes:
     source_refs:
       - calc-map-2026:K111
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/12_integral_applications_physics_economics.tex
+      id: MATH1-KN-CALC-0158
   - id: MATH1-KN-CALC-0159
     title: Beta/Gamma函数与特殊积分
     kind: concept
@@ -1608,6 +1734,9 @@ nodes:
     source_refs:
       - calc-map-2026:K112
     reviewable: false
+    tex_anchor:
+      file: tex/chapters/calculus/09_one_variable_integral_calculation.tex
+      id: MATH1-KN-CALC-0159
   - id: MATH1-KN-CALC-0160
     title: 向量坐标、模与单位向量
     kind: concept
@@ -1618,6 +1747,9 @@ nodes:
     source_refs:
       - calc-map-2026:K113
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0160
   - id: MATH1-KN-CALC-0161
     title: 线性运算、共线与共面
     kind: concept
@@ -1628,6 +1760,9 @@ nodes:
     source_refs:
       - calc-map-2026:K114
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0161
   - id: MATH1-KN-CALC-0162
     title: 数量积与夹角
     kind: formula
@@ -1638,6 +1773,9 @@ nodes:
     source_refs:
       - calc-map-2026:K115
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0162
   - id: MATH1-KN-CALC-0163
     title: 向量积
     kind: formula
@@ -1648,6 +1786,9 @@ nodes:
     source_refs:
       - calc-map-2026:K116
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0163
   - id: MATH1-KN-CALC-0164
     title: 混合积
     kind: formula
@@ -1658,6 +1799,9 @@ nodes:
     source_refs:
       - calc-map-2026:K117
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0164
   - id: MATH1-KN-CALC-0165
     title: 方向数与方向余弦
     kind: formula
@@ -1668,6 +1812,9 @@ nodes:
     source_refs:
       - calc-map-2026:K118
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0165
   - id: MATH1-KN-CALC-0166
     title: 平面方程
     kind: concept
@@ -1678,6 +1825,9 @@ nodes:
     source_refs:
       - calc-map-2026:K119
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0166
   - id: MATH1-KN-CALC-0167
     title: 空间直线方程
     kind: concept
@@ -1688,6 +1838,9 @@ nodes:
     source_refs:
       - calc-map-2026:K120
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0167
   - id: MATH1-KN-CALC-0168
     title: 直线与直线、平面与平面关系
     kind: concept
@@ -1698,6 +1851,9 @@ nodes:
     source_refs:
       - calc-map-2026:K121
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0168
   - id: MATH1-KN-CALC-0169
     title: 直线与平面关系及夹角
     kind: concept
@@ -1708,6 +1864,9 @@ nodes:
     source_refs:
       - calc-map-2026:K122
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0169
   - id: MATH1-KN-CALC-0170
     title: 点到平面与点到直线距离
     kind: concept
@@ -1718,6 +1877,9 @@ nodes:
     source_refs:
       - calc-map-2026:K123
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0170
   - id: MATH1-KN-CALC-0171
     title: 平行平面、平行直线与异面直线距离
     kind: concept
@@ -1728,6 +1890,9 @@ nodes:
     source_refs:
       - calc-map-2026:K124
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0171
   - id: MATH1-KN-CALC-0172
     title: 曲面方程与截痕法
     kind: concept
@@ -1738,6 +1903,9 @@ nodes:
     source_refs:
       - calc-map-2026:K125
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0172
   - id: MATH1-KN-CALC-0173
     title: 旋转曲面
     kind: concept
@@ -1748,6 +1916,9 @@ nodes:
     source_refs:
       - calc-map-2026:K126
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0173
   - id: MATH1-KN-CALC-0174
     title: 柱面
     kind: concept
@@ -1758,6 +1929,9 @@ nodes:
     source_refs:
       - calc-map-2026:K127
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0174
   - id: MATH1-KN-CALC-0175
     title: 常见二次曲面识别
     kind: method
@@ -1768,6 +1942,9 @@ nodes:
     source_refs:
       - calc-map-2026:K128
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0175
   - id: MATH1-KN-CALC-0176
     title: 空间曲线的参数方程与一般方程
     kind: concept
@@ -1778,6 +1955,9 @@ nodes:
     source_refs:
       - calc-map-2026:K129
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0176
   - id: MATH1-KN-CALC-0177
     title: 空间曲线投影
     kind: concept
@@ -1788,6 +1968,9 @@ nodes:
     source_refs:
       - calc-map-2026:K130
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0177
   - id: MATH1-KN-CALC-0178
     title: 一般仿射坐标变换与二次曲面分类
     kind: formula
@@ -1798,6 +1981,9 @@ nodes:
     source_refs:
       - calc-map-2026:K131
     reviewable: false
+    tex_anchor:
+      file: tex/chapters/calculus/17_multivariable_integral_preliminaries_math1.tex
+      id: MATH1-KN-CALC-0178
   - id: MATH1-KN-CALC-0179
     title: 多元函数概念、定义域与图形
     kind: concept
@@ -1808,6 +1994,9 @@ nodes:
     source_refs:
       - calc-map-2026:K132
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0179
   - id: MATH1-KN-CALC-0180
     title: 二重极限定义
     kind: concept
@@ -1818,6 +2007,9 @@ nodes:
     source_refs:
       - calc-map-2026:K133
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0180
   - id: MATH1-KN-CALC-0181
     title: 路径法否定二重极限
     kind: method
@@ -1828,6 +2020,9 @@ nodes:
     source_refs:
       - calc-map-2026:K134
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0181
   - id: MATH1-KN-CALC-0182
     title: 极坐标估计二重极限
     kind: method
@@ -1838,6 +2033,9 @@ nodes:
     source_refs:
       - calc-map-2026:K135
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0182
   - id: MATH1-KN-CALC-0183
     title: 多元连续性与有界闭区域性质
     kind: concept
@@ -1848,6 +2046,9 @@ nodes:
     source_refs:
       - calc-map-2026:K136
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0183
   - id: MATH1-KN-CALC-0184
     title: 一阶偏导数定义与计算
     kind: method
@@ -1858,6 +2059,9 @@ nodes:
     source_refs:
       - calc-map-2026:K137
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0184
   - id: MATH1-KN-CALC-0185
     title: 高阶偏导与混合偏导
     kind: concept
@@ -1868,6 +2072,9 @@ nodes:
     source_refs:
       - calc-map-2026:K138
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0185
   - id: MATH1-KN-CALC-0186
     title: 全微分定义
     kind: concept
@@ -1878,6 +2085,9 @@ nodes:
     source_refs:
       - calc-map-2026:K139
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0186
   - id: MATH1-KN-CALC-0187
     title: 可微、连续、偏导存在的逻辑关系
     kind: theorem
@@ -1888,6 +2098,9 @@ nodes:
     source_refs:
       - calc-map-2026:K140
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0187
   - id: MATH1-KN-CALC-0188
     title: 可微性的定义检验
     kind: method
@@ -1898,6 +2111,9 @@ nodes:
     source_refs:
       - calc-map-2026:K141
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0188
   - id: MATH1-KN-CALC-0189
     title: 一阶链式法则
     kind: method
@@ -1908,6 +2124,9 @@ nodes:
     source_refs:
       - calc-map-2026:K142
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0189
   - id: MATH1-KN-CALC-0190
     title: 二阶复合偏导
     kind: method
@@ -1918,6 +2137,9 @@ nodes:
     source_refs:
       - calc-map-2026:K143
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0190
   - id: MATH1-KN-CALC-0191
     title: 全微分形式不变性
     kind: method
@@ -1928,6 +2150,9 @@ nodes:
     source_refs:
       - calc-map-2026:K144
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0191
   - id: MATH1-KN-CALC-0192
     title: 一个方程确定一个隐函数
     kind: concept
@@ -1938,6 +2163,9 @@ nodes:
     source_refs:
       - calc-map-2026:K145
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0192
   - id: MATH1-KN-CALC-0193
     title: 方程组确定隐函数组
     kind: concept
@@ -1948,6 +2176,9 @@ nodes:
     source_refs:
       - calc-map-2026:K146
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0193
   - id: MATH1-KN-CALC-0194
     title: 齐次函数与Euler公式
     kind: formula
@@ -1958,6 +2189,9 @@ nodes:
     source_refs:
       - calc-map-2026:K147
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0194
   - id: MATH1-KN-CALC-0195
     title: 方向导数定义
     kind: concept
@@ -1968,6 +2202,9 @@ nodes:
     source_refs:
       - calc-map-2026:K148
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0195
   - id: MATH1-KN-CALC-0196
     title: 梯度及最大方向导数
     kind: concept
@@ -1978,6 +2215,9 @@ nodes:
     source_refs:
       - calc-map-2026:K149
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0196
   - id: MATH1-KN-CALC-0197
     title: 曲面切平面与法线
     kind: concept
@@ -1988,6 +2228,9 @@ nodes:
     source_refs:
       - calc-map-2026:K150
     reviewable: true
+    tex_anchor:
+      file: tex/chapters/calculus/13_multivariable_differential_calculus.tex
+      id: MATH1-KN-CALC-0197
   - id: MATH1-KN-CALC-0198
     title: 空间曲线切线与法平面
     kind: concept
@@ -3840,4 +4083,196 @@ edges:
     type: prerequisite_for
   - source: MATH1-KN-CALC-0113
     target: MATH1-KN-CALC-0317
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0117
+    target: MATH1-KN-CALC-0118
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0118
+    target: MATH1-KN-CALC-0119
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0117
+    target: MATH1-KN-CALC-0122
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0120
+    target: MATH1-KN-CALC-0122
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0121
+    target: MATH1-KN-CALC-0122
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0123
+    target: MATH1-KN-CALC-0124
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0124
+    target: MATH1-KN-CALC-0125
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0126
+    target: MATH1-KN-CALC-0127
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0127
+    target: MATH1-KN-CALC-0128
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0135
+    target: MATH1-KN-CALC-0136
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0136
+    target: MATH1-KN-CALC-0137
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0137
+    target: MATH1-KN-CALC-0138
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0138
+    target: MATH1-KN-CALC-0139
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0143
+    target: MATH1-KN-CALC-0144
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0144
+    target: MATH1-KN-CALC-0145
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0144
+    target: MATH1-KN-CALC-0146
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0135
+    target: MATH1-KN-CALC-0147
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0128
+    target: MATH1-KN-CALC-0129
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0129
+    target: MATH1-KN-CALC-0140
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0131
+    target: MATH1-KN-CALC-0141
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0137
+    target: MATH1-KN-CALC-0140
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0140
+    target: MATH1-KN-CALC-0142
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0141
+    target: MATH1-KN-CALC-0142
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0148
+    target: MATH1-KN-CALC-0150
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0149
+    target: MATH1-KN-CALC-0150
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0150
+    target: MATH1-KN-CALC-0151
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0151
+    target: MATH1-KN-CALC-0152
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0153
+    target: MATH1-KN-CALC-0154
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0137
+    target: MATH1-KN-CALC-0157
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0137
+    target: MATH1-KN-CALC-0158
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0160
+    target: MATH1-KN-CALC-0161
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0161
+    target: MATH1-KN-CALC-0162
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0161
+    target: MATH1-KN-CALC-0163
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0161
+    target: MATH1-KN-CALC-0164
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0162
+    target: MATH1-KN-CALC-0165
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0165
+    target: MATH1-KN-CALC-0166
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0165
+    target: MATH1-KN-CALC-0167
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0166
+    target: MATH1-KN-CALC-0168
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0167
+    target: MATH1-KN-CALC-0168
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0166
+    target: MATH1-KN-CALC-0169
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0167
+    target: MATH1-KN-CALC-0169
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0170
+    target: MATH1-KN-CALC-0171
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0172
+    target: MATH1-KN-CALC-0173
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0172
+    target: MATH1-KN-CALC-0174
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0172
+    target: MATH1-KN-CALC-0175
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0176
+    target: MATH1-KN-CALC-0177
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0175
+    target: MATH1-KN-CALC-0178
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0179
+    target: MATH1-KN-CALC-0180
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0180
+    target: MATH1-KN-CALC-0182
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0180
+    target: MATH1-KN-CALC-0183
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0183
+    target: MATH1-KN-CALC-0184
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0184
+    target: MATH1-KN-CALC-0185
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0184
+    target: MATH1-KN-CALC-0186
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0187
+    target: MATH1-KN-CALC-0188
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0184
+    target: MATH1-KN-CALC-0189
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0185
+    target: MATH1-KN-CALC-0190
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0186
+    target: MATH1-KN-CALC-0191
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0189
+    target: MATH1-KN-CALC-0192
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0192
+    target: MATH1-KN-CALC-0193
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0189
+    target: MATH1-KN-CALC-0194
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0184
+    target: MATH1-KN-CALC-0195
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0195
+    target: MATH1-KN-CALC-0196
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0184
+    target: MATH1-KN-CALC-0197
+    type: prerequisite_for
+  - source: MATH1-KN-CALC-0196
+    target: MATH1-KN-CALC-0197
     type: prerequisite_for

@@ -1,0 +1,764 @@
+\answerAnchor{MATH1-CALC-0031}
+\begin{solutionBox}
+\textbf{A}\quad 令 \(u=x^3\)，则 \(\mathrm du=3x^2\mathrm dx\)，故
+\[
+\int3x^2\cos(x^3)\mathrm dx=\sin(x^3)+C.
+\]
+\textbf{核验：}求导还原原被积函数。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 令 \(u=1+x^2\)，则
+\[
+\int\frac{x}{(1+x^2)^2}\mathrm dx
+=\frac12\int u^{-2}\mathrm du
+=-\frac1{2(1+x^2)}+C.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 令 \(u=\sqrt x>0\)，则
+\(\mathrm dx=2u\mathrm du\)，故
+\[
+\int\frac{e^{\sqrt x}}{\sqrt x}\mathrm dx
+=2\int e^u\mathrm du=2e^{\sqrt x}+C.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 分子就是分母的导数，因此
+\[
+\int\frac{2x+\lambda}{x^2+\lambda x+1}\mathrm dx
+=\ln|x^2+\lambda x+1|+C.
+\]
+绝对值保证任一不穿过分母零点的连通区间都适用；求导核验不依赖
+\(\lambda\) 的取值。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0032}
+\begin{solutionBox}
+\textbf{A}\quad 令 \(x=3\sin t\)，取
+\(t\in(-\pi/2,\pi/2)\)，则
+\[
+\int\frac{\mathrm dx}{\sqrt{9-x^2}}
+=\int\mathrm dt=\arcsin\frac x3+C.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 令 \(x=2\sin t\)，取
+\(t\in(-\pi/2,\pi/2)\)。则
+\[
+\frac{x^2}{\sqrt{4-x^2}}\mathrm dx=4\sin^2t\,\mathrm dt,
+\]
+\[
+\int4\sin^2t\,\mathrm dt
+=2t-\sin2t+C.
+\]
+回代得
+\[
+\boxed{2\arcsin\frac x2-\frac{x}{2}\sqrt{4-x^2}+C}.
+\]
+求导可核验系数。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 令 \(x=2\tan t\)，取
+\(t\in(-\pi/2,\pi/2)\)，则
+\[
+\mathrm dx=2\sec^2t\,\mathrm dt,\qquad
+(x^2+4)^{3/2}=8\sec^3t.
+\]
+因此原积分为
+\[
+\frac14\int\cos t\,\mathrm dt
+=\frac14\sin t+C
+=\frac{x}{4\sqrt{x^2+4}}+C.
+\]
+\textbf{核验：}对最后一式求导，分子化简为
+\(4/(x^2+4)^{3/2}\)，连同外系数恰还原被积函数。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 令 \(x=a\sin t\)，
+\(t\in[0,\pi/2]\)，则
+\[
+\begin{aligned}
+\int_0^a x^2\sqrt{a^2-x^2}\,\mathrm dx
+&=a^4\int_0^{\pi/2}\sin^2t\cos^2t\,\mathrm dt\\
+&=\frac{a^4}{8}\int_0^{\pi/2}(1-\cos4t)\,\mathrm dt
+=\frac{\pi a^4}{16}.
+\end{aligned}
+\]
+条件 \(a>0\) 保证变量范围与根号符号；量纲为 \(a^4\)，可核验
+结果阶数。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0033}
+\begin{solutionBox}
+\textbf{A}\quad 取 \(u=x,\mathrm dv=\cos x\mathrm dx\)，得
+\[
+\int x\cos x\mathrm dx=x\sin x-\int\sin x\mathrm dx
+=x\sin x+\cos x+C.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 把被积函数写成 \(\arctan x\cdot1\)。取
+\(u=\arctan x,\mathrm dv=\mathrm dx\)，得
+\[
+\int\arctan x\mathrm dx
+=x\arctan x-\int\frac{x}{1+x^2}\mathrm dx
+=x\arctan x-\frac12\ln(1+x^2)+C.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 连续两次分部：
+\[
+\begin{aligned}
+\int x^2e^{2x}\mathrm dx
+&=\frac12x^2e^{2x}-\int xe^{2x}\mathrm dx\\
+&=\frac12x^2e^{2x}-\frac12xe^{2x}
++\frac14e^{2x}+C\\
+&=e^{2x}\left(\frac{x^2}{2}-\frac x2+\frac14\right)+C.
+\end{aligned}
+\]
+求导括号内表达式可核验中间项相消。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 写
+\[
+J_n=\int_0^{\pi/2}\sin^{n-1}x\sin x\,\mathrm dx.
+\]
+取 \(u=\sin^{n-1}x,\mathrm dv=\sin x\mathrm dx\)。边界项为零，故
+\[
+\begin{aligned}
+J_n
+&=(n-1)\int_0^{\pi/2}\sin^{n-2}x\cos^2x\,\mathrm dx\\
+&=(n-1)(J_{n-2}-J_n).
+\end{aligned}
+\]
+所以
+\[
+\boxed{J_n=\frac{n-1}{n}J_{n-2}},
+\qquad
+J_0=\frac\pi2,\quad J_1=1.
+\]
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0034}
+\begin{solutionBox}
+\textbf{A}\quad 分子为分母导数，故
+\[
+\int\frac{2x+1}{x^2+x}\mathrm dx
+=\ln|x^2+x|+C
+\]
+（在不穿过 \(0,-1\) 的连通区间上）。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 先长除并分解：
+\[
+\frac{x^2+2}{x^2-1}
+=1+\frac3{x^2-1}
+=1+\frac32\left(\frac1{x-1}-\frac1{x+1}\right).
+\]
+因此
+\[
+\boxed{x+\frac32\ln\left|\frac{x-1}{x+1}\right|+C}.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 设
+\[
+\frac{x^2+x+1}{(x-1)^2(x+1)}
+=\frac A{x-1}+\frac B{(x-1)^2}+\frac C{x+1}.
+\]
+代入 \(x=1,-1\)，再比较二次项，得
+\[
+A=\frac34,\qquad B=\frac32,\qquad C=\frac14.
+\]
+故
+\[
+\boxed{
+\frac34\ln|x-1|-\frac{3}{2(x-1)}
++\frac14\ln|x+1|+C
+}.
+\]
+通分可核验 \(x=1\) 的一、二级项都完整，且分子恢复为
+\(x^2+x+1\)。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 分解为
+\[
+\frac{x^2+1}{x(x^2+4)}
+=\frac1{4x}+\frac{3x}{4(x^2+4)}.
+\]
+因此
+\[
+\boxed{\frac14\ln|x|+\frac38\ln(x^2+4)+C}.
+\]
+两项求导通分后分子为 \(x^2+1\)。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0035}
+\begin{solutionBox}
+\textbf{A}\quad 拆出一项 \(\sin x\mathrm dx\)，令 \(u=\cos x\)：
+\[
+\int\sin^3x\mathrm dx
+=-\int(1-u^2)\mathrm du
+=-\cos x+\frac{\cos^3x}{3}+C.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 由降幂公式
+\[
+\cos^4x=\frac38+\frac12\cos2x+\frac18\cos4x,
+\]
+故
+\[
+\int\cos^4x\mathrm dx
+=\frac{3x}{8}+\frac{\sin2x}{4}+\frac{\sin4x}{32}+C.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad
+\[
+\frac1{\sin x\cos x}
+=\frac{\sin^2x+\cos^2x}{\sin x\cos x}
+=\tan x+\cot x,
+\]
+所以
+\[
+\int\frac{\mathrm dx}{\sin x\cos x}
+=-\ln|\cos x|+\ln|\sin x|+C
+=\ln|\tan x|+C.
+\]
+答案在原被积函数有定义的每个连通区间成立。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 令 \(t=\tan(x/2)\)，则
+\[
+\int\frac{\mathrm dx}{2+\sin x+\cos x}
+=\int\frac{2\,\mathrm dt}{t^2+2t+3}.
+\]
+配方
+\[
+t^2+2t+3=(t+1)^2+2,
+\]
+故
+\[
+\boxed{
+\sqrt2\arctan
+\frac{\tan(x/2)+1}{\sqrt2}+C
+}.
+\]
+原分母恒正；答案在万能代换的各坐标区间上成立，相邻区间的表达式
+只可能相差积分常数。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0036}
+\begin{solutionBox}
+\textbf{A}\quad 令 \(t=\sqrt x>0\)，
+\(x=t^2,\mathrm dx=2t\mathrm dt\)。则
+\[
+\frac{2t^3}{1+t}
+=2\left(t^2-t+1-\frac1{t+1}\right),
+\]
+所以
+\[
+\boxed{
+\frac23x^{3/2}-x+2\sqrt x-2\ln(1+\sqrt x)+C
+}.
+\]
+\textbf{核验：}对结果求导并通分，分子恢复为 \(x\)。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 令 \(t=\sqrt x\)，则
+\[
+\int\frac{\mathrm dx}{\sqrt x(1+\sqrt x)}
+=2\int\frac{\mathrm dt}{1+t}
+=2\ln(1+\sqrt x)+C.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 令 \(t=\sqrt x\)，则
+\[
+\int\frac{\sqrt x}{1+x}\mathrm dx
+=2\int\frac{t^2}{1+t^2}\mathrm dt
+=2t-2\arctan t+C.
+\]
+即
+\[
+\boxed{2\sqrt x-2\arctan\sqrt x+C}.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 令 \(t=\sqrt{x+1}>0\)，则
+\[
+x=t^2-1,\qquad \mathrm dx=2t\,\mathrm dt,
+\]
+\[
+\int\frac{\mathrm dx}{x+\sqrt{x+1}}
+=\int\frac{2t}{t^2+t-1}\,\mathrm dt.
+\]
+因 \(2t=(2t+1)-1\)，配方
+\(t^2+t-1=(t+\frac12)^2-\frac54\)，故
+\[
+\boxed{
+\ln|x+\sqrt{x+1}|
+-\frac1{\sqrt5}\ln\left|
+\frac{2\sqrt{x+1}+1-\sqrt5}
+{2\sqrt{x+1}+1+\sqrt5}
+\right|+C
+}.
+\]
+定义域保证根式为实数，另排除原分母零点；各绝对值使答案适用于
+每个连通区间。回到 \(t\) 后求导可直接核验。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0042}
+\begin{solutionBox}
+\textbf{A}\quad 令 \(u=1+x^3\)，新限 \(1\to2\)，得
+\[
+\int_0^1\frac{3x^2}{1+x^3}\mathrm dx
+=\int_1^2\frac{\mathrm du}{u}=\ln2.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 令 \(u=4-x^2\)，则
+\[
+\int_0^2x\sqrt{4-x^2}\mathrm dx
+=\frac12\int_0^4u^{1/2}\mathrm du
+=\frac83.
+\]
+换元方向产生的负号已由交换新上下限消去。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 记
+\[
+J=\int_0^axf(a-x)\mathrm dx.
+\]
+令 \(t=a-x\)，则
+\[
+J=\int_0^a(a-t)f(t)\mathrm dt.
+\]
+因此
+\[
+\int_0^ax\bigl(f(x)+f(a-x)\bigr)\mathrm dx
+=\int_0^a[x+(a-x)]f(x)\mathrm dx
+=a\int_0^af(x)\mathrm dx.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad \(\sin x\) 在 \([0,\pi]\) 非负、在
+\([\pi,2\pi]\) 非正，故必须分段：
+\[
+\begin{aligned}
+I&=\int_0^\pi\sin x\,e^{\cos x}\mathrm dx
+-\int_\pi^{2\pi}\sin x\,e^{\cos x}\mathrm dx\\
+&=(e-e^{-1})+(e-e^{-1})
+=2(e-e^{-1}).
+\end{aligned}
+\]
+\(\cos x\) 在 \([0,2\pi]\) 上非单调，且两端都映到 \(1\)；
+若不先按 \(x=\pi\) 分成单调段，一组新上下限会丢掉两次扫描及
+\(|\sin x|\) 的符号变化。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0043}
+\begin{solutionBox}
+\textbf{A}\quad 对 \([\varepsilon,1]\) 分部：
+\[
+\int_\varepsilon^1x\ln x\mathrm dx
+=\left[\frac{x^2}{2}\ln x\right]_\varepsilon^1
+-\frac12\int_\varepsilon^1x\mathrm dx.
+\]
+因 \(\varepsilon^2\ln\varepsilon\to0\)，令
+\(\varepsilon\to0^+\) 得
+\[
+\boxed{-\frac14}.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad
+\[
+\begin{aligned}
+\int_0^1x\arctan x\,\mathrm dx
+&=\left[\frac{x^2}{2}\arctan x\right]_0^1
+-\frac12\int_0^1\frac{x^2}{1+x^2}\,\mathrm dx\\
+&=\frac\pi8-\frac12\left(1-\frac\pi4\right)
+=\frac\pi4-\frac12.
+\end{aligned}
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad \(a>-1\) 保证零端可积。对
+\([\varepsilon,1]\) 分部，取
+\(u=(\ln x)^2,\mathrm dv=x^a\mathrm dx\)，得
+\[
+I(a)=-\frac2{a+1}\int_0^1x^a\ln x\,\mathrm dx.
+\]
+再分部一次，
+\(\int_0^1x^a\ln x\,\mathrm dx=-1/(a+1)^2\)，故
+\[
+\boxed{I(a)=\frac2{(a+1)^3}}.
+\]
+这里用到 \(x^{a+1}(\ln x)^k\to0\ (k=1,2)\)。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 对有限 \(R>1\) 分部：
+\[
+\begin{aligned}
+\int_1^R\frac{\ln x}{x^2}\,\mathrm dx
+&=\left[-\frac{\ln x}{x}\right]_1^R
++\int_1^R\frac{\mathrm dx}{x^2}\\
+&=-\frac{\ln R}{R}+1-\frac1R.
+\end{aligned}
+\]
+因 \(\ln R/R\to0\)，故
+\[
+\boxed{\int_1^\infty\frac{\ln x}{x^2}\,\mathrm dx=1}.
+\]
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0044}
+\begin{solutionBox}
+\textbf{A}\quad 令 \(t=x-1\)，则积分区间变为 \([-1,1]\)，且
+\(t^7e^{t^2}\) 为奇函数。因此
+\[
+\boxed{\int_0^2(x-1)^7e^{(x-1)^2}\mathrm dx=0}.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 记题设积分为 \(I\)。令 \(x=a-t\)，并用
+\(f(a-t)=f(t)\)，得
+\[
+I=\int_0^a\left(\frac a2-t\right)^3f(t)\,\mathrm dt=-I.
+\]
+故 \(\boxed{I=0}\)。这里的三次权重关于区间中点反对称，而 \(f\)
+关于中点对称。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 先由周期性知任意一周期积分与起点无关。把区间分成
+\(n\) 段：
+\[
+\int_c^{c+nT}f
+=\sum_{k=0}^{n-1}\int_{c+kT}^{c+(k+1)T}f.
+\]
+每段令 \(u=x-kT\)，都等于
+\(\int_c^{c+T}f=\int_0^Tf\)，故总和为题设右端。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 记
+\[
+I=\int_0^{2\pi}\frac{x}{2+\cos x}\,\mathrm dx.
+\]
+令 \(x=2\pi-t\)，得
+\[
+I=\int_0^{2\pi}\frac{2\pi-x}{2+\cos x}\,\mathrm dx.
+\]
+相加得
+\[
+I=\pi K,\qquad
+K=\int_0^{2\pi}\frac{\mathrm dx}{2+\cos x}.
+\]
+再利用被积函数关于 \(\pi\) 的镜像对称，并在 \([0,\pi]\) 令
+\(t=\tan(x/2)\)，
+\[
+K=2\int_0^\pi\frac{\mathrm dx}{2+\cos x}
+=4\int_0^\infty\frac{\mathrm dt}{t^2+3}
+=\frac{2\pi}{\sqrt3}.
+\]
+所以
+\[
+\boxed{I=\frac{2\pi^2}{\sqrt3}}.
+\]
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0050}
+\begin{solutionBox}
+\textbf{A}\quad 令 \(u=x^2\)，则
+\[
+\int_0^\infty xe^{-x^2}\mathrm dx
+=\frac12\int_0^\infty e^{-u}\mathrm du
+=\frac12.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 令 \(u=e^x\)，则
+\(x\to-\infty\) 时 \(u\to0^+\)，\(x\to+\infty\) 时
+\(u\to\infty\)，且 \(\mathrm du=e^x\mathrm dx\)。所以
+\[
+\int_{-\infty}^{\infty}\frac{e^x}{(1+e^x)^2}\mathrm dx
+=\int_0^\infty\frac{\mathrm du}{(1+u)^2}=1.
+\]
+换元后的两个反常端都收敛。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 当 \(a>0\) 时令 \(u=ax^2\)，得
+\[
+\int_0^\infty xe^{-ax^2}\mathrm dx
+=\frac1{2a}\int_0^\infty e^{-u}\mathrm du
+=\frac1{2a}.
+\]
+\(a=0\) 时被积函数为 \(x\)；\(a<0\) 时指数增长，均发散。
+故收敛当且仅当 \(a>0\)。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 右侧积分
+\[
+\int_0^R\frac{x}{1+x^2}\mathrm dx
+=\frac12\ln(1+R^2)\to+\infty,
+\]
+左侧积分相应趋于 \(-\infty\)，故两项不分别收敛，通常反常积分发散。
+但被积函数为奇函数，对每个 \(R\)
+\[
+\int_{-R}^{R}\frac{x}{1+x^2}\mathrm dx=0,
+\]
+所以 Cauchy 主值为 \(0\)。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0051}
+\begin{solutionBox}
+\textbf{A}\quad 令 \(t=\sqrt x\)，则 \(x=t^2\)、
+\(\mathrm dx=2t\,\mathrm dt\)。因此
+\[
+\int_0^1\frac{\mathrm dx}{\sqrt x+x}
+=2\int_0^1\frac{\mathrm dt}{1+t}
+=2\ln2.
+\]
+原被积函数在 \(0\) 无界，但换元后的积分有限。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad
+\[
+\int_\varepsilon^1\ln x\mathrm dx
+=[x\ln x-x]_\varepsilon^1
+=-1-\varepsilon\ln\varepsilon+\varepsilon.
+\]
+因 \(\varepsilon\ln\varepsilon\to0\)，原积分等于 \(-1\)。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad \(x=1\) 为内部瑕点。左右对称，故
+\[
+\int_0^2|x-1|^{-p}\mathrm dx
+=2\int_0^1t^{-p}\mathrm dt.
+\]
+当且仅当 \(p<1\) 收敛，此时
+\[
+\boxed{\frac2{1-p}}.
+\]
+\(p=1\) 对数发散，\(p>1\) 幂发散。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 若 \(c\notin[-1,1]\)，分母在闭区间不为零，是普通定积分，
+\[
+\int_{-1}^{1}\frac{\mathrm dx}{x-c}
+=\ln|1-c|-\ln|-1-c|
+=\ln\left|\frac{1-c}{1+c}\right|.
+\]
+若 \(c\in(-1,1)\)，\(x=c\) 为内部瑕点，两侧至少各有对数发散；
+若 \(c=\pm1\)，相应端点为对数瑕点。因此 \(c\in[-1,1]\) 时均发散，
+没有额外的收敛反常情形。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0052}
+\begin{solutionBox}
+\textbf{A}\quad 令 \(t=\sqrt x\)，则
+\[
+\int_1^\infty\frac{\mathrm dx}{x^{3/2}+x}
+=2\int_1^\infty\frac{\mathrm dt}{t(t+1)}
+=2\left[\ln\frac{t}{t+1}\right]_1^\infty
+=2\ln2.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 令 \(t=x^{1/3}\)，则
+\[
+\begin{aligned}
+\int_0^1\frac{\mathrm dx}{x^{2/3}+x^{1/3}}
+&=3\int_0^1\frac{t}{1+t}\,\mathrm dt\\
+&=3\left[t-\ln(1+t)\right]_0^1
+=3(1-\ln2).
+\end{aligned}
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 在 \(x\to0^+\) 时
+\((\sin x)^\alpha(\cos x)^\beta\sim x^\alpha\)，要求
+\(\alpha>-1\)。令 \(t=\pi/2-x\)，在右端
+\((\sin x)^\alpha(\cos x)^\beta\sim t^\beta\)，要求
+\(\beta>-1\)。所以
+\[
+\boxed{\alpha>-1,\qquad\beta>-1}.
+\]
+两条件必须同时满足；任一参数等于 \(-1\) 都出现对数发散。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 令 \(u=\ln x\)，原积分化为
+\[
+\int_e^\infty\frac{\mathrm du}{u^p(\ln u)^q}.
+\]
+这里下限 \(u=e\) 无瑕点。无穷端的标准结论为：
+\[
+\boxed{
+\begin{cases}
+\text{收敛},&p>1;\\
+\text{收敛当且仅当 }q>1,&p=1;\\
+\text{发散},&p<1.
+\end{cases}}
+\]
+理由是 \(p>1\) 时任意对数幂都不改变幂积分收敛，\(p<1\) 时也不能补救；
+\(p=1\) 再令 \(v=\ln u\)，化为
+\(\int_1^\infty v^{-q}\mathrm dv\)。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0053}
+\begin{solutionBox}
+\textbf{A}\quad
+\[
+\lim_{x\to\infty}
+\frac{1/(x^2+\sqrt x)}{1/x^2}
+=\lim_{x\to\infty}\frac{x^2}{x^2+\sqrt x}=1.
+\]
+与收敛的 \(\int_1^\infty x^{-2}\mathrm dx\) 同敛散，故原积分收敛。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad
+\[
+\lim_{x\to0^+}
+\frac{1/[\sqrt x(1+x)]}{x^{-1/2}}=1.
+\]
+零端 \(p=1/2<1\)，故原积分收敛。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 因 \(1-\cos x\sim x^2/2\)，
+\[
+\frac{1-\cos x}{x^p}\sim\frac12x^{2-p}
+=\frac12x^{-(p-2)}.
+\]
+零端要求 \(p-2<1\)，故
+\[
+\boxed{p<3\text{ 收敛， }p\ge3\text{ 发散}.}
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 有理化：
+\[
+\sqrt{x^2+x}-x
+=\frac{x}{\sqrt{x^2+x}+x}\longrightarrow\frac12.
+\]
+因此原被积函数与 \(\frac12x^{-p}\) 极限比较，在无穷端当且仅当
+\[
+\boxed{p>1}
+\]
+时收敛。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0054}
+\begin{solutionBox}
+\textbf{A}\quad
+\[
+0\le e^{-x}|\sin x|\le e^{-x},
+\]
+而 \(\int_0^\infty e^{-x}\mathrm dx=1\)，故绝对值积分收敛，原积分
+绝对收敛。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 对尾区间 \([A,B]\) 分部：
+\[
+\int_A^B\frac{\cos x}{\sqrt x}\mathrm dx
+=\left[\frac{\sin x}{\sqrt x}\right]_A^B
++\frac12\int_A^B\frac{\sin x}{x^{3/2}}\mathrm dx.
+\]
+其绝对值不超过 \(3/\sqrt A\)，故尾量趋零，原积分收敛。
+另一方面，每个周期内 \(|\cos x|\ge1/2\) 的区间长度固定，
+\(\int_1^\infty|\cos x|/\sqrt x\,\mathrm dx\) 控制发散的
+\(\sum k^{-1/2}\)。
+故原积分条件收敛。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 令 \(u=x^2\)，则
+\[
+\int_1^\infty\sin(x^2)\mathrm dx
+=\frac12\int_1^\infty\frac{\sin u}{\sqrt u}\mathrm du.
+\]
+对有限尾区间分部可把尾量控制为 \(C/\sqrt A\)，故原积分收敛。
+但
+\[
+\frac12\int_1^\infty\frac{|\sin u|}{\sqrt u}\mathrm du
+\]
+在每周期上有固定比例的正下界，并控制发散的
+\(\sum k^{-1/2}\)，故绝对值积分发散。原积分条件收敛。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 记
+\[
+a_p(x)=\frac1{x^p(1+x)}\sim x^{-(p+1)}.
+\]
+绝对值积分当且仅当 \(p+1>1\)，即 \(p>0\) 时收敛。
+当 \(p>-1\) 时，\(a_p(x)\to0\) 且最终单调下降；有限区间分部或分周期
+尾量估计给出原积分收敛。因此
+\[
+\boxed{
+\begin{cases}
+p>0,&\text{绝对收敛},\\
+-1<p\le0,&\text{条件收敛},\\
+p\le-1,&\text{发散}.
+\end{cases}}
+\]
+\(p=-1\) 时振幅 \(x/(1+x)\to1\)，截断积分保留不消失的余弦振荡；
+\(p<-1\) 时振幅更不趋零，均不能形成收敛尾量。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0061}
+\begin{solutionBox}
+\textbf{A}\quad 令 \(t=\sqrt x\)，则
+\(x=t^2,\mathrm dx=2t\,\mathrm dt\)。因此
+\[
+\int_0^\infty e^{-\sqrt x}\mathrm dx
+=2\int_0^\infty te^{-t}\mathrm dt=2.
+\]
+最后一个积分在有限区间分部并取极限即得 \(1\)，不需要引入
+任何特殊函数。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 对有限 \(R\) 分部：
+\[
+\int_0^R\frac{x}{(1+x)^3}\mathrm dx
+=\left[-\frac{x}{2(1+x)^2}\right]_0^R
++\frac12\int_0^R\frac{\mathrm dx}{(1+x)^2}.
+\]
+因 \(R/(1+R)^2\to0\)，令 \(R\to\infty\) 得
+\[
+\boxed{\frac12}.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 令 \(x=\sin^2t\)，
+\(t\in[0,\pi/2]\)。则
+\[
+\sqrt{x(1-x)}=\sin t\cos t,\qquad
+\mathrm dx=2\sin t\cos t\,\mathrm dt.
+\]
+所以
+\[
+\int_0^1\sqrt{x(1-x)}\,\mathrm dx
+=2\int_0^{\pi/2}\sin^2t\cos^2t\,\mathrm dt
+=\frac\pi8.
+\]
+两端根式连续并为零；换元后的普通三角积分给出完整数值。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 记
+\[
+I_n=\int_0^\infty x^ne^{-x}\mathrm dx.
+\]
+\(I_0=1\)。对 \(n\ge1\)，先在 \([0,R]\) 分部：
+\[
+\int_0^Rx^ne^{-x}\mathrm dx
+=-R^ne^{-R}+n\int_0^Rx^{n-1}e^{-x}\mathrm dx.
+\]
+因 \(R^ne^{-R}\to0\)，令 \(R\to\infty\) 得
+\[
+I_n=nI_{n-1}.
+\]
+归纳即
+\[
+\boxed{I_n=n!}.
+\]
+整个证明只用了截断极限与分部积分，特殊函数名称不是必要步骤。
+\end{solutionBox}

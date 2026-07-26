@@ -3,5 +3,2300 @@
 \begin{knowledgeBox}
 教材页码：第 464 页起。
 
-本讲用于整理空间解析几何、向量运算、平面与直线、曲面与曲线、投影区域和多元积分前的几何预备知识。新增题目时重点沉淀图形识别、区域投影和法向方向。
+本讲依次建立“向量坐标与运算 \(\to\) 平面、直线与距离
+\(\to\) 曲面、曲线与投影”的完整链条。它不是孤立的解析几何复习：
+法向量决定后续切平面与曲面积分方向，投影区域决定二重、三重积分限。
+每遇到一个公式，都先识别几何对象，再选方向向量、法向量或投影向量。
+\end{knowledgeBox}
+
+
+\studySubsection{calc-17-k113}{K113 向量坐标、模与单位向量}
+
+\knowledgeAnchor[MATH1-KN-CALC-0160]{向量坐标、模与单位向量}
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+空间点回答“在哪里”，向量回答“从哪里向哪里移动”。本节先区分点与向量，
+再由两点作差得到向量坐标，用勾股定理得到模，最后把非零向量单位化。
+这些动作是方向向量、法向量、方向余弦和各种距离公式的共同起点。
+
+\textbf{直接前置闭环：空间直角坐标。}
+
+在相互垂直的三条单位坐标轴下，点 \(P=(x,y,z)\) 表示位置；
+从 \(A=(x_1,y_1,z_1)\) 指向 \(B=(x_2,y_2,z_2)\) 的位移逐坐标相减：
+\[
+\overrightarrow{AB}=(x_2-x_1,\ y_2-y_1,\ z_2-z_1).
+\]
+本节需要它，是因为向量的方向与长度都由这三个位移分量决定。使用时牢记
+“终点减起点”；例如 \(A=(1,0,0),B=(3,-1,2)\) 时
+\(\overrightarrow{AB}=(2,-1,2)\)，而 \(\overrightarrow{BA}\) 同时变号。
+
+\textbf{严格核心与推导：}
+
+向量 \(\vec a=(a_1,a_2,a_3)\) 的模定义为
+\[
+|\vec a|=\sqrt{a_1^2+a_2^2+a_3^2}.
+\]
+这是把三个互相垂直的位移连续使用勾股定理所得。若
+\(\vec a\ne\vec0\)，则
+\[
+\vec e=\frac{\vec a}{|\vec a|}
+\]
+与 \(\vec a\) 同向且 \(|\vec e|=1\)，称为同向单位向量；反向单位向量
+是 \(-\vec a/|\vec a|\)。零向量的模虽为 \(0\)，但它没有确定方向，
+也不能除以自身的模，所以不能单位化。
+
+\textbf{方法选择：}
+
+“由 \(A\) 指向 \(B\)”先写 \(B-A\)；“长度、距离”求模；
+“单位且同向”除以模；“所有平行单位向量”要写正、负两个方向。
+若题中含参数，先由模或单位条件建立平方和方程，再检查所得向量是否为零。
+
+\textbf{例 1（两点到单位向量）}
+
+\textbf{题面信号：}求从 \(A=(1,-2,0)\) 指向 \(B=(4,2,-3)\)
+的向量、长度及同向单位向量。
+\textbf{分析：}按“终点减起点 \(\to\) 求模 \(\to\) 单位化”。
+\textbf{完整解答：}
+\[
+\overrightarrow{AB}=(3,4,-3),\qquad
+|\overrightarrow{AB}|=\sqrt{9+16+9}=\sqrt{34},
+\]
+\[
+\vec e=\frac1{\sqrt{34}}(3,4,-3).
+\]
+\textbf{条件检查：}\(\overrightarrow{AB}\ne\vec0\)，故可单位化。
+\textbf{易错点：}若写成 \(A-B\)，三个分量会全部反号。
+\textbf{核验：}\(|\vec e|^2=(9+16+9)/34=1\)，且各分量与
+\(\overrightarrow{AB}\) 同比例。
+
+\textbf{例 2（平行单位向量有两个）}
+
+\textbf{题面信号：}求所有与 \(\vec a=(2,-1,2)\) 平行的单位向量。
+\textbf{分析：}平行允许同向和反向，不能只给一个。
+\textbf{完整解答：}因 \(|\vec a|=3\)，所求为
+\[
+\pm\frac{\vec a}{|\vec a|}
+=\pm\left(\frac23,-\frac13,\frac23\right).
+\]
+\textbf{条件检查：}\(\vec a\ne\vec0\)。
+\textbf{易错点：}“同向”才只取正号，“平行”必须保留正、负号。
+\textbf{核验：}两向量的模均为 \(1\)，且都为 \(\vec a\) 的非零倍数。
+
+\textbf{例 3（由模反求参数）}
+
+\textbf{题面信号：}\(\vec a=(t,2,-2)\) 且 \(|\vec a|=3\)，求 \(t\)。
+\textbf{分析：}把模条件平方，避免无意义的根式操作。
+\textbf{完整解答：}
+\[
+t^2+2^2+(-2)^2=9\quad\Longrightarrow\quad t^2=1,
+\]
+故 \(t=\pm1\)。
+\textbf{条件检查：}模为正，平方前后等价。
+\textbf{易错点：}由 \(t^2=1\) 漏掉负根。
+\textbf{核验：}分别代回，两向量的模均为 \(\sqrt9=3\)。
+
+\textbf{例 4（零向量边界）}
+
+\textbf{题面信号：}判断“任意向量都存在唯一同向单位向量”是否正确。
+\textbf{分析：}关键词“任意”要求检查零向量。
+\textbf{完整解答：}结论错误。非零向量 \(\vec a\) 的同向单位向量
+\(\vec a/|\vec a|\) 唯一；但 \(\vec a=\vec0\) 时
+\(|\vec a|=0\)，表达式无定义，而且零向量没有方向。
+\textbf{条件检查：}反例必须落在原命题允许的对象内，\(\vec0\) 正是向量。
+\textbf{易错点：}把“模存在”误当成“单位化一定存在”。
+\textbf{核验：}任何单位向量都不可能是 \(\lambda\vec0=\vec0\)，故不存在
+与零向量同向的单位向量。
+
+\textbf{失分防线：}
+
+错误写法 \(\overrightarrow{AB}=A-B\) 会把方向反转；错误写法
+\(\vec0/|\vec0|\) 是除以零；写“平行单位向量”时只给一个方向会漏解。
+考场快速检查是：先念一遍“终点减起点”，单位化后立刻验平方和为 \(1\)。
+
+\textbf{考场写法：}
+\[
+\boxed{\overrightarrow{AB}=B-A,\qquad
+|\vec a|=\sqrt{\sum a_i^2},\qquad
+\vec e=\frac{\vec a}{|\vec a|}\ (\vec a\ne\vec0).}
+\]
+
+\textbf{三级掌握与连接：}
+
+\begin{itemize}
+  \item \textbf{基础过关：}能无误完成两点作差、求模和单位化。
+  \item \textbf{130 分以上：}能处理参数、同向/反向/平行的语义区别，
+  并主动检查零向量。
+  \item \textbf{满分能力：}能从直线、平面或曲线条件中迅速提取方向/法向量，
+  再交给后续运算。
+\end{itemize}
+下一节点 \knowledgeRef[MATH1-KN-CALC-0161]{线性运算、共线与共面}
+把“同一方向”推广为向量的线性依赖关系。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k114}{K114 线性运算、共线与共面}
+
+\knowledgeAnchor[MATH1-KN-CALC-0161]{线性运算、共线与共面}
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+坐标加减把几何位移转成代数；数乘改变长度并可能反向。共线、共面问题
+本质上问一个向量能否由另一些向量线性表示。本节先闭合线性运算，
+再给出不依赖“分量连比”的稳定判据。
+
+\textbf{前置短桥（K113）：}
+
+\knowledgeRef[MATH1-KN-CALC-0160]{向量坐标、模与单位向量}说明
+\(\overrightarrow{AB}=B-A\)。这里需要它把点的共线、共面改写成
+\(\overrightarrow{AB},\overrightarrow{AC},\overrightarrow{AD}\) 的关系。
+使用时仍是终点减起点；例如 \(A=(1,0,0),B=(2,1,0)\)，则
+\(\overrightarrow{AB}=(1,1,0)\)。
+
+\textbf{严格核心与推导：}
+
+对 \(\vec a=(a_1,a_2,a_3)\)、\(\vec b=(b_1,b_2,b_3)\)，
+\[
+\vec a+\vec b=(a_1+b_1,a_2+b_2,a_3+b_3),\qquad
+\lambda\vec a=(\lambda a_1,\lambda a_2,\lambda a_3).
+\]
+若 \(\vec a,\vec b\) 均非零，则
+\[
+\vec a\parallel\vec b
+\quad\Longleftrightarrow\quad
+\vec a=\lambda\vec b\ \text{对某个 }\lambda\in\mathbb R.
+\]
+三向量 \(\vec a,\vec b,\vec c\) 共面，等价于存在不全为零的
+\(\alpha,\beta,\gamma\) 使
+\(\alpha\vec a+\beta\vec b+\gamma\vec c=\vec0\)，也等价于它们的
+混合积（即三阶行列式）为 \(0\)。因为非零混合积表示三向量张成有体积
+的平行六面体，而共面时体积必为零。混合积将在 K117 完整推导，此处可把
+行列式判据作为稳定计算接口。
+
+\textbf{方法选择：}
+
+两向量平行优先写 \(\vec a=\lambda\vec b\)，逐分量联立，避免除以零；
+三向量或四点共面优先写行列式为零；若只需证明某向量在两向量张成的
+平面内，也可直接解 \(\vec c=\alpha\vec a+\beta\vec b\)。
+
+\textbf{例 1（线性组合）}
+
+\textbf{题面信号：}\(\vec a=(1,-2,3),\vec b=(2,1,-1)\)，求
+\(2\vec a-3\vec b\)。
+\textbf{分析：}数乘后逐分量相减。
+\textbf{完整解答：}
+\[
+2\vec a-3\vec b=(2,-4,6)-(6,3,-3)=(-4,-7,9).
+\]
+\textbf{条件检查：}线性运算对任意向量合法。
+\textbf{易错点：}负号必须作用于 \(\vec b\) 的每个分量。
+\textbf{核验：}第一分量 \(2\cdot1-3\cdot2=-4\)，与结果一致。
+
+\textbf{例 2（平行参数不用连比）}
+
+\textbf{题面信号：}\(\vec a=(2,t,-4)\) 与 \(\vec b=(1,-1,-2)\)
+平行，求 \(t\)。
+\textbf{分析：}写 \(\vec a=\lambda\vec b\)，不写含零风险的连比。
+\textbf{完整解答：}第一分量给 \(\lambda=2\)，第三分量
+\(-4=2(-2)\) 相容，第二分量给 \(t=2(-1)=-2\)。
+\textbf{条件检查：}\(\vec b\ne\vec0\)。
+\textbf{易错点：}只比较第一、第三分量就提前下结论。
+\textbf{核验：}\(\vec a=2\vec b=(2,-2,-4)\)。
+
+\textbf{例 3（三点共线）}
+
+\textbf{题面信号：}判断 \(A=(1,0,2),B=(3,1,0),C=(5,2,-2)\)
+是否共线。
+\textbf{分析：}从同一起点取两个位移向量并判断比例。
+\textbf{完整解答：}
+\[
+\overrightarrow{AB}=(2,1,-2),\qquad
+\overrightarrow{AC}=(4,2,-4)=2\overrightarrow{AB},
+\]
+故三点共线。
+\textbf{条件检查：}三点中 \(A\ne B\)，方向向量非零。
+\textbf{易错点：}用 \(\overrightarrow{AB}\) 与
+\(\overrightarrow{BC}\) 时若方向不统一，比例符号容易错。
+\textbf{核验：}中点关系 \(B=(A+C)/2\) 也成立。
+
+\textbf{例 4（四点共面反求参数）}
+
+\textbf{题面信号：}求 \(t\)，使
+\(A=(0,0,0),B=(1,0,1),C=(0,1,1),D=(1,1,t)\) 共面。
+\textbf{分析：}以 \(A\) 为共同起点，令三阶行列式为零。
+\textbf{完整解答：}
+\[
+\det\begin{pmatrix}
+1&0&1\\
+0&1&1\\
+1&1&t
+\end{pmatrix}
+=t-2=0,
+\]
+故 \(t=2\)。
+\textbf{条件检查：}\(\overrightarrow{AB},\overrightarrow{AC}\)
+不平行，确实先确定一个平面。
+\textbf{易错点：}行列式行向量顺序可以改变符号，但零值条件不变；
+不能把点坐标直接与位移向量混排。
+\textbf{核验：}当 \(t=2\) 时
+\(\overrightarrow{AD}=\overrightarrow{AB}+\overrightarrow{AC}\)。
+
+\textbf{失分防线：}
+
+分量连比 \(\frac{a_1}{b_1}=\frac{a_2}{b_2}=\frac{a_3}{b_3}\)
+遇到零分量会失效；“三点必共面”不能替代“四点共面”的检查；
+零向量与任意向量线性相关，但没有可用于夹角的方向。快速检查：
+平行题回代一个统一倍数，共面题再找一次线性组合。
+
+\textbf{考场写法：}
+\[
+\boxed{\text{平行： }\vec a=\lambda\vec b;\qquad
+\text{共面： }\det(\vec a,\vec b,\vec c)=0.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能完成线性运算并用统一倍数判平行。
+  \item \textbf{130 分以上：}遇到零分量主动放弃连比，能由位移向量判四点共面。
+  \item \textbf{满分能力：}能在线性组合、行列式和几何体积三种表述间切换。
+\end{itemize}
+下一步用 \knowledgeRef[MATH1-KN-CALC-0162]{数量积与夹角}
+处理“垂直、夹角、投影”，再用向量积和混合积解释面积与体积。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k115}{K115 数量积与夹角}
+
+\knowledgeAnchor[MATH1-KN-CALC-0162]{数量积与夹角}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0162]{数量积与夹角}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+数量积把“夹角和投影”翻译成一个数。先由坐标基向量的正交性推出坐标公式，
+再分清标量投影与向量投影，最后把垂直条件转成方程。
+
+\textbf{前置短桥（K113）：}
+
+\knowledgeRef[MATH1-KN-CALC-0160]{向量的模}是长度
+\(\sqrt{\sum a_i^2}\)。本节需要长度来归一化夹角公式；识别“夹角、投影、
+垂直”就调用它。例如 \((3,4,0)\) 的模为 \(5\)。
+
+\textbf{严格核心与推导：}
+
+非零向量夹角 \(\theta\in[0,\pi]\) 的数量积定义为
+\[
+\vec a\cdot\vec b=|\vec a||\vec b|\cos\theta.
+\]
+在标准正交单位基 \(\vec i,\vec j,\vec k\) 下，不同基向量点积为 \(0\)，
+自身点积为 \(1\)，展开双线性运算即得
+\[
+\vec a\cdot\vec b=a_1b_1+a_2b_2+a_3b_3.
+\]
+因此对非零向量
+\[
+\cos\theta=\frac{\vec a\cdot\vec b}{|\vec a||\vec b|},\qquad
+\vec a\perp\vec b\Longleftrightarrow\vec a\cdot\vec b=0.
+\]
+\(\vec a\) 在 \(\vec b\) 方向的标量投影是
+\((\vec a\cdot\vec b)/|\vec b|\)，向量投影是
+\[
+\operatorname{proj}_{\vec b}\vec a
+=\frac{\vec a\cdot\vec b}{|\vec b|^2}\vec b,\qquad \vec b\ne\vec0.
+\]
+
+\textbf{方法选择：}
+
+夹角先点积再除两模；垂直直接令点积为零；投影先看题目要“长度（有符号）”
+还是“向量”。若求锐角，最后对余弦取绝对值；若求有向夹角则不能擅自取绝对值。
+
+\textbf{例 1（夹角）}
+
+\textbf{题面信号：}\(\vec a=(1,1,0),\vec b=(1,0,1)\)，求夹角。
+\textbf{分析：}直接使用点积归一化。
+\textbf{完整解答：}
+\[
+\vec a\cdot\vec b=1,\quad |\vec a|=|\vec b|=\sqrt2,
+\quad \cos\theta=\frac12,
+\]
+故 \(\theta=\pi/3\)。
+\textbf{条件检查：}两向量均非零，夹角定义有效。
+\textbf{易错点：}把点积 \(1\) 直接当作余弦。
+\textbf{核验：}\(\cos\theta\in[-1,1]\)，且点积为正故为锐角。
+
+\textbf{例 2（标量投影与向量投影）}
+
+\textbf{题面信号：}求 \(\vec a=(2,1,2)\) 在
+\(\vec b=(1,2,2)\) 方向的两种投影。
+\textbf{分析：}先算 \(\vec a\cdot\vec b=8\)、\(|\vec b|=3\)。
+\textbf{完整解答：}
+\[
+\text{标量投影}=\frac83,\qquad
+\operatorname{proj}_{\vec b}\vec a
+=\frac89(1,2,2).
+\]
+\textbf{条件检查：}\(\vec b\ne\vec0\)。
+\textbf{易错点：}向量投影的分母是 \(|\vec b|^2\)，不是 \(|\vec b|\)。
+\textbf{核验：}所得向量与 \(\vec b\) 平行，其模为 \(8/3\)。
+
+\textbf{例 3（垂直参数）}
+
+\textbf{题面信号：}\((t,1,-1)\perp(2,-1,3)\)，求 \(t\)。
+\textbf{分析：}垂直等价于点积为零。
+\textbf{完整解答：}
+\[
+2t-1-3=0\quad\Longrightarrow\quad t=2.
+\]
+\textbf{条件检查：}第二向量非零；所得第一向量也非零。
+\textbf{易错点：}第三项是 \((-1)\cdot3=-3\)。
+\textbf{核验：}\((2,1,-1)\cdot(2,-1,3)=4-1-3=0\)。
+
+\textbf{例 4（分解为平行与垂直分量）}
+
+\textbf{题面信号：}把 \(\vec a=(3,1,1)\) 分解为相对于
+\(\vec b=(1,1,0)\) 的平行分量与垂直分量。
+\textbf{分析：}平行分量取向量投影，剩余量自动垂直。
+\textbf{完整解答：}
+\[
+\vec a_{\parallel}
+=\frac{4}{2}(1,1,0)=(2,2,0),\qquad
+\vec a_{\perp}=\vec a-\vec a_{\parallel}=(1,-1,1).
+\]
+\textbf{条件检查：}\(\vec b\ne\vec0\)。
+\textbf{易错点：}把标量投影 \(2\sqrt2\) 当作平行分量向量。
+\textbf{核验：}\(\vec a_{\perp}\cdot\vec b=1-1=0\)，且两分量之和为
+\(\vec a\)。
+
+\textbf{失分防线：}
+
+错误写法 \(\cos\theta=\vec a\cdot\vec b\) 漏掉归一化；
+“两向量点积为零”若包含零向量只能说明正交代数关系，不能谈零向量的夹角；
+求两直线锐角常需对方向向量点积取绝对值。快速检查是用
+\(|\vec a\cdot\vec b|\le|\vec a||\vec b|\) 检验余弦范围。
+
+\textbf{考场写法：}
+\[
+\boxed{\cos\theta=\frac{\vec a\cdot\vec b}{|\vec a||\vec b|},\qquad
+\operatorname{proj}_{\vec b}\vec a
+=\frac{\vec a\cdot\vec b}{|\vec b|^2}\vec b.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}点积、夹角、垂直参数计算零失误。
+  \item \textbf{130 分以上：}能区分两种投影并根据“锐角/有向角”处理绝对值。
+  \item \textbf{满分能力：}能用平行--垂直分解推导距离或最小值公式。
+\end{itemize}
+\knowledgeRef[MATH1-KN-CALC-0166]{平面方程}和
+\knowledgeRef[MATH1-KN-CALC-0169]{线面关系}都会直接调用点积。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k116}{K116 向量积}
+
+\knowledgeAnchor[MATH1-KN-CALC-0163]{向量积}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0163]{向量积}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+点积产生标量，向量积产生同时垂直于两个向量的新向量。它一方面给平面
+法向量，另一方面用模表示平行四边形面积。路线是“方向由右手定则，
+大小由面积，坐标由行列式”。
+
+\textbf{前置短桥（K115）：}
+
+\knowledgeRef[MATH1-KN-CALC-0162]{数量积与夹角}给出夹角
+\(\theta\in[0,\pi]\)。本节用 \(\sin\theta\) 量出两向量张开的面积；
+识别“公共法向量、面积、两方向的垂直向量”就调用向量积。例如平行向量
+夹角为 \(0\)，其张成面积应为 \(0\)。
+
+\textbf{严格核心与推导：}
+
+\(\vec a\times\vec b\) 的模和方向规定为
+\[
+|\vec a\times\vec b|=|\vec a||\vec b|\sin\theta,
+\]
+方向垂直于 \(\vec a,\vec b\)，并按右手定则从 \(\vec a\) 转向
+\(\vec b\)。坐标公式为
+\[
+\vec a\times\vec b=
+\begin{vmatrix}
+\vec i&\vec j&\vec k\\
+a_1&a_2&a_3\\
+b_1&b_2&b_3
+\end{vmatrix}
+=(a_2b_3-a_3b_2,\ a_3b_1-a_1b_3,\ a_1b_2-a_2b_1).
+\]
+中间分量的写法已经吸收展开时的负号。交换次序有
+\(\vec b\times\vec a=-(\vec a\times\vec b)\)；两非零向量平行
+当且仅当向量积为零。
+
+\textbf{方法选择：}
+
+求公共法向量直接叉乘两个不平行方向；求平行四边形面积取叉积模，
+三角形面积再除以 \(2\)；判平行可令三个叉积分量同时为零。
+
+\textbf{例 1（坐标计算）}
+
+\textbf{题面信号：}\(\vec a=(1,2,0),\vec b=(0,1,3)\)，求
+\(\vec a\times\vec b\)。
+\textbf{分析：}按三分量公式，重点检查第二分量。
+\textbf{完整解答：}
+\[
+\vec a\times\vec b=(6,-3,1).
+\]
+\textbf{条件检查：}向量积对任意两向量都有定义。
+\textbf{易错点：}第二分量误写成 \(+3\)。
+\textbf{核验：}
+\((6,-3,1)\cdot\vec a=0\)，且
+\((6,-3,1)\cdot\vec b=0\)。
+
+\textbf{例 2（三角形面积）}
+
+\textbf{题面信号：}求 \(A=(0,0,0),B=(2,0,1),C=(1,3,0)\)
+所成三角形面积。
+\textbf{分析：}用同一起点的两边叉积，最后除以 \(2\)。
+\textbf{完整解答：}
+\[
+\overrightarrow{AB}=(2,0,1),\quad
+\overrightarrow{AC}=(1,3,0),\quad
+\overrightarrow{AB}\times\overrightarrow{AC}=(-3,1,6),
+\]
+\[
+S_{\triangle ABC}=\frac12\sqrt{9+1+36}=\frac{\sqrt{46}}2.
+\]
+\textbf{条件检查：}叉积非零，三点不共线。
+\textbf{易错点：}叉积模是平行四边形面积，三角形还要乘 \(1/2\)。
+\textbf{核验：}交换两边次序只改变法向量方向，不改变面积。
+
+\textbf{例 3（平面法向量）}
+
+\textbf{题面信号：}求同时垂直于
+\(\vec u=(1,1,0)\)、\(\vec v=(1,0,1)\) 的一个单位向量。
+\textbf{分析：}先叉乘，再单位化；“一个”允许任选正负方向。
+\textbf{完整解答：}
+\[
+\vec u\times\vec v=(1,-1,-1),\qquad
+\vec n=\frac1{\sqrt3}(1,-1,-1).
+\]
+\textbf{条件检查：}\(\vec u,\vec v\) 不平行，叉积非零。
+\textbf{易错点：}只给叉积却忘记“单位”要求。
+\textbf{核验：}\(|\vec n|=1\)，且与 \(\vec u,\vec v\) 点积都为零。
+
+\textbf{例 4（由面积判参数）}
+
+\textbf{题面信号：}\(\vec a=(1,t,0),\vec b=(0,1,1)\) 张成的
+平行四边形面积为 \(\sqrt3\)，求 \(t\)。
+\textbf{分析：}面积平方等于叉积模平方。
+\textbf{完整解答：}
+\[
+\vec a\times\vec b=(t,-1,1),\qquad
+t^2+2=3,
+\]
+故 \(t=\pm1\)。
+\textbf{条件检查：}给定面积为正，所得向量确不平行。
+\textbf{易错点：}由 \(t^2=1\) 漏根。
+\textbf{核验：}两值代回，叉积模均为 \(\sqrt3\)。
+
+\textbf{失分防线：}
+
+最常见错误是第二分量符号、交换顺序不变号、面积漏绝对值或漏 \(1/2\)。
+若叉积为零，就不能继续单位化为法向量。考场快速检查：计算后立刻与原来
+两个向量各点积一次，应都为零。
+
+\textbf{考场写法：}
+\[
+\boxed{\vec a\times\vec b
+=(a_2b_3-a_3b_2,\ a_3b_1-a_1b_3,\ a_1b_2-a_2b_1),\quad
+S_{\triangle}=\tfrac12|\vec a\times\vec b|.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}坐标叉积和面积计算正确。
+  \item \textbf{130 分以上：}能从两个方向快速造法向量，并核验方向次序。
+  \item \textbf{满分能力：}能把叉积同时用于法向、面积、距离和曲面定向。
+\end{itemize}
+下一节点 \knowledgeRef[MATH1-KN-CALC-0164]{混合积}
+把叉积再与第三向量点乘，得到有向体积与共面判据。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k117}{K117 混合积}
+
+\knowledgeAnchor[MATH1-KN-CALC-0164]{混合积}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0164]{混合积}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+两个向量张成底面，第三个向量提供高度；混合积恰好是“底面积乘有向高度”。
+因此它统一处理平行六面体体积、四面体体积和三向量共面。
+
+\textbf{前置短桥（K115--K116）：}
+
+\knowledgeRef[MATH1-KN-CALC-0163]{向量积}的模是底面积，方向是底面
+法向；\knowledgeRef[MATH1-KN-CALC-0162]{点积}取第三向量在该法向上的
+有向分量。二者组合就得到体积。例如 \(\vec i\times\vec j=\vec k\)，
+再与 \(\vec k\) 点乘得单位立方体体积 \(1\)。
+
+\textbf{严格核心与推导：}
+
+\[
+[\vec a,\vec b,\vec c]
+=(\vec a\times\vec b)\cdot\vec c
+=\det\begin{pmatrix}
+a_1&a_2&a_3\\
+b_1&b_2&b_3\\
+c_1&c_2&c_3
+\end{pmatrix}.
+\]
+其绝对值是以三向量为邻边的平行六面体体积。因为
+\((\vec a\times\vec b)\cdot\vec c
+=|\vec a\times\vec b|\times(\vec c\text{ 的有向法向投影})\)。
+故
+\[
+[\vec a,\vec b,\vec c]=0
+\Longleftrightarrow \vec a,\vec b,\vec c\text{ 共面}.
+\]
+循环置换值不变，交换任意两个向量变号；几何体积必须取绝对值。
+由同一点发出的三条棱构成的四面体体积为混合积绝对值的 \(1/6\)。
+
+\textbf{方法选择：}
+
+“体积、共面、异面”优先写一个三阶行列式；求参数时令行列式为零；
+只问几何体积时最后加绝对值，并根据几何体是平行六面体还是四面体选择
+系数 \(1\) 或 \(1/6\)。
+
+\textbf{例 1（有向体积）}
+
+\textbf{题面信号：}\(\vec a=(1,0,1),\vec b=(0,2,1),
+\vec c=(1,1,0)\)，求混合积与体积。
+\textbf{分析：}直接展开行列式。
+\textbf{完整解答：}
+\[
+[\vec a,\vec b,\vec c]
+=\det\begin{pmatrix}1&0&1\\0&2&1\\1&1&0\end{pmatrix}
+=-3.
+\]
+所以平行六面体体积为 \(3\)。
+\textbf{条件检查：}非零结果说明三向量不共面。
+\textbf{易错点：}把有向值 \(-3\) 当成几何体积。
+\textbf{核验：}交换前两行得到 \(3\)，绝对值不变。
+
+\textbf{例 2（四面体体积）}
+
+\textbf{题面信号：}求 \(O=(0,0,0),A=(1,0,1),B=(0,2,0),
+C=(1,1,2)\) 所成四面体体积。
+\textbf{分析：}三条邻棱从同一顶点 \(O\) 发出。
+\textbf{完整解答：}
+\[
+\det\begin{pmatrix}1&0&1\\0&2&0\\1&1&2\end{pmatrix}=2,
+\qquad V=\frac{|2|}{6}=\frac13.
+\]
+\textbf{条件检查：}四点不共面，因为行列式不为零。
+\textbf{易错点：}误乘 \(1/3\)；锥体是底面积乘高的 \(1/3\)，而叉积
+底面积含平行四边形，最终系数是 \(1/6\)。
+\textbf{核验：}以三角形 \(OAB\) 为底也可求得同一结果。
+
+\textbf{例 3（共面参数）}
+
+\textbf{题面信号：}求 \(t\)，使
+\(\vec a=(1,1,0),\vec b=(0,1,1),\vec c=(2,t,1)\) 共面。
+\textbf{分析：}令混合积为零。
+\textbf{完整解答：}
+\[
+\det\begin{pmatrix}1&1&0\\0&1&1\\2&t&1\end{pmatrix}
+=1-(0-2)=3-t=0,
+\]
+故 \(t=3\)。
+\textbf{条件检查：}\(\vec a,\vec b\) 不平行，确实张成一个平面。
+\textbf{易错点：}余子式符号造成 \(t\) 的符号错误。
+\textbf{核验：}当 \(t=3\) 时 \(\vec c=2\vec a+\vec b\)。
+
+\textbf{例 4（四点共面判定）}
+
+\textbf{题面信号：}判断
+\(A=(1,0,0),B=(2,1,0),C=(1,1,1),D=(2,2,1)\) 是否共面。
+\textbf{分析：}从同一点 \(A\) 作三个位移向量。
+\textbf{完整解答：}
+\[
+\overrightarrow{AB}=(1,1,0),\quad
+\overrightarrow{AC}=(0,1,1),\quad
+\overrightarrow{AD}=(1,2,1),
+\]
+且 \(\overrightarrow{AD}=\overrightarrow{AB}+\overrightarrow{AC}\)，
+故混合积为零，四点共面。
+\textbf{条件检查：}前三点不共线，因而确实确定唯一平面。
+\textbf{易错点：}直接把四个点坐标塞入“三阶”行列式。
+\textbf{核验：}线性组合已经独立验证共面结论。
+
+\textbf{失分防线：}
+
+忘绝对值会得到负体积；四面体漏 \(1/6\)；行列式的行或列一旦选定，
+中途不能混换向量分量。共面只需混合积为零，不要求三个向量两两平行。
+快速检查：求得零值后尝试写出一个线性组合；求得体积后确认非负。
+
+\textbf{考场写法：}
+\[
+\boxed{[\vec a,\vec b,\vec c]=\det(\vec a,\vec b,\vec c),\quad
+V_{\text{六面体}}=|[\vec a,\vec b,\vec c]|,\quad
+V_{\text{四面体}}=\frac16|[\vec a,\vec b,\vec c]|.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能计算混合积、判共面、取绝对值。
+  \item \textbf{130 分以上：}能在四点共面、参数和体积题中选统一起点。
+  \item \textbf{满分能力：}能用混合积解释异面直线距离公式及坐标变换体积因子。
+\end{itemize}
+后续 \knowledgeRef[MATH1-KN-CALC-0171]{平行对象与异面直线距离}
+会直接复用“底面法向投影”的几何意义。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k118}{K118 方向数与方向余弦}
+
+\knowledgeAnchor[MATH1-KN-CALC-0165]{方向数与方向余弦}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0165]{方向数与方向余弦}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+非零平行向量的三个分量给一组方向数；把它单位化，三个分量就是有向直线
+与 \(x,y,z\) 正轴夹角的余弦。本节只走
+“方向数 \(\to\) 单位化 \(\to\) 符号检查”这一条稳路线。
+
+\textbf{前置短桥：}
+\knowledgeRef[MATH1-KN-CALC-0160]{单位向量}是非零向量除以模；
+这里需要它消除方向数任意倍数带来的尺度差异。识别“与坐标轴夹角”就读取
+单位向量分量；例如 \((0,3,4)\) 单位化为 \((0,3/5,4/5)\)。
+
+\textbf{严格核心与推导：}
+若方向向量 \(\vec s=(l,m,n)\ne\vec0\)，方向角
+\(\alpha,\beta,\gamma\in[0,\pi]\)，则由单位向量分别与三个坐标基点积，
+\[
+(\cos\alpha,\cos\beta,\cos\gamma)
+=\frac{(l,m,n)}{\sqrt{l^2+m^2+n^2}},\qquad
+\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1.
+\]
+方向数可同时乘任意非零常数；反向时三个余弦同时变号。
+
+\textbf{方法选择：}
+给方向数就整体单位化；给两个余弦时用平方和补第三个，再由锐钝信息定符号；
+只说“直线方向”而未规定朝向时，正负两组单位向量表示同一直线。
+
+\textbf{例 1（直接单位化）}
+\textbf{题面信号：}方向数为 \((-2,1,2)\)。
+\textbf{分析：}模为 \(3\)。
+\textbf{完整解答：}方向余弦为
+\[
+\left(-\frac23,\frac13,\frac23\right).
+\]
+\textbf{条件检查：}方向向量非零。
+\textbf{易错点：}未单位化就把分量当余弦。
+\textbf{核验：}三平方和为 \(1\)。
+
+\textbf{例 2（补第三个方向余弦）}
+\textbf{题面信号：}\(\alpha=60^\circ,\beta=120^\circ\)，且
+\(\gamma\) 为锐角。
+\textbf{分析：}平方和先给绝对值，锐角再定正号。
+\textbf{完整解答：}
+\[
+\cos^2\gamma=1-\frac14-\frac14=\frac12,\qquad
+\cos\gamma=\frac{\sqrt2}{2}.
+\]
+\textbf{条件检查：}锐角条件排除负根。
+\textbf{易错点：}无条件取正号。
+\textbf{核验：}三平方和为 \(1\)，且锐角余弦为正。
+
+\textbf{例 3（同一直线的两种朝向）}
+\textbf{题面信号：}方向数比例 \(2:-2:1\)，求所有单位方向向量。
+\textbf{分析：}未指定朝向，保留正负。
+\textbf{完整解答：}
+\[
+\pm\frac13(2,-2,1).
+\]
+\textbf{条件检查：}方向数不全为零。
+\textbf{易错点：}只改变一个分量符号。
+\textbf{核验：}两向量互为相反向量，模均为 \(1\)。
+
+\textbf{例 4（比例反求）}
+\textbf{题面信号：}
+\(\cos\alpha:\cos\beta:\cos\gamma=2:1:2\)，三者均正。
+\textbf{分析：}设为 \(2k,k,2k\)。
+\textbf{完整解答：}\(9k^2=1\) 且 \(k>0\)，故为
+\[
+\left(\frac23,\frac13,\frac23\right).
+\]
+\textbf{条件检查：}正号信息已使用。
+\textbf{易错点：}把比例组误当成已归一余弦组。
+\textbf{核验：}平方和为 \(1\)。
+
+\textbf{失分防线：}
+平方和求第三个余弦不能丢正负；反向必须同时变三个符号。
+快速检查就是验平方和，再以分量符号判断方向角锐、直、钝。
+
+\textbf{考场写法：}
+\[
+\boxed{(\cos\alpha,\cos\beta,\cos\gamma)=\frac{\vec s}{|\vec s|},
+\quad \vec s\ne\vec0.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能由方向数求方向余弦。
+  \item \textbf{130 分以上：}能处理符号、比例和反向多解。
+  \item \textbf{满分能力：}能从参数直线或曲线切向量立即提取单位方向。
+\end{itemize}
+下一节点 \knowledgeRef[MATH1-KN-CALC-0166]{平面方程}
+把向量方向信息用于几何对象方程化。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k119}{K119 平面方程}
+
+\knowledgeAnchor[MATH1-KN-CALC-0166]{平面方程}
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+平面由一点和一个非零法向量唯一确定；平面内位移与法向垂直，
+写成点积为零即得方程。三点定平面则先用两条边叉乘造法向。
+
+\textbf{前置短桥：}
+\knowledgeRef[MATH1-KN-CALC-0162]{点积}用零值表达垂直，
+\knowledgeRef[MATH1-KN-CALC-0163]{向量积}从两个不平行方向造公共法向。
+本节用它们把几何条件变成方程；例如
+\((1,0,0)\times(0,1,0)=(0,0,1)\) 是 \(xy\) 平面法向。
+
+\textbf{严格核心与推导：}
+平面过 \(P_0=(x_0,y_0,z_0)\)，法向
+\(\vec n=(A,B,C)\ne\vec0\) 时，
+\[
+A(x-x_0)+B(y-y_0)+C(z-z_0)=0.
+\]
+展开为 \(Ax+By+Cz+D=0\)。三个截距都非零时才可写
+\[
+\frac xa+\frac yb+\frac zc=1.
+\]
+三点 \(A,B,C\) 定唯一平面的条件是
+\(\overrightarrow{AB}\times\overrightarrow{AC}\ne\vec0\)。
+
+\textbf{方法选择：}
+点加法向用点法式；三点先叉乘；平行于已知平面沿用法向并重新定常数；
+最后把所有给定点代回。
+
+\textbf{例 1（点法式）}
+\textbf{题面信号：}过 \((1,-1,2)\)，法向为 \((2,1,-3)\)。
+\textbf{分析：}直接写法向与位移点积。
+\textbf{完整解答：}
+\[
+2(x-1)+(y+1)-3(z-2)=0,
+\]
+即 \(2x+y-3z+5=0\)。
+\textbf{条件检查：}法向非零。
+\textbf{易错点：}\(y-(-1)=y+1\)。
+\textbf{核验：}给定点代入左端为 \(0\)。
+
+\textbf{例 2（三点定平面）}
+\textbf{题面信号：}过 \((1,0,0),(0,1,0),(0,0,1)\)。
+\textbf{分析：}两边叉积为 \((1,1,1)\)。
+\textbf{完整解答：}平面为
+\[
+x+y+z=1.
+\]
+\textbf{条件检查：}三点不共线。
+\textbf{易错点：}把三个点坐标直接当法向。
+\textbf{核验：}三点逐一代入成立。
+
+\textbf{例 3（平行平面）}
+\textbf{题面信号：}过 \((2,0,-1)\) 且平行于
+\(x-2y+2z-3=0\)。
+\textbf{分析：}沿用法向 \((1,-2,2)\)。
+\textbf{完整解答：}
+\[
+(x-2)-2y+2(z+1)=0,
+\]
+即 \(x-2y+2z=0\)。
+\textbf{条件检查：}新旧常数不同，平面不重合。
+\textbf{易错点：}完整照抄旧方程。
+\textbf{核验：}给定点在新平面上，法向相同。
+
+\textbf{例 4（垂直参数）}
+\textbf{题面信号：}\(\Pi_t:tx+y-z+1=0\) 与
+\(\Pi:2x-y+z=0\) 垂直。
+\textbf{分析：}两法向点积为零。
+\textbf{完整解答：}
+\[
+(t,1,-1)\cdot(2,-1,1)=2t-2=0,
+\]
+故 \(t=1\)。
+\textbf{条件检查：}两法向均非零。
+\textbf{易错点：}用常数项参与法向点积。
+\textbf{核验：}\((1,1,-1)\cdot(2,-1,1)=0\)。
+
+\textbf{失分防线：}
+法向不能为零；三点定平面必须不共线；截距式不能出现零分母；
+展开后常数最易错。快速检查是把给定点全部代回。
+
+\textbf{考场写法：}
+\[
+\boxed{\Pi:\ \vec n\cdot\overrightarrow{P_0P}=0,\qquad \vec n\ne\vec0.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}点法式和一般式转换无误。
+  \item \textbf{130 分以上：}能由三点、平行或垂直条件构面。
+  \item \textbf{满分能力：}能把平面作为切平面、投影面和积分边界接口。
+\end{itemize}
+下一节点 \knowledgeRef[MATH1-KN-CALC-0167]{空间直线方程}
+以一点和方向向量描述一维对象。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k120}{K120 空间直线方程}
+
+\knowledgeAnchor[MATH1-KN-CALC-0167]{空间直线方程}
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+空间直线由一点和一个非零方向向量唯一确定。参数式始终安全；
+只有方向分量均非零时才能写对称式。两平面交线的方向是两法向量叉积。
+
+\textbf{前置短桥：}
+\knowledgeRef[MATH1-KN-CALC-0165]{方向数}给走向，
+\knowledgeRef[MATH1-KN-CALC-0166]{平面}给交线约束。
+这里用“一点定位置、方向定走向”；例如过原点沿 \((1,2,0)\) 的点是
+\(t(1,2,0)\)。
+
+\textbf{严格核心与推导：}
+\[
+L:\ (x,y,z)=(x_0,y_0,z_0)+t(l,m,n),\qquad (l,m,n)\ne(0,0,0).
+\]
+当 \(lmn\ne0\) 时，
+\[
+\frac{x-x_0}{l}=\frac{y-y_0}{m}=\frac{z-z_0}{n}.
+\]
+若 \(n=0\)，应写 \(z=z_0\)，不能除以零。两不平行平面交线方向可取
+\(\vec n_1\times\vec n_2\)，还须联立找线上一点。
+
+\textbf{方法选择：}
+默认参数式；要求对称式再查零分量；交线先叉乘法向，再令一个坐标取方便值
+求基点，最后代回两平面。
+
+\textbf{例 1（点向式）}
+\textbf{题面信号：}过 \((1,-2,3)\)，方向 \((2,1,-1)\)。
+\textbf{分析：}一点和方向已齐。
+\textbf{完整解答：}
+\[
+(x,y,z)=(1,-2,3)+t(2,1,-1),
+\quad
+\frac{x-1}{2}=\frac{y+2}{1}=\frac{z-3}{-1}.
+\]
+\textbf{条件检查：}方向三个分量均非零。
+\textbf{易错点：}漏掉 \(z\) 分母负号。
+\textbf{核验：}\(t=0\) 给基点。
+
+\textbf{例 2（零方向分量）}
+\textbf{题面信号：}过 \((0,1,2)\)，方向 \((1,-2,0)\)。
+\textbf{分析：}参数式最稳。
+\textbf{完整解答：}
+\[
+x=t,\qquad y=1-2t,\qquad z=2.
+\]
+\textbf{条件检查：}方向非零。
+\textbf{易错点：}写 \((z-2)/0\)。
+\textbf{核验：}所有点的 \(z\) 恒为 \(2\)。
+
+\textbf{例 3（两平面交线）}
+\textbf{题面信号：} \(x+y+z=1\) 与 \(x-y+z=0\) 的交线。
+\textbf{分析：}法向叉积平行于 \((1,0,-1)\)，再找点。
+\textbf{完整解答：}两式相减得 \(y=1/2\)，令 \(z=0\) 得点
+\((1/2,1/2,0)\)，故
+\[
+(x,y,z)=\left(\frac12,\frac12,0\right)+t(1,0,-1).
+\]
+\textbf{条件检查：}法向不平行。
+\textbf{易错点：}只给交线方向，不给线上点。
+\textbf{核验：}参数式代入两平面恒成立。
+
+\textbf{例 4（公共垂向）}
+\textbf{题面信号：}过原点且同时垂直于 \((1,1,0),(1,0,1)\)。
+\textbf{分析：}方向取叉积。
+\textbf{完整解答：}
+\[
+(1,1,0)\times(1,0,1)=(1,-1,-1),
+\quad (x,y,z)=t(1,-1,-1).
+\]
+\textbf{条件检查：}两给定方向不平行。
+\textbf{易错点：}忘记叉积方向可整体反号。
+\textbf{核验：}所得方向与两向量点积均为零。
+
+\textbf{失分防线：}
+零方向分量不能进对称式分母；交线不能只算方向；平面法向本身通常不是
+交线方向。快速检查是把参数式代回全部题设约束。
+
+\textbf{考场写法：}
+\[
+\boxed{L:\ \vec r=\vec r_0+t\vec s,\quad \vec s\ne\vec0;\qquad
+\vec s_{\text{交线}}=\vec n_1\times\vec n_2.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能写参数式并处理零方向分量。
+  \item \textbf{130 分以上：}能由两平面交线构造完整直线。
+  \item \textbf{满分能力：}能在参数式、对称式、交线式间稳定切换。
+\end{itemize}
+下一节点 \knowledgeRef[MATH1-KN-CALC-0168]{线线、面面关系}
+补上空间中特有的异面判别。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k121}{K121 直线与直线、平面与平面关系}
+
+\knowledgeAnchor[MATH1-KN-CALC-0168]{直线与直线、平面与平面关系}
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+空间两直线不平行仍可能异面，所以必须先比较方向，再检查共面或公共点；
+面面先比较法向，平行后再代点区分重合。
+
+\textbf{前置短桥：}
+\knowledgeRef[MATH1-KN-CALC-0167]{直线}给 \(P_i,\vec s_i\)，
+\knowledgeRef[MATH1-KN-CALC-0166]{平面}给 \(\vec n_i\)，
+\knowledgeRef[MATH1-KN-CALC-0164]{混合积}判断
+\(\overrightarrow{P_1P_2},\vec s_1,\vec s_2\) 共面。本节需要这三项完成
+“方向—位置”两步判别；例如 \(x\) 轴与 \((0,1,t)\) 不平行但无交点。
+
+\textbf{严格核心与推导：}
+若 \(\vec s_1\times\vec s_2=0\)，两线平行或重合，再看基点差是否平行于方向。
+若叉积非零，则
+\[
+[\overrightarrow{P_1P_2},\vec s_1,\vec s_2]=0
+\]
+才共面相交，非零即异面。两直线锐角满足
+\[
+\cos\theta=\frac{|\vec s_1\cdot\vec s_2|}{|\vec s_1||\vec s_2|}.
+\]
+两平面法向平行时为平行或重合；法向不平行时相交；
+\(\vec n_1\cdot\vec n_2=0\) 时垂直。
+
+\textbf{方法选择：}
+线线先叉积，非平行再混合积，要求交点才联立；面面先比法向整体比例，
+平行后将一个平面上的点代入另一个。
+
+\textbf{例 1（异面）}
+\textbf{题面信号：}
+\[
+L_1=t(1,1,0),\quad L_2=(1,0,0)+s(-1,0,1).
+\]
+\textbf{分析：}方向不平行，联立检验公共点。
+\textbf{完整解答：}由 \(y,z\) 分量得 \(t=s=0\)，但 \(x\) 分量要求
+\(0=1\)，故无交点；两线异面。
+\textbf{条件检查：}已先排除平行。
+\textbf{易错点：}不平行就断言相交。
+\textbf{核验：}混合积为 \(1\ne0\)。
+
+\textbf{例 2（相交）}
+\textbf{题面信号：}
+\[
+L_1=t(1,1,1),\quad L_2=(1,0,0)+s(0,1,1).
+\]
+\textbf{分析：}联立三个坐标。
+\textbf{完整解答：}由 \(x\) 得 \(t=1\)，由 \(y,z\) 均得 \(s=1\)，
+交点为 \((1,1,1)\)。
+\textbf{条件检查：}方向不成比例。
+\textbf{易错点：}只检两个坐标。
+\textbf{核验：}交点代回两式均成立。
+
+\textbf{例 3（重合）}
+\textbf{题面信号：}
+\[
+L_1=(1,0,1)+t(1,2,-1),\quad
+L_2=(3,4,-1)+s(2,4,-2).
+\]
+\textbf{分析：}方向平行后检查基点差。
+\textbf{完整解答：}
+\[
+\vec s_2=2\vec s_1,\qquad
+(3,4,-1)-(1,0,1)=2\vec s_1,
+\]
+故重合。
+\textbf{条件检查：}第二基点在第一直线上。
+\textbf{易错点：}方向平行就报告“两条不同平行线”。
+\textbf{核验：}基点差比例一致。
+
+\textbf{例 4（平行平面）}
+\textbf{题面信号：}
+\(\Pi_1:2x-y+2z=3\)，
+\(\Pi_2:4x-2y+4z=1\)。
+\textbf{分析：}法向成比例，再归一常数。
+\textbf{完整解答：}\(\Pi_2\) 除以 \(2\) 后右端为 \(1/2\ne3\)，
+故两平面平行而不重合。
+\textbf{条件检查：}法向非零。
+\textbf{易错点：}只比较前三项系数就写重合。
+\textbf{核验：}\(\Pi_1\) 上任一点不满足归一后的 \(\Pi_2\)。
+
+\textbf{失分防线：}
+“不平行必相交”只在同一平面内成立；方向正交的异面线不称相交垂直；
+法向平行还需区分重合。快速检查固定为“方向—共面/代点”两栏。
+
+\textbf{考场写法：}
+\[
+\boxed{\vec s_1\times\vec s_2\ne0\text{ 时，混合积 }0
+\text{ 才相交，非零为异面}.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能判平行、重合、相交和面面垂直。
+  \item \textbf{130 分以上：}会用混合积排除异面。
+  \item \textbf{满分能力：}能把关系判别与交点、夹角、距离串联。
+\end{itemize}
+下一节点 \knowledgeRef[MATH1-KN-CALC-0169]{直线与平面关系及夹角}
+比较方向与法向，并特别区分正弦和余弦。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k122}{K122 直线与平面关系及夹角}
+
+\knowledgeAnchor[MATH1-KN-CALC-0169]{直线与平面关系及夹角}
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+直线方向 \(\vec s\) 与平面法向 \(\vec n\) 的锐角，和线面夹角互余。
+关系判别靠点积与比例；点积为零后必须代直线上一点，区分平行与包含。
+
+\textbf{前置短桥：}
+\knowledgeRef[MATH1-KN-CALC-0162]{点积}判垂直和角度，
+\knowledgeRef[MATH1-KN-CALC-0166]{平面}给法向，
+\knowledgeRef[MATH1-KN-CALC-0167]{直线}给方向。这里把三者配对；
+例如 \(x\) 轴方向与 \(xy\) 平面法向点积为零，所以直线方向在平面内。
+
+\textbf{严格核心与推导：}
+设 \(L:\vec r=\vec P_0+t\vec s\)，
+\(\Pi:\vec n\cdot\vec r=d\)，且两向量非零。
+\[
+\begin{array}{ll}
+\vec s\cdot\vec n=0:&L\parallel\Pi\text{ 或 }L\subset\Pi\text{，再代 }P_0;\\
+\vec s\parallel\vec n:&L\perp\Pi;\\
+\vec s\cdot\vec n\ne0:&L\text{ 与 }\Pi\text{ 唯一相交}.
+\end{array}
+\]
+线面夹角 \(\alpha\in[0,\pi/2]\) 满足
+\[
+\sin\alpha=\frac{|\vec s\cdot\vec n|}{|\vec s||\vec n|}.
+\]
+
+\textbf{方法选择：}
+关系先点积；点积为零再代基点；垂直检查统一倍数；
+夹角直接用正弦公式，不把方向与法向的余弦误当线面角。
+
+\textbf{例 1（直线包含于平面）}
+\textbf{题面信号：}
+\[
+L=(1,0,1)+t(1,1,0),\qquad \Pi:x-y+z=2.
+\]
+\textbf{分析：}方向与法向点积为零，再代基点。
+\textbf{完整解答：}\((1,1,0)\cdot(1,-1,1)=0\)，且基点满足平面，
+故 \(L\subset\Pi\)。
+\textbf{条件检查：}方向、法向均非零。
+\textbf{易错点：}直接报告“平行”。
+\textbf{核验：}参数点代入左端恒为 \(2\)。
+
+\textbf{例 2（严格平行）}
+\textbf{题面信号：}
+\[
+L=t(1,1,0),\qquad \Pi:x-y+z=1.
+\]
+\textbf{分析：}方向与法向点积为零，但原点不在平面。
+\textbf{完整解答：}故 \(L\parallel\Pi\) 且不包含于 \(\Pi\)。
+\textbf{条件检查：}直线上所有点代入平面左端恒为 \(0\)。
+\textbf{易错点：}忽略常数项。
+\textbf{核验：}平面方程不可能等于 \(1\)，确无交点。
+
+\textbf{例 3（线面夹角）}
+\textbf{题面信号：}方向 \((1,2,2)\) 与平面 \(2x-y+2z=0\)。
+\textbf{分析：}法向为 \((2,-1,2)\)，线面角用正弦。
+\textbf{完整解答：}
+\[
+\sin\alpha=\frac{|2-2+4|}{3\cdot3}=\frac49,
+\qquad \alpha=\arcsin\frac49.
+\]
+\textbf{条件检查：}\(\alpha\) 取锐角。
+\textbf{易错点：}写 \(\cos\alpha=4/9\)。
+\textbf{核验：}点积非零且方向不平行法向，故角在 \(0,\pi/2\) 之间。
+
+\textbf{例 4（不存在的垂直参数）}
+\textbf{题面信号：}方向 \((1,t,-1)\) 的直线垂直于
+\(2x-2y+2z=0\)。
+\textbf{分析：}方向必须与 \((2,-2,2)\) 成统一比例。
+\textbf{完整解答：}第一分量给比例 \(1/2\)，第三分量却要求
+\(-1=1\)，矛盾；不存在实数 \(t\)。
+\textbf{条件检查：}三个分量必须全部相容。
+\textbf{易错点：}只看第二分量随意取 \(t\)。
+\textbf{核验：}第一、第三分量比例符号已冲突。
+
+\textbf{失分防线：}
+\(\vec s\cdot\vec n=0\) 表示线方向平行于面，不是线垂直面；
+线面角用正弦且取绝对值；平行后必须代点。快速心模是 \(x\) 轴与 \(xy\) 平面。
+
+\textbf{考场写法：}
+\[
+\boxed{\vec s\cdot\vec n=0\Rightarrow L\parallel\Pi\text{ 或 }L\subset\Pi,
+\qquad
+\sin\alpha=\frac{|\vec s\cdot\vec n|}{|\vec s||\vec n|}.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能判线面平行、垂直和相交。
+  \item \textbf{130 分以上：}会代点区分包含，线面角不混余弦。
+  \item \textbf{满分能力：}能将关系、交点与夹角一次组织完成。
+\end{itemize}
+下一节点 \knowledgeRef[MATH1-KN-CALC-0170]{点到平面与点到直线距离}
+把正交投影转成最短长度。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k123}{K123 点到平面与点到直线距离}
+
+\knowledgeAnchor[MATH1-KN-CALC-0170]{点到平面与点到直线距离}
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+“距离”是所有连接路径中的最短长度，最短方向必与目标平面或直线正交。
+点到平面距离取位移在法向上的绝对投影；点到直线距离取位移对直线方向的
+垂直分量。两条公式都不是孤立记忆，而是正交投影的直接结果。
+
+\textbf{前置短桥（K115--K116、K119--K120）：}
+
+\knowledgeRef[MATH1-KN-CALC-0162]{点积}给法向投影，
+\knowledgeRef[MATH1-KN-CALC-0163]{叉积}给“底乘高”的面积；
+\knowledgeRef[MATH1-KN-CALC-0166]{平面}提供非零法向，
+\knowledgeRef[MATH1-KN-CALC-0167]{直线}提供非零方向。最小模型：
+点 \((0,0,h)\) 到 \(xy\) 平面距离为 \(|h|\)，正是位移在
+\((0,0,1)\) 上的绝对投影。
+
+\textbf{严格核心与推导：}
+
+点 \(P=(x_0,y_0,z_0)\) 到平面
+\(\Pi:Ax+By+Cz+D=0\) 的距离为
+\[
+d(P,\Pi)=\frac{|Ax_0+By_0+Cz_0+D|}
+{\sqrt{A^2+B^2+C^2}}.
+\]
+推导时在平面取一点 \(Q\)，则分子等于
+\(|\vec n\cdot\overrightarrow{QP}|\)，除以 \(|\vec n|\) 即法向投影长度。
+
+点 \(P\) 到直线 \(L:\vec r=\vec P_0+t\vec s\) 的距离为
+\[
+d(P,L)=\frac{|\overrightarrow{P_0P}\times\vec s|}{|\vec s|}.
+\]
+因为叉积模是以 \(\overrightarrow{P_0P}\)、\(\vec s\) 为邻边的
+平行四边形面积，也等于“底 \(|\vec s|\) 乘高 \(d\)”。
+两式分别要求 \(\vec n\ne\vec0,\vec s\ne\vec0\)。
+
+\textbf{方法选择：}
+
+点到一般式平面直接代公式；点到参数直线先确认所取 \(P_0\) 在线上；
+若题目还要垂足，可从点沿法向作参数线，或把
+\(\overrightarrow{PH}\cdot\vec s=0\) 解出线上参数。
+
+\textbf{例 1（点到平面）}
+
+\textbf{题面信号：}求 \(P=(1,-1,2)\) 到平面
+\(2x-y+2z-3=0\) 的距离。
+\textbf{分析：}一般式系数直接代入。
+\textbf{完整解答：}
+\[
+d=\frac{|2\cdot1-(-1)+2\cdot2-3|}
+{\sqrt{2^2+(-1)^2+2^2}}
+=\frac43.
+\]
+\textbf{条件检查：}法向量 \((2,-1,2)\ne\vec0\)。
+\textbf{易错点：}分子整体取绝对值，不能逐项取绝对值。
+\textbf{核验：}结果非负；把平面方程整体乘 \(2\)，分子分母同倍变化，距离不变。
+
+\textbf{例 2（点到直线）}
+
+\textbf{题面信号：}求 \(P=(0,1,1)\) 到
+\(L:\vec r=(1,0,0)+t(1,1,0)\) 的距离。
+\textbf{分析：}取线上点 \(P_0=(1,0,0)\)，用叉积面积公式。
+\textbf{完整解答：}
+\[
+\overrightarrow{P_0P}=(-1,1,1),\qquad
+\overrightarrow{P_0P}\times(1,1,0)=(-1,1,-2),
+\]
+\[
+d=\frac{\sqrt6}{\sqrt2}=\sqrt3.
+\]
+\textbf{条件检查：}方向向量非零，\(P_0\) 确在线上。
+\textbf{易错点：}叉积次序改变不影响模，但位移必须从线上点连向给定点。
+\textbf{核验：}最小化
+\((t+1)^2+(t-1)^2+1\) 得 \(t=0\)，最小值为 \(3\)。
+
+\textbf{例 3（求平面垂足）}
+
+\textbf{题面信号：}求原点到平面 \(x+2y+2z=9\) 的垂足。
+\textbf{分析：}过原点沿法向 \((1,2,2)\) 作直线。
+\textbf{完整解答：}设垂足 \(H=t(1,2,2)\)，代入平面得
+\[
+t+4t+4t=9,\qquad t=1,
+\]
+故 \(H=(1,2,2)\)，距离为 \(|OH|=3\)。
+\textbf{条件检查：}法向非零，法线与平面有唯一交点。
+\textbf{易错点：}垂足不是把平面常数直接分配给三个坐标。
+\textbf{核验：} \(H\) 在平面上，且 \(\overrightarrow{OH}\parallel(1,2,2)\)。
+
+\textbf{例 4（等距参数）}
+
+\textbf{题面信号：}点 \(P_t=(t,0,0)\) 到平面
+\(x+y+z=1\) 的距离为 \(2/\sqrt3\)，求 \(t\)。
+\textbf{分析：}距离含绝对值，必有两个分支。
+\textbf{完整解答：}
+\[
+\frac{|t-1|}{\sqrt3}=\frac2{\sqrt3}
+\quad\Longrightarrow\quad |t-1|=2,
+\]
+故 \(t=3\) 或 \(t=-1\)。
+\textbf{条件检查：}两值均给合法点。
+\textbf{易错点：}去绝对值只保留 \(t-1=2\)。
+\textbf{核验：}两点位于平面两侧，对应有向距离相反而距离相同。
+
+\textbf{失分防线：}
+
+平面公式漏绝对值会得到负距离；平面方程缩放后若只缩分子不缩分母，
+结果会改变；点到直线公式中的 \(P_0\) 必须是线上点。快速检查：
+距离必须非负、量纲为长度，并可用最小化平方距离交叉核验。
+
+\textbf{考场写法：}
+\[
+\boxed{d(P,\Pi)=\frac{|F(P)|}{|\vec n|},\qquad
+d(P,L)=\frac{|\overrightarrow{P_0P}\times\vec s|}{|\vec s|}.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能准确代入两类距离公式。
+  \item \textbf{130 分以上：}能求垂足、处理绝对值参数并用最优化核验。
+  \item \textbf{满分能力：}能从正交投影现场重建公式，不依赖死记。
+\end{itemize}
+下一节点 \knowledgeRef[MATH1-KN-CALC-0171]{平行对象与异面直线距离}
+把同一投影思想推广到两个几何对象之间。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k124}{K124 平行平面、平行直线与异面直线距离}
+
+\knowledgeAnchor[MATH1-KN-CALC-0171]{平行平面、平行直线与异面直线距离}
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+两个对象之间的距离只在“最近点间隔恒定”或题目明确取最短距离时讨论。
+平行平面先统一法向量系数，再把任一平面上的点代入另一平面；
+平行直线化为点到直线；异面直线则沿两方向的公共法向做投影。
+
+\textbf{前置短桥（K117、K121、K123）：}
+
+\knowledgeRef[MATH1-KN-CALC-0168]{位置关系}必须先判平行、相交或异面，
+\knowledgeRef[MATH1-KN-CALC-0170]{点到对象距离}处理平行情形；
+\knowledgeRef[MATH1-KN-CALC-0164]{混合积}把两基点连线投影到
+\(\vec s_1\times\vec s_2\) 上。最小模型：两平行平面 \(z=0,z=h\)
+距离为 \(|h|\)。
+
+\textbf{严格核心与推导：}
+
+若平行平面已统一为
+\[
+Ax+By+Cz+D_1=0,\qquad Ax+By+Cz+D_2=0,
+\]
+则
+\[
+d=\frac{|D_1-D_2|}{\sqrt{A^2+B^2+C^2}}.
+\]
+“统一”指前三项系数完全相同；不能在未归一比例时直接减常数。
+
+平行直线 \(L_1,L_2\) 的距离等于 \(L_2\) 任一点到 \(L_1\) 的距离。
+若两直线
+\[
+L_i:\vec r=\vec P_i+t_i\vec s_i
+\]
+方向不平行，则公共法向为 \(\vec s_1\times\vec s_2\ne0\)。
+异面直线距离为
+\[
+d=\frac{|\overrightarrow{P_1P_2}\cdot
+(\vec s_1\times\vec s_2)|}{|\vec s_1\times\vec s_2|}.
+\]
+它就是两基点连线在公共法向上的绝对投影；若混合积为零，两线相交，
+公式也给 \(0\)，但应先正确报告关系。
+
+\textbf{方法选择：}
+
+先判关系，再选公式：平行面“统一系数—减常数”，平行线“点到线”，
+异面线“混合积除叉积模”。若 \(\vec s_1\times\vec s_2=0\)，异面公式
+分母为零，必须切换到平行线公式。
+
+\textbf{例 1（平行平面先归一）}
+
+\textbf{题面信号：}求平面 \(2x-y+2z-3=0\) 与
+\(4x-2y+4z+5=0\) 的距离。
+\textbf{分析：}第二式除以 \(2\)，使法向系数一致。
+\textbf{完整解答：}第二平面化为
+\(2x-y+2z+5/2=0\)，故
+\[
+d=\frac{|-3-5/2|}{\sqrt{4+1+4}}=\frac{11}{6}.
+\]
+\textbf{条件检查：}两法向量平行、常数不同比例，确为不同平面。
+\textbf{易错点：}直接用 \(|-3-5|/3\)。
+\textbf{核验：}任选第一平面上的点代入第二平面公式也得 \(11/6\)。
+
+\textbf{例 2（平行直线）}
+
+\textbf{题面信号：}
+\[
+L_1:\vec r=t(1,1,0),\qquad
+L_2:\vec r=(0,0,2)+s(2,2,0).
+\]
+\textbf{分析：}方向平行，取 \(P_2=(0,0,2)\) 求到 \(L_1\) 的距离。
+\textbf{完整解答：}
+\[
+d=\frac{|(0,0,2)\times(1,1,0)|}{\sqrt2}
+=\frac{\sqrt8}{\sqrt2}=2.
+\]
+\textbf{条件检查：}基点差不平行于方向，故两线不重合。
+\textbf{易错点：}把两基点的直线距离 \(|P_1P_2|=2\) 当作普遍公式；
+本题只是恰好垂直。
+\textbf{核验：}两直线分别位于 \(z=0,z=2\)，垂直间隔确为 \(2\)。
+
+\textbf{例 3（异面直线距离）}
+
+\textbf{题面信号：}
+\[
+L_1:\vec r=t(1,0,0),\qquad
+L_2:\vec r=(0,1,1)+s(0,1,0).
+\]
+\textbf{分析：}两方向不平行，混合积非零即异面并给距离。
+\textbf{完整解答：}
+\[
+\vec s_1\times\vec s_2=(0,0,1),\qquad
+\overrightarrow{P_1P_2}=(0,1,1),
+\]
+\[
+d=\frac{|(0,1,1)\cdot(0,0,1)|}{1}=1.
+\]
+\textbf{条件检查：}叉积非零，混合积为 \(1\ne0\)，确为异面。
+\textbf{易错点：}分子漏绝对值或基点连线方向混乱；后者只会变号。
+\textbf{核验：}两线分别沿 \(x,y\) 方向，公共法向是 \(z\) 方向，层差为 \(1\)。
+
+\textbf{例 4（退化时切换公式）}
+
+\textbf{题面信号：}试把异面公式用于方向
+\(\vec s_1=(1,2,0),\vec s_2=(2,4,0)\) 的两直线，并说明正确处理。
+\textbf{分析：}先检查分母，叉积为零表示方向平行。
+\textbf{完整解答：}
+\[
+\vec s_1\times\vec s_2=\vec0,
+\]
+异面公式无定义。应先用基点差判断重合；若不重合，取任一基点到另一条
+直线，使用点到直线距离公式。
+\textbf{条件检查：}“异面”要求方向不平行，这里不满足。
+\textbf{易错点：}把 \(0/0\) 当成距离 \(0\)。
+\textbf{核验：}平行直线可以有任意正距离，说明 \(0/0\) 不携带结论。
+
+\textbf{失分防线：}
+
+不判关系就套异面公式会遇到零分母；平行平面未统一法向就减常数；
+两条相交直线的最短距离为零，但不能误报为异面。快速检查顺序固定为：
+方向叉积、混合积、再选距离公式。
+
+\textbf{考场写法：}
+\[
+\boxed{d_{\text{异面线}}=
+\frac{|[\overrightarrow{P_1P_2},\vec s_1,\vec s_2]|}
+{|\vec s_1\times\vec s_2|},\quad
+\vec s_1\times\vec s_2\ne0.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}会求平行面、平行线和异面线距离。
+  \item \textbf{130 分以上：}先判关系，正确处理平行退化和归一系数。
+  \item \textbf{满分能力：}能从公共法向投影现场推出异面公式并求最近点。
+\end{itemize}
+距离链至此闭合；下一节点
+\knowledgeRef[MATH1-KN-CALC-0172]{曲面方程与截痕法}
+转向积分区域的图形识别。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k125}{K125 曲面方程与截痕法}
+
+\knowledgeAnchor[MATH1-KN-CALC-0172]{曲面方程与截痕法}
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+三维中一个独立方程 \(F(x,y,z)=0\) 通常留下两个自由度，因而表示曲面；
+两个独立方程通常只剩一个自由度，交集表示空间曲线。截痕法固定一个坐标，
+把陌生曲面化成平面曲线，再由若干关键截面、对称性和取值范围拼出整体图形。
+
+\textbf{直接前置闭环：平面曲线与自由变量。}
+
+平面曲线如 \(x^2+y^2=1\) 由一个方程约束两个坐标，通常仍有一个参数；
+本节把同一“变量数减独立约束数”的直觉搬到三维。它用于区分曲面和曲线，
+也提醒我们固定 \(z=c\) 后要检查截痕是否真实存在。例如球面
+\(x^2+y^2+z^2=1\) 在 \(z=2\) 时无实截痕。
+
+\textbf{严格核心与推导：}
+
+曲面方程是“点 \(P=(x,y,z)\) 在曲面上当且仅当 \(F(P)=0\)”。
+截痕法依次考察 \(x=c,y=c,z=c\) 的平面交线。若方程只含某变量偶次，
+则关于对应坐标平面对称；交换 \(x,y\) 后方程不变，则关于平面 \(x=y\)
+具有交换对称。截痕方程必须连同实数范围一起读取：例如
+\[
+x^2+y^2=4-z^2
+\]
+只有 \(|z|\le2\) 才有圆截面。画图不追求透视精美，而要标出轴向、顶点、
+有界性和后续积分所需投影。
+
+\textbf{方法选择：}
+
+先数独立方程判断对象维数；再找缺失变量、平方项符号和对称性；
+最后取 \(0\) 截面、平行截面及临界截面。若只是积分区域，优先画投影和
+上下界，不必画完整立体艺术图。
+
+\textbf{例 1（球面截痕）}
+
+\textbf{题面信号：}识别 \(x^2+y^2+z^2=4\)，并求 \(z=c\) 截痕。
+\textbf{分析：}平方和为常数，固定 \(z\) 得圆。
+\textbf{完整解答：}该曲面是以原点为球心、半径 \(2\) 的球面。
+在 \(z=c\) 上，
+\[
+x^2+y^2=4-c^2.
+\]
+当 \(|c|<2\) 为半径 \(\sqrt{4-c^2}\) 的圆；\(|c|=2\) 退化为点；
+\(|c|>2\) 无实截痕。
+\textbf{条件检查：}右端必须非负。
+\textbf{易错点：}把球面方程说成实心球；实心球应写 \(\le4\)。
+\textbf{核验：}最大截面在 \(c=0\)，半径为 \(2\)。
+
+\textbf{例 2（锥面）}
+
+\textbf{题面信号：}识别 \(z^2=x^2+y^2\)。
+\textbf{分析：}水平截面半径为 \(|z|\)，且上下对称。
+\textbf{完整解答：}在 \(z=c\) 上有
+\[
+x^2+y^2=c^2,
+\]
+是半径 \(|c|\) 的圆；在 \(x=0\) 上为 \(z=\pm y\)。故为以 \(z\) 轴
+为轴、顶点在原点的双圆锥面。
+\textbf{条件检查：}方程包含 \(z=\pm\sqrt{x^2+y^2}\) 两叶。
+\textbf{易错点：}只画 \(z\ge0\) 的上半锥。
+\textbf{核验：}方程对 \(x,y,z\) 各自变号均不变。
+
+\textbf{例 3（抛物面）}
+
+\textbf{题面信号：}识别 \(z=x^2+2y^2\)。
+\textbf{分析：}一个变量线性、另两个平方同号；水平截面为椭圆。
+\textbf{完整解答：}因 \(z\ge0\)，顶点为原点，沿 \(+z\) 方向开口。
+\(z=c>0\) 时
+\[
+\frac{x^2}{c}+\frac{y^2}{c/2}=1,
+\]
+为椭圆；\(x=0\)、\(y=0\) 截面均为开口向上的抛物线。
+\textbf{条件检查：}水平截面只在 \(c\ge0\) 存在。
+\textbf{易错点：}把不同系数误判成“不是旋转曲面”之外的陌生对象；
+它仍是椭圆抛物面。
+\textbf{核验：}所有截面与 \(z\ge0\) 一致。
+
+\textbf{例 4（一个方程与两个方程）}
+
+\textbf{题面信号：}比较
+\(x^2+y^2=1\) 与
+\(\{x^2+y^2=1,\ z=x\}\) 在三维中的对象。
+\textbf{分析：}先数约束，再看缺失变量。
+\textbf{完整解答：}第一个方程不含 \(z\)，表示沿 \(z\) 方向无限延伸的
+圆柱面；加入独立约束 \(z=x\) 后，得到圆柱面与平面的交线，是空间曲线。
+\textbf{条件检查：}两个约束确非重复。
+\textbf{易错点：}因 \(x^2+y^2=1\) 在平面中是圆，就在三维仍称圆。
+\textbf{核验：}第二个对象可参数化为
+\((\cos t,\sin t,\cos t)\)，只有一个参数。
+
+\textbf{失分防线：}
+
+曲面与实体要用 \(=\) 和不等号区分；截痕右端为负时不存在；
+只画一个截面不能确定所有方向；方程缺变量常表示柱面而非平面曲线。
+快速检查：数约束、查对称、列三个坐标截面、标真实范围。
+
+\textbf{考场写法：}
+\[
+\boxed{\text{固定一坐标求截痕}\ \longrightarrow\
+\text{检查存在范围与对称性}\ \longrightarrow\
+\text{标轴向、顶点、有界性和投影}.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能区分曲面、曲线、曲面所围实体。
+  \item \textbf{130 分以上：}能用截痕和范围快速画出关键结构。
+  \item \textbf{满分能力：}能把图形立即转成积分投影与上下界。
+\end{itemize}
+下一节点 \knowledgeRef[MATH1-KN-CALC-0173]{旋转曲面}
+给出由平面曲线系统生成曲面的距离替换法。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k126}{K126 旋转曲面}
+
+\knowledgeAnchor[MATH1-KN-CALC-0173]{旋转曲面}
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+平面曲线绕坐标轴旋转时，轴向坐标保持不变，离轴距离保持不变。
+因此公式不是“把某个字母随便换成平方和”，而是明确旋转轴后，用
+\(\sqrt{\text{两个横向坐标平方和}}\) 替换原曲线到轴的距离。
+
+\textbf{前置短桥（K125）：}
+
+\knowledgeRef[MATH1-KN-CALC-0172]{曲面与截痕}告诉我们用水平或轴向截面
+核验生成曲面。这里需要平面曲线及其取值范围：例如 \(xy\) 平面中
+\(y=f(x)\) 绕 \(x\) 轴后，固定 \(x\) 的截面应是半径 \(|f(x)|\) 的圆。
+
+\textbf{严格核心与推导：}
+
+设曲线在 \(xy\) 平面。绕 \(x\) 轴旋转时 \(x\) 不变，而原来的
+到 \(x\) 轴距离 \(|y|\) 变成 \(\sqrt{y^2+z^2}\)。若原曲线能写成
+\(\Phi(x,|y|)=0\)，旋转曲面为
+\[
+\Phi\!\left(x,\sqrt{y^2+z^2}\right)=0.
+\]
+绕 \(y\) 轴时 \(y\) 不变，用 \(\sqrt{x^2+z^2}\) 替换到 \(y\) 轴距离。
+若为了去根号而平方，必须保留原曲线的符号或范围；否则可能把只旋转半支
+曲线得到的曲面扩成额外分支。
+
+\textbf{方法选择：}
+
+第一步圈出旋转轴；第二步写“轴向坐标不变、垂距替换”；
+第三步才化简平方；第四步用含轴平面截面恢复原曲线，检查是否多出分支。
+
+\textbf{例 1（直线生成圆锥）}
+
+\textbf{题面信号：} \(xy\) 平面中半直线 \(y=x,\ x\ge0\) 绕 \(x\) 轴旋转。
+\textbf{分析：}保留 \(x\)，将 \(y\ge0\) 替换为径向距离。
+\textbf{完整解答：}
+\[
+\sqrt{y^2+z^2}=x,\qquad x\ge0,
+\]
+等价于
+\[
+y^2+z^2=x^2,\qquad x\ge0.
+\]
+这是沿 \(+x\) 方向的一叶圆锥面。
+\textbf{条件检查：}原曲线只有 \(x\ge0\) 半支，范围必须保留。
+\textbf{易错点：}只写平方方程会额外加入 \(x\le0\) 的另一叶。
+\textbf{核验：}与 \(xy\) 平面交线恢复 \(y=\pm x,x\ge0\)，其中一支是原母线。
+
+\textbf{例 2（抛物线生成曲面）}
+
+\textbf{题面信号：}曲线 \(y=x^2\) 绕 \(x\) 轴旋转。
+\textbf{分析：}原 \(y\ge0\)，替换为非负径向距离。
+\textbf{完整解答：}
+\[
+\sqrt{y^2+z^2}=x^2
+\quad\Longleftrightarrow\quad
+y^2+z^2=x^4.
+\]
+\textbf{条件检查：}两边均非负，平方没有引入额外分支。
+\textbf{易错点：}误写 \(y^2+z^2=x^2\)，把抛物线变成直线母线。
+\textbf{核验：}固定 \(x=c\) 的截面圆半径为 \(c^2\)。
+
+\textbf{例 3（半圆生成球面）}
+
+\textbf{题面信号：}上半圆 \(x^2+y^2=4,\ y\ge0\) 绕 \(x\) 轴旋转。
+\textbf{分析：}用 \(y=\sqrt{y^2+z^2}\) 替换非负半径。
+\textbf{完整解答：}
+\[
+x^2+y^2+z^2=4,
+\]
+即半径 \(2\) 的球面。
+\textbf{条件检查：}上半圆已经包含每个 \(x\) 处的非负半径，旋转覆盖整球面。
+\textbf{易错点：}以为上半圆只能生成半球；绕轴一周会覆盖所有方位角。
+\textbf{核验：}任取 \(x=c\)，截面圆半径为 \(\sqrt{4-c^2}\)。
+
+\textbf{例 4（绕 \(y\) 轴）}
+
+\textbf{题面信号：} \(xy\) 平面中 \(y=x,\ x\ge0\) 绕 \(y\) 轴旋转。
+\textbf{分析：}保留 \(y\)，把非负 \(x\) 替换为到 \(y\) 轴距离。
+\textbf{完整解答：}
+\[
+y=\sqrt{x^2+z^2},\qquad y\ge0,
+\]
+等价于 \(y^2=x^2+z^2,\ y\ge0\)。
+\textbf{条件检查：}范围来自原半直线 \(x\ge0,y\ge0\)。
+\textbf{易错点：}绕 \(y\) 轴却仍替换 \(y\)。
+\textbf{核验：}轴向截面 \(z=0\) 给 \(y=|x|\)，符合旋转后的两条母线。
+
+\textbf{失分防线：}
+
+替换错轴、平方后丢范围、只把一个横向坐标平方而漏另一个，是三类典型错误。
+快速检查：固定轴向坐标，所得截面必须是圆；再令新增坐标为零，应恢复原曲线
+及其镜像，而不能出现不该有的轴向分支。
+
+\textbf{考场写法：}
+\[
+\boxed{\text{绕某轴：轴向坐标不变，到轴距离 }
+\rho=\sqrt{\text{其余两坐标平方和}}.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能正确选择保留坐标和径向替换。
+  \item \textbf{130 分以上：}平方后会恢复符号、范围并用截面核验。
+  \item \textbf{满分能力：}能从任意含轴平面母线快速建立旋转曲面和积分限。
+\end{itemize}
+下一节点 \knowledgeRef[MATH1-KN-CALC-0174]{柱面}
+用“沿固定方向平移准线”生成另一类常用曲面。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k127}{K127 柱面}
+
+\knowledgeAnchor[MATH1-KN-CALC-0174]{柱面}
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+柱面不等于圆柱面。把一条平面曲线沿固定方向平移，所有轨迹组成柱面；
+在坐标方程中最直接的信号是“缺少某个变量”，因为该变量可任意变化而不影响
+方程。缺哪个变量，母线就平行哪个坐标轴。
+
+\textbf{前置短桥（K125）：}
+
+\knowledgeRef[MATH1-KN-CALC-0172]{一个方程在三维通常表示曲面}。
+这里把平面曲线 \(F(x,y)=0\) 放入三维：\(z\) 不受约束，每个准线点都沿
+\((0,0,1)\) 生成一条母线。例如 \(x^2+y^2=1\) 在三维是圆柱面而非圆。
+
+\textbf{严格核心与推导：}
+
+若准线 \(C\) 在 \(xy\) 平面内由 \(F(x,y)=0\) 给出，则
+\[
+F(x,y)=0,\qquad z\in\mathbb R
+\]
+表示母线平行 \(z\) 轴的柱面。类似地，缺 \(x\) 的 \(F(y,z)=0\)
+母线平行 \(x\) 轴；缺 \(y\) 的 \(F(x,z)=0\) 母线平行 \(y\) 轴。
+圆、椭圆、抛物线、双曲线都可作准线，分别生成圆柱面、椭圆柱面、
+抛物柱面、双曲柱面。固定缺失变量所得截面完全相同，这就是判别与核验依据。
+
+\textbf{方法选择：}
+
+先扫描缺失变量；再把其余两个变量的方程当作准线识别；
+最后说明母线方向和实数范围。若三个变量都出现，也可能经过坐标旋转后是柱面，
+但常规题不应只凭外观武断判断。
+
+\textbf{例 1（圆柱面）}
+
+\textbf{题面信号：}识别 \(x^2+y^2=4\) 在三维中的图形。
+\textbf{分析：}缺 \(z\)，准线是 \(xy\) 平面半径 \(2\) 的圆。
+\textbf{完整解答：}这是母线平行 \(z\) 轴、轴为 \(z\) 轴、半径 \(2\)
+的圆柱面；对任意 \(z=c\)，截面均为同一圆。
+\textbf{条件检查：}等式表示柱面表面，不含内部。
+\textbf{易错点：}称其为“圆”或实心圆柱。
+\textbf{核验：}点 \((2,0,z)\) 对所有实数 \(z\) 都在曲面上。
+
+\textbf{例 2（抛物柱面）}
+
+\textbf{题面信号：}识别 \(y=x^2\)。
+\textbf{分析：}缺 \(z\)，准线是 \(xy\) 平面抛物线。
+\textbf{完整解答：}这是母线平行 \(z\) 轴的抛物柱面；任意
+\(z=c\) 截面均为 \(y=x^2\)。
+\textbf{条件检查：} \(x,y\) 满足抛物线，而 \(z\) 任意。
+\textbf{易错点：}看到“平方”就误判为旋转抛物面 \(z=x^2+y^2\)。
+\textbf{核验：}沿 \(z\) 方向平移任一点，方程不变。
+
+\textbf{例 3（缺 \(y\) 的柱面）}
+
+\textbf{题面信号：}识别 \(x^2+4z^2=4\)。
+\textbf{分析：}缺 \(y\)，在 \(xz\) 平面准线为椭圆。
+\textbf{完整解答：}
+\[
+\frac{x^2}{4}+z^2=1
+\]
+为椭圆准线，故曲面是母线平行 \(y\) 轴的椭圆柱面。
+\textbf{条件检查：}轴向是缺失变量 \(y\)，不是系数较小的变量。
+\textbf{易错点：}把“长轴沿 \(x\)”与“母线沿 \(y\)”混为一谈。
+\textbf{核验：}固定任意 \(y=c\)，截面椭圆完全相同。
+
+\textbf{例 4（双曲柱面与范围）}
+
+\textbf{题面信号：}识别 \(y^2-z^2=1\)。
+\textbf{分析：}缺 \(x\)，准线在 \(yz\) 平面为双曲线。
+\textbf{完整解答：}这是母线平行 \(x\) 轴的双曲柱面；在每个
+\(x=c\) 平面内，截线都是沿 \(y\) 方向开口的双曲线。
+\textbf{条件检查：}准线有两支，柱面也有两片互不相连的部分。
+\textbf{易错点：}把负平方项误认为“没有实图形”。
+\textbf{核验：}取 \(z=0\) 得 \(y=\pm1\)，确有两条母线族起点。
+
+\textbf{失分防线：}
+
+“柱面”不只圆柱；母线方向由缺失变量决定，而不是由准线长轴决定；
+等号与不等号分别表示表面和实体。快速检查：给缺失变量任意加常数，
+方程应保持不变；固定它后截面应与准线完全相同。
+
+\textbf{考场写法：}
+\[
+\boxed{F(x,y)=0\text{ 不含 }z
+\ \Longrightarrow\ \text{母线平行 }z\text{ 轴的柱面}.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}看到缺变量能立即判断母线方向。
+  \item \textbf{130 分以上：}能准确命名圆、椭圆、抛物、双曲柱面并区分表面/实体。
+  \item \textbf{满分能力：}能把柱面视为投影边界和积分区域的侧面。
+\end{itemize}
+下一节点 \knowledgeRef[MATH1-KN-CALC-0175]{常见二次曲面识别}
+将通过标准方程符号与截痕统一识别更多积分区域。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k128}{K128 常见二次曲面识别}
+
+\knowledgeAnchor[MATH1-KN-CALC-0175]{常见二次曲面识别}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0175]{常见二次曲面识别}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+考场识别二次曲面的目的，通常不是给图形命名本身，而是迅速判断有界性、
+轴向、截面和积分投影。标准流程是“配方移轴 \(\to\) 常数归一
+\(\to\) 看平方项符号与缺失/一次项 \(\to\) 用截痕核验”。
+
+\textbf{直接前置闭环：配方法与截痕。}
+
+配方恒等式
+\[
+x^2+2px=(x+p)^2-p^2
+\]
+把一次项吸收到平移后的坐标平方中；本节需要它找曲面中心或顶点。
+使用时先把同一变量的二次、一次项放在一起，再补平方。例如
+\(x^2-4x=(x-2)^2-4\)。完成配方后调用
+\knowledgeRef[MATH1-KN-CALC-0172]{截痕法}检查开口和真实范围。
+
+\textbf{严格核心与推导：}
+
+平移、正比例缩放后的常见标准形如下：
+\[
+\begin{array}{ll}
+\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}+\dfrac{z^2}{c^2}=1
+&\text{椭球面（有界）};\\[4pt]
+\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}-\dfrac{z^2}{c^2}=1
+&\text{单叶双曲面，轴为负号项};\\[4pt]
+\dfrac{z^2}{c^2}-\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1
+&\text{双叶双曲面，轴为唯一正号项};\\[4pt]
+\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}-\dfrac{z^2}{c^2}=0
+&\text{椭圆锥面};\\[4pt]
+z=\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}
+&\text{椭圆抛物面};\\[4pt]
+z=\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}
+&\text{双曲抛物面}.
+\end{array}
+\]
+单叶与双叶不能只靠名称记：固定轴向坐标看横截面是否在轴心附近存在。
+双曲抛物面的两个平方项符号相反，含轴平面截面向相反方向开口。
+
+\textbf{方法选择：}
+
+同号平方和等于正数先想椭球；两正一负等于 \(1\) 看单叶；
+一正两负等于 \(1\) 看双叶；等于 \(0\) 看锥；一个变量只一次出现看抛物面，
+平方同号为椭圆抛物面、异号为双曲抛物面。任何判断都用一个轴向截面核验。
+
+\textbf{例 1（配方识别椭球）}
+
+\textbf{题面信号：}
+\[
+x^2-2x+4y^2+z^2+6z=6.
+\]
+\textbf{分析：}对 \(x,z\) 配方，再归一。
+\textbf{完整解答：}
+\[
+(x-1)^2+4y^2+(z+3)^2=16,
+\]
+即
+\[
+\frac{(x-1)^2}{16}+\frac{y^2}{4}
++\frac{(z+3)^2}{16}=1.
+\]
+故为中心 \((1,0,-3)\)、半轴 \(4,2,4\) 的椭球面。
+\textbf{条件检查：}右端为正，三个平方项同号。
+\textbf{易错点：}配方常数移项时符号错。
+\textbf{核验：}令 \(y=0\) 得中心在 \((1,-3)\) 的椭圆截面。
+
+\textbf{例 2（单叶双曲面轴向）}
+
+\textbf{题面信号：}
+\[
+\frac{x^2}{4}+y^2-\frac{z^2}{9}=1.
+\]
+\textbf{分析：}两正一负等于 \(1\)，负号项给单叶轴。
+\textbf{完整解答：}这是以 \(z\) 轴为轴的单叶双曲面。固定 \(z=c\)：
+\[
+\frac{x^2}{4}+y^2=1+\frac{c^2}{9},
+\]
+对任意 \(c\) 都有椭圆截面，故曲面连成一叶。
+\textbf{条件检查：}标准式右端为 \(1\)。
+\textbf{易错点：}把负号项误判为“沿该轴没有实点”。
+\textbf{核验：}在 \(z=0\) 已有腰部椭圆。
+
+\textbf{例 3（双叶双曲面）}
+
+\textbf{题面信号：}
+\[
+\frac{z^2}{4}-x^2-y^2=1.
+\]
+\textbf{分析：}一正两负，唯一正号项为轴。
+\textbf{完整解答：}这是以 \(z\) 轴为轴的双叶双曲面。固定 \(z=c\)：
+\[
+x^2+y^2=\frac{c^2}{4}-1,
+\]
+只有 \(|c|\ge2\) 才有截面，因此分为 \(z\ge2\) 与 \(z\le-2\) 两叶。
+\textbf{条件检查：}临界截面在 \(z=\pm2\) 退化为点。
+\textbf{易错点：}只凭“两负一正”记名称，却不会说明两叶为何分离。
+\textbf{核验：} \(z=0\) 无实点，符合中间断开。
+
+\textbf{例 4（双曲抛物面）}
+
+\textbf{题面信号：}识别 \(z=x^2-4y^2\)。
+\textbf{分析：}线性变量为 \(z\)，两个平方项异号。
+\textbf{完整解答：}这是双曲抛物面。截面
+\[
+y=0:\ z=x^2,\qquad x=0:\ z=-4y^2
+\]
+分别向 \(+z\)、\(-z\) 开口；\(z=c\) 为双曲线（\(c=0\) 时退化为两直线）。
+\textbf{条件检查：}不能仅由 \(z=0\) 的交叉线判断整个曲面。
+\textbf{易错点：}误判成锥面；锥面是齐次二次方程等于 \(0\)，而本式有一次 \(z\)。
+\textbf{核验：}两条含轴抛物线开口相反，正是“马鞍”结构。
+
+\textbf{失分防线：}
+
+未配方就判断中心；单叶/双叶只背符号不看截面；椭球面与椭球体混用；
+双曲抛物面与锥面混淆。快速检查：写一个垂直轴的截面，列出其存在范围，
+有界性和叶数会自动显现。
+
+\textbf{考场写法：}
+\[
+\boxed{\text{配方移轴}\to\text{归一}\to
+\text{看平方符号、缺失项与一次项}\to\text{截痕核验}.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能识别六类标准二次曲面。
+  \item \textbf{130 分以上：}能配方后判断中心、轴向、有界性和投影范围。
+  \item \textbf{满分能力：}能从截痕现场纠正名称，并直接转写积分限。
+\end{itemize}
+下一节点 \knowledgeRef[MATH1-KN-CALC-0176]{空间曲线的两种方程}
+处理曲面交线及其一参数表示。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k129}{K129 空间曲线的参数方程与一般方程}
+
+\knowledgeAnchor[MATH1-KN-CALC-0176]{空间曲线的参数方程与一般方程}
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+空间曲线可以用一个参数直接描点，也可以作为两个曲面的交线间接给出。
+参数区间决定曲线段、方向和是否重复描迹；一般方程必须有两个真正独立的约束。
+本节重点是在两种表示间切换，而不是机械消元。
+
+\textbf{直接前置闭环：参数方程与独立约束。}
+
+参数 \(t\) 是沿曲线变化的一个自由变量，
+\(\vec r(t)=(x(t),y(t),z(t))\) 每取一个允许值给一个曲线点。
+本节需要它把三个坐标关联起来，并在后续用 \(\vec r'(t)\) 给切向。
+例如 \((\cos t,\sin t,0)\), \(0\le t<2\pi\) 描一周单位圆。
+两个方程“独立”指它们不是彼此重复；若第二式只是第一式的倍数，就仍只有
+一个约束，通常表示曲面而非曲线。这里复用
+\knowledgeRef[MATH1-KN-CALC-0172]{曲面方程与独立约束}的维数辨析：
+三维中的两个独立约束通常把对象降为一维曲线。
+
+\textbf{严格核心与推导：}
+
+参数式
+\[
+\vec r(t)=(x(t),y(t),z(t)),\qquad t\in I
+\]
+用一个参数表示曲线。若可导且 \(\vec r'(t_0)\ne\vec0\)，则
+\(\vec r'(t_0)\) 给曲线在该点的切向方向；这是因为
+\[
+\frac{\vec r(t)-\vec r(t_0)}{t-t_0}\to\vec r'(t_0).
+\]
+一般式
+\[
+F(x,y,z)=0,\qquad G(x,y,z)=0
+\]
+表示两曲面的交集；在常规非退化情形下是一条空间曲线。参数式消去 \(t\)
+可得一般式，但可能需要附加范围；从一般式参数化时，优先利用圆、直线、
+平面等熟悉约束。
+
+\textbf{方法选择：}
+
+见到三角函数参数先找 \(x^2+y^2\) 等恒等式；见到两个曲面交线先选容易
+参数化的那个曲面，再由另一个方程确定剩余坐标；最后写清参数区间和方向。
+
+\textbf{例 1（螺旋线参数式）}
+
+\textbf{题面信号：}\(\vec r(t)=(2\cos t,2\sin t,t)\)。
+\textbf{分析：}前两坐标在圆上，第三坐标随参数上升。
+\textbf{完整解答：}
+\[
+x^2+y^2=4,\qquad z=t.
+\]
+曲线是圆柱面 \(x^2+y^2=4\) 上绕 \(z\) 轴上升的螺旋线；
+\[
+\vec r'(t)=(-2\sin t,2\cos t,1)
+\]
+从不为零。
+\textbf{条件检查：}若 \(t\in\mathbb R\)，曲线向上下无限延伸。
+\textbf{易错点：}消去 \(t\) 后只写圆柱面，丢失 \(z\) 与转角的联系。
+\textbf{核验：}每增加 \(2\pi\)，\(x,y\) 回到原位而 \(z\) 增加 \(2\pi\)。
+
+\textbf{例 2（两曲面交线参数化）}
+
+\textbf{题面信号：}
+\[
+x^2+y^2=1,\qquad z=x+y.
+\]
+\textbf{分析：}先参数化圆柱准线。
+\textbf{完整解答：}令
+\[
+x=\cos t,\qquad y=\sin t,\qquad 0\le t<2\pi,
+\]
+则
+\[
+z=\cos t+\sin t.
+\]
+故
+\[
+\vec r(t)=(\cos t,\sin t,\cos t+\sin t).
+\]
+\textbf{条件检查：}半开区间恰描一周且不重复端点。
+\textbf{易错点：}漏写参数区间，无法说明曲线段和重复描迹。
+\textbf{核验：}代回两个原方程恒成立。
+
+\textbf{例 3（参数式化一般式并保留范围）}
+
+\textbf{题面信号：}\(x=t^2,y=t,z=1-t\)，其中 \(t\ge0\)。
+\textbf{分析：}由 \(y=t\) 最易消元。
+\textbf{完整解答：}
+\[
+x=y^2,\qquad z=1-y,\qquad y\ge0.
+\]
+这两个曲面的交集连同范围 \(y\ge0\) 才与原参数曲线一致。
+\textbf{条件检查：}参数限制 \(t\ge0\) 必须转成 \(y\ge0\)。
+\textbf{易错点：}只写两个等式，会额外加入 \(y<0\) 的另一半曲线。
+\textbf{核验：}由一般式取 \(t=y\ge0\) 可完全恢复原参数式。
+
+\textbf{例 4（重复描迹）}
+
+\textbf{题面信号：}\(\vec r(t)=(\cos2t,\sin2t,0)\)，
+\(0\le t\le2\pi\)，问描迹次数。
+\textbf{分析：}圆周角为 \(2t\)，总变化 \(4\pi\)。
+\textbf{完整解答：}曲线是单位圆；当 \(t\) 从 \(0\) 到 \(2\pi\) 时，
+角参数 \(2t\) 从 \(0\) 到 \(4\pi\)，因此同向描两周。
+\textbf{条件检查：}两个端点还对应同一点。
+\textbf{易错点：}只看图形集合，不看参数方向和次数。
+\textbf{核验：}\(\vec r(t+\pi)=\vec r(t)\)，周期为 \(\pi\)。
+
+\textbf{失分防线：}
+
+消元后只剩一个方程会把曲线扩成曲面；忘参数范围会多点或重复描迹；
+两个一般方程可能不独立；切向量为零时不能直接作为切线方向。
+快速检查：参数式代回一般式；一般式重新参数化，看是否双向覆盖且范围一致。
+
+\textbf{考场写法：}
+\[
+\boxed{\vec r(t)=(x(t),y(t),z(t)),\ t\in I;\qquad
+C:\begin{cases}F(x,y,z)=0,\\G(x,y,z)=0.\end{cases}}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能识别一参数曲线和两曲面交线。
+  \item \textbf{130 分以上：}能双向转换并保留参数范围、方向与描迹次数。
+  \item \textbf{满分能力：}能选择低成本参数化并为切线、线积分准备切向量。
+\end{itemize}
+下一节点 \knowledgeRef[MATH1-KN-CALC-0177]{空间曲线投影}
+将用“存在被消去坐标”给出准确投影及其范围。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k130}{K130 空间曲线投影}
+
+\knowledgeAnchor[MATH1-KN-CALC-0177]{空间曲线投影}
+
+\begin{knowledgeBox}
+\textbf{定位与路线：}
+
+向 \(xy\) 平面投影不是简单“删掉 \(z\)”：准确含义是保留所有存在某个
+\(z\) 能满足原约束的 \((x,y)\)。因此消元给关系，存在性给范围；
+投影曲线还要写 \(z=0\)，投影柱面则保留消元关系并让 \(z\) 任意，
+积分投影域通常是不等式区域。
+
+\textbf{前置短桥（K125、K129）：}
+
+\knowledgeRef[MATH1-KN-CALC-0176]{空间曲线}由参数式或两个约束给出，
+\knowledgeRef[MATH1-KN-CALC-0172]{截痕与范围}提醒代数关系必须有实点。
+这里需要消去被压扁的坐标。例如 \((\cos t,\sin t,t)\) 投到 \(xy\) 平面时
+保留 \((\cos t,\sin t)\)，所得为单位圆而非圆柱面。
+
+\textbf{严格核心与推导：}
+
+集合 \(S\subset\mathbb R^3\) 在 \(xy\) 平面的投影定义为
+\[
+\operatorname{proj}_{xy}S
+=\{(x,y,0):\exists z,\ (x,y,z)\in S\}.
+\]
+若曲线由 \(F=0,G=0\) 给出，通常消去 \(z\) 得
+\(\Phi(x,y)=0\)，再附上由“存在实数 \(z\)”产生的范围，投影曲线写
+\[
+\Phi(x,y)=0,\qquad z=0.
+\]
+投影柱面是 \(\Phi(x,y)=0\) 且 \(z\) 任意；二者不是同一对象。
+若投影的是立体区域，消元后通常得到
+\(\Phi(x,y)\le0\) 一类二维域，而其边界 \(\Phi=0\) 不能代替整个域。
+
+\textbf{方法选择：}
+
+参数式直接保留目标平面的两个坐标并消 \(t\)；一般式优先线性消去；
+含平方根或平方时写存在性不等式；最后明确题目要“投影曲线、投影柱面、
+投影边界还是投影域”。
+
+\textbf{例 1（平面与圆柱交线的投影）}
+
+\textbf{题面信号：}
+\[
+C:\begin{cases}x^2+y^2=4,\\z=x-y.\end{cases}
+\]
+求其在 \(xy\) 平面的投影曲线。
+\textbf{分析：}第一式已不含 \(z\)，第二式对每个圆周点唯一给 \(z\)。
+\textbf{完整解答：}
+\[
+C_{xy}:\quad x^2+y^2=4,\qquad z=0.
+\]
+\textbf{条件检查：}圆周上每个 \((x,y)\) 都存在实数 \(z=x-y\)。
+\textbf{易错点：}只写 \(x^2+y^2=4\) 而未说明投影位于 \(z=0\)。
+\textbf{核验：}参数化原曲线为
+\((2\cos t,2\sin t,2\cos t-2\sin t)\)，投影确为圆。
+
+\textbf{例 2（消元得到椭圆）}
+
+\textbf{题面信号：}
+\[
+C:\begin{cases}x^2+y^2+z^2=4,\\z=x.\end{cases}
+\]
+求 \(xy\) 投影。
+\textbf{分析：}用 \(z=x\) 消元。
+\textbf{完整解答：}
+\[
+2x^2+y^2=4,\qquad z=0.
+\]
+每个椭圆点取 \(z=x\) 都满足原方程，故无额外范围。
+\textbf{条件检查：}消元是等价代入，没有平方引入多余点。
+\textbf{易错点：}把球面的投影圆盘误当成这条交线的投影；对象是交线。
+\textbf{核验：}椭圆半轴为 \(\sqrt2,2\)，与平面斜切球面的几何结果一致。
+
+\textbf{例 3（参数范围投影）}
+
+\textbf{题面信号：}\(\vec r(t)=(t^2,t,1-t)\)，\(0\le t\le2\)，
+求 \(xy\) 投影。
+\textbf{分析：}保留 \(x=t^2,y=t\)，消去 \(t\) 并转移范围。
+\textbf{完整解答：}
+\[
+x=y^2,\qquad 0\le y\le2,\qquad z=0.
+\]
+\textbf{条件检查：}因 \(y=t\)，参数范围完整转为 \(y\) 范围。
+\textbf{易错点：}只写整条抛物线 \(x=y^2\)，多出 \(y<0\) 和 \(y>2\)。
+\textbf{核验：}任一投影点取 \(t=y\) 可恢复唯一原曲线点。
+
+\textbf{例 4（投影域不是边界）}
+
+\textbf{题面信号：}立体
+\[
+D=\{(x,y,z):x^2+y^2\le1,\ x^2+y^2\le z\le1\}
+\]
+在 \(xy\) 平面的投影。
+\textbf{分析：}存在 \(z\) 的条件是上下界有序，并结合显式圆盘限制。
+\textbf{完整解答：}令 \(r^2=x^2+y^2\)。题设已有 \(r^2\le1\)，此时
+区间 \([r^2,1]\) 非空，故
+\[
+D_{xy}=\{(x,y):x^2+y^2\le1\}.
+\]
+\textbf{条件检查：}边界圆 \(x^2+y^2=1\) 上仍有 \(z=1\)。
+\textbf{易错点：}只写投影边界 \(x^2+y^2=1\)，漏掉内部。
+\textbf{核验：}圆盘内任一点都可取 \(z=1\) 回到 \(D\)。
+
+\textbf{失分防线：}
+
+消元方程不等于完整投影；平方可能引入无原像的点；投影曲线与投影柱面、
+投影边界与投影域必须区分。快速检查：对所得每个候选 \((x,y)\)，能否明确
+构造至少一个实数 \(z\) 回到原集合。
+
+\textbf{考场写法：}
+\[
+\boxed{\operatorname{proj}_{xy}S
+=\{(x,y):\exists z,\ (x,y,z)\in S\};\quad
+\text{消元后必须补“存在 }z\text{”的范围}.}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能消去指定坐标并写目标坐标平面。
+  \item \textbf{130 分以上：}能保留参数/实数范围，区分边界与区域。
+  \item \textbf{满分能力：}能从“存在 \(z\)”直接建立二重、三重积分投影域。
+\end{itemize}
+本节点直接服务于后续多元积分限；最后的
+\knowledgeRef[MATH1-KN-CALC-0178]{一般仿射变换边界}
+只用于划清高数与线性代数二次型的学习范围。
+\end{knowledgeBox}
+
+\studySubsection{calc-17-k131}{K131 一般仿射坐标变换与二次曲面分类（大纲边界）}
+
+\knowledgeAnchor[MATH1-KN-CALC-0178]{一般仿射坐标变换与二次曲面分类}
+\noindent{\footnotesize\textbf{索引：}
+\knowledgeIndexRef[MATH1-KN-CALC-0178]{一般仿射坐标变换与二次曲面分类}}\par
+
+\begin{knowledgeBox}
+\textbf{定位与边界路线：}
+
+本节点是范围辨析，不把一套新的高阶分类算法塞进高数。高数部分应掌握：
+标准二次曲面的识别、分别对各变量配方的平移、沿坐标轴的正比例缩放，
+以及这些图形在积分中的投影与上下界。含交叉项的一般二次曲面若要求通过
+矩阵正交变换、特征值或完整主轴定理系统分类，应回到线性代数二次型模块。
+
+\textbf{前置短桥（K128 与线性代数术语）：}
+
+\knowledgeRef[MATH1-KN-CALC-0175]{常见二次曲面识别}用标准形与截痕
+解决高数所需图形。一般二次式可写成
+\[
+Q(\vec x)=\vec x^{\,T}A\vec x+\vec b^{\,T}\vec x+c,
+\]
+其中 \(A\) 可取实对称矩阵；“正交变换”是用保持长度和夹角的矩阵
+\(P\)（满足 \(P^TP=I\)）令 \(\vec x=P\vec u\)，从而消去二次交叉项。
+这里定义这些词，只为识别任务归属；完整求特征值、构造 \(P\) 和判定二次型
+正负惯性指数属于线性代数，不承担本讲考场算法。
+
+\textbf{严格核心与边界依据：}
+
+仿射变换一般写成
+\[
+\vec x=B\vec u+\vec c,\qquad \det B\ne0,
+\]
+包含平移、旋转、切变和非零比例缩放。高数常规空间几何中，面对
+\[
+\sum a_i x_i^2+\sum b_i x_i+d=0
+\]
+且没有交叉项，可分别配方、移轴、归一后调用 K128；这一步不需要矩阵分类。
+若出现 \(xy,xz,yz\) 交叉项并要求“通过旋转坐标化为标准形、系统判断所有
+退化类型”，这属于一般二次型/解析几何扩展。要特别区分：
+线性代数部分仍可能考二次型正交化；“不属于高数常规要求”不等于“整场考试不考”。
+
+\textbf{方法选择：}
+
+先问任务目的。若只需给定标准曲面的积分，直接用 K128 识别；
+若仅有各变量一次项，配方平移；若出现交叉项但题目已给变换，按给定变换代入
+并处理雅可比；若要求自行寻找一般主轴变换，则把它路由到线性代数，不在高数
+几何链重复训练。
+
+\textbf{例 1（高数范围内：平移配方）}
+
+\textbf{题面信号：}识别
+\[
+x^2-2x+4y^2+z^2=4.
+\]
+\textbf{分析：}没有交叉项，只需配方平移，属于 K128 常规任务。
+\textbf{完整解答：}
+\[
+(x-1)^2+4y^2+z^2=5,
+\]
+即中心 \((1,0,0)\) 的椭球面；不需要矩阵或正交变换。
+\textbf{条件检查：}右端为正，三个平方项同号。
+\textbf{易错点：}见到“坐标平移”就误认为一般仿射分类。
+\textbf{核验：}令 \(X=x-1\) 后立即得到轴对齐标准形。
+
+\textbf{例 2（边界信号：交叉项）}
+
+\textbf{题面信号：}要求把
+\[
+x^2+2xy+y^2+z^2=1
+\]
+通过旋转坐标化为标准形并作完整分类。
+\textbf{分析：} \(2xy\) 是二次交叉项，自行寻找旋转主轴属于二次型任务。
+\textbf{完整解答：}高数本讲只需判断该任务应路由到线性代数的实对称二次型
+正交化：二次部分对应
+\[
+A=\begin{pmatrix}1&1&0\\1&1&0\\0&0&1\end{pmatrix}.
+\]
+系统求正交矩阵、特征值及退化类型不作为本节高数算法。
+\textbf{条件检查：}若题目直接给出新变量，则可按给定变换代入；这里要求自行寻找。
+\textbf{易错点：}把“高数不常规要求”说成“数学一绝不出现”；线性代数部分仍有二次型。
+\textbf{核验：}交叉项确对应矩阵的非对角元，已满足路由信号。
+
+\textbf{例 3（给定变换时可以执行代入）}
+
+\textbf{题面信号：}已给
+\[
+u=\frac{x+y}{\sqrt2},\qquad v=\frac{x-y}{\sqrt2},
+\]
+化简 \(x^2+2xy+y^2\)。
+\textbf{分析：}无需自行求变换，只做代数代入，不越过边界。
+\textbf{完整解答：}由 \(x+y=\sqrt2u\)，
+\[
+x^2+2xy+y^2=(x+y)^2=2u^2.
+\]
+表达式与 \(v\) 无关，说明该二次部分在一个方向退化。
+\textbf{条件检查：}给定变换可逆，逆变换为
+\(x=(u+v)/\sqrt2,y=(u-v)/\sqrt2\)。
+\textbf{易错点：}代入题仍重新展开一整套特征值算法。
+\textbf{核验：}取 \(x=1,y=-1\)，原式和 \(2u^2\) 都为 \(0\)。
+
+\textbf{例 4（积分中的轴向缩放仍属高数接口）}
+
+\textbf{题面信号：}区域为椭球
+\[
+\frac{x^2}{4}+\frac{y^2}{9}+z^2\le1,
+\]
+判断是否需要一般仿射分类。
+\textbf{分析：}已是轴对齐标准形，只需识别半轴或使用给定缩放。
+\textbf{完整解答：}不需要一般分类。令
+\[
+x=2u,\qquad y=3v,\qquad z=w,
+\]
+区域化为 \(u^2+v^2+w^2\le1\)，体积元缩放因子为
+\(|\det\operatorname{diag}(2,3,1)|=6\)。这属于标准区域换元，
+并非寻找未知主轴。
+\textbf{条件检查：}变换可逆，行列式非零。
+\textbf{易错点：}把所有线性换元都混同为“超纲的一般仿射分类”。
+\textbf{核验：}半轴乘积 \(2\cdot3\cdot1=6\)，与体积缩放一致。
+
+\textbf{失分防线：}
+
+两个相反错误都要避免：一是为高数标准曲面额外学习完整矩阵分类，浪费复习成本；
+二是据此跳过线性代数二次型。正确判据是看任务：已轴对齐或只需配方，
+留在高数；要自行消一般交叉项并系统分类，回到线性代数。
+
+\textbf{考场写法：}
+\[
+\boxed{\begin{gathered}
+\text{高数：标准形、配方平移、轴向缩放、积分应用；}\\
+\text{线代：一般交叉项的正交化与二次型分类。}
+\end{gathered}}
+\]
+
+\textbf{三级掌握与连接：}
+\begin{itemize}
+  \item \textbf{基础过关：}能说清标准曲面识别与一般主轴分类的边界。
+  \item \textbf{130 分以上：}能把配方、给定换元和自行求正交变换正确分流。
+  \item \textbf{满分能力：}既不重复学习，也不会漏掉线性代数二次型；
+  面对积分时能直接使用已给或显然的轴向缩放。
+\end{itemize}
+本讲到此形成闭环：K113--K124 提供方向、法向、关系与距离，
+K125--K130 提供曲面、曲线和投影，K131 只负责守住学科边界。
 \end{knowledgeBox}

@@ -1,0 +1,131 @@
+\answerAnchor{MATH1-CALC-0059}
+\begin{solutionBox}
+\textbf{A}\quad
+\[
+W=\int_0^2(3x^2+2)\mathrm dx
+=[x^3+2x]_0^2=12\,\mathrm J.
+\]
+单位由 \(\mathrm N\cdot\mathrm m\) 得焦耳。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 以距箱底高度 \(y\) 为变量。水平液层体积为
+\(\pi\,\mathrm dy\)，重量为 \(\rho g\pi\,\mathrm dy\)，提升距离为
+\(4-y\)。因此
+\[
+W=\rho g\pi\int_0^4(4-y)\,\mathrm dy
+=8\pi\rho g\,\mathrm J.
+\]
+全体液体质心位于高度 \(2\)，总重为 \(4\pi\rho g\)，提升 \(2\) 米也得
+同值。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 以深度 \(y\in[0,h]\) 为变量。相似三角形给出该深度处
+薄条宽度
+\[
+w(y)=\frac bhy.
+\]
+压强为 \(\rho gy\)，故
+\[
+\mathrm dF=\rho gy\cdot\frac bhy\,\mathrm dy.
+\]
+积分得
+\[
+\boxed{
+F=\frac{\rho gb}{h}\int_0^hy^2\mathrm dy
+=\frac{\rho gbh^2}{3}
+}.
+\]
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad 距近端 \(x\) 处的质量微元为
+\[
+\mathrm dm=\lambda_0\left(1+\frac xL\right)\mathrm dx,
+\]
+距质点为 \(a+x\)。因此
+\[
+F=Gm\lambda_0\int_0^L
+\frac{1+x/L}{(a+x)^2}\mathrm dx.
+\]
+令 \(u=a+x\)，则
+\[
+1+\frac xL=\frac{L-a+u}{L}.
+\]
+故
+\[
+\boxed{
+F=\frac{Gm\lambda_0}{L}
+\left[
+(L-a)\left(\frac1a-\frac1{a+L}\right)
++\ln\frac{a+L}{a}
+\right]}.
+\]
+\(a>0\) 保证距离不为零；括号内量为正，与引力大小一致。
+\end{solutionBox}
+
+\answerAnchor{MATH1-CALC-0060}
+\begin{solutionBox}
+\textbf{A}\quad
+\[
+\bar f=\frac1\pi\int_0^\pi\sin x\mathrm dx
+=\frac2\pi.
+\]
+结果位于 \(\sin x\) 在该区间的值域 \([0,1]\) 内。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{B}\quad 总质量
+\[
+M=\int_0^1 1\,\mathrm dx+\int_1^2 2\,\mathrm dx=3.
+\]
+关于原点的一阶矩
+\[
+M_x=\int_0^1x\,\mathrm dx+\int_1^2 2x\,\mathrm dx
+=\frac12+3=\frac72.
+\]
+所以
+\[
+\boxed{\bar x=\frac{M_x}{M}=\frac76}.
+\]
+右半段密度更大，故质心位于整个区间中点 \(1\) 的右侧，方向核验通过。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{C}\quad 采用水平条带。面积
+\[
+A=\int_0^1(y-y^2)\mathrm dy=\frac16.
+\]
+关于 \(y\) 轴的一阶矩为
+\[
+\int_0^1\int_{y^2}^{y}x\,\mathrm dx\,\mathrm dy
+=\frac12\int_0^1(y^2-y^4)\mathrm dy=\frac1{15}.
+\]
+关于 \(x\) 轴的一阶矩为
+\[
+\int_0^1y(y-y^2)\mathrm dy=\frac1{12}.
+\]
+故
+\[
+\boxed{(\bar x,\bar y)=\left(\frac25,\frac12\right)}.
+\]
+两坐标均落在区域的坐标范围内。
+\end{solutionBox}
+\begin{solutionBox}
+\textbf{M}\quad \(\lambda\ge-1\) 保证密度非负。总质量和一阶矩为
+\[
+M=1+\frac\lambda2,\qquad
+M_x=\frac12+\frac\lambda3.
+\]
+因此
+\[
+\boxed{
+\bar x(\lambda)
+=\frac{3+2\lambda}{3(2+\lambda)}
+}.
+\]
+并且
+\[
+\bar x'(\lambda)
+=\frac1{3(2+\lambda)^2}>0
+\qquad(\lambda\ge-1),
+\]
+所以质心随 \(\lambda\) 严格增加。退化检查：
+\(\lambda=0\) 时 \(\bar x=1/2\)，即均匀细杆中点。
+\end{solutionBox}
